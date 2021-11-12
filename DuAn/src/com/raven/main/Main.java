@@ -7,9 +7,11 @@ import com.raven.form.Form2;
 import com.raven.model.ModelMenu;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
@@ -17,18 +19,18 @@ import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 
 public class Main extends javax.swing.JFrame {
-
+    
     private Menu menu = new Menu();
     private JPanel main = new JPanel();
     private MigLayout layout;
     private Animator animator;
     private boolean menuShow;
-
+    
     public Main() {
         initComponents();
         init();
     }
-
+    int xx,xy;  
     private void init() {
         layout = new MigLayout("fill", "0[]10[]5", "0[fill]0");
         body.setLayout(layout);
@@ -38,6 +40,7 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 System.out.println("Logout");
+                System.exit(0);
             }
         });
         menu.addEventMenu(new ActionListener() {
@@ -79,7 +82,7 @@ public class Main extends javax.swing.JFrame {
                 layout.setComponentConstraints(menu, "w " + width + "!");
                 body.revalidate();
             }
-
+            
             @Override
             public void end() {
                 menuShow = !menuShow;
@@ -91,19 +94,26 @@ public class Main extends javax.swing.JFrame {
         animator.setDeceleration(0.5f);
         showForm(new Form1());
     }
-
+    
     private void showForm(Component com) {
         main.removeAll();
         main.add(com);
         main.repaint();
         main.revalidate();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         body = new javax.swing.JPanel();
+        pnlTop = new javax.swing.JPanel();
+        pnlActions = new javax.swing.JPanel();
+        lblMinimize = new javax.swing.JLabel();
+        lblMaximize = new javax.swing.JLabel();
+        lblClose = new javax.swing.JLabel();
+        pnlTitle = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -114,27 +124,113 @@ public class Main extends javax.swing.JFrame {
         body.setLayout(bodyLayout);
         bodyLayout.setHorizontalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1131, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 653, Short.MAX_VALUE)
+            .addGap(0, 631, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(body, java.awt.BorderLayout.CENTER);
+
+        pnlTop.setBackground(new java.awt.Color(51, 153, 255));
+        pnlTop.setPreferredSize(new java.awt.Dimension(1024, 30));
+        pnlTop.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                pnlTopMouseDragged(evt);
+            }
+        });
+        pnlTop.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlTopMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                pnlTopMousePressed(evt);
+            }
+        });
+        pnlTop.setLayout(new java.awt.BorderLayout());
+
+        pnlActions.setBackground(new java.awt.Color(51, 153, 255));
+        pnlActions.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+
+        lblMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8_minus_18px_1.png"))); // NOI18N
+        lblMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblMinimizeMousePressed(evt);
+            }
+        });
+        pnlActions.add(lblMinimize);
+
+        lblMaximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8_rectangle_stroked_18px.png"))); // NOI18N
+        lblMaximize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblMaximizeMousePressed(evt);
+            }
+        });
+        pnlActions.add(lblMaximize);
+
+        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8_multiply_18px_1.png"))); // NOI18N
+        lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblCloseMousePressed(evt);
+            }
+        });
+        pnlActions.add(lblClose);
+
+        pnlTop.add(pnlActions, java.awt.BorderLayout.LINE_END);
+
+        pnlTitle.setBackground(new java.awt.Color(51, 153, 255));
+        pnlTitle.setPreferredSize(new java.awt.Dimension(200, 30));
+        pnlTitle.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 8));
+
+        lblTitle.setForeground(new java.awt.Color(204, 204, 204));
+        lblTitle.setText("Phone Shop");
+        pnlTitle.add(lblTitle);
+
+        pnlTop.add(pnlTitle, java.awt.BorderLayout.LINE_START);
+
+        getContentPane().add(pnlTop, java.awt.BorderLayout.PAGE_START);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblMinimizeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMousePressed
+        Main.this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_lblMinimizeMousePressed
+
+    private void lblMaximizeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMaximizeMousePressed
+        if (Main.this.getExtendedState() == MAXIMIZED_BOTH) {
+            Main.this.setExtendedState(JFrame.NORMAL);
+        } else {
+            Main.this.setExtendedState(MAXIMIZED_BOTH);
+        }
+    }//GEN-LAST:event_lblMaximizeMousePressed
+
+    private void lblCloseMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMousePressed
+        System.exit(0);
+    }//GEN-LAST:event_lblCloseMousePressed
+
+    private void pnlTopMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTopMouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - xy);
+    }//GEN-LAST:event_pnlTopMouseDragged
+
+    private void pnlTopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTopMouseClicked
+        //        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
+            //            if (Home20.this.getExtendedState() == MAXIMIZED_BOTH) {
+                //                Home20.this.setExtendedState(JFrame.NORMAL);
+                //            } else {
+                //                Home20.this.setExtendedState(MAXIMIZED_BOTH);
+                //            }
+            //        }
+    }//GEN-LAST:event_pnlTopMouseClicked
+
+    private void pnlTopMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTopMousePressed
+        xx = evt.getX();
+        xy = evt.getY();
+    }//GEN-LAST:event_pnlTopMousePressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -170,5 +266,12 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel body;
+    private javax.swing.JLabel lblClose;
+    private javax.swing.JLabel lblMaximize;
+    private javax.swing.JLabel lblMinimize;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlActions;
+    private javax.swing.JPanel pnlTitle;
+    private javax.swing.JPanel pnlTop;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,10 +4,12 @@
  */
 package DAO;
 
+import MODEL.KhachHang;
+
 /**
  *
  * @author gnaht
  */
-public class KhachHangDAO {
+public class KhachHangDAO extends AbsDAO<KhachHang>{
     
 }

@@ -4,10 +4,12 @@
  */
 package DAO;
 
+import MODEL.KhuyenMai;
+
 /**
  *
  * @author gnaht
  */
-public class KhuyenMaiDAO {
+public class KhuyenMaiDAO extends AbsDAO<KhuyenMai>{
     
 }

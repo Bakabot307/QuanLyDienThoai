@@ -4,10 +4,12 @@
  */
 package DAO;
 
+import MODEL.HoaDon;
+
 /**
  *
  * @author gnaht
  */
-public class HoaDonDAO {
+public class HoaDonDAO extends AbsDAO<HoaDon>{
     
 }

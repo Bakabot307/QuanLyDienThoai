@@ -4,10 +4,12 @@
  */
 package DAO;
 
+import MODEL.ChiTietPhieuNhap;
+
 /**
  *
  * @author gnaht
  */
-public class ChiTietPhieuNhapDAO {
+public class ChiTietPhieuNhapDAO extends AbsDAO<ChiTietPhieuNhap>{
     
 }
