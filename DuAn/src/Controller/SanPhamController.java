@@ -28,7 +28,7 @@ public class SanPhamController extends AbsController<SanPham>{
 
     @Override
     public String[] getTableColumnNames() {
-         return new String[]{"ID Tác giả", "Tên tác giả", "Số điện thoại", "Địa chỉ","5" ,"6","7"};
+         return new String[]{"ID Sản Phẩm", "ID Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập","Giá Bán" ,"Số Lượng","Đơn Vị Tính"};
     }
 
     @Override
