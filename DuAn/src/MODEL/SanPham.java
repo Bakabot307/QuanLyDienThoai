@@ -90,5 +90,20 @@ public class SanPham extends TableInterface{
     public int getId() {
         return idSanPham;
     }
+
+    @Override
+    public String getIdName() {
+        return "TenSanPham"; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getTableName() {
+        return "Sản Phẩm"; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String toString() {
+        return TenSanPham; //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

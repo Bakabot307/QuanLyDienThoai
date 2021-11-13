@@ -2,7 +2,8 @@ git status
 git add * or file name
 git commit -m"comment"
 git push
-git pull
+----
+git pull = fetch + merge 
 ----
 https://quanlydienthoai998.kiotviet.vn/man/#/DashBoard
 abc123456

@@ -1,9 +1,14 @@
 package com.raven.form;
 
+import Controller.AbsController;
 import java.awt.Color;
 import java.util.Date;
+import VIEW.ViewInterface;
+import java.util.List;
+import net.sf.oval.ConstraintViolation;
+import view.ViewImp;
 
-public class Form2 extends javax.swing.JPanel {
+public class Form2 extends javax.swing.JPanel implements ViewInterface {
 
     public Form2() {
         initComponents();
@@ -24,8 +29,24 @@ public class Form2 extends javax.swing.JPanel {
             }
         });
         timeThread.start();
+        
+    }
+     public void viewList(List<Object[]> data) {
+        // gọi lệnh view implement
+        ViewImp.viewList(data, tableColumn1);
+        // sửa lại đóng cửa sổ tại đây
     }
 
+    @Override
+    public void setColumnNames(String[] columnNames) {
+        // gọi lệnh view implement
+        ViewImp.setColumnNames(columnNames, tableColumn1);
+    }
+
+    @Override
+    public void showErrors(List<ConstraintViolation> errorList) {
+        ViewImp.showError(errorList, jLabel1);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -84,13 +105,10 @@ public class Form2 extends javax.swing.JPanel {
 
         tableColumn1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "STT", "ID Sản Phẩm", "ID Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "ĐVT"
             }
         ));
         jScrollPane1.setViewportView(tableColumn1);
@@ -125,7 +143,7 @@ public class Form2 extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -185,14 +203,13 @@ public class Form2 extends javax.swing.JPanel {
             .addGroup(thaoTacLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(thaoTacLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(thaoTacLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel5)
                     .addGroup(thaoTacLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(thaoTacLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,4 +301,11 @@ public class Form2 extends javax.swing.JPanel {
     private com.raven.swing.TableColumn tableColumn2;
     private javax.swing.JPanel thaoTac;
     // End of variables declaration//GEN-END:variables
+
+        AbsController controller;
+    
+    @Override
+    public void setController(AbsController controller) {
+        this.controller = controller;
+    }
 }
