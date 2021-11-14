@@ -4,10 +4,12 @@
  */
 package DAO;
 
+import MODEL.NhaCungCap;
+
 /**
  *
  * @author gnaht
  */
-public class NhaCungCapDAO {
+public class NhaCungCapDAO extends AbsDAO<NhaCungCap>{
     
 }

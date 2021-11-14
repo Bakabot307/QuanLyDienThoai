@@ -8,3 +8,5 @@ git pull = fetch + merge
 https://quanlydienthoai998.kiotviet.vn/man/#/DashBoard
 abc123456
 ----
+
+git push -f origin main

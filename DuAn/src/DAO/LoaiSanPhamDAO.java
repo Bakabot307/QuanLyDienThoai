@@ -4,10 +4,12 @@
  */
 package DAO;
 
+import MODEL.LoaiSanPham;
+
 /**
  *
  * @author gnaht
  */
-public class LoaiSanPhamDAO {
+public class LoaiSanPhamDAO extends AbsDAO<LoaiSanPham>{
     
 }
