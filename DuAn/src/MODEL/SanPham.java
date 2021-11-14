@@ -10,22 +10,19 @@ import Interface.TableInterface;
  *
  * @author gnaht
  */
-
 /**
  *
  * @author vanbi
  */
-public class SanPham extends TableInterface{
+public class SanPham extends TableInterface {
+
     private Integer idSanPham;
     private Integer idLoaiSanPham;
     private String TenSanPham;
-    private float GiaNhap;
-    private float GiaBan;
+    private double GiaNhap;
+    private double GiaBan;
     private Integer SoLuong;
     private String DVT;
-
-    public SanPham() {
-    }
 
     public Integer getIdSanPham() {
         return idSanPham;
@@ -34,9 +31,6 @@ public class SanPham extends TableInterface{
     public void setIdSanPham(Integer idSanPham) {
         this.idSanPham = idSanPham;
     }
-
- 
-
 
     public Integer getIdLoaiSanPham() {
         return idLoaiSanPham;
@@ -54,19 +48,19 @@ public class SanPham extends TableInterface{
         this.TenSanPham = TenSanPham;
     }
 
-    public float getGiaNhap() {
+    public double getGiaNhap() {
         return GiaNhap;
     }
 
-    public void setGiaNhap(float GiaNhap) {
+    public void setGiaNhap(double GiaNhap) {
         this.GiaNhap = GiaNhap;
     }
 
-    public float getGiaBan() {
+    public double getGiaBan() {
         return GiaBan;
     }
 
-    public void setGiaBan(float GiaBan) {
+    public void setGiaBan(double GiaBan) {
         this.GiaBan = GiaBan;
     }
 
@@ -86,24 +80,10 @@ public class SanPham extends TableInterface{
         this.DVT = DVT;
     }
 
+  
+
     @Override
     public int getId() {
         return idSanPham;
     }
-
-    @Override
-    public String getIdName() {
-        return "TenSanPham"; //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getTableName() {
-        return "Sản Phẩm"; //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String toString() {
-        return TenSanPham; //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

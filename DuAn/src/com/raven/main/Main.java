@@ -3,7 +3,7 @@ package com.raven.main;
 import com.raven.component.Menu;
 import com.raven.event.EventMenuSelected;
 import com.raven.form.Form1;
-import com.raven.form.Form2;
+import com.raven.form.BanHangPanel;
 import com.raven.model.ModelMenu;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -57,7 +57,7 @@ public class Main extends javax.swing.JFrame {
                 if (index == 0) {
                     showForm(new Form1());
                 } else if (index == 1) {
-                    showForm(new Form2());
+                    showForm(new BanHangPanel());
                 }
             }
         });

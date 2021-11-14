@@ -1,21 +1,24 @@
 package com.raven.form;
 
 import Controller.AbsController;
+import Controller.SanPhamController;
+import VIEW.ViewImp;
 import java.awt.Color;
 import java.util.Date;
 import VIEW.ViewInterface;
 import java.util.List;
 import net.sf.oval.ConstraintViolation;
-import view.ViewImp;
 
-public class Form2 extends javax.swing.JPanel implements ViewInterface {
+public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
-    public Form2() {
+    public BanHangPanel() {
         initComponents();
+        SanPhamController sanPhamController = new SanPhamController(this);
         time();
         setOpaque(false);
     }
-     private void time() {
+
+    private void time() {
         Thread timeThread = new Thread(() -> {
             while (true) {
                 Date date = new Date();
@@ -29,24 +32,9 @@ public class Form2 extends javax.swing.JPanel implements ViewInterface {
             }
         });
         timeThread.start();
-        
-    }
-     public void viewList(List<Object[]> data) {
-        // gọi lệnh view implement
-        ViewImp.viewList(data, tableColumn1);
-        // sửa lại đóng cửa sổ tại đây
+
     }
 
-    @Override
-    public void setColumnNames(String[] columnNames) {
-        // gọi lệnh view implement
-        ViewImp.setColumnNames(columnNames, tableColumn1);
-    }
-
-    @Override
-    public void showErrors(List<ConstraintViolation> errorList) {
-        ViewImp.showError(errorList, jLabel1);
-    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -56,7 +44,7 @@ public class Form2 extends javax.swing.JPanel implements ViewInterface {
         jLabel2 = new javax.swing.JLabel();
         panelShow = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableColumn1 = new com.raven.swing.TableColumn();
+        dataTable = new com.raven.swing.TableColumn();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableColumn2 = new com.raven.swing.TableColumn();
         thaoTac = new javax.swing.JPanel();
@@ -103,7 +91,7 @@ public class Form2 extends javax.swing.JPanel implements ViewInterface {
 
         panelShow.setBorder(new javax.swing.border.MatteBorder(null));
 
-        tableColumn1.setModel(new javax.swing.table.DefaultTableModel(
+        dataTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null}
             },
@@ -111,7 +99,7 @@ public class Form2 extends javax.swing.JPanel implements ViewInterface {
                 "STT", "ID Sản Phẩm", "ID Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "ĐVT"
             }
         ));
-        jScrollPane1.setViewportView(tableColumn1);
+        jScrollPane1.setViewportView(dataTable);
 
         tableColumn2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -278,6 +266,7 @@ public class Form2 extends javax.swing.JPanel implements ViewInterface {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.raven.swing.TableColumn dataTable;
     private javax.swing.JPanel header;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -297,15 +286,32 @@ public class Form2 extends javax.swing.JPanel implements ViewInterface {
     private javax.swing.JLabel lbTime;
     private javax.swing.JPanel panelShow;
     private com.raven.swing.SearchText searchText1;
-    private com.raven.swing.TableColumn tableColumn1;
     private com.raven.swing.TableColumn tableColumn2;
     private javax.swing.JPanel thaoTac;
     // End of variables declaration//GEN-END:variables
 
-        AbsController controller;
-    
+    AbsController controller;
+
+    @Override
+    public void viewList(List<Object[]> rows) {
+        ViewImp.viewList(rows, dataTable);
+    }
+
+    @Override
+    public void setColumnNames(String[] columnNames) {
+        ViewImp.setColumnNames(columnNames, dataTable);
+    }
+
+    private SanPhamController sanPhamController;
+
     @Override
     public void setController(AbsController controller) {
-        this.controller = controller;
+        sanPhamController = (SanPhamController) controller;
     }
+
+    @Override
+    public void showErrors(List<ConstraintViolation> errorList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
