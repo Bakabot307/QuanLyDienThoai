@@ -7,15 +7,22 @@ import java.awt.Color;
 import java.util.Date;
 import VIEW.ViewInterface;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import net.sf.oval.ConstraintViolation;
+import net.sf.oval.constraint.Length;
 
 public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
-
+    private themxoasua themxoasua;
     public BanHangPanel() {
         initComponents();
         SanPhamController sanPhamController = new SanPhamController(this);
         time();
         setOpaque(false);
+//         themxoasua abc = new themxoasua();
+//        add(abc);
+//        abc.setVisible(true);
+//        
     }
 
     private void time() {
@@ -35,18 +42,12 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
     }
 
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        header = new javax.swing.JPanel();
-        searchText1 = new com.raven.swing.SearchText();
-        jLabel2 = new javax.swing.JLabel();
         panelShow = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        dataTable = new com.raven.swing.TableColumn();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableColumn2 = new com.raven.swing.TableColumn();
         thaoTac = new javax.swing.JPanel();
         lbTime = new javax.swing.JLabel();
         kButton1 = new com.raven.swing.KButton();
@@ -61,79 +62,18 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        dataTable2 = new com.raven.swing.TableColumn();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        dataTable = new com.raven.swing.TableColumn();
+        jPanel3 = new javax.swing.JPanel();
 
         setBackground(new Color(0,0,0,0));
-
-        header.setBorder(new javax.swing.border.MatteBorder(null));
-
-        jLabel2.setText("Chào, ");
-
-        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
-        header.setLayout(headerLayout);
-        headerLayout.setHorizontalGroup(
-            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(searchText1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        headerLayout.setVerticalGroup(
-            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(17, 17, 17))
-        );
+        setLayout(new java.awt.BorderLayout());
 
         panelShow.setBorder(new javax.swing.border.MatteBorder(null));
-
-        dataTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "STT", "ID Sản Phẩm", "ID Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "ĐVT"
-            }
-        ));
-        jScrollPane1.setViewportView(dataTable);
-
-        tableColumn2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(tableColumn2);
-
-        javax.swing.GroupLayout panelShowLayout = new javax.swing.GroupLayout(panelShow);
-        panelShow.setLayout(panelShowLayout);
-        panelShowLayout.setHorizontalGroup(
-            panelShowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelShowLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelShowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        panelShowLayout.setVerticalGroup(
-            panelShowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelShowLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        panelShow.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         thaoTac.setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -172,12 +112,19 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         jButton5.setText("  ");
         jButton5.setEnabled(false);
 
+        jButton6.setText("them");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout thaoTacLayout = new javax.swing.GroupLayout(thaoTac);
         thaoTac.setLayout(thaoTacLayout);
         thaoTacLayout.setHorizontalGroup(
             thaoTacLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(thaoTacLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(thaoTacLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, thaoTacLayout.createSequentialGroup()
                         .addComponent(lbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,13 +152,17 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
+            .addGroup(thaoTacLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         thaoTacLayout.setVerticalGroup(
             thaoTacLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(thaoTacLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addGroup(thaoTacLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -233,60 +184,122 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85)
+                .addGap(46, 46, 46)
+                .addComponent(jButton6)
+                .addGap(18, 18, 18)
                 .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panelShow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(thaoTac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+        panelShow.add(thaoTac, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 140, 300, 560));
+
+        jScrollPane1.setBackground(new java.awt.Color(245, 245, 245));
+        jScrollPane1.setBorder(null);
+
+        dataTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "No", "Name", "Gender", "Age", "Email", "Phone Number"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(dataTable2);
+
+        panelShow.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 654, 248));
+
+        jScrollPane2.setBackground(new java.awt.Color(245, 245, 245));
+        jScrollPane2.setBorder(null);
+
+        dataTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "No", "Name", "Gender", "Age", "Email", "Phone Number"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(dataTable);
+
+        panelShow.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 512, 286));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 760, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 37, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelShow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(thaoTac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        panelShow.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 760, -1));
+
+        add(panelShow, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+
+//TableModel model1 = dataTable.getModel();
+//int indexs[] = dataTable.getSelectedRows();
+//     dataTable3t[] row = new Object[7];
+//   dataTable3aultTableModel model2 = (DefaultTableModel) dataTable2.getModel();
+//        
+//for(int i = 0; i < indexs.length; i++)
+//{
+//row[0] = model1.getValueAt(indexs[i], 0);
+//row[1] = model1.getValueAt(indexs[i], 1);
+//row[2] = model1.getValueAt(indexs[i], 2);
+//row[3] = model1.getValueAt(indexs[i], 3);
+//row[4] = model1.getValueAt(indexs[i], 4);
+//row[5] = model1.getValueAt(indexs[i], 5);
+//row[6] = model1.getValueAt(indexs[i], 6);
+//
+//
+//    model2.addRow(row);
+
+
+
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.swing.TableColumn dataTable;
-    private javax.swing.JPanel header;
+    private com.raven.swing.TableColumn dataTable2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private com.raven.swing.KButton kButton1;
     private javax.swing.JLabel lbTime;
     private javax.swing.JPanel panelShow;
-    private com.raven.swing.SearchText searchText1;
-    private com.raven.swing.TableColumn tableColumn2;
     private javax.swing.JPanel thaoTac;
     // End of variables declaration//GEN-END:variables
 
@@ -297,20 +310,25 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         ViewImp.viewList(rows, dataTable);
     }
 
-    @Override
-    public void setColumnNames(String[] columnNames) {
-        ViewImp.setColumnNames(columnNames, dataTable);
-    }
+//    @Override
+//    public void setColumnNames(String[dataTable3ames) {
+//        ViewImp.setColumnNames(columnNames, dataTable);
+//    }
 
     private SanPhamController sanPhamController;
 
-    @Override
+
     public void setController(AbsController controller) {
         sanPhamController = (SanPhamController) controller;
     }
 
     @Override
     public void showErrors(List<ConstraintViolation> errorList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setColumnNames(String[] columnNames) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

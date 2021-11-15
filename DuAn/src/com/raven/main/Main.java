@@ -2,8 +2,10 @@ package com.raven.main;
 
 import com.raven.component.Menu;
 import com.raven.event.EventMenuSelected;
-import com.raven.form.Form1;
+import com.raven.form.ThongKe;
 import com.raven.form.BanHangPanel;
+import com.raven.form.QuanLySanPham;
+import com.raven.form.ThongKe1;
 import com.raven.model.ModelMenu;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -55,15 +57,22 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-                    showForm(new Form1());
+                    showForm(new ThongKe());
                 } else if (index == 1) {
                     showForm(new BanHangPanel());
+                } else if (index == 2) {
+                    showForm(new QuanLySanPham());
+                } else if (index == 3) {
+                    showForm(new ThongKe1());
                 }
             }
         });
-        menu.addMenu(new ModelMenu("Profile", new ImageIcon(getClass().getResource("/com/raven/icon/user.png"))));
-        menu.addMenu(new ModelMenu("Message", new ImageIcon(getClass().getResource("/com/raven/icon/message.png"))));
-        menu.addMenu(new ModelMenu("Report", new ImageIcon(getClass().getResource("/com/raven/icon/report.png"))));
+        menu.addMenu(new ModelMenu("Thống kê", new ImageIcon(getClass().getResource("/com/raven/icon/user.png"))));
+        menu.addMenu(new ModelMenu("Bán Bàng", new ImageIcon(getClass().getResource("/com/raven/icon/message.png"))));
+        menu.addMenu(new ModelMenu("Nhân Viên", new ImageIcon(getClass().getResource("/com/raven/icon/report.png"))));
+        menu.addMenu(new ModelMenu("Setting", new ImageIcon(getClass().getResource("/com/raven/icon/setting.png"))));
+        menu.addMenu(new ModelMenu("Key", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
+          menu.addMenu(new ModelMenu("Nhân Viên", new ImageIcon(getClass().getResource("/com/raven/icon/report.png"))));
         menu.addMenu(new ModelMenu("Setting", new ImageIcon(getClass().getResource("/com/raven/icon/setting.png"))));
         menu.addMenu(new ModelMenu("Key", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
         body.add(menu, "w 50!");
@@ -92,7 +101,7 @@ public class Main extends javax.swing.JFrame {
         animator.setResolution(0);
         animator.setAcceleration(0.5f);
         animator.setDeceleration(0.5f);
-        showForm(new Form1());
+        showForm(new ThongKe());
     }
     
     private void showForm(Component com) {

@@ -3,16 +3,19 @@ package com.raven.form;
 import com.raven.chart.ModelChart;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
+import com.raven.form.themxoasua;
 
-public class Form1 extends javax.swing.JPanel {
+public class QuanLySanPham extends javax.swing.JPanel {
 
-    public Form1() {
+    public QuanLySanPham() {
         initComponents();
         setOpaque(false);
         init();
     }
 
+
     private void init() {
+        
         chart.addLegend("Income", new Color(245, 189, 135));
         chart.addLegend("Expense", new Color(135, 189, 245));
         chart.addLegend("Profit", new Color(189, 135, 245));
@@ -24,17 +27,16 @@ public class Form1 extends javax.swing.JPanel {
         chart.addData(new ModelChart("May", new double[]{350, 540, 300, 150}));
         chart.addData(new ModelChart("June", new double[]{190, 500, 700, 1000}));
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.addRow(new Object[]{1, "Jonh china", "Male", "30", "Jonh00001@gmail.com", "+789 966 666 333"});
-        model.addRow(new Object[]{2, "Jonh china", "Male", "30", "Jonh00001@gmail.com", "+789 966 666 333"});
-        model.addRow(new Object[]{3, "Jonh china", "Male", "30", "Jonh00001@gmail.com", "+789 966 666 333"});
-        model.addRow(new Object[]{4, "Jonh china", "Male", "30", "Jonh00001@gmail.com", "+789 966 666 333"});
-        model.addRow(new Object[]{5, "Jonh china", "Male", "30", "Jonh00001@gmail.com", "+789 966 666 333"});
-        model.addRow(new Object[]{6, "Jonh china", "Male", "30", "Jonh00001@gmail.com", "+789 966 666 333"});
-        model.addRow(new Object[]{7, "Jonh china", "Male", "30", "Jonh00001@gmail.com", "+789 966 666 333"});
-        model.addRow(new Object[]{8, "Jonh china", "Male", "30", "Jonh00001@gmail.com", "+789 966 666 333"});
-        model.addRow(new Object[]{9, "Jonh china", "Male", "30", "Jonh00001@gmail.com", "+789 966 666 333"});
-        model.addRow(new Object[]{10, "Jonh china", "Male", "30", "Jonh00001@gmail.com", "+789 966 666 333"});
-        model.addRow(new Object[]{11, "Jonh china", "Male", "30", "Jonh00001@gmail.com", "+789 966 666 333"});
+        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+      
+     
     }
 
     @SuppressWarnings("unchecked")
@@ -139,7 +141,7 @@ public class Form1 extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(81, 81, 81)
-                        .addComponent(scrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)))
+                        .addComponent(scrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
