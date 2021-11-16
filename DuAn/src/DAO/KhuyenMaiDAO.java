@@ -10,6 +10,6 @@ import MODEL.KhuyenMai;
  *
  * @author gnaht
  */
-public class KhuyenMaiDAO extends AbsDAO<KhuyenMai>{
+public class KhuyenMaiDAO extends AbsDAO<KhuyenMai> {
     
 }

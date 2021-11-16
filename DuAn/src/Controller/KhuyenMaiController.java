@@ -28,7 +28,7 @@ public class KhuyenMaiController extends AbsController<KhuyenMai>{
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Sản Phẩm", "ID Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập","Giá Bán" ,"Số Lượng","Đơn Vị Tính"};
+        return new String[]{"ID Khuyến Mãi", "Tên Khuyến Mãi", "Phần trăm khuyến mãi %", "Ghi chú"};
     }
 
     @Override

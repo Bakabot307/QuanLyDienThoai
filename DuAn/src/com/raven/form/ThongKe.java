@@ -75,7 +75,6 @@ public class ThongKe extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jScrollPane1.setBackground(new java.awt.Color(245, 245, 245));
         jScrollPane1.setBorder(null);
         jScrollPane1.setVerticalScrollBar(scrollBar1);
 
