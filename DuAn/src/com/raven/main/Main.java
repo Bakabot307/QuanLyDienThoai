@@ -8,6 +8,7 @@ import com.raven.form.BanHangPanel;
 import com.raven.form.KhachHangPanel;
 import com.raven.form.ThongKe;
 import com.raven.model.ModelMenu;
+import com.raven.swing.MImage;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Frame;
@@ -32,6 +33,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         init();
+        this.setIconImage(MImage.getAppIcon());
     }
     int xx, xy;
 

@@ -5,6 +5,8 @@
  */
 package com.raven.form;
 
+import duan.dialog.KhachHangDialog;
+
 /**
  *
  * @author Admin
@@ -16,7 +18,9 @@ public class KhachHangPanel extends javax.swing.JPanel {
      */
     public KhachHangPanel() {
         initComponents();
+       
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,6 +79,11 @@ public class KhachHangPanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/plus-16.png"))); // NOI18N
         jLabel2.setText("     Thêm mới");
         jLabel2.setOpaque(true);
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         jLabel3.setBackground(new java.awt.Color(0, 153, 153));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
@@ -132,6 +141,14 @@ public class KhachHangPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        KhachHangDialog khachHangDialog = new KhachHangDialog(null,true);
+        khachHangDialog.setVisible(true);
+        
+   
+    }//GEN-LAST:event_jLabel2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
