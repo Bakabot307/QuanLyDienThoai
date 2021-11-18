@@ -89,8 +89,7 @@ public class ButtonGradient extends JButton {
             public void actionPerformed(ActionEvent ae) {
                 if (mouseOver) {
                     if (alpha < 0.6f) {
-                        alpha += 0.05f;
-                        repaint();
+                       
                     } else {
                         alpha = 0.6f;
                         timer.stop();

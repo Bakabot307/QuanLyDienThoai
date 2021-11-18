@@ -28,12 +28,12 @@ public class KhachHangController extends AbsController<KhachHang>{
 
     @Override
     public String[] getTableColumnNames() {
-         return new String[]{"ID Sản Phẩm", "ID Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập","Giá Bán" ,"Số Lượng","Đơn Vị Tính"};
+         return new String[]{"ID Khách Hàng", "Tên Khách Hàng", "Số điện thoại", "Địa Chỉ","Số CMND" ,"Ghi chú","GiớiTính","Email"};
     }
 
     @Override
     protected void setViewBagInfo(Dictionary<String, Object> viewBag) {
-       
+         viewBag.put("tieu_de", "");
     }
 
     @Override
