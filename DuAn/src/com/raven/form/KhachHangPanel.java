@@ -14,12 +14,14 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import net.sf.oval.ConstraintViolation;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -40,55 +42,58 @@ public class KhachHangPanel extends javax.swing.JPanel implements ViewInterface 
     public KhachHangPanel() {
         initComponents();
         KhachHangController khachHangController = new KhachHangController(this);
-        if (khachHangDialog == null) {
-            khachHangDialog = new HandleKhachHangDal(null, true);
-            khachHangDialog.addBT.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    Object[] values = new Object[8];
-                    values[0] = 0;
-                    values[1] = khachHangDialog.txtTen.getText();
-                    values[2] = khachHangDialog.txtSdt.getText();
-                    values[3] = khachHangDialog.txtDiaChi.getText();
-                    values[4] = khachHangDialog.txtCMND.getText();
-                    values[5] = khachHangDialog.txtGhiChu.getText();
-                    if (khachHangDialog.cbNam.isSelected()) {
-                        values[6] = "Nam";
-                    } else if (!khachHangDialog.cbNu.isSelected() && !khachHangDialog.cbNam.isSelected()) {
-                        JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
-                        return;
-                    } else {
-                        values[6] = "Nữ";
-                    }
-                    values[7] = khachHangDialog.txtEmail.getText();
-                    khachHangController.insert(values);
-                }
-            });
+//        if (khachHangDialog == null) {
+//            khachHangDialog = new HandleKhachHangDal(null, true);
+//            khachHangDialog.addBT.addMouseListener(new MouseAdapter() {
+//                @Override
+//                public void mouseClicked(MouseEvent e) {
+//                    Object[] values = new Object[8];
+//                    values[0] = 0;
+//                    values[1] = khachHangDialog.txtTen.getText();
+//                    values[2] = khachHangDialog.txtSdt.getText();
+//                    values[3] = khachHangDialog.txtDiaChi.getText();
+//                    values[4] = khachHangDialog.txtCMND.getText();
+//                    values[5] = khachHangDialog.txtGhiChu.getText();
+//                    if (khachHangDialog.cbNam.isSelected()) {
+//                        values[6] = "Nam";
+//                    } else if (!khachHangDialog.cbNu.isSelected() && !khachHangDialog.cbNam.isSelected()) {
+//                        JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
+//                        return;
+//                    } else {
+//                        values[6] = "Nữ";
+//                    }
+//                    values[7] = khachHangDialog.txtEmail.getText();
+//                    khachHangController.insert(values);
+//                    
+//                }
+//            });}
 
-            khachHangDialog.editBT.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    Object[] values = new Object[8];
-                    values[0] = editId;
-                    values[1] = khachHangDialog.txtTen.getText();
-                    values[2] = khachHangDialog.txtSdt.getText();
-                    values[3] = khachHangDialog.txtDiaChi.getText();
-                    values[4] = khachHangDialog.txtCMND.getText();
-                    values[5] = khachHangDialog.txtGhiChu.getText();
-                    if (khachHangDialog.cbNam.isSelected()) {
-                        values[6] = "Nam";
-                    } else if (!khachHangDialog.cbNu.isSelected() && !khachHangDialog.cbNam.isSelected()) {
-                        JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
-                        return;
-                    } else {
-                        values[6] = "Nữ";
-                    }
-                    values[7] = khachHangDialog.txtEmail.getText();
-                    khachHangController.edit(values);
-                }
-            });
+//            khachHangDialog.editBT.addMouseListener(new MouseAdapter() {
+//                @Override
+//                public void mouseClicked(MouseEvent e) {
+//                    Object[] values = new Object[8];
+//                    values[0] = editId;
+//                    values[1] = khachHangDialog.txtTen.getText();
+//                    values[2] = khachHangDialog.txtSdt.getText();
+//                    values[3] = khachHangDialog.txtDiaChi.getText();
+//                    values[4] = khachHangDialog.txtCMND.getText();
+//                    values[5] = khachHangDialog.txtGhiChu.getText();
+//                    if (khachHangDialog.cbNam.isSelected()) {
+//                        values[6] = "Nam";
+//                    } else if (!khachHangDialog.cbNu.isSelected() && !khachHangDialog.cbNam.isSelected()) {
+//                        JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
+//                        return;
+//                    } else {
+//                        values[6] = "Nữ";
+//                    }
+//                    values[7] = khachHangDialog.txtEmail.getText();
+//                    khachHangController.edit(values);
+//                }
+//            });
+
         }
-    }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -222,7 +227,19 @@ public class KhachHangPanel extends javax.swing.JPanel implements ViewInterface 
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
         // TODO add your handling code here:
-
+     
+         if (khachHangDialog == null) {        
+            khachHangDialog = new HandleKhachHangDal(null, true);
+            khachHangDialog.editBT.setEnabled(false);
+            khachHangDialog.addBT.setEnabled(true); 
+            ThemData();
+            
+         } else {
+             khachHangDialog.editBT.setEnabled(false);
+            khachHangDialog.addBT.setEnabled(true); 
+            ThemData();
+                
+            }
         khachHangDialog.txtTen.setText("");
         khachHangDialog.txtSdt.setText("");
         khachHangDialog.txtDiaChi.setText("");
@@ -231,54 +248,99 @@ public class KhachHangPanel extends javax.swing.JPanel implements ViewInterface 
         khachHangDialog.txtEmail.setText("");
         khachHangDialog.cbNam.setSelected(false);
         khachHangDialog.cbNu.setSelected(false);
-
         String tieuDe = (String) khachHangController.getViewBag().get("tieu_de");
-        khachHangDialog.title.setText("Thêm Khách Hàng " + tieuDe);
-
+        khachHangDialog.title.setText("Thêm Khách Hàng " + tieuDe);        
         khachHangDialog.setVisible(true);
-
-
     }//GEN-LAST:event_btnThemMouseClicked
     private Integer editId;
     private void btnCapNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapNhapMouseClicked
         // TODO add your handling code here:
+             
         if (tblKhachHang.getSelectedRow() == -1) {
             System.out.println("Lỗi chưa chọn dòng");
             JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn dòng cần sửa ! ", "Thông báo", JOptionPane.ERROR_MESSAGE);
             return;
-        }
-
+        }            
         editId = (Integer) tblKhachHang.getValueAt(tblKhachHang.getSelectedRow(), 0);
-
+         if (khachHangDialog == null) {
+             khachHangDialog = new HandleKhachHangDal(null, true);
+             khachHangDialog.addBT.setEnabled(false);   
+             khachHangDialog.editBT.setEnabled(true);             
+            SuaData();
+         } else {    
+             khachHangDialog.addBT.setEnabled(false);   
+             khachHangDialog.editBT.setEnabled(true); 
+             SuaData();
+         }     
         int dong = tblKhachHang.getSelectedRow();
-
         khachHangDialog.txtTen.setText(tblKhachHang.getValueAt(dong, 1).toString());
         khachHangDialog.txtSdt.setText(tblKhachHang.getValueAt(dong, 2).toString());
         khachHangDialog.txtDiaChi.setText(tblKhachHang.getValueAt(dong, 3).toString());
         khachHangDialog.txtCMND.setText(tblKhachHang.getValueAt(dong, 4).toString());
         khachHangDialog.txtGhiChu.setText(tblKhachHang.getValueAt(dong, 5).toString());
-
         if (tblKhachHang.getValueAt(dong, 6).toString().equals("Nam")) {
             khachHangDialog.cbNam.setSelected(true);
         } else {
             khachHangDialog.cbNam.setSelected(false);
         }
-
         if (tblKhachHang.getValueAt(dong, 6).toString().equals("Nữ")) {
             khachHangDialog.cbNu.setSelected(true);
         } else {
             khachHangDialog.cbNu.setSelected(false);
         }
-
         khachHangDialog.txtEmail.setText(tblKhachHang.getValueAt(dong, 7).toString());
-
         String tieuDe = (String) khachHangController.getViewBag().get("tieu_de");
         khachHangDialog.title.setText("Cập nhập Khách Hàng " + tieuDe);
-
-        khachHangDialog.setVisible(true);
-
+        khachHangDialog.setVisible(true); 
     }//GEN-LAST:event_btnCapNhapMouseClicked
+private void ThemData(){
+    khachHangDialog.addBT.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    Object[] values = new Object[8];
+                    values[0] = 0;
+                    values[1] = khachHangDialog.txtTen.getText();
+                    values[2] = khachHangDialog.txtSdt.getText();
+                    values[3] = khachHangDialog.txtDiaChi.getText();
+                    values[4] = khachHangDialog.txtCMND.getText();
+                    values[5] = khachHangDialog.txtGhiChu.getText();
+                    if (khachHangDialog.cbNam.isSelected()) {
+                        values[6] = "Nam";
+                    } else if (!khachHangDialog.cbNu.isSelected() && !khachHangDialog.cbNam.isSelected()) {
+                        JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    } else {
+                        values[6] = "Nữ";
+                    }
+                    values[7] = khachHangDialog.txtEmail.getText();                      
+                    khachHangController.insert(values);                        
+                }
+            });
+}
 
+private void SuaData(){
+khachHangDialog.editBT.addMouseListener(new MouseAdapter() {
+                @Override
+            public void mouseClicked(MouseEvent e) {
+                    Object[] values = new Object[8];
+                    values[0] = editId;
+                    values[1] = khachHangDialog.txtTen.getText();
+                    values[2] = khachHangDialog.txtSdt.getText();
+                    values[3] = khachHangDialog.txtDiaChi.getText();
+                    values[4] = khachHangDialog.txtCMND.getText();
+                    values[5] = khachHangDialog.txtGhiChu.getText();
+                    if (khachHangDialog.cbNam.isSelected()) {
+                        values[6] = "Nam";
+                    } else if (!khachHangDialog.cbNu.isSelected() && !khachHangDialog.cbNam.isSelected()) {
+                        JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    } else {
+                        values[6] = "Nữ";
+                    }
+                    values[7] = khachHangDialog.txtEmail.getText();
+                    khachHangController.edit(values);                  
+                }
+            });}
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         exportExcel(tblKhachHang);
