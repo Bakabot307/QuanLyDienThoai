@@ -139,6 +139,16 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
         txtKhachDua.setText("  ");
         txtKhachDua.setEnabled(false);
+        txtKhachDua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtKhachDuaActionPerformed(evt);
+            }
+        });
+        txtKhachDua.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtKhachDuaKeyReleased(evt);
+            }
+        });
 
         jLabel3.setText("Khách thanh toán");
 
@@ -157,6 +167,11 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         txtThanhToan.setText("Thanh toán");
         txtThanhToan.setFont(new java.awt.Font("UTM Avo", 0, 18)); // NOI18N
         txtThanhToan.setkEndColor(new java.awt.Color(0, 153, 153));
+        txtThanhToan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtThanhToanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -277,6 +292,22 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
     private void txtGiamGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiamGiaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtGiamGiaActionPerformed
+
+    private void txtThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtThanhToanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtThanhToanActionPerformed
+
+    private void txtKhachDuaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKhachDuaKeyReleased
+        double tienKhachDua, tienThoi, tienKhachCanTra;
+       tienKhachCanTra=Double.parseDouble(txtCanTra.getText());
+       tienKhachDua =Double.parseDouble(txtKhachDua.getText());
+       tienThoi= tienKhachDua-tienKhachCanTra;
+       txtTienThua.setText(Double.toString(tienThoi));
+    }//GEN-LAST:event_txtKhachDuaKeyReleased
+
+    private void txtKhachDuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKhachDuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtKhachDuaActionPerformed
 // public boolean isExist(String code) {
 //        boolean result;
 //            try {
@@ -298,6 +329,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
     
     public void hoaDonTable(){
+        double giamGia, khachCanTra, tienKhachDua, tienThua;
            DefaultTableModel t = (DefaultTableModel) dataTable2.getModel();
            double total = 0;
     for(int i = 0; i < t.getRowCount(); i++){
@@ -306,11 +338,10 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         
 
         }
-    double giamGia = Double.parseDouble(txtGiamGia.getText());
-    double khachCanTra = total-giamGia;
-txtCanTra.setText(Double.toString(khachCanTra));
-       
-    
+    giamGia = Double.parseDouble(txtGiamGia.getText());
+    khachCanTra = total-giamGia;
+
+    txtCanTra.setText(Double.toString(khachCanTra));
     
 }
 
