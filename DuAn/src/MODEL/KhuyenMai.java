@@ -64,5 +64,12 @@ public class KhuyenMai extends TableInterface{
     public int getId() {
         return idKhuyenMai;
     }
+
+    @Override
+    public String toString() {
+        return tenKhuyenMai;
+    }
+    
+    
     
 }

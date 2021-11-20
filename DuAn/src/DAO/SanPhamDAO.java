@@ -6,11 +6,16 @@
 package DAO;
 
 import MODEL.SanPham;
+import java.util.List;
 
 /**
  *
  * @author Admin
  */
 public class SanPhamDAO extends AbsDAO<SanPham>{
-    
+    public List<Object[]> layTenLoaiSanPham() {
+        String selectSql = "select idSanPham, TenLoaiSanPham,TenSanPham,GiaNhap, GiaBan ,SoLuong,DVT from SanPham join LoaiSanPham on SanPham.idLoaiSanPham = LoaiSanPham.idLoaiSanPham";
+        List<Object[]> data = getRawValues(selectSql);
+        return data;
+    }
 }
