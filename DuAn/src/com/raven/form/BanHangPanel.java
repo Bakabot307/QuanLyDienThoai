@@ -5,6 +5,8 @@ import Controller.SanPhamController;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import net.sf.oval.ConstraintViolation;
 
 public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
@@ -14,7 +16,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         setOpaque(false);
         SanPhamController sanPhamController = new SanPhamController(this);
         init();
-
+        
     }
 
     private void init() {
@@ -29,23 +31,23 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         searchText1 = new com.raven.swing.SearchText();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        dataTable3 = new com.raven.swing.TableColumn();
+        dataTable1 = new com.raven.swing.TableColumn();
         jScrollPane3 = new javax.swing.JScrollPane();
-        dataTable4 = new com.raven.swing.TableColumn();
+        dataTable2 = new com.raven.swing.TableColumn();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        txtTongTien = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        txtGiamGia = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        txtCanTra = new javax.swing.JButton();
+        txtKhachDua = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        txtTienThua = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton6 = new javax.swing.JButton();
-        kButton1 = new com.raven.swing.KButton();
+        btnThem = new javax.swing.JButton();
+        txtThanhToan = new com.raven.swing.KButton();
 
         setPreferredSize(new java.awt.Dimension(1043, 680));
 
@@ -70,7 +72,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
         jScrollPane2.setBorder(null);
 
-        dataTable3.setModel(new javax.swing.table.DefaultTableModel(
+        dataTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -86,70 +88,75 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                 return canEdit [columnIndex];
             }
         });
-        dataTable3.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 200));
-        jScrollPane2.setViewportView(dataTable3);
+        dataTable1.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 200));
+        jScrollPane2.setViewportView(dataTable1);
 
         jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
         jScrollPane3.setBorder(null);
 
-        dataTable4.setModel(new javax.swing.table.DefaultTableModel(
+        dataTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "No", "Name", "Gender", "Age", "Email", "Phone Number"
+                "No", "Name", "Gender", "Age", "Email", "Phone Number", "Title 7", "Title 8", "Title 9", "Title 10"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        dataTable4.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 250));
-        jScrollPane3.setViewportView(dataTable4);
+        dataTable2.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 250));
+        jScrollPane3.setViewportView(dataTable2);
 
         jPanel2.add(jScrollPane3, java.awt.BorderLayout.PAGE_START);
 
         jLabel5.setText("Tổng tiền hàng");
 
-        jButton4.setText("  ");
-        jButton4.setEnabled(false);
+        txtTongTien.setText("  ");
+        txtTongTien.setEnabled(false);
 
         jLabel4.setText("Giảm giá");
 
-        jButton3.setText("  ");
-        jButton3.setEnabled(false);
+        txtGiamGia.setText("0");
+        txtGiamGia.setEnabled(false);
+        txtGiamGia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtGiamGiaActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Khách cần trả");
 
-        jButton2.setText("  ");
-        jButton2.setEnabled(false);
+        txtCanTra.setText("  ");
+        txtCanTra.setEnabled(false);
 
-        jButton1.setText("  ");
-        jButton1.setEnabled(false);
+        txtKhachDua.setText("  ");
+        txtKhachDua.setEnabled(false);
 
         jLabel3.setText("Khách thanh toán");
 
         jLabel1.setText("Tiền thừa trả khách");
 
-        jButton5.setText("  ");
-        jButton5.setEnabled(false);
+        txtTienThua.setText("  ");
+        txtTienThua.setEnabled(false);
 
-        jButton6.setText("them");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnThem.setText("them");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnThemActionPerformed(evt);
             }
         });
 
-        kButton1.setText("Thanh toán");
-        kButton1.setFont(new java.awt.Font("UTM Avo", 0, 18)); // NOI18N
-        kButton1.setkEndColor(new java.awt.Color(0, 153, 153));
+        txtThanhToan.setText("Thanh toán");
+        txtThanhToan.setFont(new java.awt.Font("UTM Avo", 0, 18)); // NOI18N
+        txtThanhToan.setkEndColor(new java.awt.Color(0, 153, 153));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -160,7 +167,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,14 +177,14 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton6))
+                            .addComponent(btnThem))
                         .addGap(0, 38, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtKhachDua, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCanTra, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTienThua, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jSeparator1))
                 .addContainerGap())
         );
@@ -187,29 +194,29 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                 .addGap(71, 71, 71)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCanTra, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtKhachDua, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTienThua, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
-                .addComponent(jButton6)
+                .addComponent(btnThem)
                 .addGap(26, 26, 26)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
-                .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -240,21 +247,77 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+   TableModel model1 = dataTable1.getModel();
 
+        int[] indexs = dataTable1.getSelectedRows();
 
-    }//GEN-LAST:event_jButton6ActionPerformed
+        Object[] row = new Object[7];
 
+        DefaultTableModel model2 = (DefaultTableModel) dataTable2.getModel();
+        for(int i = 0; i < indexs.length; i++)
+        {
+            row[0] = model1.getValueAt(indexs[i], 0);
+
+            row[1] = model1.getValueAt(indexs[i], 1);
+
+            row[2] = model1.getValueAt(indexs[i], 2);
+
+            row[3] = model1.getValueAt(indexs[i], 3);
+            row[4] = model1.getValueAt(indexs[i], 4);
+            row[5] = model1.getValueAt(indexs[i], 5);
+            row[6] = model1.getValueAt(indexs[i], 6);
+       
+
+            model2.addRow(row);
+            hoaDonTable();
+        }
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void txtGiamGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiamGiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtGiamGiaActionPerformed
+// public boolean isExist(String code) {
+//        boolean result;
+//            try {
+//            Cursor cursor = db.rawQuery("SELECT QTY FROM users_data WHERE CODE " + code + "'", null);
+//            if (cursor.getCount() > 0 ){
+//                while (cursor.moveToFirst()){
+//                    rQty = cursor.getInt(cursor.getColumnIndex("QTY"));
+//                }
+//                result = true;
+//            }else {
+//                result = false;
+//            }
+//        }
+//        catch (Exception ex){
+//            result = false;
+//        }
+//        return result;
+//    }
+
+    
+    public void hoaDonTable(){
+           DefaultTableModel t = (DefaultTableModel) dataTable2.getModel();
+           double total = 0;
+    for(int i = 0; i < t.getRowCount(); i++){
+        total = total + Double.parseDouble(t.getValueAt(i, 4).toString());
+        txtTongTien.setText(Double.toString(total));
+        
+
+        }
+    double giamGia = Double.parseDouble(txtGiamGia.getText());
+    double khachCanTra = total-giamGia;
+txtCanTra.setText(Double.toString(khachCanTra));
+       
+    
+    
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.raven.swing.TableColumn dataTable3;
-    private com.raven.swing.TableColumn dataTable4;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton btnThem;
+    private com.raven.swing.TableColumn dataTable1;
+    private com.raven.swing.TableColumn dataTable2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -266,18 +329,23 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private com.raven.swing.KButton kButton1;
     private com.raven.swing.SearchText searchText1;
+    private javax.swing.JButton txtCanTra;
+    private javax.swing.JButton txtGiamGia;
+    private javax.swing.JButton txtKhachDua;
+    private com.raven.swing.KButton txtThanhToan;
+    private javax.swing.JButton txtTienThua;
+    private javax.swing.JButton txtTongTien;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void viewList(List<Object[]> rows) {
-        ViewImp.viewList(rows, dataTable3);
+        ViewImp.viewList(rows, dataTable1);
     }
 
     @Override
     public void setColumnNames(String[] columnNames) {
-        ViewImp.setColumnNames(columnNames, dataTable3);
+        ViewImp.setColumnNames(columnNames, dataTable1);
     }
 
     private SanPhamController sanPhamController;
