@@ -40,16 +40,6 @@ public class HoaDonController extends AbsController<HoaDon>{
     public String getName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    //    private NhanVienDao nhanVienDao = new NhanVienDao();
-//    public boolean kiemTra(String tk, String mk) {
-//        if (nhanVienDao.kiemTraTaiKhoan(tk, mk)) {
-//            System.out.println("Dang nhap thanh cong");
-//            return true;
-//
-//        } else {
-//            System.out.println("Sai ten dang nhap hoac mat khau");
-//            return false;
-//        }
-//    }
-//    
+ 
+    
 }

@@ -119,6 +119,11 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
             }
         });
         dataTable2.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 250));
+        dataTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dataTable2MouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(dataTable2);
 
         jPanel2.add(jScrollPane3, java.awt.BorderLayout.PAGE_START);
@@ -260,28 +265,39 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        TableModel model1 = dataTable1.getModel();
+        if (dataTable2.getRowCount() ==0) {
 
-        int[] indexs = dataTable1.getSelectedRows();
+            TableModel model1 = dataTable1.getModel();
 
-        Object[] row = new Object[7];
+            int[] indexs = dataTable1.getSelectedRows();
 
-        DefaultTableModel model2 = (DefaultTableModel) dataTable2.getModel();
-        for (int i = 0; i < indexs.length; i++) {
-            row[0] = model1.getValueAt(indexs[i], 0);
+            Object[] row = new Object[7];
 
-            row[1] = model1.getValueAt(indexs[i], 1);
+            DefaultTableModel model2 = (DefaultTableModel) dataTable2.getModel();
+            for (int i = 0; i < indexs.length; i++) {
+                row[0] = model1.getValueAt(indexs[i], 0);
 
-            row[2] = model1.getValueAt(indexs[i], 2);
+                row[1] = model1.getValueAt(indexs[i], 1);
 
-            row[3] = model1.getValueAt(indexs[i], 3);
-            row[4] = model1.getValueAt(indexs[i], 4);
-            row[5] = model1.getValueAt(indexs[i], 5);
-            row[6] = model1.getValueAt(indexs[i], 6);
+                row[2] = model1.getValueAt(indexs[i], 2);
 
-            model2.addRow(row);
-            hoaDonTable();
-        }
+                row[3] = model1.getValueAt(indexs[i], 3);
+                row[4] = model1.getValueAt(indexs[i], 4);
+                row[5] = model1.getValueAt(indexs[i], 5);
+                row[6] = model1.getValueAt(indexs[i], 6);
+
+                model2.addRow(row);
+                hoaDonTable();
+            }
+        } else {
+            for (int j = 0; j < dataTable1.getRowCount(); j++) {
+                int id = Integer.parseInt(dataTable2.getValueAt(j, 0).toString());
+                int t1Row = dataTable1.getSelectedRow();
+                int t1RowID = Integer.parseInt(dataTable1.getValueAt(t1Row, 0).toString());
+                if (id == t1RowID) {
+                    double soLuong = Double.parseDouble(dataTable2.getValueAt(t1Row, 5).toString()) + 1;
+                    dataTable2.setValueAt(soLuong, j, 5);
+                }}}   
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void txtThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtThanhToanActionPerformed
@@ -301,6 +317,11 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         tienThoi = tienKhachDua - tienKhachCanTra;
         txtTienThua.setText(Double.toString(tienThoi));
     }//GEN-LAST:event_txtKhachDuaKeyReleased
+
+    private void dataTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataTable2MouseClicked
+
+
+    }//GEN-LAST:event_dataTable2MouseClicked
 // public boolean isExist(String code) {
 //        boolean result;
 //            try {

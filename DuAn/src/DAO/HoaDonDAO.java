@@ -5,6 +5,7 @@
 package DAO;
 
 import MODEL.HoaDon;
+import java.util.List;
 
 /**
  *
@@ -12,13 +13,4 @@ import MODEL.HoaDon;
  */
 public class HoaDonDAO extends AbsDAO<HoaDon>{
     
-
-    
-//    public boolean kiemTraTaiKhoan(String tenDangNhap, String mk) {
-//        List<Object[]> data = getRawValues("select count(*)from nhanVien where tenDN = ? and matKhau = ?", tenDangNhap, mk);
-//
-//        Integer dem = (Integer) data.get(0)[0];
-//        return dem > 0;
-//
-//    }
 }

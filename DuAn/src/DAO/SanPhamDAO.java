@@ -18,4 +18,6 @@ public class SanPhamDAO extends AbsDAO<SanPham>{
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
+    
+  
 }
