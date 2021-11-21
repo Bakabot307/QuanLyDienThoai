@@ -5,9 +5,20 @@ import Controller.SanPhamController;
 import MODEL.KhuyenMai;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
+
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import net.sf.oval.ConstraintViolation;
 
@@ -27,8 +38,15 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
     }
 
     private void init() {
+     dataTable1.getColumn("button").setCellRenderer(new ButtonRenderer());
+       dataTable1.getColumn("button").setCellEditor(new ButtonEditor(new JCheckBox()));     
+
+      
+
+        dataTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
 
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -84,11 +102,11 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
             },
             new String [] {
-                "No", "Name", "Gender", "Age", "Email", "Phone Number"
+                "No", "Name", "Gender", "Age", "Email", "Phone Number", "button"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -130,6 +148,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
         jLabel5.setText("Tổng tiền hàng");
 
+        txtTongTien.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtTongTien.setText("  ");
         txtTongTien.setEnabled(false);
 
@@ -289,7 +308,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                 model2.addRow(row);
                 hoaDonTable();
             }
-        } else {
+        } else {            
             for (int j = 0; j < dataTable1.getRowCount(); j++) {
                 int id = Integer.parseInt(dataTable2.getValueAt(j, 0).toString());
                 int t1Row = dataTable1.getSelectedRow();
@@ -297,7 +316,33 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                 if (id == t1RowID) {
                     double soLuong = Double.parseDouble(dataTable2.getValueAt(t1Row, 5).toString()) + 1;
                     dataTable2.setValueAt(soLuong, j, 5);
-                }}}   
+                } else {
+                 TableModel model1 = dataTable1.getModel();
+
+            int[] indexs = dataTable1.getSelectedRows();
+
+            Object[] row = new Object[7];
+
+            DefaultTableModel model2 = (DefaultTableModel) dataTable2.getModel();
+            for (int i = 0; i < indexs.length; i++) {
+                row[0] = model1.getValueAt(indexs[i], 0);
+
+                row[1] = model1.getValueAt(indexs[i], 1);
+
+                row[2] = model1.getValueAt(indexs[i], 2);
+
+                row[3] = model1.getValueAt(indexs[i], 3);
+                row[4] = model1.getValueAt(indexs[i], 4);
+                row[5] = model1.getValueAt(indexs[i], 5);
+                row[6] = model1.getValueAt(indexs[i], 6);
+
+                model2.addRow(row);
+                hoaDonTable();
+                }
+                }
+                
+            }}   
+        
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void txtThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtThanhToanActionPerformed

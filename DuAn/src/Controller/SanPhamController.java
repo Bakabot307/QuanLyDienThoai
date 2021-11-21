@@ -50,7 +50,7 @@ public class SanPhamController extends AbsController<SanPham> {
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Sản Phẩm", "Tên Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "Đơn Vị Tính"};
+        return new String[]{"ID Sản Phẩm", "Tên Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "Đơn Vị Tính", "button"};
     }
 
     @Override

@@ -68,17 +68,35 @@ public class Main extends javax.swing.JFrame {
                     showForm(new KhuyenMaiPnl());
                 } else if (index == 3) {
                     showForm(new KhachHangPanel());
+                } else if (index == 4) {
+                    showForm(new KhachHangPanel());
+                } else if (index == 5) {
+                    showForm(new KhachHangPanel());
+                } else if (index == 6) {
+                    showForm(new KhachHangPanel());
+                } else if (index == 7) {
+                    showForm(new KhachHangPanel());
+                } else if (index == 8) {
+                    showForm(new KhachHangPanel());
+                } else if (index == 9) {
+                    showForm(new KhachHangPanel());
+                } else if (index == 10) {
+                    showForm(new KhachHangPanel());
                 }
             }
         });
-        menu.addMenu(new ModelMenu("Thống kê", new ImageIcon(getClass().getResource("/com/raven/icon/user.png"))));
+        menu.addMenu(new ModelMenu("Trang Chủ", new ImageIcon(getClass().getResource("/com/raven/icon/user.png"))));
         menu.addMenu(new ModelMenu("Bán Bàng", new ImageIcon(getClass().getResource("/com/raven/icon/message.png"))));
+        menu.addMenu(new ModelMenu("Loại Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
+        menu.addMenu(new ModelMenu("Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/report.png"))));
         menu.addMenu(new ModelMenu("Khuyến mãi", new ImageIcon(getClass().getResource("/com/raven/icon/report.png"))));
         menu.addMenu(new ModelMenu("Khách hàng", new ImageIcon(getClass().getResource("/com/raven/icon/setting.png"))));
-        menu.addMenu(new ModelMenu("Key", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
-        menu.addMenu(new ModelMenu("Nhân Viên", new ImageIcon(getClass().getResource("/com/raven/icon/report.png"))));
-        menu.addMenu(new ModelMenu("Setting", new ImageIcon(getClass().getResource("/com/raven/icon/setting.png"))));
-        menu.addMenu(new ModelMenu("Key", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
+        menu.addMenu(new ModelMenu("Nhân Viên", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
+        menu.addMenu(new ModelMenu("Hóa Đơn", new ImageIcon(getClass().getResource("/com/raven/icon/setting.png"))));
+        menu.addMenu(new ModelMenu("Phiếu Bảo Hành", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
+        menu.addMenu(new ModelMenu("Nhà Cung Cấp", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
+        menu.addMenu(new ModelMenu("Phiếu Nhập", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));       
+        
         body.add(menu, "w 50!");
         body.add(main, "w 100%");
         TimingTarget target = new TimingTargetAdapter() {
