@@ -5,6 +5,7 @@ import Controller.SanPhamController;
 import MODEL.KhuyenMai;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
+import com.raven.component.Bottom;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -267,7 +268,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -354,6 +355,9 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         Integer phanTramKM = khuyenMai.getPhanTramKhuyenMai();
 
         System.out.println(phanTramKM);
+        
+        
+
 
 
     }//GEN-LAST:event_txtThanhToanActionPerformed

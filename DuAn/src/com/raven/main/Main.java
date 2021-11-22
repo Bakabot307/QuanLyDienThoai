@@ -1,5 +1,6 @@
 package com.raven.main;
 
+import com.raven.component.Bottom;
 import com.raven.component.Menu;
 import com.raven.event.EventMenuSelected;
 import com.raven.form.BanHangPanel;
@@ -32,6 +33,9 @@ public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
+      
+        
+        
         if (Main.this.getExtendedState() == MAXIMIZED_BOTH) {
             Main.this.setExtendedState(JFrame.NORMAL);
         } else {
