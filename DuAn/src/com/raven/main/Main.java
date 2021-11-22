@@ -32,6 +32,11 @@ public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
+        if (Main.this.getExtendedState() == MAXIMIZED_BOTH) {
+            Main.this.setExtendedState(JFrame.NORMAL);
+        } else {
+            Main.this.setExtendedState(MAXIMIZED_BOTH);
+        }
         init();
         this.setIconImage(MImage.getAppIcon());
     }
@@ -95,8 +100,8 @@ public class Main extends javax.swing.JFrame {
         menu.addMenu(new ModelMenu("Hóa Đơn", new ImageIcon(getClass().getResource("/com/raven/icon/setting.png"))));
         menu.addMenu(new ModelMenu("Phiếu Bảo Hành", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
         menu.addMenu(new ModelMenu("Nhà Cung Cấp", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
-        menu.addMenu(new ModelMenu("Phiếu Nhập", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));       
-        
+        menu.addMenu(new ModelMenu("Phiếu Nhập", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
+
         body.add(menu, "w 50!");
         body.add(main, "w 100%");
         TimingTarget target = new TimingTargetAdapter() {
@@ -214,8 +219,10 @@ public class Main extends javax.swing.JFrame {
         pnlTitle.setPreferredSize(new java.awt.Dimension(200, 30));
         pnlTitle.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 8));
 
-        lblTitle.setForeground(new java.awt.Color(204, 204, 204));
-        lblTitle.setText("Phone Shop");
+        lblTitle.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/shop-16.png"))); // NOI18N
+        lblTitle.setText(" Phone Shop");
         pnlTitle.add(lblTitle);
 
         pnlTop.add(pnlTitle, java.awt.BorderLayout.LINE_START);
@@ -226,9 +233,30 @@ public class Main extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblMinimizeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMousePressed
-        Main.this.setState(Frame.ICONIFIED);
-    }//GEN-LAST:event_lblMinimizeMousePressed
+    private void pnlTopMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTopMousePressed
+        xx = evt.getX();
+        xy = evt.getY();
+    }//GEN-LAST:event_pnlTopMousePressed
+
+    private void pnlTopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTopMouseClicked
+        //        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
+            //            if (Home20.this.getExtendedState() == MAXIMIZED_BOTH) {
+                //                Home20.this.setExtendedState(JFrame.NORMAL);
+                //            } else {
+                //                Home20.this.setExtendedState(MAXIMIZED_BOTH);
+                //            }
+            //        }
+    }//GEN-LAST:event_pnlTopMouseClicked
+
+    private void pnlTopMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTopMouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - xy);
+    }//GEN-LAST:event_pnlTopMouseDragged
+
+    private void lblCloseMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMousePressed
+        System.exit(0);
+    }//GEN-LAST:event_lblCloseMousePressed
 
     private void lblMaximizeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMaximizeMousePressed
         if (Main.this.getExtendedState() == MAXIMIZED_BOTH) {
@@ -238,30 +266,9 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblMaximizeMousePressed
 
-    private void lblCloseMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMousePressed
-        System.exit(0);
-    }//GEN-LAST:event_lblCloseMousePressed
-
-    private void pnlTopMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTopMouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xx, y - xy);
-    }//GEN-LAST:event_pnlTopMouseDragged
-
-    private void pnlTopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTopMouseClicked
-        //        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
-        //            if (Home20.this.getExtendedState() == MAXIMIZED_BOTH) {
-        //                Home20.this.setExtendedState(JFrame.NORMAL);
-        //            } else {
-        //                Home20.this.setExtendedState(MAXIMIZED_BOTH);
-        //            }
-        //        }
-    }//GEN-LAST:event_pnlTopMouseClicked
-
-    private void pnlTopMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTopMousePressed
-        xx = evt.getX();
-        xy = evt.getY();
-    }//GEN-LAST:event_pnlTopMousePressed
+    private void lblMinimizeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMousePressed
+        Main.this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_lblMinimizeMousePressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
