@@ -1,9 +1,7 @@
 package com.raven.main;
 
-import com.raven.component.Bottom;
 import com.raven.component.Menu;
 import com.raven.event.EventMenuSelected;
-import com.raven.form.BanHangPanel;
 import com.raven.form.KhuyenMaiPnl;
 import com.raven.form.BanHangPanel;
 import com.raven.form.KhachHangPanel;
@@ -33,14 +31,11 @@ public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
-      
-        
-        
-        if (Main.this.getExtendedState() == MAXIMIZED_BOTH) {
-            Main.this.setExtendedState(JFrame.NORMAL);
-        } else {
-            Main.this.setExtendedState(MAXIMIZED_BOTH);
-        }
+//        if (Main.this.getExtendedState() == MAXIMIZED_BOTH) {
+//            Main.this.setExtendedState(JFrame.NORMAL);
+//        } else {
+//            Main.this.setExtendedState(MAXIMIZED_BOTH);
+//        }
         init();
         this.setIconImage(MImage.getAppIcon());
     }
@@ -94,17 +89,19 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         });
-        menu.addMenu(new ModelMenu("Trang Chủ", new ImageIcon(getClass().getResource("/com/raven/icon/user.png"))));
-        menu.addMenu(new ModelMenu("Bán Bàng", new ImageIcon(getClass().getResource("/com/raven/icon/message.png"))));
-        menu.addMenu(new ModelMenu("Loại Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
+        menu.addMenu(new ModelMenu("Trang Chủ", new ImageIcon(getClass().getResource("/com/raven/icon/homePagee.png"))));
+        menu.addMenu(new ModelMenu("Bán Bàng", new ImageIcon(getClass().getResource("/com/raven/icon/sell.png"))));
+        menu.addMenu(new ModelMenu("Loại Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/category.png"))));
         menu.addMenu(new ModelMenu("Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/report.png"))));
-        menu.addMenu(new ModelMenu("Khuyến mãi", new ImageIcon(getClass().getResource("/com/raven/icon/report.png"))));
-        menu.addMenu(new ModelMenu("Khách hàng", new ImageIcon(getClass().getResource("/com/raven/icon/setting.png"))));
-        menu.addMenu(new ModelMenu("Nhân Viên", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
-        menu.addMenu(new ModelMenu("Hóa Đơn", new ImageIcon(getClass().getResource("/com/raven/icon/setting.png"))));
-        menu.addMenu(new ModelMenu("Phiếu Bảo Hành", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
-        menu.addMenu(new ModelMenu("Nhà Cung Cấp", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
-        menu.addMenu(new ModelMenu("Phiếu Nhập", new ImageIcon(getClass().getResource("/com/raven/icon/key.png"))));
+        menu.addMenu(new ModelMenu("Khuyến mãi", new ImageIcon(getClass().getResource("/com/raven/icon/KhuyenMai.png"))));
+        menu.addMenu(new ModelMenu("Khách hàng", new ImageIcon(getClass().getResource("/com/raven/icon/Custom.png"))));
+        menu.addMenu(new ModelMenu("Nhân Viên", new ImageIcon(getClass().getResource("/com/raven/icon/Staff.png"))));
+        menu.addMenu(new ModelMenu("Hóa Đơn", new ImageIcon(getClass().getResource("/com/raven/icon/hoaDon.png"))));
+        menu.addMenu(new ModelMenu("Phiếu Bảo Hành", new ImageIcon(getClass().getResource("/com/raven/icon/phieuBaoHanh.png"))));
+        menu.addMenu(new ModelMenu("Nhà Cung Cấp", new ImageIcon(getClass().getResource("/com/raven/icon/nhaCungCapp.png"))));
+        menu.addMenu(new ModelMenu("Phiếu Nhập", new ImageIcon(getClass().getResource("/com/raven/icon/phieuNhap.png"))));
+
+
 
         body.add(menu, "w 50!");
         body.add(main, "w 100%");
@@ -135,6 +132,7 @@ public class Main extends javax.swing.JFrame {
         showForm(new ThongKe());
     }
 
+ 
     private void showForm(Component com) {
         main.removeAll();
         main.add(com);
@@ -150,13 +148,13 @@ public class Main extends javax.swing.JFrame {
         pnlTop = new javax.swing.JPanel();
         pnlActions = new javax.swing.JPanel();
         lblMinimize = new javax.swing.JLabel();
-        lblMaximize = new javax.swing.JLabel();
         lblClose = new javax.swing.JLabel();
         pnlTitle = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1150, 750));
 
         body.setBackground(new java.awt.Color(245, 245, 245));
 
@@ -201,14 +199,6 @@ public class Main extends javax.swing.JFrame {
         });
         pnlActions.add(lblMinimize);
 
-        lblMaximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8_rectangle_stroked_18px.png"))); // NOI18N
-        lblMaximize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblMaximizeMousePressed(evt);
-            }
-        });
-        pnlActions.add(lblMaximize);
-
         lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8_multiply_18px_1.png"))); // NOI18N
         lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -225,8 +215,8 @@ public class Main extends javax.swing.JFrame {
 
         lblTitle.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/shop-16.png"))); // NOI18N
-        lblTitle.setText(" Phone Shop");
+        lblTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/no-connection-16.png"))); // NOI18N
+        lblTitle.setText(" Ver 1.0 ");
         pnlTitle.add(lblTitle);
 
         pnlTop.add(pnlTitle, java.awt.BorderLayout.LINE_START);
@@ -244,12 +234,12 @@ public class Main extends javax.swing.JFrame {
 
     private void pnlTopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTopMouseClicked
         //        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
-            //            if (Home20.this.getExtendedState() == MAXIMIZED_BOTH) {
-                //                Home20.this.setExtendedState(JFrame.NORMAL);
-                //            } else {
-                //                Home20.this.setExtendedState(MAXIMIZED_BOTH);
-                //            }
-            //        }
+        //            if (Home20.this.getExtendedState() == MAXIMIZED_BOTH) {
+        //                Home20.this.setExtendedState(JFrame.NORMAL);
+        //            } else {
+        //                Home20.this.setExtendedState(MAXIMIZED_BOTH);
+        //            }
+        //        }
     }//GEN-LAST:event_pnlTopMouseClicked
 
     private void pnlTopMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTopMouseDragged
@@ -261,14 +251,6 @@ public class Main extends javax.swing.JFrame {
     private void lblCloseMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMousePressed
         System.exit(0);
     }//GEN-LAST:event_lblCloseMousePressed
-
-    private void lblMaximizeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMaximizeMousePressed
-        if (Main.this.getExtendedState() == MAXIMIZED_BOTH) {
-            Main.this.setExtendedState(JFrame.NORMAL);
-        } else {
-            Main.this.setExtendedState(MAXIMIZED_BOTH);
-        }
-    }//GEN-LAST:event_lblMaximizeMousePressed
 
     private void lblMinimizeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMousePressed
         Main.this.setState(Frame.ICONIFIED);
@@ -309,7 +291,6 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel body;
     private javax.swing.JLabel lblClose;
-    private javax.swing.JLabel lblMaximize;
     private javax.swing.JLabel lblMinimize;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel pnlActions;

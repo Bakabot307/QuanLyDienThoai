@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 public class MImage {
     
     public static Image getAppIcon() {
-        URL url = com.raven.swing.MImage.class.getResource("/com/raven/icon/logo.png");
+        URL url = com.raven.swing.MImage.class.getResource("/com/raven/icon/logoI.png");
         return new ImageIcon(url).getImage();
     }
 
