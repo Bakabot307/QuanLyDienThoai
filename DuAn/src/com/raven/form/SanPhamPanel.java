@@ -8,6 +8,7 @@ package com.raven.form;
 import Controller.AbsController;
 import Controller.KhachHangController;
 import Controller.SanPhamController;
+import MODEL.LoaiSanPham;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
 import duan.dialog.HandleKhachHangDal;
@@ -20,6 +21,7 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -43,59 +45,16 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
 
     public SanPhamPanel() {
         initComponents();
+
         SanPhamController sanPhamController = new SanPhamController(this);
-//        if (khachHangDialog == null) {
-//            khachHangDialog = new HandleKhachHangDal(null, true);
-//            khachHangDialog.addBT.addMouseListener(new MouseAdapter() {
-//                @Override
-//                public void mouseClicked(MouseEvent e) {
-//                    Object[] values = new Object[8];
-//                    values[0] = 0;
-//                    values[1] = khachHangDialog.txtTen.getText();
-//                    values[2] = khachHangDialog.txtSdt.getText();
-//                    values[3] = khachHangDialog.txtDiaChi.getText();
-//                    values[4] = khachHangDialog.txtCMND.getText();
-//                    values[5] = khachHangDialog.txtGhiChu.getText();
-//                    if (khachHangDialog.cbNam.isSelected()) {
-//                        values[6] = "Nam";
-//                    } else if (!khachHangDialog.cbNu.isSelected() && !khachHangDialog.cbNam.isSelected()) {
-//                        JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
-//                        return;
-//                    } else {
-//                        values[6] = "Nữ";
-//                    }
-//                    values[7] = khachHangDialog.txtEmail.getText();
-//                    khachHangController.insert(values);
-//                    
-//                }
-//            });}
+        sanPhamDal = new HandleSanPhamDal(null, true);
+        DefaultComboBoxModel<LoaiSanPham> modle = (DefaultComboBoxModel<LoaiSanPham>) sanPhamDal.cbbLoaiSP.getModel();
+        modle.removeAllElements();
+        List<LoaiSanPham> sanPhams = sanPhamController.layCbbLoaiSP();
+        modle.addAll(sanPhams);
+        modle.setSelectedItem(sanPhams.get(0));
 
-//            khachHangDialog.editBT.addMouseListener(new MouseAdapter() {
-//                @Override
-//                public void mouseClicked(MouseEvent e) {
-//                    Object[] values = new Object[8];
-//                    values[0] = editId;
-//                    values[1] = khachHangDialog.txtTen.getText();
-//                    values[2] = khachHangDialog.txtSdt.getText();
-//                    values[3] = khachHangDialog.txtDiaChi.getText();
-//                    values[4] = khachHangDialog.txtCMND.getText();
-//                    values[5] = khachHangDialog.txtGhiChu.getText();
-//                    if (khachHangDialog.cbNam.isSelected()) {
-//                        values[6] = "Nam";
-//                    } else if (!khachHangDialog.cbNu.isSelected() && !khachHangDialog.cbNam.isSelected()) {
-//                        JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
-//                        return;
-//                    } else {
-//                        values[6] = "Nữ";
-//                    }
-//                    values[7] = khachHangDialog.txtEmail.getText();
-//                    khachHangController.edit(values);
-//                }
-//            });
-
-        }
-    
-
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -229,96 +188,101 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
         // TODO add your handling code here:
-     
-         if (sanPhamDal == null) {        
+
+        if (sanPhamDal == null) {
             sanPhamDal = new HandleSanPhamDal(null, true);
             sanPhamDal.editBT.setEnabled(false);
-            sanPhamDal.addBT.setEnabled(true); 
+            sanPhamDal.addBT.setEnabled(true);
             ThemData();
-            
-         } else {
-             sanPhamDal.editBT.setEnabled(false);
-            sanPhamDal.addBT.setEnabled(true); 
+
+        } else {
+            sanPhamDal.editBT.setEnabled(false);
+            sanPhamDal.addBT.setEnabled(true);
             ThemData();
-                
-            }
+
+        }
         sanPhamDal.txtTen.setText("");
-        sanPhamDal.txtSdt.setText("");
+//        sanPhamDal.txtSdt.setText("");
         sanPhamDal.txtDiaChi.setText("");
         sanPhamDal.txtCMND.setText("");
         sanPhamDal.txtGhiChu.setText("");
         sanPhamDal.txtEmail.setText("");
-        
+
         String tieuDe = (String) sanPhamController.getViewBag().get("tieu_de");
-        sanPhamDal.title.setText("Thêm Khách Hàng " + tieuDe);        
+        sanPhamDal.title.setText("Thêm Sản Phẩm " + tieuDe);
         sanPhamDal.setVisible(true);
     }//GEN-LAST:event_btnThemMouseClicked
     private Integer editId;
     private void btnCapNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapNhapMouseClicked
         // TODO add your handling code here:
-             
+
         if (tblSanPham.getSelectedRow() == -1) {
             System.out.println("Lỗi chưa chọn dòng");
             JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn dòng cần sửa ! ", "Thông báo", JOptionPane.ERROR_MESSAGE);
             return;
-        }            
+        }
         editId = (Integer) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0);
-         if (sanPhamDal == null) {
-             sanPhamDal = new HandleSanPhamDal(null, true);
-             sanPhamDal.addBT.setEnabled(false);   
-             sanPhamDal.editBT.setEnabled(true);             
+        if (sanPhamDal == null) {
+            sanPhamDal = new HandleSanPhamDal(null, true);
+            sanPhamDal.addBT.setEnabled(false);
+            sanPhamDal.editBT.setEnabled(true);
             SuaData();
-         } else {    
-             sanPhamDal.addBT.setEnabled(false);   
-             sanPhamDal.editBT.setEnabled(true); 
-             SuaData();
-         }     
+        } else {
+            sanPhamDal.addBT.setEnabled(false);
+            sanPhamDal.editBT.setEnabled(true);
+            SuaData();
+        }
         int dong = tblSanPham.getSelectedRow();
         sanPhamDal.txtTen.setText(tblSanPham.getValueAt(dong, 1).toString());
-        sanPhamDal.txtSdt.setText(tblSanPham.getValueAt(dong, 2).toString());
+
         sanPhamDal.txtDiaChi.setText(tblSanPham.getValueAt(dong, 3).toString());
         sanPhamDal.txtCMND.setText(tblSanPham.getValueAt(dong, 4).toString());
         sanPhamDal.txtGhiChu.setText(tblSanPham.getValueAt(dong, 5).toString());
- 
-        sanPhamDal.txtEmail.setText(tblSanPham.getValueAt(dong, 7).toString());
-        String tieuDe = (String) sanPhamController.getViewBag().get("tieu_de");
-        sanPhamDal.title.setText("Cập nhập Khách Hàng " + tieuDe);
-        sanPhamDal.setVisible(true); 
-    }//GEN-LAST:event_btnCapNhapMouseClicked
-private void ThemData(){
-    sanPhamDal.addBT.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    Object[] values = new Object[8];
-                    values[0] = 0;
-                    values[1] = sanPhamDal.txtTen.getText();
-                    values[2] = sanPhamDal.txtSdt.getText();
-                    values[3] = sanPhamDal.txtDiaChi.getText();
-                    values[4] = sanPhamDal.txtCMND.getText();
-                    values[5] = sanPhamDal.txtGhiChu.getText();
-                
-                    values[6] = sanPhamDal.txtEmail.getText();                      
-                    sanPhamController.insert(values);                        
-                }
-            });
-}
 
-private void SuaData(){
-sanPhamDal.editBT.addMouseListener(new MouseAdapter() {
-                @Override
+        String tieuDe = (String) sanPhamController.getViewBag().get("tieu_de");
+        sanPhamDal.title.setText("Cập nhập Sản Phẩm " + tieuDe);
+        sanPhamDal.setVisible(true);
+    }//GEN-LAST:event_btnCapNhapMouseClicked
+    private void ThemData() {
+        sanPhamDal.addBT.addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent e) {
-                    Object[] values = new Object[8];
-                    values[0] = editId;
-                    values[1] = sanPhamDal.txtTen.getText();
-                    values[2] = sanPhamDal.txtSdt.getText();
-                    values[3] = sanPhamDal.txtDiaChi.getText();
-                    values[4] = sanPhamDal.txtCMND.getText();
-                    values[5] = sanPhamDal.txtGhiChu.getText();
-                    
-                    values[7] = sanPhamDal.txtEmail.getText();
-                    sanPhamController.edit(values);                  
-                }
-            });}
+                // lấy id loại sản phẩm
+                LoaiSanPham loaiSp = (LoaiSanPham) sanPhamDal.cbbLoaiSP.getSelectedItem();
+                Integer idLoaiSP = loaiSp.getIdLoaiSanPham();
+                System.out.println(idLoaiSP);
+
+//                Object[] values = new Object[8];
+//                values[0] = 0;
+//                values[1] = sanPhamDal.txtTen.getText();
+//                values[2] = sanPhamDal.txtSdt.getText();
+//                values[3] = sanPhamDal.txtDiaChi.getText();
+//                values[4] = sanPhamDal.txtCMND.getText();
+//                values[5] = sanPhamDal.txtGhiChu.getText();
+//
+//                values[6] = sanPhamDal.txtEmail.getText();
+//                sanPhamController.insert(values);
+            }
+        });
+    }
+
+    private void SuaData() {
+        sanPhamDal.editBT.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Object[] values = new Object[7];
+                values[0] = editId;
+                values[1] = sanPhamDal.txtTen.getText();
+//                values[2] = sanPhamDal.txtSdt.getText();
+                values[3] = sanPhamDal.txtDiaChi.getText();
+                values[4] = sanPhamDal.txtCMND.getText();
+                values[5] = sanPhamDal.txtGhiChu.getText();
+
+                values[6] = sanPhamDal.txtEmail.getText();
+                sanPhamController.edit(values);
+            }
+        });
+    }
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         exportExcel(tblSanPham);

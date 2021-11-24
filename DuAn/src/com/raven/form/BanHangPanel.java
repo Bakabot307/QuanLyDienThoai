@@ -1,18 +1,13 @@
 package com.raven.form;
 
 import Controller.AbsController;
-import Controller.SanPhamController;
+import Controller.BanHangController;
 import MODEL.KhuyenMai;
-import MODEL.SanPham.MyTableModel;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
-import java.awt.Color;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JCheckBox;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import net.sf.oval.ConstraintViolation;
 
@@ -21,12 +16,12 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
     public BanHangPanel() {
         initComponents();
         setOpaque(false);
-        SanPhamController sanPhamController = new SanPhamController(this);
+        BanHangController banHangController = new BanHangController(this);
         init();
 
         DefaultComboBoxModel<KhuyenMai> modle = (DefaultComboBoxModel<KhuyenMai>) cbbKhuyenMai.getModel();
         modle.removeAllElements();
-        List<KhuyenMai> khuyenMais = sanPhamController.layCbbKhuyenMai();
+        List<KhuyenMai> khuyenMais = banHangController.layCbbKhuyenMai();
         modle.addAll(khuyenMais);
         modle.setSelectedItem(khuyenMais.get(0));
         
@@ -435,11 +430,11 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         ViewImp.setColumnNames(columnNames, dataTable1);
     }
 
-    private SanPhamController sanPhamController;
+    private BanHangController banHangController;
 
     @Override
     public void setController(AbsController controller) {
-        sanPhamController = (SanPhamController) sanPhamController;
+        banHangController = (BanHangController) banHangController;
     }
 
     @Override

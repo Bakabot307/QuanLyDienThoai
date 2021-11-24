@@ -7,10 +7,8 @@ package Controller;
 
 import DAO.AbsDAO;
 import DAO.KhuyenMaiDAO;
-import DAO.LoaiSanPhamDAO;
 import DAO.SanPhamDAO;
 import MODEL.KhuyenMai;
-import MODEL.LoaiSanPham;
 import MODEL.SanPham;
 import VIEW.ViewInterface;
 import com.raven.component.Menu;
@@ -23,36 +21,32 @@ import java.util.List;
  *
  * @author Admin
  */
-public class SanPhamController extends AbsController<SanPham> {
+public class BanHangController extends AbsController<SanPham> {
 
     private Menu menu;
 
-    public SanPhamController(ViewInterface view) {
+    public BanHangController(ViewInterface view) {
         super(view);
         khuyenMaiDAO = new KhuyenMaiDAO();
-        loaiSanPhamDAO =  new LoaiSanPhamDAO();
+
     }
 
     private KhuyenMaiDAO khuyenMaiDAO;
     private SanPhamPanel sanPhamPanel;
+    private BanHangPanel banHangPanel;
     private SanPhamDAO sanPhamDAO;
-    private LoaiSanPhamDAO loaiSanPhamDAO;
-
-    public List<KhuyenMai> layCbbKhuyenMai() {
-        return khuyenMaiDAO.getAll();
-    }
-    
-     public List<LoaiSanPham> layCbbLoaiSP() {
-        return loaiSanPhamDAO.getAll();
-    }
 
     @Override
     public void loadList() {
-        sanPhamPanel = (SanPhamPanel) view;
+        banHangPanel = (BanHangPanel) view;
         sanPhamDAO = (SanPhamDAO) dao;
-        List<Object[]> data = sanPhamDAO.layListSanPham();
-        sanPhamPanel.setColumnNames(this.getTableColumnNames());
-        sanPhamPanel.viewList(data);
+        List<Object[]> data = sanPhamDAO.layTenLoaiSanPham();
+        banHangPanel.setColumnNames(this.getTableColumnNames());
+        banHangPanel.viewList(data);
+    }
+
+    public List<KhuyenMai> layCbbKhuyenMai() {
+        return khuyenMaiDAO.getAll();
     }
 
     @Override
@@ -67,7 +61,7 @@ public class SanPhamController extends AbsController<SanPham> {
 
     @Override
     protected void setViewBagInfo(Dictionary<String, Object> viewBag) {
-        viewBag.put("tieu_de", "");
+
     }
 
     @Override

@@ -6,22 +6,14 @@ package MODEL;
 
 import Interface.TableInterface;
 
-
 /**
  *
  * @author gnaht
  */
-public class LoaiSanPham extends TableInterface{
-    Integer idLoaiSanPham;
-    String tenLoaiSanPham;
+public class LoaiSanPham extends TableInterface {
 
-    public LoaiSanPham() {
-    }
-
-    public LoaiSanPham(Integer idLoaiSanPham, String tenLoaiSanPham) {
-        this.idLoaiSanPham = idLoaiSanPham;
-        this.tenLoaiSanPham = tenLoaiSanPham;
-    }
+    private Integer idLoaiSanPham;
+    private String tenLoaiSanPham;
 
     public Integer getIdLoaiSanPham() {
         return idLoaiSanPham;
@@ -43,5 +35,10 @@ public class LoaiSanPham extends TableInterface{
     public int getId() {
         return idLoaiSanPham;
     }
-    
+
+    @Override
+    public String toString() {
+        return tenLoaiSanPham;
+    }
+
 }
