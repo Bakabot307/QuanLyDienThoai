@@ -11,7 +11,13 @@ import DAO.SanPhamDAO;
 import MODEL.KhuyenMai;
 import MODEL.SanPham;
 import VIEW.ViewInterface;
+import com.raven.component.Menu;
+import com.raven.event.EventMenuSelected;
 import com.raven.form.BanHangPanel;
+import com.raven.form.KhachHangPanel;
+import com.raven.form.KhuyenMaiPnl;
+import com.raven.form.SanPhamPanel;
+import com.raven.form.ThongKe;
 import java.util.Dictionary;
 import java.util.List;
 
@@ -27,8 +33,10 @@ public class SanPhamController extends AbsController<SanPham> {
     }
 
     private KhuyenMaiDAO khuyenMaiDAO;
+    private SanPhamPanel sanPhamPanel;
     private BanHangPanel banHangPanel;
     private SanPhamDAO sanPhamDAO;
+       private Menu menu = new Menu();
 
     public List<KhuyenMai> layCbbKhuyenMai() {
         return khuyenMaiDAO.getAll();
@@ -36,11 +44,30 @@ public class SanPhamController extends AbsController<SanPham> {
 
     @Override
     public void loadList() {
-        banHangPanel = (BanHangPanel) view;
-        sanPhamDAO = (SanPhamDAO) dao;
-        List<Object[]> data = sanPhamDAO.layTenLoaiSanPham();
-        banHangPanel.setColumnNames(this.getTableColumnNames());
-        banHangPanel.viewList(data);
+      
+        
+       
+                       banHangPanel = (BanHangPanel) view;
+                        sanPhamDAO = (SanPhamDAO) dao;
+        
+        
+        menu.setEvent(new EventMenuSelected() {
+            @Override
+            public void selected(int index) {
+                if (index == 0) {
+                      banHangPanel = (BanHangPanel) view;
+                     List<Object[]> data2 = sanPhamDAO.layTenLoaiSanPham();
+//                     banHangPanel.setColumnNames(this.getTableColumnNames());
+                     banHangPanel.viewList(data2);
+                } else if (index == 4) {
+                    sanPhamPanel = (SanPhamPanel) view;
+         List<Object[]> data = sanPhamDAO.layListSanPham();          
+        sanPhamPanel.viewList(data);
+                
+                    
+                } 
+            }
+        });
     }
 
     @Override
@@ -50,7 +77,7 @@ public class SanPhamController extends AbsController<SanPham> {
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Sản Phẩm", "Tên Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "Đơn Vị Tính", "button"};
+        return new String[]{"ID Sản Phẩm", "Tên Loại Sản Phẩm", "Tên Sản Phẩm", "Accept/Reject", "Giá Bán", ""};
     }
 
     @Override

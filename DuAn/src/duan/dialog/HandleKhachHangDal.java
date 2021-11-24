@@ -98,6 +98,11 @@ public class HandleKhachHangDal extends javax.swing.JDialog {
         cbNam.setBackground(new java.awt.Color(102, 102, 102));
         buttonGroup1.add(cbNam);
         cbNam.setText("Nam");
+        cbNam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbNamActionPerformed(evt);
+            }
+        });
 
         cbNu.setBackground(new java.awt.Color(102, 102, 102));
         buttonGroup1.add(cbNu);
@@ -300,6 +305,10 @@ public class HandleKhachHangDal extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_addBTMouseClicked
 
+    private void cbNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbNamActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -345,8 +354,8 @@ public class HandleKhachHangDal extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel addBT;
     private javax.swing.ButtonGroup buttonGroup1;
-    public duan.dialog.JRadioCustom cbNam;
-    public duan.dialog.JRadioCustom cbNu;
+    public static duan.dialog.JRadioCustom cbNam;
+    public static duan.dialog.JRadioCustom cbNu;
     public javax.swing.JLabel editBT;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

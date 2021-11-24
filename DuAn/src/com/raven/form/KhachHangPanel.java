@@ -255,7 +255,7 @@ public class KhachHangPanel extends javax.swing.JPanel implements ViewInterface 
     private Integer editId;
     private void btnCapNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapNhapMouseClicked
         // TODO add your handling code here:
-             
+        
         if (tblKhachHang.getSelectedRow() == -1) {
             System.out.println("Lỗi chưa chọn dòng");
             JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn dòng cần sửa ! ", "Thông báo", JOptionPane.ERROR_MESSAGE);
@@ -264,10 +264,12 @@ public class KhachHangPanel extends javax.swing.JPanel implements ViewInterface 
         editId = (Integer) tblKhachHang.getValueAt(tblKhachHang.getSelectedRow(), 0);
          if (khachHangDialog == null) {
              khachHangDialog = new HandleKhachHangDal(null, true);
+             khachHangDialog.title.setText("Cập Nhật Khách Hàng");
              khachHangDialog.addBT.setEnabled(false);   
              khachHangDialog.editBT.setEnabled(true);             
             SuaData();
          } else {    
+             khachHangDialog.title.setText("Cập Nhật Khách Hàng");
              khachHangDialog.addBT.setEnabled(false);   
              khachHangDialog.editBT.setEnabled(true); 
              SuaData();

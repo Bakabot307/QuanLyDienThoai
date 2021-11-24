@@ -67,6 +67,11 @@ public class KhuyenMaiPnl extends javax.swing.JPanel implements ViewInterface {
                 return canEdit [columnIndex];
             }
         });
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table);
         if (table.getColumnModel().getColumnCount() > 0) {
             table.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -302,8 +307,8 @@ public class KhuyenMaiPnl extends javax.swing.JPanel implements ViewInterface {
         }
         int dong = table.getSelectedRow();
         Integer editId = (Integer) table.getValueAt(dong, 0);
-        System.out.println(editId);
-
+        System.out.println(editId);   
+  
         Object[] values = new Object[4];
         values[0] = editId;
         values[1] = txtTen.getText();
@@ -334,6 +339,15 @@ public class KhuyenMaiPnl extends javax.swing.JPanel implements ViewInterface {
             }
         }
     }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+            int dong = table.getSelectedRow();
+        Integer editId = (Integer) table.getValueAt(dong, 0);
+        System.out.println(editId);   
+        txtPhanTramKm.setText(table.getValueAt(dong, 2).toString());
+        txtTen.setText(table.getValueAt(dong, 1).toString());
+        txtghiChu.setText(table.getValueAt(dong, 3).toString());
+    }//GEN-LAST:event_tableMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.swing.KButton bthThem;

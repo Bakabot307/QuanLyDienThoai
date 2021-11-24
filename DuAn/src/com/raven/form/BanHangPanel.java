@@ -3,13 +3,16 @@ package com.raven.form;
 import Controller.AbsController;
 import Controller.SanPhamController;
 import MODEL.KhuyenMai;
+import MODEL.SanPham.MyTableModel;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import net.sf.oval.ConstraintViolation;
 
@@ -31,13 +34,9 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
     }
 
     private void init() {
-     dataTable1.getColumn("button").setCellRenderer(new ButtonRenderer());
-       dataTable1.getColumn("button").setCellEditor(new ButtonEditor(new JCheckBox()));     
-
-      
-
-        dataTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
-
+                
+              
+         
     }
     
 

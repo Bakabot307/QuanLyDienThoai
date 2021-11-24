@@ -14,10 +14,15 @@ import java.util.List;
  */
 public class SanPhamDAO extends AbsDAO<SanPham>{
     public List<Object[]> layTenLoaiSanPham() {
-        String selectSql = "select idSanPham, TenLoaiSanPham,TenSanPham,GiaNhap, GiaBan ,SoLuong,DVT from SanPham join LoaiSanPham on SanPham.idLoaiSanPham = LoaiSanPham.idLoaiSanPham";
+        String selectSql = "select SanPham.idSanPham, CONCAT(TenSanPham,' Màu ',MauSac,' ',DungLuong)as TenSanPham,GiaBan from SanPham\n" +
+"inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham";
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
     
-  
+  public List<Object[]> layListSanPham() {
+        String selectSql = "select * from SanPham";
+        List<Object[]> data = getRawValues(selectSql);
+        return data;
+    }
 }
