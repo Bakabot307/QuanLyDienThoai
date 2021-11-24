@@ -27,16 +27,18 @@ import java.util.List;
  */
 public class SanPhamController extends AbsController<SanPham> {
 
+    private Menu menu;
+
     public SanPhamController(ViewInterface view) {
         super(view);
         khuyenMaiDAO = new KhuyenMaiDAO();
+
     }
 
     private KhuyenMaiDAO khuyenMaiDAO;
     private SanPhamPanel sanPhamPanel;
     private BanHangPanel banHangPanel;
     private SanPhamDAO sanPhamDAO;
-       private Menu menu = new Menu();
 
     public List<KhuyenMai> layCbbKhuyenMai() {
         return khuyenMaiDAO.getAll();
@@ -44,28 +46,23 @@ public class SanPhamController extends AbsController<SanPham> {
 
     @Override
     public void loadList() {
-      
-        
-       
-                       banHangPanel = (BanHangPanel) view;
-                        sanPhamDAO = (SanPhamDAO) dao;
-        
-        
+        banHangPanel = (BanHangPanel) view;
+        sanPhamDAO = (SanPhamDAO) dao;
+        menu = new Menu();
         menu.setEvent(new EventMenuSelected() {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-                      banHangPanel = (BanHangPanel) view;
-                     List<Object[]> data2 = sanPhamDAO.layTenLoaiSanPham();
+                    banHangPanel = (BanHangPanel) view;
+                    List<Object[]> data2 = sanPhamDAO.layTenLoaiSanPham();
 //                     banHangPanel.setColumnNames(this.getTableColumnNames());
-                     banHangPanel.viewList(data2);
+                    banHangPanel.viewList(data2);
                 } else if (index == 4) {
                     sanPhamPanel = (SanPhamPanel) view;
-         List<Object[]> data = sanPhamDAO.layListSanPham();          
-        sanPhamPanel.viewList(data);
-                
-                    
-                } 
+                    List<Object[]> data = sanPhamDAO.layListSanPham();
+                    sanPhamPanel.viewList(data);
+
+                }
             }
         });
     }
