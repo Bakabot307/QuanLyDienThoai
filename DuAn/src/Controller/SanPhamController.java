@@ -46,18 +46,18 @@ public class SanPhamController extends AbsController<SanPham> {
 
     @Override
     public void loadList() {
-        banHangPanel = (BanHangPanel) view;
+        
         sanPhamDAO = (SanPhamDAO) dao;
         menu = new Menu();
         menu.setEvent(new EventMenuSelected() {
             @Override
             public void selected(int index) {
-                if (index == 0) {
+                if (index == 1) {
                     banHangPanel = (BanHangPanel) view;
                     List<Object[]> data2 = sanPhamDAO.layTenLoaiSanPham();
 //                     banHangPanel.setColumnNames(this.getTableColumnNames());
                     banHangPanel.viewList(data2);
-                } else if (index == 4) {
+                } else if (index == 3) {
                     sanPhamPanel = (SanPhamPanel) view;
                     List<Object[]> data = sanPhamDAO.layListSanPham();
                     sanPhamPanel.viewList(data);

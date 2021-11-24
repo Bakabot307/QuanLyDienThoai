@@ -72,7 +72,7 @@ public class Main extends javax.swing.JFrame {
                 } else if (index == 2) {
                     showForm(new KhuyenMaiPnl());
                 } else if (index == 3) {
-                    showForm(new KhachHangPanel());
+                    showForm(new SanPhamPanel());
                 } else if (index == 4) {
                     showForm(new SanPhamPanel());
                 } else if (index == 5) {
