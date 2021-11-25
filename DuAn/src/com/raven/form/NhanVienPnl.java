@@ -17,7 +17,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -41,54 +45,7 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
     public NhanVienPnl() {
         initComponents();
         NhanVienController nhanVienController = new NhanVienController(this);
-//        if (nhanVienDal == null) {
-//            nhanVienDal = new HandleKhachHangDal(null, true);
-//            nhanVienDal.addBT.addMouseListener(new MouseAdapter() {
-//                @Override
-//                public void mouseClicked(MouseEvent e) {
-//                    Object[] values = new Object[8];
-//                    values[0] = 0;
-//                    values[1] = nhanVienDal.txtTen.getText();
-//                    values[2] = nhanVienDal.txtSdt.getText();
-//                    values[3] = nhanVienDal.txtDiaChi.getText();
-//                    values[4] = nhanVienDal.txtCMND.getText();
-//                    values[5] = nhanVienDal.txtGhiChu.getText();
-//                    if (nhanVienDal.cbNam.isSelected()) {
-//                        values[6] = "Nam";
-//                    } else if (!nhanVienDal.cbNu.isSelected() && !nhanVienDal.cbNam.isSelected()) {
-//                        JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
-//                        return;
-//                    } else {
-//                        values[6] = "Nữ";
-//                    }
-//                    values[7] = nhanVienDal.txtEmail.getText();
-//                    nhanVienController.insert(values);
-//                    
-//                }
-//            });}
 
-//            nhanVienDal.editBT.addMouseListener(new MouseAdapter() {
-//                @Override
-//                public void mouseClicked(MouseEvent e) {
-//                    Object[] values = new Object[8];
-//                    values[0] = editId;
-//                    values[1] = nhanVienDal.txtTen.getText();
-//                    values[2] = nhanVienDal.txtSdt.getText();
-//                    values[3] = nhanVienDal.txtDiaChi.getText();
-//                    values[4] = nhanVienDal.txtCMND.getText();
-//                    values[5] = nhanVienDal.txtGhiChu.getText();
-//                    if (nhanVienDal.cbNam.isSelected()) {
-//                        values[6] = "Nam";
-//                    } else if (!nhanVienDal.cbNu.isSelected() && !nhanVienDal.cbNam.isSelected()) {
-//                        JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
-//                        return;
-//                    } else {
-//                        values[6] = "Nữ";
-//                    }
-//                    values[7] = nhanVienDal.txtEmail.getText();
-//                    nhanVienController.edit(values);
-//                }
-//            });
 
         }
     
@@ -105,7 +62,7 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblKhachHang = new com.raven.swing.TableColumn();
+        tblNhanVien = new com.raven.swing.TableColumn();
         scrollBar1 = new com.raven.swing.ScrollBar();
         jPanel2 = new javax.swing.JPanel();
         searchText1 = new com.raven.swing.SearchText();
@@ -118,7 +75,7 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
 
         jScrollPane1.setVerticalScrollBar(scrollBar1);
 
-        tblKhachHang.setModel(new javax.swing.table.DefaultTableModel(
+        tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -129,7 +86,7 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8"
             }
         ));
-        jScrollPane1.setViewportView(tblKhachHang);
+        jScrollPane1.setViewportView(tblNhanVien);
 
         jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
         jPanel1.add(scrollBar1, java.awt.BorderLayout.LINE_END);
@@ -243,10 +200,12 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
         nhanVienDal.txtSdt.setText("");
         nhanVienDal.txtDiaChi.setText("");
         nhanVienDal.txtCMND.setText("");
-        nhanVienDal.txtGhiChu.setText("");
+        nhanVienDal.txtChucVu.setText("");
         nhanVienDal.txtEmail.setText("");
         nhanVienDal.cbNam.setSelected(false);
         nhanVienDal.cbNu.setSelected(false);
+        nhanVienDal.txtChucVu.setText("");
+        nhanVienDal.txtTrangThai.setText("");
         String tieuDe = (String) nhanVienController.getViewBag().get("tieu_de");
         nhanVienDal.title.setText("Thêm Nhân Viên " + tieuDe);        
         nhanVienDal.setVisible(true);
@@ -255,41 +214,48 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
     private void btnCapNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapNhapMouseClicked
         // TODO add your handling code here:
         
-        if (tblKhachHang.getSelectedRow() == -1) {
+        if (tblNhanVien.getSelectedRow() == -1) {
             System.out.println("Lỗi chưa chọn dòng");
             JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn dòng cần sửa ! ", "Thông báo", JOptionPane.ERROR_MESSAGE);
             return;
         }            
-        editId = (Integer) tblKhachHang.getValueAt(tblKhachHang.getSelectedRow(), 0);
+        editId = (Integer) tblNhanVien.getValueAt(tblNhanVien.getSelectedRow(), 0);
          if (nhanVienDal == null) {
              nhanVienDal = new HandleNhanVienDal(null, true);
              nhanVienDal.title.setText("Cập Nhật Nhân Viên");
              nhanVienDal.addBT.setEnabled(false);   
              nhanVienDal.editBT.setEnabled(true);             
-            SuaData();
+             SuaData();
          } else {    
              nhanVienDal.title.setText("Cập Nhật Nhân Viên");
              nhanVienDal.addBT.setEnabled(false);   
              nhanVienDal.editBT.setEnabled(true); 
              SuaData();
          }     
-        int dong = tblKhachHang.getSelectedRow();
-        nhanVienDal.txtTen.setText(tblKhachHang.getValueAt(dong, 1).toString());
-        nhanVienDal.txtSdt.setText(tblKhachHang.getValueAt(dong, 2).toString());
-        nhanVienDal.txtDiaChi.setText(tblKhachHang.getValueAt(dong, 3).toString());
-        nhanVienDal.txtCMND.setText(tblKhachHang.getValueAt(dong, 4).toString());
-        nhanVienDal.txtGhiChu.setText(tblKhachHang.getValueAt(dong, 5).toString());
-        if (tblKhachHang.getValueAt(dong, 6).toString().equals("Nam")) {
+        int dong = tblNhanVien.getSelectedRow();
+        nhanVienDal.txtTen.setText(tblNhanVien.getValueAt(dong, 1).toString());
+        nhanVienDal.txtDiaChi.setText(tblNhanVien.getValueAt(dong, 2).toString());
+        nhanVienDal.txtCMND.setText(tblNhanVien.getValueAt(dong, 3).toString());
+        nhanVienDal.txtEmail.setText(tblNhanVien.getValueAt(dong, 4).toString());
+        nhanVienDal.txtSdt.setText(tblNhanVien.getValueAt(dong, 5).toString());
+        if (tblNhanVien.getValueAt(dong, 6).toString().equals("Nam")) {
             nhanVienDal.cbNam.setSelected(true);
         } else {
             nhanVienDal.cbNam.setSelected(false);
         }
-        if (tblKhachHang.getValueAt(dong, 6).toString().equals("Nữ")) {
+        if (tblNhanVien.getValueAt(dong, 6).toString().equals("Nữ")) {
             nhanVienDal.cbNu.setSelected(true);
         } else {
             nhanVienDal.cbNu.setSelected(false);
         }
-        nhanVienDal.txtEmail.setText(tblKhachHang.getValueAt(dong, 7).toString());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            nhanVienDal.dcNgayVaoLam.setDate(df.parse(tblNhanVien.getValueAt(dong, 7).toString()));
+        } catch (ParseException ex) {
+            Logger.getLogger(NhanVienPnl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        nhanVienDal.txtChucVu.setText(tblNhanVien.getValueAt(dong, 8).toString());
+        nhanVienDal.txtTrangThai.setText(tblNhanVien.getValueAt(dong, 9).toString());
         String tieuDe = (String) nhanVienController.getViewBag().get("tieu_de");
         nhanVienDal.title.setText("Cập nhập Khách Hàng " + tieuDe);
         nhanVienDal.setVisible(true); 
@@ -298,13 +264,13 @@ private void ThemData(){
     nhanVienDal.addBT.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    Object[] values = new Object[8];
+                    Object[] values = new Object[10];
                     values[0] = 0;
                     values[1] = nhanVienDal.txtTen.getText();
-                    values[2] = nhanVienDal.txtSdt.getText();
-                    values[3] = nhanVienDal.txtDiaChi.getText();
-                    values[4] = nhanVienDal.txtCMND.getText();
-                    values[5] = nhanVienDal.txtGhiChu.getText();
+                    values[2] = nhanVienDal.txtDiaChi.getText();
+                    values[3] = nhanVienDal.txtCMND.getText();
+                    values[4] = nhanVienDal.txtEmail.getText();
+                    values[5] = nhanVienDal.txtSdt.getText();                    
                     if (nhanVienDal.cbNam.isSelected()) {
                         values[6] = "Nam";
                     } else if (!nhanVienDal.cbNu.isSelected() && !nhanVienDal.cbNam.isSelected()) {
@@ -313,7 +279,12 @@ private void ThemData(){
                     } else {
                         values[6] = "Nữ";
                     }
-                    values[7] = nhanVienDal.txtEmail.getText();                      
+                    values[7] = nhanVienDal.dcNgayVaoLam.getDate();                      
+                    
+                    values[8] = Integer.parseInt(nhanVienDal.txtChucVu.getText());  
+                    values[9] = nhanVienDal.txtTrangThai.getText();                    
+
+
                     nhanVienController.insert(values);                        
                 }
             });
@@ -323,13 +294,13 @@ private void SuaData(){
 nhanVienDal.editBT.addMouseListener(new MouseAdapter() {
                 @Override
             public void mouseClicked(MouseEvent e) {
-                    Object[] values = new Object[8];
-                    values[0] = editId;
+                    Object[] values = new Object[10];
+                    values[0] = 0;
                     values[1] = nhanVienDal.txtTen.getText();
-                    values[2] = nhanVienDal.txtSdt.getText();
-                    values[3] = nhanVienDal.txtDiaChi.getText();
-                    values[4] = nhanVienDal.txtCMND.getText();
-                    values[5] = nhanVienDal.txtGhiChu.getText();
+                    values[2] = nhanVienDal.txtDiaChi.getText();
+                    values[3] = nhanVienDal.txtCMND.getText();
+                    values[4] = nhanVienDal.txtEmail.getText();
+                    values[5] = nhanVienDal.txtSdt.getText();                    
                     if (nhanVienDal.cbNam.isSelected()) {
                         values[6] = "Nam";
                     } else if (!nhanVienDal.cbNu.isSelected() && !nhanVienDal.cbNam.isSelected()) {
@@ -338,13 +309,17 @@ nhanVienDal.editBT.addMouseListener(new MouseAdapter() {
                     } else {
                         values[6] = "Nữ";
                     }
-                    values[7] = nhanVienDal.txtEmail.getText();
+                    values[7] = nhanVienDal.dcNgayVaoLam.getDate();                      
+                    
+                    values[8] = Integer.parseInt(nhanVienDal.txtChucVu.getText());  
+                    values[9] = nhanVienDal.txtTrangThai.getText();                    
+
                     nhanVienController.edit(values);                  
                 }
             });}
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-        exportExcel(tblKhachHang);
+        exportExcel(tblNhanVien);
     }//GEN-LAST:event_jLabel1MouseClicked
     public void exportExcel(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -405,12 +380,12 @@ nhanVienDal.editBT.addMouseListener(new MouseAdapter() {
     private javax.swing.JScrollPane jScrollPane1;
     private com.raven.swing.ScrollBar scrollBar1;
     private com.raven.swing.SearchText searchText1;
-    private com.raven.swing.TableColumn tblKhachHang;
+    private com.raven.swing.TableColumn tblNhanVien;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void viewList(List<Object[]> rows) {
-        ViewImp.viewList(rows, tblKhachHang);
+        ViewImp.viewList(rows, tblNhanVien);
         if (nhanVienDal != null) {
             nhanVienDal.setVisible(false);
         }
@@ -418,7 +393,7 @@ nhanVienDal.editBT.addMouseListener(new MouseAdapter() {
 
     @Override
     public void setColumnNames(String[] columnNames) {
-        ViewImp.setColumnNames(columnNames, tblKhachHang);
+        ViewImp.setColumnNames(columnNames, tblNhanVien);
     }
     private NhanVienController nhanVienController;
 

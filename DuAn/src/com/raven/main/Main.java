@@ -1,11 +1,13 @@
 package com.raven.main;
 
+import MODEL.NhanVien;
 import com.raven.component.Menu;
 import com.raven.event.EventMenuSelected;
 import com.raven.form.KhuyenMaiPnl;
 import com.raven.form.BanHangPanel;
 import com.raven.form.KhachHangPanel;
 import com.raven.form.LoaiSanPhamPnl;
+import com.raven.form.NhanVienPnl;
 import com.raven.form.SanPhamPanel;
 import com.raven.form.ThongKe;
 import com.raven.model.ModelMenu;
@@ -79,7 +81,7 @@ public class Main extends javax.swing.JFrame {
                 } else if (index == 5) {
                     showForm(new KhachHangPanel());
                 } else if (index == 6) {
-                    showForm(new KhachHangPanel());
+                    showForm(new NhanVienPnl());
                 } else if (index == 7) {
                     showForm(new KhachHangPanel());
                 } else if (index == 8) {

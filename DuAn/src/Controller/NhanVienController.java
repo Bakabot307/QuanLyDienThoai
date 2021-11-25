@@ -28,7 +28,7 @@ public class NhanVienController extends AbsController<NhanVien>{
 
     @Override
     public String[] getTableColumnNames() {
-         return new String[]{"ID Nhân viên", "Tên Nhân Viên", "Địa Chỉ", "CMND","Số Điện Thoại" ,"Ngày Vào Làm","Level","Giới tính","Trạng thái", "Email"};
+         return new String[]{"ID Nhân viên", "Tên Nhân Viên", "Địa Chỉ", "CMND","Email","Số Điện Thoại" ,"Giới tính","Ngày Vào Làm","Level","Trạng thái"};
     }
 
     @Override

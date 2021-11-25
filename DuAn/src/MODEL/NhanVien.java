@@ -16,12 +16,13 @@ public class NhanVien extends TableInterface{
     private String tenNhanVien;
     private String diaChi;
     private String CMND;
-    private String soDienThoai;
-    private Date ngayVaoLam;
-    private Integer lv;
-    private String gioiTinh;
-    private String trangThai;
     private String email;
+    private String soDienThoai;
+    private String gioiTinh;
+    private Date ngayVaoLam;
+    private Integer lv;  
+    private String trangThai;
+    
 
     public NhanVien() {
     }
