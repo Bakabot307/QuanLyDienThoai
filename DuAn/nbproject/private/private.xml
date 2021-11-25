@@ -3,10 +3,32 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/com/raven/form/SanPhamPanel.java</file>
-            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/com/raven/form/BanHangPanel.java</file>
-            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/Controller/SanPhamController.java</file>
-            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/duan/dialog/HandleSanPhamDal.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/PhieuBaoHanhDAO.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/com/raven/form/ThongKe.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/ChiTietPhieuNhapDAO.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/KhachHangDAO.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/LoaiSanPhamDAO.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/AbsDAO.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/com/raven/form/SanPhamPanel.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/Controller/LoaiSanPhamController.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/com/raven/form/NhanVienPnl.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/com/raven/form/LoaiSanPhamPnl.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/duan/dialog/HandleLoaiSanPhamDal.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/com/raven/main/Main.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/NhanVienDAO.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/DBConnection.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/MODEL/LoaiSanPham.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/MODEL/NhanVien.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/NhaCungCapDAO.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/Controller/KhachHangController.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/duan/dialog/HandleKhachHangDal.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/ChiTietSanPhamDAO.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/Controller/KhuyenMaiController.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/Controller/ChiTietSanPhamController.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/duan/dialog/HandleNhanVienDal.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/duan/dialog/HandleSanPhamDal.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/KhuyenMaiDAO.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/SanPhamDAO.java</file>
         </group>
     </open-files>
 </project-private>

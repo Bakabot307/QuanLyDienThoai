@@ -58,7 +58,7 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txtTen" min="-2" pref="308" max="-2" attributes="0"/>
-                                  <Component id="txtDiaChi" alignment="0" min="-2" pref="308" max="-2" attributes="0"/>
+                                  <Component id="txtGiaNhap" alignment="0" min="-2" pref="308" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -70,9 +70,9 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtGhiChu" max="32767" attributes="0"/>
-                          <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtCMND" alignment="0" pref="329" max="32767" attributes="0"/>
+                          <Component id="txtDVT" max="32767" attributes="0"/>
+                          <Component id="txtSoLuong" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtGiaBan" alignment="0" pref="329" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -89,21 +89,21 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTen" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCMND" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtGiaBan" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSoLuong" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cbbLoaiSP" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDiaChi" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtGhiChu" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtGiaNhap" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDVT" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="62" max="32767" attributes="0"/>
@@ -198,7 +198,7 @@
         <Property name="text" type="java.lang.String" value="T&#xea;n lo&#x1ea1;i s&#x1ea3;n ph&#x1ea9;m"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtEmail">
+    <Component class="javax.swing.JTextField" name="txtSoLuong">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Color(0,0,0,0)" type="code"/>
@@ -210,7 +210,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmailActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSoLuongActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -224,7 +224,7 @@
         <Property name="text" type="java.lang.String" value="Gi&#xe1; nh&#x1ead;p"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtGhiChu">
+    <Component class="javax.swing.JTextField" name="txtDVT">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Color(0,0,0,0)" type="code"/>
@@ -236,7 +236,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtGhiChuActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDVTActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -258,7 +258,7 @@
         <Property name="text" type="java.lang.String" value="S&#x1ed1; l&#x1b0;&#x1ee3;ng"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDiaChi">
+    <Component class="javax.swing.JTextField" name="txtGiaNhap">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Color(0,0,0,0)" type="code"/>
@@ -270,7 +270,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDiaChiActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtGiaNhapActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -302,7 +302,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCMND">
+    <Component class="javax.swing.JTextField" name="txtGiaBan">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Color(0,0,0,0)" type="code"/>
@@ -314,7 +314,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCMNDActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtGiaBanActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

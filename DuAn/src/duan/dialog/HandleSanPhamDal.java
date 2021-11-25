@@ -42,15 +42,15 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
         editBT = new javax.swing.JLabel();
         addBT = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
+        txtSoLuong = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtGhiChu = new javax.swing.JTextField();
+        txtDVT = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtDiaChi = new javax.swing.JTextField();
+        txtGiaNhap = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtTen = new javax.swing.JTextField();
-        txtCMND = new javax.swing.JTextField();
+        txtGiaBan = new javax.swing.JTextField();
         title = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cbbLoaiSP = new javax.swing.JComboBox<>();
@@ -100,22 +100,22 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
         jLabel3.setText("Tên loại sản phẩm");
 
-        txtEmail.setBackground(new Color(0,0,0,0));
-        txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+        txtSoLuong.setBackground(new Color(0,0,0,0));
+        txtSoLuong.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txtSoLuong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
+                txtSoLuongActionPerformed(evt);
             }
         });
 
         jLabel4.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
         jLabel4.setText("Giá nhập");
 
-        txtGhiChu.setBackground(new Color(0,0,0,0));
-        txtGhiChu.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        txtGhiChu.addActionListener(new java.awt.event.ActionListener() {
+        txtDVT.setBackground(new Color(0,0,0,0));
+        txtDVT.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txtDVT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtGhiChuActionPerformed(evt);
+                txtDVTActionPerformed(evt);
             }
         });
 
@@ -125,11 +125,11 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
         jLabel6.setText("Số lượng");
 
-        txtDiaChi.setBackground(new Color(0,0,0,0));
-        txtDiaChi.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        txtDiaChi.addActionListener(new java.awt.event.ActionListener() {
+        txtGiaNhap.setBackground(new Color(0,0,0,0));
+        txtGiaNhap.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txtGiaNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDiaChiActionPerformed(evt);
+                txtGiaNhapActionPerformed(evt);
             }
         });
 
@@ -144,11 +144,11 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
             }
         });
 
-        txtCMND.setBackground(new Color(0,0,0,0));
-        txtCMND.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        txtCMND.addActionListener(new java.awt.event.ActionListener() {
+        txtGiaBan.setBackground(new Color(0,0,0,0));
+        txtGiaBan.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txtGiaBan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCMNDActionPerformed(evt);
+                txtGiaBanActionPerformed(evt);
             }
         });
 
@@ -183,13 +183,12 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(cbbLoaiSP, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(61, 61, 61))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtGiaNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,9 +196,9 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtGhiChu)
-                            .addComponent(txtEmail)
-                            .addComponent(txtCMND, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))))
+                            .addComponent(txtDVT)
+                            .addComponent(txtSoLuong)
+                            .addComponent(txtGiaBan, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -211,19 +210,19 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCMND, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtGiaBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(cbbLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtGhiChu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtGiaNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDVT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -250,25 +249,25 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_addBTMouseClicked
 
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+    private void txtSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoLuongActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
+    }//GEN-LAST:event_txtSoLuongActionPerformed
 
-    private void txtGhiChuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGhiChuActionPerformed
+    private void txtDVTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDVTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtGhiChuActionPerformed
+    }//GEN-LAST:event_txtDVTActionPerformed
 
-    private void txtDiaChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaChiActionPerformed
+    private void txtGiaNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiaNhapActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDiaChiActionPerformed
+    }//GEN-LAST:event_txtGiaNhapActionPerformed
 
     private void txtTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTenActionPerformed
 
-    private void txtCMNDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCMNDActionPerformed
+    private void txtGiaBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiaBanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCMNDActionPerformed
+    }//GEN-LAST:event_txtGiaBanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,10 +324,10 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     public javax.swing.JLabel title;
-    public javax.swing.JTextField txtCMND;
-    public javax.swing.JTextField txtDiaChi;
-    public javax.swing.JTextField txtEmail;
-    public javax.swing.JTextField txtGhiChu;
+    public javax.swing.JTextField txtDVT;
+    public javax.swing.JTextField txtGiaBan;
+    public javax.swing.JTextField txtGiaNhap;
+    public javax.swing.JTextField txtSoLuong;
     public javax.swing.JTextField txtTen;
     // End of variables declaration//GEN-END:variables
 }

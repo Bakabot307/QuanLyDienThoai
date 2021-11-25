@@ -203,10 +203,10 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
         }
         sanPhamDal.txtTen.setText("");
 //        sanPhamDal.txtSdt.setText("");
-        sanPhamDal.txtDiaChi.setText("");
-        sanPhamDal.txtCMND.setText("");
-        sanPhamDal.txtGhiChu.setText("");
-        sanPhamDal.txtEmail.setText("");
+        sanPhamDal.txtGiaNhap.setText("");
+        sanPhamDal.txtGiaBan.setText("");
+        sanPhamDal.txtDVT.setText("");
+        sanPhamDal.txtSoLuong.setText("");
 
         String tieuDe = (String) sanPhamController.getViewBag().get("tieu_de");
         sanPhamDal.title.setText("Thêm Sản Phẩm " + tieuDe);
@@ -235,9 +235,9 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
         int dong = tblSanPham.getSelectedRow();
         sanPhamDal.txtTen.setText(tblSanPham.getValueAt(dong, 1).toString());
 
-        sanPhamDal.txtDiaChi.setText(tblSanPham.getValueAt(dong, 3).toString());
-        sanPhamDal.txtCMND.setText(tblSanPham.getValueAt(dong, 4).toString());
-        sanPhamDal.txtGhiChu.setText(tblSanPham.getValueAt(dong, 5).toString());
+        sanPhamDal.txtGiaNhap.setText(tblSanPham.getValueAt(dong, 3).toString());
+        sanPhamDal.txtGiaBan.setText(tblSanPham.getValueAt(dong, 4).toString());
+        sanPhamDal.txtDVT.setText(tblSanPham.getValueAt(dong, 5).toString());
 
         String tieuDe = (String) sanPhamController.getViewBag().get("tieu_de");
         sanPhamDal.title.setText("Cập nhập Sản Phẩm " + tieuDe);
@@ -274,11 +274,11 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                 values[0] = editId;
                 values[1] = sanPhamDal.txtTen.getText();
 //                values[2] = sanPhamDal.txtSdt.getText();
-                values[3] = sanPhamDal.txtDiaChi.getText();
-                values[4] = sanPhamDal.txtCMND.getText();
-                values[5] = sanPhamDal.txtGhiChu.getText();
+                values[3] = sanPhamDal.txtGiaNhap.getText();
+                values[4] = sanPhamDal.txtGiaBan.getText();
+                values[5] = sanPhamDal.txtDVT.getText();
 
-                values[6] = sanPhamDal.txtEmail.getText();
+                values[6] = sanPhamDal.txtSoLuong.getText();
                 sanPhamController.edit(values);
             }
         });
