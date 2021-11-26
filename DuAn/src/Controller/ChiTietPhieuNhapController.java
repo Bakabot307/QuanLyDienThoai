@@ -9,16 +9,30 @@ import DAO.AbsDAO;
 import DAO.ChiTietPhieuNhapDAO;
 import MODEL.ChiTietPhieuNhap;
 import VIEW.ViewInterface;
+import com.raven.form.ChiTietPhieuNhapDialog;
 import java.util.Dictionary;
+import java.util.List;
 
 /**
  *
  * @author Admin
  */
-public class ChiTietPhieuNhapController extends AbsController<ChiTietPhieuNhap>{
+public class ChiTietPhieuNhapController extends AbsController<ChiTietPhieuNhap> {
+
+    private ChiTietPhieuNhapDialog chiTietPhieuNhapDialog;
+    private ChiTietPhieuNhapDAO chiTietPhieuNhapDAO;
 
     public ChiTietPhieuNhapController(ViewInterface view) {
         super(view);
+    }
+
+    @Override
+    public void loadList() {
+        chiTietPhieuNhapDialog = (ChiTietPhieuNhapDialog) view;
+        chiTietPhieuNhapDAO = (ChiTietPhieuNhapDAO) dao;
+        List<Object[]> data = chiTietPhieuNhapDAO.loadLaiDS(chiTietPhieuNhapDialog.getIdPhieuNhap());
+        chiTietPhieuNhapDialog.setColumnNames(this.getTableColumnNames());
+        chiTietPhieuNhapDialog.viewList(data);
     }
 
     @Override
@@ -28,17 +42,17 @@ public class ChiTietPhieuNhapController extends AbsController<ChiTietPhieuNhap>{
 
     @Override
     public String[] getTableColumnNames() {
-         return new String[]{"ID Sản Phẩm", "ID Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập","Giá Bán" ,"Số Lượng","Đơn Vị Tính"};
+        return new String[]{"ID Chi Tiết", "ID Phiếu Nhập", "Tên Sản Phẩm", "Số Lượng", "Giá Tiền", "Tổng Tiền"};
     }
 
     @Override
     protected void setViewBagInfo(Dictionary<String, Object> viewBag) {
-      
+
     }
 
     @Override
     public String getName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

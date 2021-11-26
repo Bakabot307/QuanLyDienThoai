@@ -30,7 +30,7 @@ public class SanPhamController extends AbsController<SanPham> {
     public SanPhamController(ViewInterface view) {
         super(view);
         khuyenMaiDAO = new KhuyenMaiDAO();
-        loaiSanPhamDAO =  new LoaiSanPhamDAO();
+        loaiSanPhamDAO = new LoaiSanPhamDAO();
     }
 
     private KhuyenMaiDAO khuyenMaiDAO;
@@ -41,8 +41,8 @@ public class SanPhamController extends AbsController<SanPham> {
     public List<KhuyenMai> layCbbKhuyenMai() {
         return khuyenMaiDAO.getAll();
     }
-    
-     public List<LoaiSanPham> layCbbLoaiSP() {
+
+    public List<LoaiSanPham> layCbbLoaiSP() {
         return loaiSanPhamDAO.getAll();
     }
 
@@ -62,7 +62,7 @@ public class SanPhamController extends AbsController<SanPham> {
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Sản Phẩm", "Tên Loại Sản Phẩm", "Tên Sản Phẩm", "Accept/Reject", "Giá Bán", ""};
+        return new String[]{"ID Sản Phẩm", "Tên Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "DVT"};
     }
 
     @Override

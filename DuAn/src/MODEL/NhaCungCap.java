@@ -6,35 +6,25 @@ package MODEL;
 
 import Interface.TableInterface;
 
-
 /**
  *
  * @author gnaht
  */
-public class NhaCungCap extends TableInterface{
-    Integer idNhaCungCap;
-    String tenNhaCungCap;
-    String soDienThoai;
-    String email;
-    float tongMua;
-    String diaChi;
-    String ghiChu;
+public class NhaCungCap extends TableInterface {
+
+    private Integer idNhaCungCap;
+    private String tenNhaCungCap;
+    private String soDienThoai;
+    private String email;
+    private double tongMua;
+    private String diaChi;
+    private String ghiChu;
 
     public NhaCungCap() {
     }
 
     public Integer getIdNhaCungCap() {
         return idNhaCungCap;
-    }
-
-    public NhaCungCap(Integer idNhaCungCap, String tenNhaCungCap, String soDienThoai, String email, float tongMua, String diaChi, String ghiChu) {
-        this.idNhaCungCap = idNhaCungCap;
-        this.tenNhaCungCap = tenNhaCungCap;
-        this.soDienThoai = soDienThoai;
-        this.email = email;
-        this.tongMua = tongMua;
-        this.diaChi = diaChi;
-        this.ghiChu = ghiChu;
     }
 
     public void setIdNhaCungCap(Integer idNhaCungCap) {
@@ -65,11 +55,11 @@ public class NhaCungCap extends TableInterface{
         this.email = email;
     }
 
-    public float getTongMua() {
+    public double getTongMua() {
         return tongMua;
     }
 
-    public void setTongMua(float tongMua) {
+    public void setTongMua(double tongMua) {
         this.tongMua = tongMua;
     }
 
@@ -93,5 +83,10 @@ public class NhaCungCap extends TableInterface{
     public int getId() {
         return idNhaCungCap;
     }
-    
+
+    @Override
+    public String toString() {
+        return tenNhaCungCap;
+    }
+
 }

@@ -5,11 +5,17 @@
 package DAO;
 
 import MODEL.PhieuNhap;
+import java.util.List;
 
 /**
  *
  * @author gnaht
  */
-public class PhieuNhapDAO extends AbsDAO<PhieuNhap>{
-    
+public class PhieuNhapDAO extends AbsDAO<PhieuNhap> {
+
+    public List<Object[]> loadLaiDS() {
+        String selectSql = "select idPhieuNhap,TenNhaCungCap,NgayNhap,TongTien,TrangThai,SoLuong from PhieuNhap join NhaCungCap on PhieuNhap.idNhaCungCap = NhaCungCap.idNhaCungCap";
+        List<Object[]> data = getRawValues(selectSql);
+        return data;
+    }
 }

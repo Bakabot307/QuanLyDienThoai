@@ -42,7 +42,6 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
         editBT = new javax.swing.JLabel();
         addBT = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtSoLuong = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtDVT = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -54,6 +53,7 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
         title = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cbbLoaiSP = new javax.swing.JComboBox<>();
+        spnSoLuong = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -99,14 +99,6 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
         jLabel3.setText("Tên loại sản phẩm");
-
-        txtSoLuong.setBackground(new Color(0,0,0,0));
-        txtSoLuong.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        txtSoLuong.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSoLuongActionPerformed(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
         jLabel4.setText("Giá nhập");
@@ -197,8 +189,8 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtDVT)
-                            .addComponent(txtSoLuong)
-                            .addComponent(txtGiaBan, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))))
+                            .addComponent(txtGiaBan, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                            .addComponent(spnSoLuong))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -215,9 +207,9 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(cbbLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbbLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -248,10 +240,6 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
     private void addBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBTMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_addBTMouseClicked
-
-    private void txtSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoLuongActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSoLuongActionPerformed
 
     private void txtDVTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDVTActionPerformed
         // TODO add your handling code here:
@@ -323,11 +311,11 @@ public class HandleSanPhamDal extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    public javax.swing.JSpinner spnSoLuong;
     public javax.swing.JLabel title;
     public javax.swing.JTextField txtDVT;
     public javax.swing.JTextField txtGiaBan;
     public javax.swing.JTextField txtGiaNhap;
-    public javax.swing.JTextField txtSoLuong;
     public javax.swing.JTextField txtTen;
     // End of variables declaration//GEN-END:variables
 }

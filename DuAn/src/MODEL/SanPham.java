@@ -83,13 +83,11 @@ public class SanPham extends TableInterface {
         this.DVT = DVT;
     }
 
-  
-
     @Override
     public int getId() {
         return idSanPham;
     }
-    
+
     public class MyTableModel extends AbstractTableModel {
 
         private List<SanPham> data;

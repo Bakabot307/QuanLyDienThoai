@@ -5,6 +5,7 @@
 package MODEL;
 
 import Interface.TableInterface;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -16,12 +17,9 @@ public class PhieuNhap extends TableInterface {
     private Integer idPhieuNhap;
     private Integer idNhaCungCap;
     private java.sql.Timestamp ngayNhap;
-    private float tongTien;
-    private Integer soLuong;
+    private double tongTien;
     private String trangThai;
-
-    public PhieuNhap() {
-    }
+    private Integer soLuong;
 
     public Integer getIdPhieuNhap() {
         return idPhieuNhap;
@@ -39,15 +37,19 @@ public class PhieuNhap extends TableInterface {
         this.idNhaCungCap = idNhaCungCap;
     }
 
-    public Date getNgayNhap() {
+    public Timestamp getNgayNhap() {
         return ngayNhap;
     }
 
-    public float getTongTien() {
+    public void setNgayNhap(Timestamp ngayNhap) {
+        this.ngayNhap = ngayNhap;
+    }
+
+    public double getTongTien() {
         return tongTien;
     }
 
-    public void setTongTien(float tongTien) {
+    public void setTongTien(double tongTien) {
         this.tongTien = tongTien;
     }
 

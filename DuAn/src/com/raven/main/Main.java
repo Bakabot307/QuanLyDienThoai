@@ -8,6 +8,7 @@ import com.raven.form.BanHangPanel;
 import com.raven.form.KhachHangPanel;
 import com.raven.form.LoaiSanPhamPnl;
 import com.raven.form.NhanVienPnl;
+import com.raven.form.PhieuNhapPnl;
 import com.raven.form.SanPhamPanel;
 import com.raven.form.ThongKe;
 import com.raven.model.ModelMenu;
@@ -89,7 +90,7 @@ public class Main extends javax.swing.JFrame {
                 } else if (index == 9) {
                     showForm(new KhachHangPanel());
                 } else if (index == 10) {
-                    showForm(new KhachHangPanel());
+                    showForm(new PhieuNhapPnl());
                 }
             }
         });

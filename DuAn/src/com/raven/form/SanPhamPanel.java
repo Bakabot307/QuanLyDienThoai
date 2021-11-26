@@ -42,18 +42,59 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
      * Creates new form KhachHangPanel
      */
     private HandleSanPhamDal sanPhamDal = null;
-
+    
     public SanPhamPanel() {
         initComponents();
-
         SanPhamController sanPhamController = new SanPhamController(this);
-        sanPhamDal = new HandleSanPhamDal(null, true);
+        
+        if (sanPhamDal == null) {
+            sanPhamDal = new HandleSanPhamDal(null, true);
+            sanPhamDal.addBT.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    LoaiSanPham loaiSp = (LoaiSanPham) sanPhamDal.cbbLoaiSP.getSelectedItem();
+                    Integer idLoaiSP = loaiSp.getId();
+                    System.out.println(idLoaiSP);
+                    
+                    Object[] values = new Object[7];
+                    values[0] = 0;
+                    values[1] = idLoaiSP;
+                    values[2] = sanPhamDal.txtTen.getText();
+                    values[3] = Double.valueOf(sanPhamDal.txtGiaNhap.getText());
+                    values[4] = Double.valueOf(sanPhamDal.txtGiaBan.getText());
+                    values[5] = Integer.valueOf(sanPhamDal.spnSoLuong.getValue().toString());
+                    
+                    values[6] = sanPhamDal.txtDVT.getText();
+                    sanPhamController.insert(values);
+                }
+            });
+        }
+        
+        sanPhamDal.editBT.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                LoaiSanPham loaiSp = (LoaiSanPham) sanPhamDal.cbbLoaiSP.getSelectedItem();
+                Integer idLoaiSP = loaiSp.getId();
+                System.out.println(idLoaiSP);
+                
+                Object[] values = new Object[7];
+                values[0] = editId;
+                values[1] = idLoaiSP;
+                values[2] = sanPhamDal.txtTen.getText();
+                values[3] = Double.valueOf(sanPhamDal.txtGiaNhap.getText());
+                values[4] = Double.valueOf(sanPhamDal.txtGiaBan.getText());
+                values[5] = Integer.valueOf(sanPhamDal.spnSoLuong.getValue().toString());
+                
+                values[6] = sanPhamDal.txtDVT.getText();
+                sanPhamController.edit(values);
+                
+            }
+        });
         DefaultComboBoxModel<LoaiSanPham> modle = (DefaultComboBoxModel<LoaiSanPham>) sanPhamDal.cbbLoaiSP.getModel();
         modle.removeAllElements();
         List<LoaiSanPham> sanPhams = sanPhamController.layCbbLoaiSP();
         modle.addAll(sanPhams);
         modle.setSelectedItem(sanPhams.get(0));
-
     }
 
     /**
@@ -189,25 +230,12 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
         // TODO add your handling code here:
 
-        if (sanPhamDal == null) {
-            sanPhamDal = new HandleSanPhamDal(null, true);
-            sanPhamDal.editBT.setEnabled(false);
-            sanPhamDal.addBT.setEnabled(true);
-            ThemData();
-
-        } else {
-            sanPhamDal.editBT.setEnabled(false);
-            sanPhamDal.addBT.setEnabled(true);
-            ThemData();
-
-        }
         sanPhamDal.txtTen.setText("");
-//        sanPhamDal.txtSdt.setText("");
         sanPhamDal.txtGiaNhap.setText("");
         sanPhamDal.txtGiaBan.setText("");
         sanPhamDal.txtDVT.setText("");
-        sanPhamDal.txtSoLuong.setText("");
-
+        sanPhamDal.spnSoLuong.setValue(1);
+        
         String tieuDe = (String) sanPhamController.getViewBag().get("tieu_de");
         sanPhamDal.title.setText("Thêm Sản Phẩm " + tieuDe);
         sanPhamDal.setVisible(true);
@@ -222,67 +250,20 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
             return;
         }
         editId = (Integer) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0);
-        if (sanPhamDal == null) {
-            sanPhamDal = new HandleSanPhamDal(null, true);
-            sanPhamDal.addBT.setEnabled(false);
-            sanPhamDal.editBT.setEnabled(true);
-            SuaData();
-        } else {
-            sanPhamDal.addBT.setEnabled(false);
-            sanPhamDal.editBT.setEnabled(true);
-            SuaData();
-        }
+        
         int dong = tblSanPham.getSelectedRow();
-        sanPhamDal.txtTen.setText(tblSanPham.getValueAt(dong, 1).toString());
-
+        sanPhamDal.txtTen.setText(tblSanPham.getValueAt(dong, 2).toString());
+        
         sanPhamDal.txtGiaNhap.setText(tblSanPham.getValueAt(dong, 3).toString());
         sanPhamDal.txtGiaBan.setText(tblSanPham.getValueAt(dong, 4).toString());
-        sanPhamDal.txtDVT.setText(tblSanPham.getValueAt(dong, 5).toString());
-
+        sanPhamDal.spnSoLuong.setValue(Integer.parseInt(tblSanPham.getValueAt(dong, 5).toString()));
+        sanPhamDal.txtDVT.setText(tblSanPham.getValueAt(dong, 6).toString());
+        
         String tieuDe = (String) sanPhamController.getViewBag().get("tieu_de");
         sanPhamDal.title.setText("Cập nhập Sản Phẩm " + tieuDe);
         sanPhamDal.setVisible(true);
     }//GEN-LAST:event_btnCapNhapMouseClicked
-    private void ThemData() {
-        sanPhamDal.addBT.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                // lấy id loại sản phẩm
-                LoaiSanPham loaiSp = (LoaiSanPham) sanPhamDal.cbbLoaiSP.getSelectedItem();
-                Integer idLoaiSP = loaiSp.getIdLoaiSanPham();
-                System.out.println(idLoaiSP);
 
-//                Object[] values = new Object[8];
-//                values[0] = 0;
-//                values[1] = sanPhamDal.txtTen.getText();
-//                values[2] = sanPhamDal.txtSdt.getText();
-//                values[3] = sanPhamDal.txtDiaChi.getText();
-//                values[4] = sanPhamDal.txtCMND.getText();
-//                values[5] = sanPhamDal.txtGhiChu.getText();
-//
-//                values[6] = sanPhamDal.txtEmail.getText();
-//                sanPhamController.insert(values);
-            }
-        });
-    }
-
-    private void SuaData() {
-        sanPhamDal.editBT.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Object[] values = new Object[7];
-                values[0] = editId;
-                values[1] = sanPhamDal.txtTen.getText();
-//                values[2] = sanPhamDal.txtSdt.getText();
-                values[3] = sanPhamDal.txtGiaNhap.getText();
-                values[4] = sanPhamDal.txtGiaBan.getText();
-                values[5] = sanPhamDal.txtDVT.getText();
-
-                values[6] = sanPhamDal.txtSoLuong.getText();
-                sanPhamController.edit(values);
-            }
-        });
-    }
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         exportExcel(tblSanPham);
@@ -296,7 +277,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
             File file = chooser.getSelectedFile();
             Link = String.valueOf(file);
         } else {
-
+            
             return;
         }
         try {
@@ -313,7 +294,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
             for (int j = 0; j < table.getColumnCount(); j++) {
                 rowhead.createCell(j).setCellValue(model.getColumnName(j));
             }
-
+            
             for (int j = 1; j < table.getRowCount(); j++) {
                 String a = String.valueOf(j);
                 HSSFRow row = sheet.createRow((short) j);
@@ -321,7 +302,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                     row.createCell(k).setCellValue(model.getValueAt(j, k).toString());
                 }
             }
-
+            
             FileOutputStream fileOut = new FileOutputStream(filename);
             workbook.write(fileOut);
             //đóng stream
@@ -333,7 +314,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Lưu file thất bại !");
-
+            
         }
     }
 
@@ -356,18 +337,18 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
             sanPhamDal.setVisible(false);
         }
     }
-
+    
     @Override
     public void setColumnNames(String[] columnNames) {
         ViewImp.setColumnNames(columnNames, tblSanPham);
     }
     private SanPhamController sanPhamController;
-
+    
     @Override
     public void setController(AbsController controller) {
         sanPhamController = (SanPhamController) controller;
     }
-
+    
     @Override
     public void showErrors(List<ConstraintViolation> errorList) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

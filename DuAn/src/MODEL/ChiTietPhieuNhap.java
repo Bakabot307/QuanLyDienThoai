@@ -10,25 +10,14 @@ import Interface.TableInterface;
  *
  * @author gnaht
  */
-public class ChiTietPhieuNhap extends TableInterface{
+public class ChiTietPhieuNhap extends TableInterface {
+
     private Integer idChiTietPhieuNhap;
     private Integer idPhieuNhap;
     private Integer idSanPham;
     private Integer soLuong;
-    private float giaTien;
-    private float tongTien;
-
-    public ChiTietPhieuNhap() {
-    }
-
-    public ChiTietPhieuNhap(Integer idChiTietPhieuNhap, Integer idPhieuNhap, Integer idSanPham, Integer soLuong, float giaTien, float tongTien) {
-        this.idChiTietPhieuNhap = idChiTietPhieuNhap;
-        this.idPhieuNhap = idPhieuNhap;
-        this.idSanPham = idSanPham;
-        this.soLuong = soLuong;
-        this.giaTien = giaTien;
-        this.tongTien = tongTien;
-    }
+    private double giaTien;
+    private double tongTien;
 
     public Integer getIdChiTietPhieuNhap() {
         return idChiTietPhieuNhap;
@@ -62,25 +51,25 @@ public class ChiTietPhieuNhap extends TableInterface{
         this.soLuong = soLuong;
     }
 
-    public float getGiaTien() {
+    public double getGiaTien() {
         return giaTien;
     }
 
-    public void setGiaTien(float giaTien) {
+    public void setGiaTien(double giaTien) {
         this.giaTien = giaTien;
     }
 
-    public float getTongTien() {
+    public double getTongTien() {
         return tongTien;
     }
 
-    public void setTongTien(float tongTien) {
+    public void setTongTien(double tongTien) {
         this.tongTien = tongTien;
     }
 
     @Override
     public int getId() {
-        return  idChiTietPhieuNhap;
+        return idChiTietPhieuNhap;
     }
-    
+
 }
