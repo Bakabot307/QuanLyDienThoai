@@ -11,34 +11,20 @@ import java.util.Date;
  *
  * @author gnaht
  */
-public class NhanVien extends TableInterface{
+public class NhanVien extends TableInterface {
+
     private Integer idNhanVien;
     private String tenNhanVien;
+    private String gioiTinh;
     private String diaChi;
     private String CMND;
-    private String email;
     private String soDienThoai;
-    private String gioiTinh;
+    private String email;
+    private Integer lv;
     private Date ngayVaoLam;
-    private Integer lv;  
+    private String tenDangNhap;
+    private String matKhau;
     private String trangThai;
-    
-
-    public NhanVien() {
-    }
-
-    public NhanVien(Integer idNhanVien, String tenNhanVien, String diaChi, String CMND, String soDienThoai, Date ngayVaoLam, Integer lv, String gioiTinh, String trangThai, String email) {
-        this.idNhanVien = idNhanVien;
-        this.tenNhanVien = tenNhanVien;
-        this.diaChi = diaChi;
-        this.CMND = CMND;
-        this.soDienThoai = soDienThoai;
-        this.ngayVaoLam = ngayVaoLam;
-        this.lv = lv;
-        this.gioiTinh = gioiTinh;
-        this.trangThai = trangThai;
-        this.email = email;
-    }
 
     public Integer getIdNhanVien() {
         return idNhanVien;
@@ -54,6 +40,14 @@ public class NhanVien extends TableInterface{
 
     public void setTenNhanVien(String tenNhanVien) {
         this.tenNhanVien = tenNhanVien;
+    }
+
+    public String getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
     }
 
     public String getDiaChi() {
@@ -80,12 +74,12 @@ public class NhanVien extends TableInterface{
         this.soDienThoai = soDienThoai;
     }
 
-    public Date getNgayVaoLam() {
-        return ngayVaoLam;
+    public String getEmail() {
+        return email;
     }
 
-    public void setNgayVaoLam(Date ngayVaoLam) {
-        this.ngayVaoLam = ngayVaoLam;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Integer getLv() {
@@ -96,12 +90,28 @@ public class NhanVien extends TableInterface{
         this.lv = lv;
     }
 
-    public String getGioiTinh() {
-        return gioiTinh;
+    public Date getNgayVaoLam() {
+        return ngayVaoLam;
     }
 
-    public void setGioiTinh(String gioiTinh) {
-        this.gioiTinh = gioiTinh;
+    public void setNgayVaoLam(Date ngayVaoLam) {
+        this.ngayVaoLam = ngayVaoLam;
+    }
+
+    public String getTenDangNhap() {
+        return tenDangNhap;
+    }
+
+    public void setTenDangNhap(String tenDangNhap) {
+        this.tenDangNhap = tenDangNhap;
+    }
+
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
     }
 
     public String getTrangThai() {
@@ -112,17 +122,9 @@ public class NhanVien extends TableInterface{
         this.trangThai = trangThai;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     @Override
     public int getId() {
-       return idNhanVien;
+        return idNhanVien;
     }
-    
+
 }
