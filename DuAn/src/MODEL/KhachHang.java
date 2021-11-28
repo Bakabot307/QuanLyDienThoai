@@ -104,5 +104,12 @@ public class KhachHang extends TableInterface{
     public int getId() {
         return idKhachHang;
     }
+
+    @Override
+    public String toString() {
+        return tenKhachHang;
+    }
+    
+    
     
 }

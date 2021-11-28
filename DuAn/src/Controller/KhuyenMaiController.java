@@ -15,15 +15,15 @@ import java.util.Dictionary;
  *
  * @author Admin
  */
-public class KhuyenMaiController extends AbsController<KhuyenMai>{
+public class KhuyenMaiController extends AbsController<KhuyenMai> {
 
     public KhuyenMaiController(ViewInterface view) {
         super(view);
     }
-
+   
     @Override
     public AbsDAO<KhuyenMai> getDao() {
-       return new KhuyenMaiDAO();
+        return new KhuyenMaiDAO();
     }
 
     @Override
@@ -33,12 +33,12 @@ public class KhuyenMaiController extends AbsController<KhuyenMai>{
 
     @Override
     protected void setViewBagInfo(Dictionary<String, Object> viewBag) {
-        
+
     }
 
     @Override
     public String getName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

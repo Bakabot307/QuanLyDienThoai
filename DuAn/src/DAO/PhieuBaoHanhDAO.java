@@ -5,11 +5,18 @@
 package DAO;
 
 import MODEL.PhieuBaoHanh;
+import java.util.List;
 
 /**
  *
  * @author gnaht
  */
-public class PhieuBaoHanhDAO extends AbsDAO<PhieuBaoHanh>{
-    
+public class PhieuBaoHanhDAO extends AbsDAO<PhieuBaoHanh> {
+
+    public List<Object[]> loadLaiDS() {
+        String selectSql = "select idPhieuBaoHanh,HoaDon.idHoaDon,TenKhachHang,TenNhanVien,HoaDon.NgayLap,LyDo,ThoiGianBaoTri,HoaDon.TrangThai,ChiPhiBaoHanh,HoaDon.GhiChu  from PhieuBaoHanh join KhachHang on PhieuBaoHanh.idKhachHang = KhachHang.idKhachHang join HoaDon on PhieuBaoHanh.idHoaDon = HoaDon.idHoaDon join\n"
+                + "NhanVien on PhieuBaoHanh.idNhanVien = NhanVien.idNhanVien";
+        List<Object[]> data = getRawValues(selectSql);
+        return data;
+    }
 }

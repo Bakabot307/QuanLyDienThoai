@@ -15,31 +15,37 @@ import java.util.Dictionary;
  *
  * @author Admin
  */
-public class HoaDonController extends AbsController<HoaDon>{
+public class HoaDonController extends AbsController<HoaDon> {
 
     public HoaDonController(ViewInterface view) {
         super(view);
+        hoaDonDAO = new HoaDonDAO();
+    }
+
+    private HoaDonDAO hoaDonDAO;
+
+    public int showName(int id) {
+        return hoaDonDAO.layId(id);
     }
 
     @Override
     public AbsDAO<HoaDon> getDao() {
-       return new HoaDonDAO();
+        return new HoaDonDAO();
     }
 
     @Override
     public String[] getTableColumnNames() {
-         return new String[]{"ID Loại Sản Phẩm", "ID Loại Sản Phẩm"};
+        return new String[]{"ID Hóa đơn", "Khách hàng", "Nhân viên", "Khuyến mãi", "Tổng tiền", "Ngày lập", "Hình thức thanh toán", "Trạng Thái", "Ghi chú"};
     }
 
     @Override
     protected void setViewBagInfo(Dictionary<String, Object> viewBag) {
-       
+
     }
 
     @Override
     public String getName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
- 
-    
+
 }

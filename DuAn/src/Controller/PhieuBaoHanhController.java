@@ -6,19 +6,49 @@
 package Controller;
 
 import DAO.AbsDAO;
+import DAO.HoaDonDAO;
+import DAO.KhachHangDAO;
 import DAO.PhieuBaoHanhDAO;
+import MODEL.HoaDon;
+import MODEL.KhachHang;
 import MODEL.PhieuBaoHanh;
 import VIEW.ViewInterface;
+import com.raven.form.PhieuBaoHanhPnl;
 import java.util.Dictionary;
+import java.util.List;
 
 /**
  *
  * @author Admin
  */
-public class PhieuBaoHanhController extends AbsController<PhieuBaoHanh>{
+public class PhieuBaoHanhController extends AbsController<PhieuBaoHanh> {
+
+    private HoaDonDAO hoaDonDAO;
+    private KhachHangDAO khachHangDAO;
+    private PhieuBaoHanhDAO phieuBaoHanhDAO;
+    private PhieuBaoHanhPnl phieuBaoHanhPnl;
 
     public PhieuBaoHanhController(ViewInterface view) {
         super(view);
+        hoaDonDAO = new HoaDonDAO();
+        khachHangDAO = new KhachHangDAO();
+    }
+
+    public List<HoaDon> layCbbHoaDon() {
+        return hoaDonDAO.getAll();
+    }
+
+    @Override
+    public void loadList() {
+        phieuBaoHanhPnl = (PhieuBaoHanhPnl) view;
+        phieuBaoHanhDAO = (PhieuBaoHanhDAO) dao;
+        List<Object[]> data = phieuBaoHanhDAO.loadLaiDS();
+        phieuBaoHanhPnl.setColumnNames(this.getTableColumnNames());
+        phieuBaoHanhPnl.viewList(data);
+    }
+
+    public List<KhachHang> layCbbKhachHang() {
+        return khachHangDAO.getAll();
     }
 
     @Override
@@ -28,17 +58,17 @@ public class PhieuBaoHanhController extends AbsController<PhieuBaoHanh>{
 
     @Override
     public String[] getTableColumnNames() {
-         return new String[]{"ID Sản Phẩm", "ID Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập","Giá Bán" ,"Số Lượng","Đơn Vị Tính"};
+        return new String[]{"ID Phiếu", "ID Hoá Đơn", "Khách Hàng", "Nhân Viên", "Ngày Lập", "Lý Do", "Thời gian bảo trì", "Trạng Thái", "Chi Phí", "Ghi chú"};
     }
 
     @Override
     protected void setViewBagInfo(Dictionary<String, Object> viewBag) {
-       
+
     }
 
     @Override
     public String getName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

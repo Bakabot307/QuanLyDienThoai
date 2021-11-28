@@ -5,9 +5,12 @@ import com.raven.component.Menu;
 import com.raven.event.EventMenuSelected;
 import com.raven.form.KhuyenMaiPnl;
 import com.raven.form.BanHangPanel;
+import com.raven.form.DangNhapPnl;
+import com.raven.form.HoaDonPnl;
 import com.raven.form.KhachHangPanel;
 import com.raven.form.LoaiSanPhamPnl;
 import com.raven.form.NhanVienPnl;
+import com.raven.form.PhieuBaoHanhPnl;
 import com.raven.form.PhieuNhapPnl;
 import com.raven.form.SanPhamPanel;
 import com.raven.form.ThongKe;
@@ -20,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
@@ -55,7 +59,14 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 System.out.println("Logout");
-                System.exit(0);
+                DangNhapPnl dangNhapPnl = new DangNhapPnl();
+
+                int result = JOptionPane.showConfirmDialog(new Frame(), "Bạn có muốn đăng xuất ?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+                if (result == JOptionPane.YES_OPTION) {
+                    dangNhapPnl.setVisible(true);
+                    dispose();
+                }
+
             }
         });
         menu.addEventMenu(new ActionListener() {
@@ -84,9 +95,9 @@ public class Main extends javax.swing.JFrame {
                 } else if (index == 6) {
                     showForm(new NhanVienPnl());
                 } else if (index == 7) {
-                    showForm(new KhachHangPanel());
+                    showForm(new HoaDonPnl());
                 } else if (index == 8) {
-                    showForm(new KhachHangPanel());
+                    showForm(new PhieuBaoHanhPnl());
                 } else if (index == 9) {
                     showForm(new KhachHangPanel());
                 } else if (index == 10) {
@@ -105,8 +116,6 @@ public class Main extends javax.swing.JFrame {
         menu.addMenu(new ModelMenu("Phiếu Bảo Hành", new ImageIcon(getClass().getResource("/com/raven/icon/phieuBaoHanh.png"))));
         menu.addMenu(new ModelMenu("Nhà Cung Cấp", new ImageIcon(getClass().getResource("/com/raven/icon/nhaCungCapp.png"))));
         menu.addMenu(new ModelMenu("Phiếu Nhập", new ImageIcon(getClass().getResource("/com/raven/icon/phieuNhap.png"))));
-
-
 
         body.add(menu, "w 50!");
         body.add(main, "w 100%");
@@ -137,7 +146,6 @@ public class Main extends javax.swing.JFrame {
         showForm(new ThongKe());
     }
 
- 
     private void showForm(Component com) {
         main.removeAll();
         main.add(com);

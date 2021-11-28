@@ -88,6 +88,13 @@ public class SanPham extends TableInterface {
         return idSanPham;
     }
 
+    @Override
+    public String toString() {
+        return TenSanPham;
+    }
+    
+    
+
     public class MyTableModel extends AbstractTableModel {
 
         private List<SanPham> data;

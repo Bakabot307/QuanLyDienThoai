@@ -14,8 +14,18 @@ import java.util.List;
 public class ChiTietPhieuNhapDAO extends AbsDAO<ChiTietPhieuNhap> {
 
     public List<Object[]> loadLaiDS(int idPhieuNhap) {
-        String selectSql = "select	idChiTietPhieuNhap,idPhieuNhap,TenSanPham,ChiTietPhieuNhap.SoLuong,GiaTien,TongTien from ChiTietPhieuNhap join SanPham on ChiTietPhieuNhap.idSanPham = SanPham.idSanPham where idChiTietPhieuNhap = ? ";
+        String selectSql = "select	idChiTietPhieuNhap,idPhieuNhap,TenSanPham,ChiTietPhieuNhap.SoLuong,GiaTien,TongTien from ChiTietPhieuNhap join SanPham on ChiTietPhieuNhap.idSanPham = SanPham.idSanPham where idPhieuNhap = ? ";
         List<Object[]> data = getRawValues(selectSql, idPhieuNhap);
         return data;
     }
+
+    public void them( int idPhieuNhap, int idSanPham, int soLuong, double giaTien, double tongTien) {
+        String cauLenhThemNguoiDung = "insert into ChiTietPhieuNhap  values ( ?, ?, ?, ?,?)";
+       
+            DBConnection.executeUpdate(cauLenhThemNguoiDung, idPhieuNhap, idSanPham, soLuong, giaTien, tongTien);
+
+       
+
+    }
+
 }

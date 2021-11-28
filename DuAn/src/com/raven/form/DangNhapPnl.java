@@ -32,10 +32,14 @@ public class DangNhapPnl extends javax.swing.JFrame {
         initComponents();
         loginController = new LoginController(this);
         errorLb.setText("");
+
+        txtTk.setText("admin");
+        txtMk.setText("123");
     }
 
     public static String tenDangNhap = "";
     public static int level = 0;
+    public static int ID = 0;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -193,6 +197,7 @@ public class DangNhapPnl extends javax.swing.JFrame {
         String mk = txtMk.getText();
         tenDangNhap = loginController.showName(tk, mk);
         level = loginController.showLevel(tk, mk);
+        ID = loginController.showID(tk, mk);
 
         if (loginController.kiemTra(tk, mk)) {
             Main main = new Main();

@@ -8,8 +8,10 @@ package Controller;
 import DAO.AbsDAO;
 import DAO.NhaCungCapDAO;
 import DAO.PhieuNhapDAO;
+import DAO.SanPhamDAO;
 import MODEL.NhaCungCap;
 import MODEL.PhieuNhap;
+import MODEL.SanPham;
 import VIEW.ViewInterface;
 import com.raven.form.PhieuNhapPnl;
 import java.util.Dictionary;
@@ -28,6 +30,12 @@ public class PhieuNhapController extends AbsController<PhieuNhap> {
     public PhieuNhapController(ViewInterface view) {
         super(view);
         nhaCungCapDAO = new NhaCungCapDAO();
+        sanPhamDAO = new SanPhamDAO();
+    }
+    private SanPhamDAO sanPhamDAO;
+
+    public List<SanPham> layCbbSanPham() {
+        return sanPhamDAO.getAll();
     }
 
     public List<NhaCungCap> layCbbNhaCungCap() {

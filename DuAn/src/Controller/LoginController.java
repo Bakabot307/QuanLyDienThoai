@@ -43,5 +43,9 @@ public class LoginController {
     public int showLevel(String tk, String mk) {
         return nhanVienDAO.layChucVuNV(tk, mk);
     }
+    
+    public int showID(String tk, String mk) {
+        return nhanVienDAO.layIDNV(tk, mk);
+    }
 
 }

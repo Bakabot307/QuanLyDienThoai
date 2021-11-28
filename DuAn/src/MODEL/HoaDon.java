@@ -5,11 +5,9 @@
 package MODEL;
 
 ;
-import Interface.TableInterface;
+
 import java.sql.Timestamp;
-import java.util.Date;
 import Interface.TableInterface;
-import java.util.Date;
 
 /**
  *
@@ -18,107 +16,97 @@ import java.util.Date;
 
 
 public class HoaDon extends TableInterface {
-
+    
     private Integer idHoaDon;
     private Integer idKhachHang;
     private Integer idNhanVien;
     private Integer idKhuyenMai;
-    private float tongTien;
+    private double tongTien;
     private java.sql.Timestamp ngayLap;
     private String hinhThucThanhToan;
     private String trangThai;
     private String ghiChu;
-
-    public HoaDon() {
-    }
-
-    public HoaDon(Integer idHoaDon, Integer idKhachHang, Integer idNhanVien, Integer idKhuyenMai, float tongTien, Timestamp ngayLap, String hinhThucThanhToan, String trangThai, String ghiChu) {
-        this.idHoaDon = idHoaDon;
-        this.idKhachHang = idKhachHang;
-        this.idNhanVien = idNhanVien;
-        this.idKhuyenMai = idKhuyenMai;
-        this.tongTien = tongTien;
-        this.ngayLap = ngayLap;
-        this.hinhThucThanhToan = hinhThucThanhToan;
-        this.trangThai = trangThai;
-        this.ghiChu = ghiChu;
-    }
-
+    
     public Timestamp getNgayLap() {
         return ngayLap;
     }
-
+    
     public void setNgayLap(Timestamp ngayLap) {
         this.ngayLap = ngayLap;
     }
-
+    
     public Integer getIdHoaDon() {
         return idHoaDon;
     }
-
+    
     public void setIdHoaDon(Integer idHoaDon) {
         this.idHoaDon = idHoaDon;
     }
-
+    
     public Integer getIdKhachHang() {
         return idKhachHang;
     }
-
+    
     public void setIdKhachHang(Integer idKhachHang) {
         this.idKhachHang = idKhachHang;
     }
-
+    
     public Integer getIdNhanVien() {
         return idNhanVien;
     }
-
+    
     public void setIdNhanVien(Integer idNhanVien) {
         this.idNhanVien = idNhanVien;
     }
-
+    
     public Integer getIdKhuyenMai() {
         return idKhuyenMai;
     }
-
+    
     public void setIdKhuyenMai(Integer idKhuyenMai) {
         this.idKhuyenMai = idKhuyenMai;
     }
-
-    public float getTongTien() {
+    
+    public double getTongTien() {
         return tongTien;
     }
-
-    public void setTongTien(float tongTien) {
+    
+    public void setTongTien(double tongTien) {
         this.tongTien = tongTien;
     }
-
+    
     public String getHinhThucThanhToan() {
         return hinhThucThanhToan;
     }
-
+    
     public void setHinhThucThanhToan(String hinhThucThanhToan) {
         this.hinhThucThanhToan = hinhThucThanhToan;
     }
-
+    
     public String getTrangThai() {
         return trangThai;
     }
-
+    
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
-
+    
     public String getGhiChu() {
         return ghiChu;
     }
-
+    
     public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
     }
-
+    
     @Override
     public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return idHoaDon;
     }
-
+    
+    @Override
+    public String toString() {
+        return String.valueOf(idHoaDon);
+    }
+    
 }

@@ -42,11 +42,11 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
      * Creates new form KhachHangPanel
      */
     private HandleSanPhamDal sanPhamDal = null;
-    
+
     public SanPhamPanel() {
         initComponents();
         SanPhamController sanPhamController = new SanPhamController(this);
-        
+
         if (sanPhamDal == null) {
             sanPhamDal = new HandleSanPhamDal(null, true);
             sanPhamDal.addBT.addMouseListener(new MouseAdapter() {
@@ -55,7 +55,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                     LoaiSanPham loaiSp = (LoaiSanPham) sanPhamDal.cbbLoaiSP.getSelectedItem();
                     Integer idLoaiSP = loaiSp.getId();
                     System.out.println(idLoaiSP);
-                    
+
                     Object[] values = new Object[7];
                     values[0] = 0;
                     values[1] = idLoaiSP;
@@ -63,20 +63,20 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                     values[3] = Double.valueOf(sanPhamDal.txtGiaNhap.getText());
                     values[4] = Double.valueOf(sanPhamDal.txtGiaBan.getText());
                     values[5] = Integer.valueOf(sanPhamDal.spnSoLuong.getValue().toString());
-                    
+
                     values[6] = sanPhamDal.txtDVT.getText();
                     sanPhamController.insert(values);
                 }
             });
         }
-        
+
         sanPhamDal.editBT.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 LoaiSanPham loaiSp = (LoaiSanPham) sanPhamDal.cbbLoaiSP.getSelectedItem();
                 Integer idLoaiSP = loaiSp.getId();
                 System.out.println(idLoaiSP);
-                
+
                 Object[] values = new Object[7];
                 values[0] = editId;
                 values[1] = idLoaiSP;
@@ -84,10 +84,10 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                 values[3] = Double.valueOf(sanPhamDal.txtGiaNhap.getText());
                 values[4] = Double.valueOf(sanPhamDal.txtGiaBan.getText());
                 values[5] = Integer.valueOf(sanPhamDal.spnSoLuong.getValue().toString());
-                
+
                 values[6] = sanPhamDal.txtDVT.getText();
                 sanPhamController.edit(values);
-                
+
             }
         });
         DefaultComboBoxModel<LoaiSanPham> modle = (DefaultComboBoxModel<LoaiSanPham>) sanPhamDal.cbbLoaiSP.getModel();
@@ -115,6 +115,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
         jLabel1 = new javax.swing.JLabel();
         btnThem = new javax.swing.JLabel();
         btnCapNhap = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -178,30 +179,46 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
             }
         });
 
+        jLabel2.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/key.png"))); // NOI18N
+        jLabel2.setText("   Chi Tiết");
+        jLabel2.setOpaque(true);
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(searchText1, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
-                .addGap(33, 33, 33)
+                .addComponent(searchText1, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(27, 27, 27)
                 .addComponent(btnCapNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchText1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCapNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
 
@@ -222,7 +239,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -235,7 +252,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
         sanPhamDal.txtGiaBan.setText("");
         sanPhamDal.txtDVT.setText("");
         sanPhamDal.spnSoLuong.setValue(1);
-        
+
         String tieuDe = (String) sanPhamController.getViewBag().get("tieu_de");
         sanPhamDal.title.setText("Thêm Sản Phẩm " + tieuDe);
         sanPhamDal.setVisible(true);
@@ -250,15 +267,15 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
             return;
         }
         editId = (Integer) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0);
-        
+
         int dong = tblSanPham.getSelectedRow();
         sanPhamDal.txtTen.setText(tblSanPham.getValueAt(dong, 2).toString());
-        
+
         sanPhamDal.txtGiaNhap.setText(tblSanPham.getValueAt(dong, 3).toString());
         sanPhamDal.txtGiaBan.setText(tblSanPham.getValueAt(dong, 4).toString());
         sanPhamDal.spnSoLuong.setValue(Integer.parseInt(tblSanPham.getValueAt(dong, 5).toString()));
         sanPhamDal.txtDVT.setText(tblSanPham.getValueAt(dong, 6).toString());
-        
+
         String tieuDe = (String) sanPhamController.getViewBag().get("tieu_de");
         sanPhamDal.title.setText("Cập nhập Sản Phẩm " + tieuDe);
         sanPhamDal.setVisible(true);
@@ -268,6 +285,12 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
         // TODO add your handling code here:
         exportExcel(tblSanPham);
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_jLabel2MouseClicked
     public void exportExcel(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         JFileChooser chooser = new JFileChooser();
@@ -277,7 +300,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
             File file = chooser.getSelectedFile();
             Link = String.valueOf(file);
         } else {
-            
+
             return;
         }
         try {
@@ -294,7 +317,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
             for (int j = 0; j < table.getColumnCount(); j++) {
                 rowhead.createCell(j).setCellValue(model.getColumnName(j));
             }
-            
+
             for (int j = 1; j < table.getRowCount(); j++) {
                 String a = String.valueOf(j);
                 HSSFRow row = sheet.createRow((short) j);
@@ -302,7 +325,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                     row.createCell(k).setCellValue(model.getValueAt(j, k).toString());
                 }
             }
-            
+
             FileOutputStream fileOut = new FileOutputStream(filename);
             workbook.write(fileOut);
             //đóng stream
@@ -314,7 +337,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Lưu file thất bại !");
-            
+
         }
     }
 
@@ -322,6 +345,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
     private javax.swing.JLabel btnCapNhap;
     private javax.swing.JLabel btnThem;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -337,18 +361,18 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
             sanPhamDal.setVisible(false);
         }
     }
-    
+
     @Override
     public void setColumnNames(String[] columnNames) {
         ViewImp.setColumnNames(columnNames, tblSanPham);
     }
     private SanPhamController sanPhamController;
-    
+
     @Override
     public void setController(AbsController controller) {
         sanPhamController = (SanPhamController) controller;
     }
-    
+
     @Override
     public void showErrors(List<ConstraintViolation> errorList) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

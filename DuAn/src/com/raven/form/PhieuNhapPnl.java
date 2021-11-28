@@ -8,6 +8,7 @@ package com.raven.form;
 import Controller.AbsController;
 import Controller.PhieuNhapController;
 import MODEL.NhaCungCap;
+import MODEL.SanPham;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
 import duan.dialog.HandlePhieuNhapDal;
@@ -113,7 +114,7 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
         jLabel1 = new javax.swing.JLabel();
         btnThem = new javax.swing.JLabel();
         btnCapNhap = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        txtChiTiet = new javax.swing.JLabel();
 
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -175,16 +176,16 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/key.png"))); // NOI18N
-        jLabel2.setText("    Chi Tiết");
-        jLabel2.setOpaque(true);
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtChiTiet.setBackground(new java.awt.Color(0, 153, 153));
+        txtChiTiet.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtChiTiet.setForeground(new java.awt.Color(255, 255, 255));
+        txtChiTiet.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtChiTiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/key.png"))); // NOI18N
+        txtChiTiet.setText("    Chi Tiết");
+        txtChiTiet.setOpaque(true);
+        txtChiTiet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                txtChiTietMouseClicked(evt);
             }
         });
 
@@ -202,11 +203,11 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCapNhap, jLabel1, jLabel2});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCapNhap, jLabel1, txtChiTiet});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +218,7 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
                     .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCapNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
 
@@ -273,8 +274,8 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
 
 
     }//GEN-LAST:event_btnCapNhapMouseClicked
-
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    
+    private void txtChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtChiTietMouseClicked
         // TODO add your handling code here:
         if (tblPhieuNhap.getSelectedRow() == -1) {
             System.out.println("Lỗi chưa chọn dòng");
@@ -285,13 +286,20 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
 
         ChiTietPhieuNhapDialog chiTietPhieuNhapDialog = new ChiTietPhieuNhapDialog(null, true);
 
+        id = tblPhieuNhap.getValueAt(tblPhieuNhap.getSelectedRow(), 0).toString();
+
         chiTietPhieuNhapDialog.setIdPhieuNhap((Integer) tblPhieuNhap.getValueAt(tblPhieuNhap.getSelectedRow(), 0));
- 
+
+        DefaultComboBoxModel<SanPham> modle = (DefaultComboBoxModel<SanPham>) chiTietPhieuNhapDialog.cbbSanPham.getModel();
+        modle.removeAllElements();
+        List<SanPham> sanPhams = phieuNhapController.layCbbSanPham();
+        modle.addAll(sanPhams);
+        modle.setSelectedItem(sanPhams.get(0));
 
         chiTietPhieuNhapDialog.setVisible(true);
 
 
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_txtChiTietMouseClicked
     public void exportExcel(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         JFileChooser chooser = new JFileChooser();
@@ -341,18 +349,19 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
 
         }
     }
+    public static String id;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCapNhap;
     private javax.swing.JLabel btnThem;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private com.raven.swing.ScrollBar scrollBar1;
     private com.raven.swing.SearchText searchText1;
     private com.raven.swing.TableColumn tblPhieuNhap;
+    private javax.swing.JLabel txtChiTiet;
     // End of variables declaration//GEN-END:variables
 
     @Override

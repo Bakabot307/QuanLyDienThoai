@@ -7,7 +7,9 @@ package Controller;
 
 import DAO.AbsDAO;
 import DAO.ChiTietPhieuNhapDAO;
+import DAO.SanPhamDAO;
 import MODEL.ChiTietPhieuNhap;
+import MODEL.SanPham;
 import VIEW.ViewInterface;
 import com.raven.form.ChiTietPhieuNhapDialog;
 import java.util.Dictionary;
@@ -24,6 +26,13 @@ public class ChiTietPhieuNhapController extends AbsController<ChiTietPhieuNhap> 
 
     public ChiTietPhieuNhapController(ViewInterface view) {
         super(view);
+        chiTietPhieuNhapDAO = new ChiTietPhieuNhapDAO();
+        chiTietPhieuNhapDialog = new ChiTietPhieuNhapDialog(null, true);
+    }
+
+    public void them(int idPhieuNhap, int idSanPham, int soLuong, double giaTien, double tongTien) {
+        chiTietPhieuNhapDAO.them(idPhieuNhap, idSanPham, soLuong, giaTien, tongTien);
+        loadList();
     }
 
     @Override

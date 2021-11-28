@@ -31,7 +31,7 @@ public class NhanVienDAO extends AbsDAO<NhanVien> {
 
         try {
             if (rs.next()) {
-                if (rs.getString("MatKhau").equals(mk)) {
+                if (rs.getString("TenDangNhap").equals(tenDangNhap) && rs.getString("MatKhau").equals(mk)) {
 
                     return rs.getString("TenNhanVien");
                 } else {
@@ -52,9 +52,30 @@ public class NhanVienDAO extends AbsDAO<NhanVien> {
 
         try {
             if (rs.next()) {
-                if (rs.getString("MatKhau").equals(mk)) {
+                if (rs.getString("TenDangNhap").equals(tenDangNhap) && rs.getString("MatKhau").equals(mk)) {
 
                     return rs.getInt("Lv");
+                } else {
+
+                    return 0;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    public int layIDNV(String tenDangNhap, String mk) {
+
+        String cauLenh = "select * from  NhanVien where TenDangNhap = ? and MatKhau = ?";
+        ResultSet rs = DBConnection.executeQuery(cauLenh, tenDangNhap, mk);
+
+        try {
+            if (rs.next()) {
+                if (rs.getString("TenDangNhap").equals(tenDangNhap) && rs.getString("MatKhau").equals(mk)) {
+
+                    return rs.getInt("idNhanVien");
                 } else {
 
                     return 0;

@@ -5,39 +5,25 @@
 package MODEL;
 
 import Interface.TableInterface;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
  *
  * @author gnaht
  */
-public class PhieuBaoHanh extends TableInterface{
+public class PhieuBaoHanh extends TableInterface {
+
     private Integer idPhieuBaoHanh;
+    private Integer idHoaDon;
     private Integer idKhachHang;
     private Integer idNhanVien;
-    private Integer idHoaDon;
-    private Date ngayLap;
+    private java.sql.Timestamp ngayLap;
     private String lyDo;
-    private Date thoiGianBaoTri;
-    private float chiPhiBaoHanh;
+    private String thoiGianBaoTri;
     private String trangThai;
+    private double chiPhiBaoHanh;
     private String ghiChu;
-
-    public PhieuBaoHanh() {
-    }
-
-    public PhieuBaoHanh(Integer idPhieuBaoHanh, Integer idKhachHang, Integer idNhanVien, Integer idHoaDon, Date ngayLap, String lyDo, Date thoiGianBaoTri, float chiPhiBaoHanh, String trangThai, String ghiChu) {
-        this.idPhieuBaoHanh = idPhieuBaoHanh;
-        this.idKhachHang = idKhachHang;
-        this.idNhanVien = idNhanVien;
-        this.idHoaDon = idHoaDon;
-        this.ngayLap = ngayLap;
-        this.lyDo = lyDo;
-        this.thoiGianBaoTri = thoiGianBaoTri;
-        this.chiPhiBaoHanh = chiPhiBaoHanh;
-        this.trangThai = trangThai;
-        this.ghiChu = ghiChu;
-    }
 
     public Integer getIdPhieuBaoHanh() {
         return idPhieuBaoHanh;
@@ -45,6 +31,14 @@ public class PhieuBaoHanh extends TableInterface{
 
     public void setIdPhieuBaoHanh(Integer idPhieuBaoHanh) {
         this.idPhieuBaoHanh = idPhieuBaoHanh;
+    }
+
+    public Integer getIdHoaDon() {
+        return idHoaDon;
+    }
+
+    public void setIdHoaDon(Integer idHoaDon) {
+        this.idHoaDon = idHoaDon;
     }
 
     public Integer getIdKhachHang() {
@@ -63,19 +57,11 @@ public class PhieuBaoHanh extends TableInterface{
         this.idNhanVien = idNhanVien;
     }
 
-    public Integer getIdHoaDon() {
-        return idHoaDon;
-    }
-
-    public void setIdHoaDon(Integer idHoaDon) {
-        this.idHoaDon = idHoaDon;
-    }
-
-    public Date getNgayLap() {
+    public Timestamp getNgayLap() {
         return ngayLap;
     }
 
-    public void setNgayLap(Date ngayLap) {
+    public void setNgayLap(Timestamp ngayLap) {
         this.ngayLap = ngayLap;
     }
 
@@ -87,20 +73,12 @@ public class PhieuBaoHanh extends TableInterface{
         this.lyDo = lyDo;
     }
 
-    public Date getThoiGianBaoTri() {
+    public String getThoiGianBaoTri() {
         return thoiGianBaoTri;
     }
 
-    public void setThoiGianBaoTri(Date thoiGianBaoTri) {
+    public void setThoiGianBaoTri(String thoiGianBaoTri) {
         this.thoiGianBaoTri = thoiGianBaoTri;
-    }
-
-    public float getChiPhiBaoHanh() {
-        return chiPhiBaoHanh;
-    }
-
-    public void setChiPhiBaoHanh(float chiPhiBaoHanh) {
-        this.chiPhiBaoHanh = chiPhiBaoHanh;
     }
 
     public String getTrangThai() {
@@ -110,6 +88,16 @@ public class PhieuBaoHanh extends TableInterface{
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
+
+    public double getChiPhiBaoHanh() {
+        return chiPhiBaoHanh;
+    }
+
+    public void setChiPhiBaoHanh(double chiPhiBaoHanh) {
+        this.chiPhiBaoHanh = chiPhiBaoHanh;
+    }
+
+  
 
     public String getGhiChu() {
         return ghiChu;
@@ -121,7 +109,7 @@ public class PhieuBaoHanh extends TableInterface{
 
     @Override
     public int getId() {
-       return idPhieuBaoHanh;
+        return idPhieuBaoHanh;
     }
-    
+
 }

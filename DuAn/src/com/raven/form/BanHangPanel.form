@@ -300,11 +300,11 @@
                       <Component id="btnThem" min="-2" max="-2" attributes="0"/>
                       <Component id="txtTienThua1" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtCanTra" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtTongTien" alignment="0" pref="175" max="32767" attributes="0"/>
+                      <Component id="txtTongTien" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="cbbKhuyenMai" max="32767" attributes="0"/>
+                          <Component id="cbbKhuyenMai" min="-2" pref="111" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnHienThi" min="-2" pref="52" max="-2" attributes="0"/>
+                          <Component id="btnHienThi" min="-2" pref="58" max="-2" attributes="0"/>
                       </Group>
                       <Component id="txtTienThua" max="32767" attributes="0"/>
                   </Group>
