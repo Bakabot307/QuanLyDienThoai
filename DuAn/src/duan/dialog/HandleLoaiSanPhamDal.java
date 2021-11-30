@@ -42,6 +42,7 @@ public class HandleLoaiSanPhamDal extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         editBT = new javax.swing.JLabel();
         addBT = new javax.swing.JLabel();
+        errorlb = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -100,6 +101,11 @@ public class HandleLoaiSanPhamDal extends javax.swing.JDialog {
             }
         });
 
+        errorlb.setFont(new java.awt.Font("UTM Avo", 2, 12)); // NOI18N
+        errorlb.setForeground(new java.awt.Color(255, 0, 0));
+        errorlb.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        errorlb.setText("error");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,7 +124,8 @@ public class HandleLoaiSanPhamDal extends javax.swing.JDialog {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(errorlb, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -130,7 +137,9 @@ public class HandleLoaiSanPhamDal extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorlb)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editBT, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,6 +214,7 @@ public class HandleLoaiSanPhamDal extends javax.swing.JDialog {
     public javax.swing.JLabel addBT;
     private javax.swing.ButtonGroup buttonGroup1;
     public javax.swing.JLabel editBT;
+    public javax.swing.JLabel errorlb;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JLabel title;

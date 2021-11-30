@@ -5,6 +5,7 @@
  */
 package duan.dialog;
 
+import Controller.ChuyenDoi;
 import MODEL.NhaCungCap;
 import com.raven.swing.MImage;
 import java.awt.Color;
@@ -48,13 +49,14 @@ public class HandlePhieuNhapDal extends javax.swing.JDialog {
         addBT = new javax.swing.JLabel();
         cbbNhaCungCap = new javax.swing.JComboBox<>();
         spnSoLuong = new javax.swing.JSpinner();
+        errorlb = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
         title.setFont(new java.awt.Font("UTM Avo", 1, 15)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        title.setText("Thêm Khách hàng");
+        title.setText("Thêm Nhà cung cấp");
 
         jLabel3.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
         jLabel3.setText("Nhà Cung Cấp");
@@ -96,6 +98,11 @@ public class HandlePhieuNhapDal extends javax.swing.JDialog {
                 txtTongTienActionPerformed(evt);
             }
         });
+        txtTongTien.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTongTienKeyReleased(evt);
+            }
+        });
 
         editBT.setBackground(new java.awt.Color(0, 153, 153));
         editBT.setFont(new java.awt.Font("UTM Avo", 0, 14)); // NOI18N
@@ -122,6 +129,11 @@ public class HandlePhieuNhapDal extends javax.swing.JDialog {
                 addBTMouseClicked(evt);
             }
         });
+
+        errorlb.setFont(new java.awt.Font("UTM Avo", 2, 12)); // NOI18N
+        errorlb.setForeground(new java.awt.Color(255, 0, 0));
+        errorlb.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        errorlb.setText("error");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,7 +166,8 @@ public class HandlePhieuNhapDal extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(spnSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                            .addComponent(txtTrangThai))))
+                            .addComponent(txtTrangThai)))
+                    .addComponent(errorlb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -168,14 +181,16 @@ public class HandlePhieuNhapDal extends javax.swing.JDialog {
                     .addComponent(cbbNhaCungCap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 22, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
                             .addComponent(spnSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(63, 63, 63))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(errorlb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(66, 66, 66)))
@@ -210,6 +225,13 @@ public class HandlePhieuNhapDal extends javax.swing.JDialog {
     private void addBTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBTMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_addBTMouseClicked
+
+    private void txtTongTienKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTongTienKeyReleased
+        // TODO add your handling code here:
+        String dau = txtTongTien.getText();
+        double chuyen = ChuyenDoi.SoDouble(dau);
+        txtTongTien.setText(ChuyenDoi.SoString(chuyen));
+    }//GEN-LAST:event_txtTongTienKeyReleased
 
     /**
      * @param args the command line arguments
@@ -258,6 +280,7 @@ public class HandlePhieuNhapDal extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup1;
     public javax.swing.JComboBox<NhaCungCap> cbbNhaCungCap;
     public javax.swing.JLabel editBT;
+    public javax.swing.JLabel errorlb;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -44,6 +44,11 @@ public class LoaiSanPhamPnl extends javax.swing.JPanel implements ViewInterface 
             loaiSanPhamDal.addBT.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    if (loaiSanPhamDal.txtTen.getText().trim().equals("")) {
+                        loaiSanPhamDal.errorlb.setText("Vui lòng điền tên loại sản phẩm ! ");
+                        return;
+                    }
+
                     Object[] values = new Object[2];
                     values[0] = 0;
                     values[1] = loaiSanPhamDal.txtTen.getText();
@@ -55,6 +60,11 @@ public class LoaiSanPhamPnl extends javax.swing.JPanel implements ViewInterface 
         loaiSanPhamDal.editBT.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if (loaiSanPhamDal.txtTen.getText().trim().equals("")) {
+                    loaiSanPhamDal.errorlb.setText("Vui lòng điền tên loại sản phẩm ! ");
+                    return;
+                }
+
                 Object[] values = new Object[2];
                 values[0] = editId;
                 values[1] = loaiSanPhamDal.txtTen.getText();
@@ -199,6 +209,9 @@ public class LoaiSanPhamPnl extends javax.swing.JPanel implements ViewInterface 
 
         String tieuDe = (String) loaiSanPhamController.getViewBag().get("tieu_de");
         loaiSanPhamDal.title.setText("Thêm Loại Sản Phẩm ");
+        loaiSanPhamDal.errorlb.setText("");
+        loaiSanPhamDal.txtTen.setText("");
+
         loaiSanPhamDal.setVisible(true);
     }//GEN-LAST:event_btnThemMouseClicked
     private Integer editId;
@@ -213,7 +226,7 @@ public class LoaiSanPhamPnl extends javax.swing.JPanel implements ViewInterface 
         editId = (Integer) tblKhachHang.getValueAt(tblKhachHang.getSelectedRow(), 0);
 
         int dong = tblKhachHang.getSelectedRow();
-
+        loaiSanPhamDal.errorlb.setText("");
         loaiSanPhamDal.txtTen.setText(tblKhachHang.getValueAt(dong, 1).toString());
 
         String tieuDe = (String) loaiSanPhamController.getViewBag().get("tieu_de");

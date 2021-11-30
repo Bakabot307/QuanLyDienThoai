@@ -44,6 +44,37 @@ public class KhachHangPanel extends javax.swing.JPanel implements ViewInterface 
             khachHangDialog.addBT.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    //validate
+
+                    if (khachHangDialog.txtTen.getText().trim().equals("")) {
+                        khachHangDialog.errorlb.setText("Vui lòng điền tên khách hàng ! ");
+                        return;
+                    }
+                    if (khachHangDialog.txtSdt.getText().trim().equals("")) {
+                        khachHangDialog.errorlb.setText("Vui lòng điền số điện thoại ! ");
+                        return;
+                    }
+                    if (!khachHangDialog.txtSdt.getText().matches("^\\d{10}$")) {
+                        khachHangDialog.errorlb.setText("Số điện thoại không hợp lệ ! ");
+                        return;
+                    }
+
+                    if (khachHangDialog.txtDiaChi.getText().trim().equals("")) {
+                        khachHangDialog.errorlb.setText("Vui lòng điền địa chỉ ! ");
+                        return;
+                    }
+                    if (khachHangDialog.txtCMND.getText().trim().equals("")) {
+                        khachHangDialog.errorlb.setText("Vui lòng điền số CMND ! ");
+                        return;
+                    }
+                    if (khachHangDialog.txtEmail.getText().trim().equals("")) {
+                        khachHangDialog.errorlb.setText("Vui lòng điền email ! ");
+                        return;
+                    }
+                    if (!khachHangDialog.txtEmail.getText().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+                        khachHangDialog.errorlb.setText("Email không hợp lệ ! ");
+                        return;
+                    }
                     Object[] values = new Object[8];
                     values[0] = 0;
                     values[1] = khachHangDialog.txtTen.getText();
@@ -54,7 +85,7 @@ public class KhachHangPanel extends javax.swing.JPanel implements ViewInterface 
                     if (khachHangDialog.cbNam.isSelected()) {
                         values[6] = "Nam";
                     } else if (!khachHangDialog.cbNu.isSelected() && !khachHangDialog.cbNam.isSelected()) {
-                        JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
+                        khachHangDialog.errorlb.setText("Vui lòng chọn giới tính ! ");
                         return;
                     } else {
                         values[6] = "Nữ";
@@ -69,6 +100,37 @@ public class KhachHangPanel extends javax.swing.JPanel implements ViewInterface 
         khachHangDialog.editBT.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                //validate
+
+                if (khachHangDialog.txtTen.getText().trim().equals("")) {
+                    khachHangDialog.errorlb.setText("Vui lòng điền tên khách hàng ! ");
+                    return;
+                }
+                if (khachHangDialog.txtSdt.getText().trim().equals("")) {
+                    khachHangDialog.errorlb.setText("Vui lòng điền số điện thoại ! ");
+                    return;
+                }
+                if (!khachHangDialog.txtSdt.getText().matches("^\\d{10}$")) {
+                    khachHangDialog.errorlb.setText("Số điện thoại không hợp lệ ! ");
+                    return;
+                }
+
+                if (khachHangDialog.txtDiaChi.getText().trim().equals("")) {
+                    khachHangDialog.errorlb.setText("Vui lòng điền địa chỉ ! ");
+                    return;
+                }
+                if (khachHangDialog.txtCMND.getText().trim().equals("")) {
+                    khachHangDialog.errorlb.setText("Vui lòng điền số CMND ! ");
+                    return;
+                }
+                if (khachHangDialog.txtEmail.getText().trim().equals("")) {
+                    khachHangDialog.errorlb.setText("Vui lòng điền email ! ");
+                    return;
+                }
+                if (!khachHangDialog.txtEmail.getText().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+                    khachHangDialog.errorlb.setText("Email không hợp lệ ! ");
+                    return;
+                }
                 Object[] values = new Object[8];
                 values[0] = editId;
                 values[1] = khachHangDialog.txtTen.getText();
@@ -79,7 +141,7 @@ public class KhachHangPanel extends javax.swing.JPanel implements ViewInterface 
                 if (khachHangDialog.cbNam.isSelected()) {
                     values[6] = "Nam";
                 } else if (!khachHangDialog.cbNu.isSelected() && !khachHangDialog.cbNam.isSelected()) {
-                    JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
+                    khachHangDialog.errorlb.setText("Vui lòng chọn giới tính ! ");
                     return;
                 } else {
                     values[6] = "Nữ";
@@ -223,6 +285,7 @@ public class KhachHangPanel extends javax.swing.JPanel implements ViewInterface 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
         // TODO add your handling code here:
 
+        khachHangDialog.errorlb.setText("");
         khachHangDialog.txtTen.setText("");
         khachHangDialog.txtSdt.setText("");
         khachHangDialog.txtDiaChi.setText("");

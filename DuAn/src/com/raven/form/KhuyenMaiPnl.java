@@ -20,8 +20,6 @@ public class KhuyenMaiPnl extends javax.swing.JPanel implements ViewInterface {
         khuyenMaiController = new KhuyenMaiController(this);
 //        System.out.println(DangNhapPnl.tenDangNhap);
 
-
-
     }
 
     @SuppressWarnings("unchecked")
@@ -291,7 +289,10 @@ public class KhuyenMaiPnl extends javax.swing.JPanel implements ViewInterface {
 
     private void bthThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bthThemActionPerformed
         // TODO add your handling code here:.
-
+        if (txtTen.getText().trim().equals("")) {
+            errorLB.setText("Tên khuyến mãi không được bỏ trống");
+            return;
+        }
         if (txtPhanTramKm.getText().trim().equals("")) {
             errorLB.setText("Phần trăm khuyến mãi không được bỏ trống");
             return;
@@ -313,10 +314,15 @@ public class KhuyenMaiPnl extends javax.swing.JPanel implements ViewInterface {
             JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn dòng cần sửa ! ", "Thông báo", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        if (txtTen.getText().trim().equals("")) {
+            errorLB.setText("Tên khuyến mãi không được bỏ trống");
+            return;
+        }
         if (txtPhanTramKm.getText().trim().equals("")) {
             errorLB.setText("Phần trăm khuyến mãi không được bỏ trống");
             return;
         }
+
         int dong = table.getSelectedRow();
         Integer editId = (Integer) table.getValueAt(dong, 0);
         System.out.println(editId);
@@ -356,6 +362,7 @@ public class KhuyenMaiPnl extends javax.swing.JPanel implements ViewInterface {
         int dong = table.getSelectedRow();
         Integer editId = (Integer) table.getValueAt(dong, 0);
         System.out.println(editId);
+        errorLB.setText("");
         txtPhanTramKm.setText(table.getValueAt(dong, 2).toString());
         txtTen.setText(table.getValueAt(dong, 1).toString());
         txtghiChu.setText(table.getValueAt(dong, 3).toString());

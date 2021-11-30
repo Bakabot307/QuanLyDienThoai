@@ -6,6 +6,7 @@
 package com.raven.form;
 
 import Controller.AbsController;
+import Controller.ChuyenDoi;
 import Controller.PhieuBaoHanhController;
 import MODEL.HoaDon;
 import MODEL.KhachHang;
@@ -57,6 +58,25 @@ public class PhieuBaoHanhPnl extends javax.swing.JPanel implements ViewInterface
                     System.out.println("id khach hang " + idKhachHang);
 
                     java.sql.Timestamp now = new Timestamp((new java.util.Date()).getTime());
+                    //validate
+
+                    if (handlePhieuBaoHanhDal.txtLyDo.getText().trim().equals("")) {
+                        handlePhieuBaoHanhDal.errorlb.setText("Vui lòng điền lý do ! ");
+                        return;
+                    }
+
+                    if (handlePhieuBaoHanhDal.txtTime.getText().trim().equals("")) {
+                        handlePhieuBaoHanhDal.errorlb.setText("Vui lòng điền thời gian bảo trì ! ");
+                        return;
+                    }
+                    if (handlePhieuBaoHanhDal.txtTrangThai.getText().trim().equals("")) {
+                        handlePhieuBaoHanhDal.errorlb.setText("Vui lòng điền trạng thái ! ");
+                        return;
+                    }
+                    if (handlePhieuBaoHanhDal.txtChiPhi.getText().trim().equals("")) {
+                        handlePhieuBaoHanhDal.errorlb.setText("Vui lòng điền chi phí bảo hành ! ");
+                        return;
+                    }
 
                     Object[] values = new Object[10];
                     values[0] = 0;
@@ -67,7 +87,7 @@ public class PhieuBaoHanhPnl extends javax.swing.JPanel implements ViewInterface
                     values[5] = handlePhieuBaoHanhDal.txtLyDo.getText();
                     values[6] = handlePhieuBaoHanhDal.txtTime.getText();
                     values[7] = handlePhieuBaoHanhDal.txtTrangThai.getText();
-                    values[8] = Double.parseDouble(handlePhieuBaoHanhDal.txtChiPhi.getText());
+                    values[8] = ChuyenDoi.SoDouble(handlePhieuBaoHanhDal.txtChiPhi.getText());
 
                     values[9] = handlePhieuBaoHanhDal.txtGhiChu.getText();
 
@@ -89,6 +109,25 @@ public class PhieuBaoHanhPnl extends javax.swing.JPanel implements ViewInterface
                 System.out.println("id khach hang " + idKhachHang);
 
                 java.sql.Timestamp now = new Timestamp((new java.util.Date()).getTime());
+                //validate
+
+                if (handlePhieuBaoHanhDal.txtLyDo.getText().trim().equals("")) {
+                    handlePhieuBaoHanhDal.errorlb.setText("Vui lòng điền lý do ! ");
+                    return;
+                }
+
+                if (handlePhieuBaoHanhDal.txtTime.getText().trim().equals("")) {
+                    handlePhieuBaoHanhDal.errorlb.setText("Vui lòng điền thời gian bảo trì ! ");
+                    return;
+                }
+                if (handlePhieuBaoHanhDal.txtTrangThai.getText().trim().equals("")) {
+                    handlePhieuBaoHanhDal.errorlb.setText("Vui lòng điền trạng thái ! ");
+                    return;
+                }
+                if (handlePhieuBaoHanhDal.txtChiPhi.getText().trim().equals("")) {
+                    handlePhieuBaoHanhDal.errorlb.setText("Vui lòng điền chi phí bảo hành ! ");
+                    return;
+                }
 
                 Object[] values = new Object[10];
                 values[0] = editId;
@@ -99,7 +138,7 @@ public class PhieuBaoHanhPnl extends javax.swing.JPanel implements ViewInterface
                 values[5] = handlePhieuBaoHanhDal.txtLyDo.getText();
                 values[6] = handlePhieuBaoHanhDal.txtTime.getText();
                 values[7] = handlePhieuBaoHanhDal.txtTrangThai.getText();
-                values[8] = Double.parseDouble(handlePhieuBaoHanhDal.txtChiPhi.getText());
+                values[8] = ChuyenDoi.SoDouble(handlePhieuBaoHanhDal.txtChiPhi.getText());
 
                 values[9] = handlePhieuBaoHanhDal.txtGhiChu.getText();
 
@@ -307,6 +346,16 @@ public void exportExcel(JTable table) {
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
         // TODO add your handling code here:
 
+        String tieuDe = (String) phieuBaoHanhController.getViewBag().get("tieu_de");
+        handlePhieuBaoHanhDal.title.setText("Thêm Phiếu Bảo Hành ");
+
+        handlePhieuBaoHanhDal.errorlb.setText("");
+        handlePhieuBaoHanhDal.txtLyDo.setText("");
+        handlePhieuBaoHanhDal.txtTime.setText("");
+        handlePhieuBaoHanhDal.txtTrangThai.setText("");
+        handlePhieuBaoHanhDal.txtChiPhi.setText("");
+        handlePhieuBaoHanhDal.txtGhiChu.setText("");
+
         handlePhieuBaoHanhDal.setVisible(true);
     }//GEN-LAST:event_btnThemMouseClicked
 
@@ -318,7 +367,19 @@ public void exportExcel(JTable table) {
             JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn dòng cần sửa ! ", "Thông báo", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        String tieuDe = (String) phieuBaoHanhController.getViewBag().get("tieu_de");
+        handlePhieuBaoHanhDal.title.setText("Cập Nhập Phiếu Bảo Hành ");
+
         editId = (Integer) tblPhieuBaoHanh.getValueAt(tblPhieuBaoHanh.getSelectedRow(), 0);
+
+        int dong = tblPhieuBaoHanh.getSelectedRow();
+
+        handlePhieuBaoHanhDal.errorlb.setText("");
+        handlePhieuBaoHanhDal.txtLyDo.setText(tblPhieuBaoHanh.getValueAt(dong, 5).toString());
+        handlePhieuBaoHanhDal.txtTime.setText(tblPhieuBaoHanh.getValueAt(dong, 6).toString());
+        handlePhieuBaoHanhDal.txtTrangThai.setText(tblPhieuBaoHanh.getValueAt(dong, 7).toString());
+        handlePhieuBaoHanhDal.txtChiPhi.setText(tblPhieuBaoHanh.getValueAt(dong, 8).toString());
+        handlePhieuBaoHanhDal.txtGhiChu.setText(tblPhieuBaoHanh.getValueAt(dong, 9).toString());
 
         handlePhieuBaoHanhDal.setVisible(true);
     }//GEN-LAST:event_btnCapNhapMouseClicked

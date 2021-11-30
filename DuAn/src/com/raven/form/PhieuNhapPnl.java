@@ -6,6 +6,7 @@
 package com.raven.form;
 
 import Controller.AbsController;
+import Controller.ChuyenDoi;
 import Controller.PhieuNhapController;
 import MODEL.NhaCungCap;
 import MODEL.SanPham;
@@ -49,15 +50,38 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
             phieuNhapDal.addBT.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+
                     NhaCungCap nhaCC = (NhaCungCap) phieuNhapDal.cbbNhaCungCap.getSelectedItem();
                     Integer idNhaCC = nhaCC.getIdNhaCungCap();
                     System.out.println(idNhaCC);
                     java.sql.Timestamp now = new Timestamp((new java.util.Date()).getTime());
+                    //validate
+
+                    double tongTien = ChuyenDoi.SoDouble(phieuNhapDal.txtTongTien.getText());
+
+                    if (String.valueOf(tongTien).trim().equals("")) {
+                        phieuNhapDal.errorlb.setText("Vui lòng nhập tổng tiền ! ");
+                        return;
+                    }
+                    if (tongTien < 10000) {
+                        phieuNhapDal.errorlb.setText("Tổng tiền phải lớn hơn 10.000 ! ");
+                        return;
+                    }
+
+                    if (phieuNhapDal.txtTrangThai.getText().trim().equals("")) {
+                        phieuNhapDal.errorlb.setText("Vui lòng nhập trạng thái ! ");
+                        return;
+                    }
+                    if (Integer.parseInt(phieuNhapDal.spnSoLuong.getValue().toString()) < 1) {
+                        phieuNhapDal.errorlb.setText("Số lượng phải lớn hơn 0 ! ");
+                        return;
+                    }
+
                     Object[] values = new Object[6];
                     values[0] = 0;
                     values[1] = idNhaCC;
                     values[2] = now;
-                    values[3] = Double.valueOf(phieuNhapDal.txtTongTien.getText());
+                    values[3] = ChuyenDoi.SoDouble(phieuNhapDal.txtTongTien.getText());
                     values[4] = phieuNhapDal.txtTrangThai.getText();
                     values[5] = Integer.parseInt(phieuNhapDal.spnSoLuong.getValue().toString());
 
@@ -69,17 +93,30 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
         phieuNhapDal.editBT.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                phieuNhapDal.addBT.setEnabled(true);
-                phieuNhapDal.editBT.setEnabled(false);
+
                 NhaCungCap nhaCC = (NhaCungCap) phieuNhapDal.cbbNhaCungCap.getSelectedItem();
                 Integer idNhaCC = nhaCC.getIdNhaCungCap();
                 System.out.println(idNhaCC);
                 java.sql.Timestamp now = new Timestamp((new java.util.Date()).getTime());
+                //validate
+                if (phieuNhapDal.txtTongTien.getText().trim().equals("")) {
+                    phieuNhapDal.errorlb.setText("Vui lòng nhập tổng tiền ! ");
+                    return;
+                }
+                if (phieuNhapDal.txtTrangThai.getText().trim().equals("")) {
+                    phieuNhapDal.errorlb.setText("Vui lòng nhập trạng thái ! ");
+                    return;
+                }
+                if (Integer.parseInt(phieuNhapDal.spnSoLuong.getValue().toString()) < 1) {
+                    phieuNhapDal.errorlb.setText("Số lượng phải lớn hơn 0 ! ");
+                    return;
+                }
+
                 Object[] values = new Object[6];
                 values[0] = editID;
                 values[1] = idNhaCC;
                 values[2] = now;
-                values[3] = Double.valueOf(phieuNhapDal.txtTongTien.getText());
+                values[3] = ChuyenDoi.SoDouble(phieuNhapDal.txtTongTien.getText());
                 values[4] = phieuNhapDal.txtTrangThai.getText();
                 values[5] = Integer.parseInt(phieuNhapDal.spnSoLuong.getValue().toString());
 
@@ -254,6 +291,12 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
 
         String tieuDe = (String) phieuNhapController.getViewBag().get("tieu_de");
         phieuNhapDal.title.setText("Thêm Phiếu Nhập ");
+
+        phieuNhapDal.errorlb.setText("");
+        phieuNhapDal.txtTongTien.setText("");
+        phieuNhapDal.txtTrangThai.setText("");
+        phieuNhapDal.spnSoLuong.setValue(1);
+
         phieuNhapDal.setVisible(true);
 
     }//GEN-LAST:event_btnThemMouseClicked
@@ -267,14 +310,20 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
             return;
         }
         editID = (Integer) tblPhieuNhap.getValueAt(tblPhieuNhap.getSelectedRow(), 0);
-
         String tieuDe = (String) phieuNhapController.getViewBag().get("tieu_de");
         phieuNhapDal.title.setText("Cập Nhập Phiếu Nhập ");
+
+        int dong = tblPhieuNhap.getSelectedRow();
+        phieuNhapDal.errorlb.setText("");
+        phieuNhapDal.txtTrangThai.setText(tblPhieuNhap.getValueAt(dong, 4).toString());
+        phieuNhapDal.txtTongTien.setText(tblPhieuNhap.getValueAt(dong, 3).toString());
+        phieuNhapDal.spnSoLuong.setValue(tblPhieuNhap.getValueAt(dong, 5));
+
         phieuNhapDal.setVisible(true);
 
 
     }//GEN-LAST:event_btnCapNhapMouseClicked
-    
+
     private void txtChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtChiTietMouseClicked
         // TODO add your handling code here:
         if (tblPhieuNhap.getSelectedRow() == -1) {
@@ -285,6 +334,7 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
         System.out.println("click");
 
         ChiTietPhieuNhapDialog chiTietPhieuNhapDialog = new ChiTietPhieuNhapDialog(null, true);
+        chiTietPhieuNhapDialog.errorLB.setText("");
 
         id = tblPhieuNhap.getValueAt(tblPhieuNhap.getSelectedRow(), 0).toString();
 
