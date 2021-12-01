@@ -74,13 +74,13 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
 
         tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12"
             }
         ));
         jScrollPane1.setViewportView(tblNhanVien);
@@ -203,6 +203,8 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
         nhanVienDal.cbNu.setSelected(false);
         nhanVienDal.txtChucVu.setText("");
         nhanVienDal.txtTrangThai.setText("");
+        nhanVienDal.txtTenDN.setText("");
+        nhanVienDal.txtMK.setText("");
         String tieuDe = (String) nhanVienController.getViewBag().get("tieu_de");
         nhanVienDal.title.setText("Thêm Nhân Viên " + tieuDe);
         nhanVienDal.setVisible(true);
@@ -231,20 +233,21 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
         }
         int dong = tblNhanVien.getSelectedRow();
         nhanVienDal.txtTen.setText(tblNhanVien.getValueAt(dong, 1).toString());
-        nhanVienDal.txtDiaChi.setText(tblNhanVien.getValueAt(dong, 2).toString());
-        nhanVienDal.txtCMND.setText(tblNhanVien.getValueAt(dong, 3).toString());
-        nhanVienDal.txtEmail.setText(tblNhanVien.getValueAt(dong, 4).toString());
-        nhanVienDal.txtSdt.setText(tblNhanVien.getValueAt(dong, 5).toString());
-        if (tblNhanVien.getValueAt(dong, 6).toString().equals("Nam")) {
+         if (tblNhanVien.getValueAt(dong, 2).toString().equals("Nam")) {
             nhanVienDal.cbNam.setSelected(true);
         } else {
             nhanVienDal.cbNam.setSelected(false);
         }
-        if (tblNhanVien.getValueAt(dong, 6).toString().equals("Nữ")) {
+        if (tblNhanVien.getValueAt(dong, 2).toString().equals("Nữ")) {
             nhanVienDal.cbNu.setSelected(true);
         } else {
             nhanVienDal.cbNu.setSelected(false);
         }
+        nhanVienDal.txtDiaChi.setText(tblNhanVien.getValueAt(dong, 3).toString());
+        nhanVienDal.txtCMND.setText(tblNhanVien.getValueAt(dong, 4).toString());
+        nhanVienDal.txtSdt.setText(tblNhanVien.getValueAt(dong, 5).toString());
+        nhanVienDal.txtEmail.setText(tblNhanVien.getValueAt(dong, 6).toString());       
+       
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         try {
             nhanVienDal.dcNgayVaoLam.setDate(df.parse(tblNhanVien.getValueAt(dong, 7).toString()));
@@ -252,7 +255,9 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
             Logger.getLogger(NhanVienPnl.class.getName()).log(Level.SEVERE, null, ex);
         }
         nhanVienDal.txtChucVu.setText(tblNhanVien.getValueAt(dong, 8).toString());
-        nhanVienDal.txtTrangThai.setText(tblNhanVien.getValueAt(dong, 9).toString());
+        nhanVienDal.txtTenDN.setText(tblNhanVien.getValueAt(dong, 9).toString());
+        nhanVienDal.txtMK.setText(tblNhanVien.getValueAt(dong, 10).toString());
+        nhanVienDal.txtTrangThai.setText(tblNhanVien.getValueAt(dong, 11).toString());
         String tieuDe = (String) nhanVienController.getViewBag().get("tieu_de");
         nhanVienDal.title.setText("Cập nhập Khách Hàng " + tieuDe);
         nhanVienDal.setVisible(true);
@@ -294,26 +299,26 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
         nhanVienDal.editBT.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Object[] values = new Object[10];
-                values[0] = 0;
+                Object[] values = new Object[12];
+                values[0] = editId;
                 values[1] = nhanVienDal.txtTen.getText();
-                values[2] = nhanVienDal.txtDiaChi.getText();
-                values[3] = nhanVienDal.txtCMND.getText();
-                values[4] = nhanVienDal.txtEmail.getText();
-                values[5] = nhanVienDal.txtSdt.getText();
-                if (nhanVienDal.cbNam.isSelected()) {
-                    values[6] = "Nam";
+                  if (nhanVienDal.cbNam.isSelected()) {
+                    values[2] = "Nam";
                 } else if (!nhanVienDal.cbNu.isSelected() && !nhanVienDal.cbNam.isSelected()) {
                     JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
                     return;
                 } else {
-                    values[6] = "Nữ";
+                    values[2] = "Nữ";
                 }
+                values[3] = nhanVienDal.txtDiaChi.getText();
+                values[4] = nhanVienDal.txtCMND.getText();
+                values[5] = nhanVienDal.txtSdt.getText();
+                values[6] = nhanVienDal.txtEmail.getText();                          
                 values[7] = nhanVienDal.dcNgayVaoLam.getDate();
-
                 values[8] = Integer.parseInt(nhanVienDal.txtChucVu.getText());
-                values[9] = nhanVienDal.txtTrangThai.getText();
-
+                values[9] = nhanVienDal.txtTenDN.getText();
+                values[10] = String.valueOf(nhanVienDal.txtMK.getPassword());
+                values[11] = nhanVienDal.txtTrangThai.getText();
                 nhanVienController.edit(values);
             }
         });

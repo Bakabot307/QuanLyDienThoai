@@ -5,14 +5,23 @@ import Controller.BanHangController;
 import MODEL.KhuyenMai;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
+import duan.dialog.HandleNhanVienDal;
+import duan.dialog.HandleTangSoLuongDal;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import net.sf.oval.ConstraintViolation;
 
 public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
-
+private HandleTangSoLuongDal tangSoLuongDal = null;
     public BanHangPanel() {
         initComponents();
         setOpaque(false);
@@ -24,7 +33,83 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         List<KhuyenMai> khuyenMais = banHangController.layCbbKhuyenMai();
         modle.addAll(khuyenMais);
         modle.setSelectedItem(khuyenMais.get(0));
+//        dataTable2.getColumn("button").setCellRenderer(new ButtonRenderer());
+//        dataTable2.getColumn("button").setCellEditor(
+//            new ButtonEditor(new JCheckBox()));
+        dataTable2.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent me) {
+                if (me.getClickCount() == 2) {    
+                    
+                       if (tangSoLuongDal == null) {
+            tangSoLuongDal = new HandleTangSoLuongDal(null, true);   }         
 
+                    if (dataTable1.getRowCount() == 0) {
+
+                        TableModel model1 = dataTable2.getModel();
+
+                        int[] indexs = dataTable2.getSelectedRows();
+
+                        Object[] rows = new Object[5];
+
+                        DefaultTableModel model2 = (DefaultTableModel) dataTable1.getModel();
+                        for (int i = 0; i < indexs.length; i++) {
+                            rows[0] = model1.getValueAt(indexs[i], 0);
+                            rows[1] = model1.getValueAt(indexs[i], 1);
+                            rows[2] = model1.getValueAt(indexs[i], 2);
+                            rows[3] = model1.getValueAt(indexs[i], 3);
+                            rows[4] = model1.getValueAt(indexs[i], 4);
+                            model2.addRow(rows);
+                            
+                        }
+                    } else {
+                    for (int j = 0; j < dataTable2.getRowCount(); j++) {
+                        tangSoLuongDal = new HandleTangSoLuongDal(null, true);
+                        int t1Row = dataTable2.getSelectedRow();
+                        int id = Integer.parseInt(dataTable1.getValueAt(j, 0).toString());
+                        int t2RowID = Integer.parseInt(dataTable2.getValueAt(t1Row, 0).toString());
+                        if (id != t2RowID) {
+                            TableModel model1 = dataTable2.getModel();
+                            int[] indexs = dataTable2.getSelectedRows();
+                            Object[] rows = new Object[5];
+                            DefaultTableModel model2 = (DefaultTableModel) dataTable1.getModel();
+                            for (int i = 0; i < indexs.length; i++) {
+                                rows[0] = model1.getValueAt(indexs[i], 0);
+                                rows[1] = model1.getValueAt(indexs[i], 1);
+                                rows[2] = model1.getValueAt(indexs[i], 2);
+                                rows[3] = model1.getValueAt(indexs[i], 3);
+                                rows[4] = model1.getValueAt(indexs[i], 4);
+                                model2.addRow(rows);
+                                
+                            }
+                        } else {
+                            tangSoLuongDal = new HandleTangSoLuongDal(null, true);
+                            double soLuong = Double.parseDouble(dataTable1.getValueAt(t1Row, 3).toString()) + 1;
+                            dataTable1.setValueAt(soLuong, j, 3);
+                        }
+
+                    }
+                }
+                }
+            }
+
+        });
+        dataTable1.getModel().addTableModelListener(
+                new TableModelListener() {
+            public void tableChanged(TableModelEvent evt) {
+//for (int j = 0; j < dataTable2.getRowCount(); j++) {
+//                            int id = Integer.parseInt(dataTable1.getValueAt(j, 0).toString());
+//                            int t1Row = dataTable2.getSelectedRow();
+//                            int t1RowID = Integer.parseInt(dataTable2.getValueAt(t1Row, 0).toString());
+//                            if (id == t1RowID) {
+//                                double soLuong = Double.parseDouble(dataTable1.getValueAt(t1Row, 3).toString()) + 1;
+//                                dataTable1.setValueAt(soLuong, j, 3);
+//                            }
+//}
+                System.out.print("aa");
+                hoaDonTable();
+            }
+
+        });
     }
 
     private void init() {
@@ -39,9 +124,9 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         searchText1 = new com.raven.swing.SearchText();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        dataTable1 = new com.raven.swing.TableColumn();
-        jScrollPane3 = new javax.swing.JScrollPane();
         dataTable2 = new com.raven.swing.TableColumn();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        dataTable1 = new com.raven.swing.TableColumn();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -82,7 +167,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
         jScrollPane2.setBorder(null);
 
-        dataTable1.setModel(new javax.swing.table.DefaultTableModel(
+        dataTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -98,36 +183,36 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                 return canEdit [columnIndex];
             }
         });
-        dataTable1.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 200));
-        jScrollPane2.setViewportView(dataTable1);
+        dataTable2.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 200));
+        jScrollPane2.setViewportView(dataTable2);
 
         jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
         jScrollPane3.setBorder(null);
 
-        dataTable2.setModel(new javax.swing.table.DefaultTableModel(
+        dataTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "No", "Name", "Gender", "Age", "Email", "Phone Number", "Title 7", "Title 8", "Title 9", "Title 10"
+                "No", "Name", "Gender", "Age", "Title 5"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, true, true, true
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        dataTable2.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 250));
-        dataTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+        dataTable1.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 250));
+        dataTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dataTable2MouseClicked(evt);
+                dataTable1MouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(dataTable2);
+        jScrollPane3.setViewportView(dataTable1);
 
         jPanel2.add(jScrollPane3, java.awt.BorderLayout.PAGE_START);
 
@@ -195,8 +280,13 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
         txtTongTien.setFont(new java.awt.Font("UTM Avo", 2, 14)); // NOI18N
         txtTongTien.setForeground(new java.awt.Color(0, 51, 51));
-        txtTongTien.setText("50.000.000");
+        txtTongTien.setText("000000");
         txtTongTien.setEnabled(false);
+        txtTongTien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTongTienActionPerformed(evt);
+            }
+        });
 
         btnHienThi.setForeground(new java.awt.Color(0, 51, 51));
         btnHienThi.setText("0%");
@@ -299,65 +389,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        if (dataTable2.getRowCount() == 0) {
 
-            TableModel model1 = dataTable1.getModel();
-
-            int[] indexs = dataTable1.getSelectedRows();
-
-            Object[] row = new Object[7];
-
-            DefaultTableModel model2 = (DefaultTableModel) dataTable2.getModel();
-            for (int i = 0; i < indexs.length; i++) {
-                row[0] = model1.getValueAt(indexs[i], 0);
-
-                row[1] = model1.getValueAt(indexs[i], 1);
-
-                row[2] = model1.getValueAt(indexs[i], 2);
-
-                row[3] = model1.getValueAt(indexs[i], 3);
-                row[4] = model1.getValueAt(indexs[i], 4);
-                row[5] = model1.getValueAt(indexs[i], 5);
-                row[6] = model1.getValueAt(indexs[i], 6);
-
-                model2.addRow(row);
-                hoaDonTable();
-            }
-        } else {
-            for (int j = 0; j < dataTable1.getRowCount(); j++) {
-                int id = Integer.parseInt(dataTable2.getValueAt(j, 0).toString());
-                int t1Row = dataTable1.getSelectedRow();
-                int t1RowID = Integer.parseInt(dataTable1.getValueAt(t1Row, 0).toString());
-                if (id == t1RowID) {
-                    double soLuong = Double.parseDouble(dataTable2.getValueAt(t1Row, 5).toString()) + 1;
-                    dataTable2.setValueAt(soLuong, j, 5);
-                } else {
-                    TableModel model1 = dataTable1.getModel();
-
-                    int[] indexs = dataTable1.getSelectedRows();
-
-                    Object[] row = new Object[7];
-
-                    DefaultTableModel model2 = (DefaultTableModel) dataTable2.getModel();
-                    for (int i = 0; i < indexs.length; i++) {
-                        row[0] = model1.getValueAt(indexs[i], 0);
-
-                        row[1] = model1.getValueAt(indexs[i], 1);
-
-                        row[2] = model1.getValueAt(indexs[i], 2);
-
-                        row[3] = model1.getValueAt(indexs[i], 3);
-                        row[4] = model1.getValueAt(indexs[i], 4);
-                        row[5] = model1.getValueAt(indexs[i], 5);
-                        row[6] = model1.getValueAt(indexs[i], 6);
-
-                        model2.addRow(row);
-                        hoaDonTable();
-                    }
-                }
-
-            }
-        }
 
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -367,10 +399,10 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
     }//GEN-LAST:event_txtThanhToanActionPerformed
 
-    private void dataTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataTable2MouseClicked
+    private void dataTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataTable1MouseClicked
 
 
-    }//GEN-LAST:event_dataTable2MouseClicked
+    }//GEN-LAST:event_dataTable1MouseClicked
 
     private void cbbKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbKhuyenMaiMouseClicked
         // TODO add your handling code here:
@@ -402,6 +434,10 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         btnHienThi.setText(String.valueOf(khuyenMai.getPhanTramKhuyenMai() + " %"));
 
     }//GEN-LAST:event_cbbKhuyenMaiItemStateChanged
+
+    private void txtTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTongTienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTongTienActionPerformed
 // public boolean isExist(String code) {
 //        boolean result;
 //            try {
@@ -423,10 +459,13 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
     public void hoaDonTable() {
         double giamGia, khachCanTra, tienKhachDua, tienThua;
-        DefaultTableModel t = (DefaultTableModel) dataTable2.getModel();
+        DefaultTableModel t = (DefaultTableModel) dataTable1.getModel();
+        DefaultTableModel t2 = (DefaultTableModel) dataTable2.getModel();
+
         double total = 0;
+        double tienTungMon = 0;
         for (int i = 0; i < t.getRowCount(); i++) {
-            total = total + Double.parseDouble(t.getValueAt(i, 4).toString());
+            total = total + (Double.parseDouble(t.getValueAt(i, 3).toString()) * Double.parseDouble(t.getValueAt(i, 2).toString()));
             txtTongTien.setText(Double.toString(total));
 
         }
@@ -468,12 +507,12 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
     @Override
     public void viewList(List<Object[]> rows) {
-        ViewImp.viewList(rows, dataTable1);
+        ViewImp.viewList(rows, dataTable2);
     }
 
     @Override
     public void setColumnNames(String[] columnNames) {
-        ViewImp.setColumnNames(columnNames, dataTable1);
+        ViewImp.setColumnNames(columnNames, dataTable2);
     }
 
     private BanHangController banHangController;

@@ -20,8 +20,8 @@ public class NhanVien extends TableInterface {
     private String CMND;
     private String soDienThoai;
     private String email;
-    private Integer lv;
     private Date ngayVaoLam;
+    private Integer lv;    
     private String tenDangNhap;
     private String matKhau;
     private String trangThai;
