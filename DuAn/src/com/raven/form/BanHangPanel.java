@@ -21,7 +21,9 @@ import javax.swing.table.TableModel;
 import net.sf.oval.ConstraintViolation;
 
 public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
-private HandleTangSoLuongDal tangSoLuongDal = null;
+
+    private HandleTangSoLuongDal tangSoLuongDal = null;
+
     public BanHangPanel() {
         initComponents();
         setOpaque(false);
@@ -38,58 +40,62 @@ private HandleTangSoLuongDal tangSoLuongDal = null;
 //            new ButtonEditor(new JCheckBox()));
         dataTable2.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent me) {
-                if (me.getClickCount() == 2) {    
-                    
-                       if (tangSoLuongDal == null) {
-            tangSoLuongDal = new HandleTangSoLuongDal(null, true);   }         
+                if (me.getClickCount() == 2) {
+                    tangSoLuongDal = new HandleTangSoLuongDal(null, true);
+                    tangSoLuongDal.setVisible(true);
+                    if (tangSoLuongDal == null) {
+                        tangSoLuongDal = new HandleTangSoLuongDal(null, true);
+                    }
 
                     if (dataTable1.getRowCount() == 0) {
 
-                        TableModel model1 = dataTable2.getModel();
+                        TableModel model2 = dataTable2.getModel();
 
                         int[] indexs = dataTable2.getSelectedRows();
 
                         Object[] rows = new Object[5];
 
-                        DefaultTableModel model2 = (DefaultTableModel) dataTable1.getModel();
+                        DefaultTableModel model1 = (DefaultTableModel) dataTable1.getModel();
                         for (int i = 0; i < indexs.length; i++) {
-                            rows[0] = model1.getValueAt(indexs[i], 0);
-                            rows[1] = model1.getValueAt(indexs[i], 1);
-                            rows[2] = model1.getValueAt(indexs[i], 2);
-                            rows[3] = model1.getValueAt(indexs[i], 3);
-                            rows[4] = model1.getValueAt(indexs[i], 4);
-                            model2.addRow(rows);
+                            rows[0] = model2.getValueAt(indexs[i], 0);
+                            rows[1] = model2.getValueAt(indexs[i], 1);
+                            rows[2] = model2.getValueAt(indexs[i], 2);
+                            rows[3] = model2.getValueAt(indexs[i], 3);
+                            rows[4] = model2.getValueAt(indexs[i], 4);
+                            model1.addRow(rows);
+
+                        }
+                    } else {                        
+                        int t2RowID = Integer.parseInt(dataTable2.getValueAt(dataTable2.getSelectedRow(), 0).toString());
+                        Object[] rowData = new Object[dataTable1.getRowCount()];
+                        for (int i = 0; i < dataTable1.getRowCount(); i++) {
+                            rowData[i] = dataTable1.getValueAt(i,0);
+                            System.out.println(rowData[i]);
+                            if (t2RowID== (int) rowData[i]) {
+                            double soLuong = Double.parseDouble(dataTable1.getValueAt((int) rowData[i], 3).toString()) + 1;
+                                dataTable1.setValueAt(soLuong, (int) rowData[i], 3);
+                            } else {
+                            TableModel model2 = dataTable2.getModel();
+
+                        int[] indexs = dataTable2.getSelectedRows();
+
+                        Object[] rows = new Object[5];
+
+                        DefaultTableModel model1 = (DefaultTableModel) dataTable1.getModel();
+                        for (int j = 0; j < indexs.length; j++) {
+                            rows[0] = model2.getValueAt(indexs[j], 0);
+                            rows[1] = model2.getValueAt(indexs[j], 1);
+                            rows[2] = model2.getValueAt(indexs[j], 2);
+                            rows[3] = model2.getValueAt(indexs[j], 3);
+                            rows[4] = model2.getValueAt(indexs[j], 4);
+                            model1.addRow(rows);
+                            }
                             
                         }
-                    } else {
-                    for (int j = 0; j < dataTable2.getRowCount(); j++) {
-                        tangSoLuongDal = new HandleTangSoLuongDal(null, true);
-                        int t1Row = dataTable2.getSelectedRow();
-                        int id = Integer.parseInt(dataTable1.getValueAt(j, 0).toString());
-                        int t2RowID = Integer.parseInt(dataTable2.getValueAt(t1Row, 0).toString());
-                        if (id != t2RowID) {
-                            TableModel model1 = dataTable2.getModel();
-                            int[] indexs = dataTable2.getSelectedRows();
-                            Object[] rows = new Object[5];
-                            DefaultTableModel model2 = (DefaultTableModel) dataTable1.getModel();
-                            for (int i = 0; i < indexs.length; i++) {
-                                rows[0] = model1.getValueAt(indexs[i], 0);
-                                rows[1] = model1.getValueAt(indexs[i], 1);
-                                rows[2] = model1.getValueAt(indexs[i], 2);
-                                rows[3] = model1.getValueAt(indexs[i], 3);
-                                rows[4] = model1.getValueAt(indexs[i], 4);
-                                model2.addRow(rows);
-                                
-                            }
-                        } else {
-                            tangSoLuongDal = new HandleTangSoLuongDal(null, true);
-                            double soLuong = Double.parseDouble(dataTable1.getValueAt(t1Row, 3).toString()) + 1;
-                            dataTable1.setValueAt(soLuong, j, 3);
-                        }
+                        }}}
+                    
 
-                    }
-                }
-                }
+                
             }
 
         });
@@ -115,7 +121,36 @@ private HandleTangSoLuongDal tangSoLuongDal = null;
     private void init() {
 
     }
+    int idTonTai = 1;
 
+//    public boolean existsInTable(JTable table, Object[] entry) {
+//
+//        // Get row and column count
+//        int rowCount = table.getRowCount();
+//        int colCount = table.getColumnCount();
+//
+//        // Get Current Table Entry
+//        String curEntry = "";
+//        for (Object o : entry) {
+//            String e = o.toString();
+//            curEntry = curEntry + " " + e;
+//        }
+//
+//        // Check against all entries
+//        for (int i = 0; i < rowCount; i++) {
+//            String rowEntry = "";
+//            for (int j = 0; j < colCount; j++) {
+//                rowEntry = rowEntry + " " + table.getValueAt(i, j).toString();
+//            }
+//            if (rowEntry.equalsIgnoreCase(curEntry)) {
+//                idTonTai = j;
+//                System.out.println("id ton tai:" +idTonTai);
+//                return true;
+//            }
+//        }
+//        System.out.println("khong ton tai");
+//        return false;
+//    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

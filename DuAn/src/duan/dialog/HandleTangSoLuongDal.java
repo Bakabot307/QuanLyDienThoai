@@ -42,8 +42,8 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
         title = new javax.swing.JLabel();
         btnOk = new javax.swing.JLabel();
         btnGiam = new javax.swing.JLabel();
-        txtSoLuong = new javax.swing.JLabel();
         btnTang1 = new javax.swing.JLabel();
+        txtSoLuong = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -78,19 +78,6 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
             }
         });
 
-        txtSoLuong.setBackground(new java.awt.Color(0, 153, 153));
-        txtSoLuong.setFont(new java.awt.Font("UTM Avo", 0, 14)); // NOI18N
-        txtSoLuong.setForeground(new java.awt.Color(255, 255, 255));
-        txtSoLuong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtSoLuong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/save-as-16.png"))); // NOI18N
-        txtSoLuong.setText("SoLuong");
-        txtSoLuong.setOpaque(true);
-        txtSoLuong.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtSoLuongMouseClicked(evt);
-            }
-        });
-
         btnTang1.setBackground(new java.awt.Color(0, 153, 153));
         btnTang1.setFont(new java.awt.Font("UTM Avo", 0, 14)); // NOI18N
         btnTang1.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,6 +91,13 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
             }
         });
 
+        txtSoLuong.setText("jTextField1");
+        txtSoLuong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSoLuongActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,7 +105,7 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -123,24 +117,21 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
                                     .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(btnGiam, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                        .addGap(139, 139, 139)
+                        .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTang1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnGiam, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(btnTang1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(btnGiam, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
                 .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
@@ -160,21 +151,21 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
             txtSoLuong.setText(Integer.toString(soLuong));
     }//GEN-LAST:event_btnGiamMouseClicked
 
-    private void txtSoLuongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSoLuongMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSoLuongMouseClicked
-
     private void btnTang1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTang1MouseClicked
         soLuong=soLuong+1;
            txtSoLuong.setText(Integer.toString(soLuong));
        
     }//GEN-LAST:event_btnTang1MouseClicked
 
+    private void txtSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoLuongActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSoLuongActionPerformed
+
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
+   public static void main(String args[]) {
+       /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 //        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
 //         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -196,28 +187,28 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
 //            java.util.logging.Logger.getLogger(KhachHangDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
-//
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                KhachHangDialog dialog = new KhachHangDialog(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
+
+       /* Create and display the dialog */
+       java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                HandleTangSoLuongDal dialog = new HandleTangSoLuongDal(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnGiam;
+    public javax.swing.JLabel btnGiam;
     private javax.swing.JLabel btnOk;
     public javax.swing.JLabel btnTang1;
     private javax.swing.ButtonGroup buttonGroup1;
     public javax.swing.JLabel title;
-    private javax.swing.JLabel txtSoLuong;
+    private javax.swing.JTextField txtSoLuong;
     // End of variables declaration//GEN-END:variables
 }
