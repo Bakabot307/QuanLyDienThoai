@@ -21,6 +21,7 @@ public class DangNhapPnl extends javax.swing.JFrame {
     /**
      * Creates new form DangNhapPnl
      */
+    int xy, xx;
     private Bottom bottom = new Bottom();
     private LoginController loginController;
 
@@ -35,6 +36,7 @@ public class DangNhapPnl extends javax.swing.JFrame {
 
         txtTk.setText("admin");
         txtMk.setText("123");
+        this.icon2.setVisible(false);
     }
 
     public static String tenDangNhap = "";
@@ -51,71 +53,98 @@ public class DangNhapPnl extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        txtTk = new javax.swing.JTextField();
-        txtMk = new javax.swing.JTextField();
+        kGradientPanel1 = new com.raven.swing.KGradientPanel();
+        txtMk = new javax.swing.JPasswordField();
+        kButton11 = new com.raven.swing.KButton1();
+        kButton12 = new com.raven.swing.KButton1();
         errorLb = new javax.swing.JLabel();
-        btnThoat = new javax.swing.JLabel();
-        btnLogin = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtTk = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        icon1 = new javax.swing.JLabel();
+        icon2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        txtTk.setBackground(new Color(0,0,0,0));
-        txtTk.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        txtTk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTkActionPerformed(evt);
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel2MouseDragged(evt);
             }
         });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel2MousePressed(evt);
+            }
+        });
+
+        kGradientPanel1.setkEndColor(new java.awt.Color(51, 153, 255));
+        kGradientPanel1.setkStartColor(new java.awt.Color(153, 153, 255));
+        kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtMk.setBackground(new Color(0,0,0,0));
-        txtMk.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        txtMk.addActionListener(new java.awt.event.ActionListener() {
+        txtMk.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
+        txtMk.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        txtMk.setCaretColor(new java.awt.Color(204, 0, 255));
+        kGradientPanel1.add(txtMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 299, 30));
+
+        kButton11.setText("Exit");
+        kButton11.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
+        kButton11.setkBorderRadius(40);
+        kButton11.setkFillButton(false);
+        kButton11.setkHoverForeGround(new java.awt.Color(0, 0, 204));
+        kButton11.setkHoverStartColor(new java.awt.Color(0, 0, 204));
+        kButton11.setkStartColor(new java.awt.Color(255, 255, 255));
+        kButton11.setMaximumSize(new java.awt.Dimension(75, 22));
+        kButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMkActionPerformed(evt);
+                kButton11ActionPerformed(evt);
             }
         });
+        kGradientPanel1.add(kButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 123, 35));
+
+        kButton12.setText("Login");
+        kButton12.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
+        kButton12.setkBorderRadius(40);
+        kButton12.setkFillButton(false);
+        kButton12.setkHoverForeGround(new java.awt.Color(0, 0, 204));
+        kButton12.setkHoverStartColor(new java.awt.Color(0, 0, 204));
+        kButton12.setkStartColor(new java.awt.Color(255, 255, 255));
+        kButton12.setMaximumSize(new java.awt.Dimension(75, 22));
+        kButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kButton12ActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(kButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 123, 35));
 
         errorLb.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        errorLb.setForeground(new java.awt.Color(255, 51, 51));
+        errorLb.setForeground(new java.awt.Color(255, 0, 0));
         errorLb.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        kGradientPanel1.add(errorLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 258, 24));
 
-        btnThoat.setBackground(new java.awt.Color(0, 153, 255));
-        btnThoat.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
-        btnThoat.setForeground(new java.awt.Color(255, 255, 255));
-        btnThoat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnThoat.setText("Thoát");
-        btnThoat.setOpaque(true);
-        btnThoat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnThoatMouseClicked(evt);
-            }
-        });
+        jLabel4.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Username");
+        kGradientPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
 
-        btnLogin.setBackground(new java.awt.Color(0, 153, 255));
-        btnLogin.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnLogin.setText("Đăng Nhập");
-        btnLogin.setOpaque(true);
-        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLoginMouseClicked(evt);
-            }
-        });
+        txtTk.setBackground(new Color(0,0,0,0));
+        txtTk.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
+        txtTk.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        txtTk.setCaretColor(new java.awt.Color(204, 0, 255));
+        kGradientPanel1.add(txtTk, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 320, 30));
 
-        jLabel1.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
-        jLabel1.setText("Tên đăng nhập");
+        jLabel5.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Passworld");
+        kGradientPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
-        jLabel2.setText("Mật khẩu");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("X");
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -123,78 +152,63 @@ public class DangNhapPnl extends javax.swing.JFrame {
                 jLabel3MouseClicked(evt);
             }
         });
+        kGradientPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 30, 30));
+
+        jLabel1.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/shop-16.png"))); // NOI18N
+        jLabel1.setText("Phone Shop");
+        kGradientPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 9, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/shop-32.png"))); // NOI18N
+        kGradientPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 40, 38));
+
+        icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/eye.png"))); // NOI18N
+        icon1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                icon1MousePressed(evt);
+            }
+        });
+        kGradientPanel1.add(icon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, -1, 37));
+
+        icon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/invisible.png"))); // NOI18N
+        icon2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                icon2MousePressed(evt);
+            }
+        });
+        kGradientPanel1.add(icon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, -1, 37));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1))
-                .addGap(60, 60, 60)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(txtTk, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtMk, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(errorLb, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(71, Short.MAX_VALUE))
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtTk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtMk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errorLb, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        System.exit(0);        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void kButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton11ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_kButton11ActionPerformed
+
+    private void kButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton12ActionPerformed
         // TODO add your handling code here:
         String tk = txtTk.getText();
-        String mk = txtMk.getText();
+        String mk = String.valueOf(txtMk.getPassword());
         tenDangNhap = loginController.showName(tk, mk);
         level = loginController.showLevel(tk, mk);
         ID = loginController.showID(tk, mk);
@@ -208,24 +222,35 @@ public class DangNhapPnl extends javax.swing.JFrame {
         } else {
             errorLb.setText("Sai tên đăng nhập hoặc mật khẩu ! ");
         }
-    }//GEN-LAST:event_btnLoginMouseClicked
+    }//GEN-LAST:event_kButton12ActionPerformed
 
-    private void btnThoatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThoatMouseClicked
+    private void icon1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon1MousePressed
         // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_btnThoatMouseClicked
+        icon2.setVisible(true);
+        icon1.setVisible(false);
+        txtMk.setEchoChar((char) '*');
+    }//GEN-LAST:event_icon1MousePressed
 
-    private void txtMkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMkActionPerformed
+    private void icon2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon2MousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMkActionPerformed
 
-    private void txtTkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTkActionPerformed
+        icon1.setVisible(true);
+        icon2.setVisible(false);
+        txtMk.setEchoChar((char) 0);
+    }//GEN-LAST:event_icon2MousePressed
+
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTkActionPerformed
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - xy);
+    }//GEN-LAST:event_jPanel2MouseDragged
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        System.exit(0);        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel3MouseClicked
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+        // TODO add your handling code here:
+        xx = evt.getX();
+        xy = evt.getY();
+    }//GEN-LAST:event_jPanel2MousePressed
 
     /**
      * @param args the command line arguments
@@ -263,14 +288,19 @@ public class DangNhapPnl extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnLogin;
-    private javax.swing.JLabel btnThoat;
     private javax.swing.JLabel errorLb;
+    private javax.swing.JLabel icon1;
+    private javax.swing.JLabel icon2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtMk;
+    private com.raven.swing.KButton1 kButton11;
+    private com.raven.swing.KButton1 kButton12;
+    private com.raven.swing.KGradientPanel kGradientPanel1;
+    private javax.swing.JPasswordField txtMk;
     private javax.swing.JTextField txtTk;
     // End of variables declaration//GEN-END:variables
 }

@@ -167,7 +167,6 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1150, 750));
 
         body.setBackground(new java.awt.Color(245, 245, 245));
 
@@ -185,6 +184,7 @@ public class Main extends javax.swing.JFrame {
         getContentPane().add(body, java.awt.BorderLayout.CENTER);
 
         pnlTop.setBackground(new java.awt.Color(51, 153, 255));
+        pnlTop.setDoubleBuffered(false);
         pnlTop.setPreferredSize(new java.awt.Dimension(1024, 30));
         pnlTop.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
