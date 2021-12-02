@@ -15,7 +15,7 @@ import java.util.Dictionary;
  *
  * @author Admin
  */
-public class NhaCungCapController extends AbsController<NhaCungCap>{
+public class NhaCungCapController extends AbsController<NhaCungCap> {
 
     public NhaCungCapController(ViewInterface view) {
         super(view);
@@ -28,17 +28,17 @@ public class NhaCungCapController extends AbsController<NhaCungCap>{
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Sản Phẩm", "ID Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập","Giá Bán" ,"Số Lượng","Đơn Vị Tính"};
+        return new String[]{"ID nhà cung cấp", "Tên nhà cung cấp", "Số điện thoại", "Email", "Tổng mua", "Địa chỉ", "Ghi chú"};
     }
 
     @Override
     protected void setViewBagInfo(Dictionary<String, Object> viewBag) {
-        
+
     }
 
     @Override
     public String getName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

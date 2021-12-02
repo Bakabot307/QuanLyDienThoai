@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,7 +46,182 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
     public NhanVienPnl() {
         initComponents();
         NhanVienController nhanVienController = new NhanVienController(this);
+        if (nhanVienDal == null) {
+            nhanVienDal = new HandleNhanVienDal(null, true);
+            nhanVienDal.addBT.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    //validate
+                    if (nhanVienDal.txtTen.getText().trim().equals("")) {
+                        nhanVienDal.errorlb.setText("Vui lòng điền tên ! ");
+                        return;
+                    }
+                    if (nhanVienDal.txtDiaChi.getText().trim().equals("")) {
+                        nhanVienDal.errorlb.setText("Vui lòng điền địa chỉ ! ");
+                        return;
+                    }
+                    if (nhanVienDal.txtCMND.getText().trim().equals("")) {
+                        nhanVienDal.errorlb.setText("Vui lòng điền số CMND ! ");
+                        return;
+                    }
+                    if (nhanVienDal.txtEmail.getText().trim().equals("")) {
+                        nhanVienDal.errorlb.setText("Vui lòng điền Email ! ");
+                        return;
+                    }
+                    if (!nhanVienDal.txtEmail.getText().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+                        nhanVienDal.errorlb.setText("Email không hợp lệ ! ");
+                        return;
+                    }
 
+                    if (nhanVienDal.txtSdt.getText().trim().equals("")) {
+                        nhanVienDal.errorlb.setText("Vui lòng điền số điện thoại ! ");
+                        return;
+                    }
+                    if (!nhanVienDal.txtSdt.getText().matches("^\\d{10}$")) {
+                        nhanVienDal.errorlb.setText("Số điện thoại không hợp lệ ! ");
+                        return;
+                    }
+
+                    if (nhanVienDal.txtTrangThai.getText().trim().equals("")) {
+                        nhanVienDal.errorlb.setText("Vui lòng điền trạng thái ! ");
+                        return;
+                    }
+                    if (nhanVienDal.dcNgayVaoLam.getDate() == null) {
+                        nhanVienDal.errorlb.setText("Ngày vào làm không được bỏ trống ! ");
+                        return;
+                    }
+
+                    if (nhanVienDal.dcNgayVaoLam.getDate().after(new Date())) {
+                        nhanVienDal.errorlb.setText("Ngày vào làm không được quá ngày hiện tại ! ");
+                        return;
+                    }
+
+                    if (nhanVienDal.txtChucVu.getText().trim().equals("")) {
+                        nhanVienDal.errorlb.setText("Vui lòng điền chức vụ ! ");
+                        return;
+                    }
+                    if (nhanVienDal.txtTenDN.getText().trim().equals("")) {
+                        nhanVienDal.errorlb.setText("Vui lòng điền tên đăng nhập ! ");
+                        return;
+                    }
+                    if (String.valueOf(nhanVienDal.txtMK.getPassword()).trim().equals("")) {
+                        nhanVienDal.errorlb.setText("Vui lòng điền mật khẩu ! ");
+                        return;
+                    }
+
+                    Object[] values = new Object[12];
+                    values[0] = 0;
+                    values[1] = nhanVienDal.txtTen.getText();
+                    if (nhanVienDal.cbNam.isSelected()) {
+                        values[2] = "Nam";
+                    } else if (!nhanVienDal.cbNu.isSelected() && !nhanVienDal.cbNam.isSelected()) {
+                        JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    } else {
+                        values[2] = "Nữ";
+                    }
+                    values[3] = nhanVienDal.txtDiaChi.getText();
+                    values[4] = nhanVienDal.txtCMND.getText();
+                    values[5] = nhanVienDal.txtSdt.getText();
+                    values[6] = nhanVienDal.txtEmail.getText();
+
+                    values[7] = nhanVienDal.dcNgayVaoLam.getDate();
+                    System.out.println(values[7]);
+
+                    values[8] = Integer.parseInt(nhanVienDal.txtChucVu.getText());
+                    values[9] = nhanVienDal.txtTenDN.getText();
+                    values[10] = String.valueOf(nhanVienDal.txtMK.getPassword());
+                    values[11] = nhanVienDal.txtTrangThai.getText();
+
+                    nhanVienController.insert(values);
+                }
+            });
+        }
+
+        nhanVienDal.editBT.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //validate
+                if (nhanVienDal.txtTen.getText().trim().equals("")) {
+                    nhanVienDal.errorlb.setText("Vui lòng điền tên ! ");
+                    return;
+                }
+                if (nhanVienDal.txtDiaChi.getText().trim().equals("")) {
+                    nhanVienDal.errorlb.setText("Vui lòng điền địa chỉ ! ");
+                    return;
+                }
+                if (nhanVienDal.txtCMND.getText().trim().equals("")) {
+                    nhanVienDal.errorlb.setText("Vui lòng điền số CMND ! ");
+                    return;
+                }
+                if (nhanVienDal.txtEmail.getText().trim().equals("")) {
+                    nhanVienDal.errorlb.setText("Vui lòng điền Email ! ");
+                    return;
+                }
+                if (!nhanVienDal.txtEmail.getText().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+                    nhanVienDal.errorlb.setText("Email không hợp lệ ! ");
+                    return;
+                }
+
+                if (nhanVienDal.txtSdt.getText().trim().equals("")) {
+                    nhanVienDal.errorlb.setText("Vui lòng điền số điện thoại ! ");
+                    return;
+                }
+                if (!nhanVienDal.txtSdt.getText().matches("^\\d{10}$")) {
+                    nhanVienDal.errorlb.setText("Số điện thoại không hợp lệ ! ");
+                    return;
+                }
+
+                if (nhanVienDal.txtTrangThai.getText().trim().equals("")) {
+                    nhanVienDal.errorlb.setText("Vui lòng điền trạng thái ! ");
+                    return;
+                }
+                if (nhanVienDal.dcNgayVaoLam.getDate() == null) {
+                    nhanVienDal.errorlb.setText("Ngày vào làm không được bỏ trống ! ");
+                    return;
+                }
+
+                if (nhanVienDal.dcNgayVaoLam.getDate().after(new Date())) {
+                    nhanVienDal.errorlb.setText("Ngày vào làm không được quá ngày hiện tại ! ");
+                    return;
+                }
+
+                if (nhanVienDal.txtChucVu.getText().trim().equals("")) {
+                    nhanVienDal.errorlb.setText("Vui lòng điền chức vụ ! ");
+                    return;
+                }
+                if (nhanVienDal.txtTenDN.getText().trim().equals("")) {
+                    nhanVienDal.errorlb.setText("Vui lòng điền tên đăng nhập ! ");
+                    return;
+                }
+                if (String.valueOf(nhanVienDal.txtMK.getPassword()).trim().equals("")) {
+                    nhanVienDal.errorlb.setText("Vui lòng điền mật khẩu ! ");
+                    return;
+                }
+
+                Object[] values = new Object[12];
+                values[0] = editId;
+                values[1] = nhanVienDal.txtTen.getText();
+                if (nhanVienDal.cbNam.isSelected()) {
+                    values[2] = "Nam";
+                } else if (!nhanVienDal.cbNu.isSelected() && !nhanVienDal.cbNam.isSelected()) {
+                    JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                } else {
+                    values[2] = "Nữ";
+                }
+                values[3] = nhanVienDal.txtDiaChi.getText();
+                values[4] = nhanVienDal.txtCMND.getText();
+                values[5] = nhanVienDal.txtSdt.getText();
+                values[6] = nhanVienDal.txtEmail.getText();
+                values[7] = nhanVienDal.dcNgayVaoLam.getDate();
+                values[8] = Integer.parseInt(nhanVienDal.txtChucVu.getText());
+                values[9] = nhanVienDal.txtTenDN.getText();
+                values[10] = String.valueOf(nhanVienDal.txtMK.getPassword());
+                values[11] = nhanVienDal.txtTrangThai.getText();
+                nhanVienController.edit(values);
+            }
+        });
     }
 
     /**
@@ -180,19 +356,7 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
         // TODO add your handling code here:
-
-        if (nhanVienDal == null) {
-            nhanVienDal = new HandleNhanVienDal(null, true);
-            nhanVienDal.editBT.setEnabled(false);
-            nhanVienDal.addBT.setEnabled(true);
-            ThemData();
-
-        } else {
-            nhanVienDal.editBT.setEnabled(false);
-            nhanVienDal.addBT.setEnabled(true);
-            ThemData();
-
-        }
+        nhanVienDal.errorlb.setText("");
         nhanVienDal.txtTen.setText("");
         nhanVienDal.txtSdt.setText("");
         nhanVienDal.txtDiaChi.setText("");
@@ -206,7 +370,7 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
         nhanVienDal.txtTenDN.setText("");
         nhanVienDal.txtMK.setText("");
         String tieuDe = (String) nhanVienController.getViewBag().get("tieu_de");
-        nhanVienDal.title.setText("Thêm Nhân Viên " + tieuDe);
+        nhanVienDal.title.setText("Thêm Nhân Viên ");
         nhanVienDal.setVisible(true);
     }//GEN-LAST:event_btnThemMouseClicked
     private Integer editId;
@@ -218,22 +382,12 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
             JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn dòng cần sửa ! ", "Thông báo", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        nhanVienDal.errorlb.setText("");
         editId = (Integer) tblNhanVien.getValueAt(tblNhanVien.getSelectedRow(), 0);
-        if (nhanVienDal == null) {
-            nhanVienDal = new HandleNhanVienDal(null, true);
-            nhanVienDal.title.setText("Cập Nhật Nhân Viên");
-            nhanVienDal.addBT.setEnabled(false);
-            nhanVienDal.editBT.setEnabled(true);
-            SuaData();
-        } else {
-            nhanVienDal.title.setText("Cập Nhật Nhân Viên");
-            nhanVienDal.addBT.setEnabled(false);
-            nhanVienDal.editBT.setEnabled(true);
-            SuaData();
-        }
+
         int dong = tblNhanVien.getSelectedRow();
         nhanVienDal.txtTen.setText(tblNhanVien.getValueAt(dong, 1).toString());
-         if (tblNhanVien.getValueAt(dong, 2).toString().equals("Nam")) {
+        if (tblNhanVien.getValueAt(dong, 2).toString().equals("Nam")) {
             nhanVienDal.cbNam.setSelected(true);
         } else {
             nhanVienDal.cbNam.setSelected(false);
@@ -246,8 +400,8 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
         nhanVienDal.txtDiaChi.setText(tblNhanVien.getValueAt(dong, 3).toString());
         nhanVienDal.txtCMND.setText(tblNhanVien.getValueAt(dong, 4).toString());
         nhanVienDal.txtSdt.setText(tblNhanVien.getValueAt(dong, 5).toString());
-        nhanVienDal.txtEmail.setText(tblNhanVien.getValueAt(dong, 6).toString());       
-       
+        nhanVienDal.txtEmail.setText(tblNhanVien.getValueAt(dong, 6).toString());
+
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         try {
             nhanVienDal.dcNgayVaoLam.setDate(df.parse(tblNhanVien.getValueAt(dong, 7).toString()));
@@ -259,70 +413,11 @@ public class NhanVienPnl extends javax.swing.JPanel implements ViewInterface {
         nhanVienDal.txtMK.setText(tblNhanVien.getValueAt(dong, 10).toString());
         nhanVienDal.txtTrangThai.setText(tblNhanVien.getValueAt(dong, 11).toString());
         String tieuDe = (String) nhanVienController.getViewBag().get("tieu_de");
-        nhanVienDal.title.setText("Cập nhập Khách Hàng " + tieuDe);
+        nhanVienDal.title.setText("Cập Nhập Nhân Viên ");
         nhanVienDal.setVisible(true);
     }//GEN-LAST:event_btnCapNhapMouseClicked
-    private void ThemData() {
-        nhanVienDal.addBT.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Object[] values = new Object[12];
-                values[0] = 0;
-                values[1] = nhanVienDal.txtTen.getText();
-                if (nhanVienDal.cbNam.isSelected()) {
-                    values[2] = "Nam";
-                } else if (!nhanVienDal.cbNu.isSelected() && !nhanVienDal.cbNam.isSelected()) {
-                    JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
-                    return;
-                } else {
-                    values[2] = "Nữ";
-                }
-                values[3] = nhanVienDal.txtDiaChi.getText();
-                values[4] = nhanVienDal.txtCMND.getText();
-                values[5] = nhanVienDal.txtSdt.getText();
-                values[6] = nhanVienDal.txtEmail.getText();
 
-                values[7] = nhanVienDal.dcNgayVaoLam.getDate();
-                System.out.println(values[7]);
 
-                values[8] = Integer.parseInt(nhanVienDal.txtChucVu.getText());
-                values[9] = nhanVienDal.txtTenDN.getText();
-                values[10] = String.valueOf(nhanVienDal.txtMK.getPassword());
-                values[11] = nhanVienDal.txtTrangThai.getText();
-
-                nhanVienController.insert(values);
-            }
-        });
-    }
-
-    private void SuaData() {
-        nhanVienDal.editBT.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Object[] values = new Object[12];
-                values[0] = editId;
-                values[1] = nhanVienDal.txtTen.getText();
-                  if (nhanVienDal.cbNam.isSelected()) {
-                    values[2] = "Nam";
-                } else if (!nhanVienDal.cbNu.isSelected() && !nhanVienDal.cbNam.isSelected()) {
-                    JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn giới tính !", "Error", JOptionPane.INFORMATION_MESSAGE);
-                    return;
-                } else {
-                    values[2] = "Nữ";
-                }
-                values[3] = nhanVienDal.txtDiaChi.getText();
-                values[4] = nhanVienDal.txtCMND.getText();
-                values[5] = nhanVienDal.txtSdt.getText();
-                values[6] = nhanVienDal.txtEmail.getText();                          
-                values[7] = nhanVienDal.dcNgayVaoLam.getDate();
-                values[8] = Integer.parseInt(nhanVienDal.txtChucVu.getText());
-                values[9] = nhanVienDal.txtTenDN.getText();
-                values[10] = String.valueOf(nhanVienDal.txtMK.getPassword());
-                values[11] = nhanVienDal.txtTrangThai.getText();
-                nhanVienController.edit(values);
-            }
-        });
-    }
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         exportExcel(tblNhanVien);

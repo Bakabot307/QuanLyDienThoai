@@ -9,6 +9,7 @@ import com.raven.form.DangNhapPnl;
 import com.raven.form.HoaDonPnl;
 import com.raven.form.KhachHangPanel;
 import com.raven.form.LoaiSanPhamPnl;
+import com.raven.form.NhaCungCapPnl;
 import com.raven.form.NhanVienPnl;
 import com.raven.form.PhieuBaoHanhPnl;
 import com.raven.form.PhieuNhapPnl;
@@ -99,7 +100,7 @@ public class Main extends javax.swing.JFrame {
                 } else if (index == 8) {
                     showForm(new PhieuBaoHanhPnl());
                 } else if (index == 9) {
-                    showForm(new KhachHangPanel());
+                    showForm(new NhaCungCapPnl());
                 } else if (index == 10) {
                     showForm(new PhieuNhapPnl());
                 }
@@ -167,6 +168,7 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1250, 750));
 
         body.setBackground(new java.awt.Color(245, 245, 245));
 

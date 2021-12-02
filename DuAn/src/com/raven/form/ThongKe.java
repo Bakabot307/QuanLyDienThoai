@@ -1,11 +1,16 @@
 package com.raven.form;
 
+import Controller.AbsController;
+import Controller.HoaDonController;
+
+import VIEW.ViewInterface;
 import com.raven.chart.ModelChart;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
-import com.raven.form.themxoasua;
+import java.util.List;
+import net.sf.oval.ConstraintViolation;
 
-public class ThongKe extends javax.swing.JPanel {
+public class ThongKe extends javax.swing.JPanel implements ViewInterface {
 
     public ThongKe() {
         initComponents();
@@ -13,30 +18,35 @@ public class ThongKe extends javax.swing.JPanel {
         init();
     }
 
-
     private void init() {
-        
+        HoaDonController hoaDonController = new HoaDonController(this);
+        System.out.println(hoaDonController.loadMonth());
+
+//        List<Integer> ok = hoaDonController.loadMonth();
+//        for (int i = 0; i < ok.size(); i++) {
+//            System.out.println(ok.get(i));
+//        }
         chart.addLegend("Income", new Color(245, 189, 135));
         chart.addLegend("Expense", new Color(135, 189, 245));
         chart.addLegend("Profit", new Color(189, 135, 245));
         chart.addLegend("Cost", new Color(139, 229, 222));
-        chart.addData(new ModelChart("January", new double[]{100, 150, 200, 500}));
+        chart.addData(new ModelChart("January", new double[]{100, 150, 200, 900}));
         chart.addData(new ModelChart("February", new double[]{600, 750, 300, 150}));
         chart.addData(new ModelChart("March", new double[]{200, 350, 1000, 900}));
         chart.addData(new ModelChart("April", new double[]{480, 150, 750, 700}));
         chart.addData(new ModelChart("May", new double[]{350, 540, 300, 150}));
         chart.addData(new ModelChart("June", new double[]{190, 500, 700, 1000}));
         DefaultTableModel model = (DefaultTableModel) table.getModel();
+
         model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
         model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
         model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
         model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
         model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
         model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
-        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
-        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
-      
-     
+        model.addRow(new Object[]{2, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+        model.addRow(new Object[]{3, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+
     }
 
     @SuppressWarnings("unchecked")
@@ -154,4 +164,24 @@ public class ThongKe extends javax.swing.JPanel {
     private com.raven.swing.ScrollBar scrollBar1;
     private com.raven.swing.TableColumn table;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void viewList(List<Object[]> rows) {
+
+    }
+
+    @Override
+    public void setColumnNames(String[] columnNames) {
+
+    }
+
+    @Override
+    public void setController(AbsController controller) {
+
+    }
+
+    @Override
+    public void showErrors(List<ConstraintViolation> errorList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

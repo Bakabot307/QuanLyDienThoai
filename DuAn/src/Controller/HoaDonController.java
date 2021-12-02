@@ -10,6 +10,7 @@ import DAO.HoaDonDAO;
 import MODEL.HoaDon;
 import VIEW.ViewInterface;
 import java.util.Dictionary;
+import java.util.List;
 
 /**
  *
@@ -20,6 +21,16 @@ public class HoaDonController extends AbsController<HoaDon> {
     public HoaDonController(ViewInterface view) {
         super(view);
         hoaDonDAO = new HoaDonDAO();
+    }
+
+    public List<Integer> loadMonth() {
+        return hoaDonDAO.loadThang();
+
+    }
+
+    public String layT() {
+        return hoaDonDAO.layT();
+
     }
 
     private HoaDonDAO hoaDonDAO;

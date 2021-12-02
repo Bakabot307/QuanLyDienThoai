@@ -6,18 +6,15 @@
 package com.raven.form;
 
 import Controller.AbsController;
-import Controller.KhachHangController;
+import Controller.ChuyenDoi;
 import Controller.SanPhamController;
 import MODEL.LoaiSanPham;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
-import duan.dialog.HandleKhachHangDal;
 import duan.dialog.HandleSanPhamDal;
-import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
@@ -25,7 +22,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import net.sf.oval.ConstraintViolation;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -52,6 +48,40 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
             sanPhamDal.addBT.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    //validate
+                    double giaNhap = ChuyenDoi.SoDouble(sanPhamDal.txtGiaNhap.getText());
+                    double giaBan = ChuyenDoi.SoDouble(sanPhamDal.txtGiaBan.getText());
+                    Integer soLuong = Integer.parseInt(sanPhamDal.spnSoLuong.getValue().toString());
+
+                    if (sanPhamDal.txtTen.getText().trim().equals("")) {
+                        sanPhamDal.errorLB.setText("Vui lòng điền tên sản phẩm ! ");
+                        return;
+                    }
+
+                    if (giaNhap < 10000) {
+                        sanPhamDal.errorLB.setText("Giá nhập phải lớn hơn 10.000 ");
+                        return;
+                    }
+
+                    if (giaBan < 10000) {
+                        sanPhamDal.errorLB.setText("Giá bán phải lớn hơn 10.000 ");
+                        return;
+                    }
+
+                    if (giaBan < giaNhap) {
+                        sanPhamDal.errorLB.setText("Giá bán phải lớn hơn giá nhập ! ");
+                        return;
+                    }
+
+                    if (soLuong < 1) {
+                        sanPhamDal.errorLB.setText("Số lượng phải lớn hơn 0 ! ");
+                        return;
+                    }
+
+                    if (sanPhamDal.txtDVT.getText().trim().equals("")) {
+                        sanPhamDal.errorLB.setText("Vui lòng điền đơn vị tính ! ");
+                        return;
+                    }
                     LoaiSanPham loaiSp = (LoaiSanPham) sanPhamDal.cbbLoaiSP.getSelectedItem();
                     Integer idLoaiSP = loaiSp.getId();
                     System.out.println(idLoaiSP);
@@ -60,8 +90,8 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                     values[0] = 0;
                     values[1] = idLoaiSP;
                     values[2] = sanPhamDal.txtTen.getText();
-                    values[3] = Double.valueOf(sanPhamDal.txtGiaNhap.getText());
-                    values[4] = Double.valueOf(sanPhamDal.txtGiaBan.getText());
+                    values[3] = giaNhap;
+                    values[4] = giaBan;
                     values[5] = Integer.valueOf(sanPhamDal.spnSoLuong.getValue().toString());
 
                     values[6] = sanPhamDal.txtDVT.getText();
@@ -73,6 +103,40 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
         sanPhamDal.editBT.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                //validate
+                double giaNhap = ChuyenDoi.SoDouble(sanPhamDal.txtGiaNhap.getText());
+                double giaBan = ChuyenDoi.SoDouble(sanPhamDal.txtGiaBan.getText());
+                Integer soLuong = Integer.parseInt(sanPhamDal.spnSoLuong.getValue().toString());
+
+                if (sanPhamDal.txtTen.getText().trim().equals("")) {
+                    sanPhamDal.errorLB.setText("Vui lòng điền tên sản phẩm ! ");
+                    return;
+                }
+
+                if (giaNhap < 10000) {
+                    sanPhamDal.errorLB.setText("Giá nhập phải lớn hơn 10.000 ");
+                    return;
+                }
+
+                if (giaBan < 10000) {
+                    sanPhamDal.errorLB.setText("Giá bán phải lớn hơn 10.000 ");
+                    return;
+                }
+
+                if (giaBan < giaNhap) {
+                    sanPhamDal.errorLB.setText("Giá bán phải lớn hơn giá nhập ! ");
+                    return;
+                }
+
+                if (soLuong < 1) {
+                    sanPhamDal.errorLB.setText("Số lượng phải lớn hơn 0 ! ");
+                    return;
+                }
+
+                if (sanPhamDal.txtDVT.getText().trim().equals("")) {
+                    sanPhamDal.errorLB.setText("Vui lòng điền đơn vị tính ! ");
+                    return;
+                }
                 LoaiSanPham loaiSp = (LoaiSanPham) sanPhamDal.cbbLoaiSP.getSelectedItem();
                 Integer idLoaiSP = loaiSp.getId();
                 System.out.println(idLoaiSP);
@@ -247,6 +311,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
         // TODO add your handling code here:
 
+        sanPhamDal.errorLB.setText("");
         sanPhamDal.txtTen.setText("");
         sanPhamDal.txtGiaNhap.setText("");
         sanPhamDal.txtGiaBan.setText("");
@@ -270,7 +335,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
 
         int dong = tblSanPham.getSelectedRow();
         sanPhamDal.txtTen.setText(tblSanPham.getValueAt(dong, 2).toString());
-
+        sanPhamDal.errorLB.setText("");
         sanPhamDal.txtGiaNhap.setText(tblSanPham.getValueAt(dong, 3).toString());
         sanPhamDal.txtGiaBan.setText(tblSanPham.getValueAt(dong, 4).toString());
         sanPhamDal.spnSoLuong.setValue(Integer.parseInt(tblSanPham.getValueAt(dong, 5).toString()));
