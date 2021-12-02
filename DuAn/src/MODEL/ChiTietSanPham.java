@@ -6,29 +6,17 @@ package MODEL;
 
 import Interface.TableInterface;
 
-
-
 /**
  *
  * @author gnaht
  */
 public class ChiTietSanPham extends TableInterface {
-    Integer idChiTietSanPham;
-    Integer idSanPham;
-    String MauSac;
-    String HangSanXuat;
-    Integer DungLuong;
 
-    public ChiTietSanPham() {
-    }
-
-    public ChiTietSanPham(Integer idChiTietSanPham, Integer idSanPham, String MauSac, String HangSanXuat, Integer DungLuong) {
-        this.idChiTietSanPham = idChiTietSanPham;
-        this.idSanPham = idSanPham;
-        this.MauSac = MauSac;
-        this.HangSanXuat = HangSanXuat;
-        this.DungLuong = DungLuong;
-    }
+    private Integer idChiTietSanPham;
+    private String DungLuong;
+    private Integer idSanPham;
+    private String MauSac;
+    private String HangSanXuat;
 
     public Integer getIdChiTietSanPham() {
         return idChiTietSanPham;
@@ -36,6 +24,14 @@ public class ChiTietSanPham extends TableInterface {
 
     public void setIdChiTietSanPham(Integer idChiTietSanPham) {
         this.idChiTietSanPham = idChiTietSanPham;
+    }
+
+    public String getDungLuong() {
+        return DungLuong;
+    }
+
+    public void setDungLuong(String DungLuong) {
+        this.DungLuong = DungLuong;
     }
 
     public Integer getIdSanPham() {
@@ -62,17 +58,9 @@ public class ChiTietSanPham extends TableInterface {
         this.HangSanXuat = HangSanXuat;
     }
 
-    public Integer getDungLuong() {
-        return DungLuong;
-    }
-
-    public void setDungLuong(Integer DungLuong) {
-        this.DungLuong = DungLuong;
-    }
-
     @Override
     public int getId() {
         return idChiTietSanPham;
     }
-    
+
 }

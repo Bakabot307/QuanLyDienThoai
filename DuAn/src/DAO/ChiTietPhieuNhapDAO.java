@@ -19,12 +19,9 @@ public class ChiTietPhieuNhapDAO extends AbsDAO<ChiTietPhieuNhap> {
         return data;
     }
 
-    public void them( int idPhieuNhap, int idSanPham, int soLuong, double giaTien, double tongTien) {
+    public void them(int idPhieuNhap, int idSanPham, int soLuong, double giaTien, double tongTien) {
         String cauLenhThemNguoiDung = "insert into ChiTietPhieuNhap  values ( ?, ?, ?, ?,?)";
-       
-            DBConnection.executeUpdate(cauLenhThemNguoiDung, idPhieuNhap, idSanPham, soLuong, giaTien, tongTien);
-
-       
+        DBConnection.executeUpdate(cauLenhThemNguoiDung, idPhieuNhap, idSanPham, soLuong, giaTien, tongTien);
 
     }
 

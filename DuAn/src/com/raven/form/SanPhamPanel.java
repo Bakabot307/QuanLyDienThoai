@@ -179,7 +179,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
         jLabel1 = new javax.swing.JLabel();
         btnThem = new javax.swing.JLabel();
         btnCapNhap = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        btnChiTiet = new javax.swing.JLabel();
 
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -243,16 +243,16 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/key.png"))); // NOI18N
-        jLabel2.setText("   Chi Tiết");
-        jLabel2.setOpaque(true);
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnChiTiet.setBackground(new java.awt.Color(0, 153, 153));
+        btnChiTiet.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        btnChiTiet.setForeground(new java.awt.Color(255, 255, 255));
+        btnChiTiet.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnChiTiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/key.png"))); // NOI18N
+        btnChiTiet.setText("   Chi Tiết");
+        btnChiTiet.setOpaque(true);
+        btnChiTiet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                btnChiTietMouseClicked(evt);
             }
         });
 
@@ -270,7 +270,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -282,7 +282,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                     .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCapNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
 
@@ -351,11 +351,25 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
         exportExcel(tblSanPham);
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void btnChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChiTietMouseClicked
         // TODO add your handling code here:
+        if (tblSanPham.getSelectedRow() == -1) {
+            System.out.println("Lỗi chưa chọn dòng");
+            JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn phiếu cần xem ! ", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        System.out.println("click");
 
+        ChiTietSanPhamDialog chiTietSanPhamDialog = new ChiTietSanPhamDialog(null, true);
+//        chiTietSanPhamDialog.errorLB.setText("");
+        chiTietSanPhamDialog.errorLB.setText("");
+        id = tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0).toString();
 
-    }//GEN-LAST:event_jLabel2MouseClicked
+        chiTietSanPhamDialog.setIdSanPham((Integer) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0));
+
+        chiTietSanPhamDialog.setVisible(true);
+
+    }//GEN-LAST:event_btnChiTietMouseClicked
     public void exportExcel(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         JFileChooser chooser = new JFileChooser();
@@ -405,12 +419,12 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
 
         }
     }
-
+    public static String id;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCapNhap;
+    private javax.swing.JLabel btnChiTiet;
     private javax.swing.JLabel btnThem;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -8,6 +8,7 @@ package com.raven.form;
 import Controller.LoginController;
 import com.raven.component.Bottom;
 import com.raven.main.Main;
+import com.raven.swing.MImage;
 import java.awt.Color;
 import java.awt.Frame;
 import javax.swing.JOptionPane;
@@ -37,6 +38,8 @@ public class DangNhapPnl extends javax.swing.JFrame {
         txtTk.setText("admin");
         txtMk.setText("123");
         this.icon2.setVisible(false);
+         this.setIconImage(MImage.getAppIcon());
+       
     }
 
     public static String tenDangNhap = "";

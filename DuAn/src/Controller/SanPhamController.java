@@ -45,6 +45,10 @@ public class SanPhamController extends AbsController<SanPham> {
     public List<LoaiSanPham> layCbbLoaiSP() {
         return loaiSanPhamDAO.getAll();
     }
+    
+     public List<SanPham> layCbbSanPham() {
+        return sanPhamDAO.getAll();
+    }
 
     @Override
     public void loadList() {
