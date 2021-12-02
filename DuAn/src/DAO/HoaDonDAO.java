@@ -7,10 +7,11 @@ package DAO;
 import MODEL.HoaDon;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import DAO.DBConnection;
 
 /**
  *
@@ -44,18 +45,37 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
         return data;
     }
 
-    public String layT() {
+//    public List<Integer> layT() throws SQLException {
+//
+//        String cauLenh = "SELECT SUM(TongTien) AS totalIncome FROM HoaDon WHERE NgayLap >=dateadd(month,datediff(month,0,getdate())-12,0) group by Month(NgayLap)";
+//        ResultSet rs = DBConnection.executeQuery(cauLenh);
+//
+//        while(rs.next()){
+//               
+//                    
+//
+//
+//        }
+//                 }
 
-        String cauLenh = "SELECT SUM(TongTien) AS totalIncome FROM HoaDon WHERE NgayLap >=dateadd(month,datediff(month,0,getdate())-12,0) group by Month(NgayLap)";
-        ResultSet rs = DBConnection.executeQuery(cauLenh);
+    
+    
+    public void them(int idSanPham, int idNhanVien,int idKhuyenMai, double tongTien, Date ngayLap, String hinhThucThanhToan, String TrangThai, String ghiChu){
+    String cauLenhThem ="insert into HoaDon values (?,?,?,?,?,?,?,?)";
+    DBConnection.executeUpdate(cauLenhThem, idSanPham, idNhanVien, idKhuyenMai,  tongTien,  ngayLap,  hinhThucThanhToan,  TrangThai, ghiChu );
+    }
+    
+     public Integer idHoaDOn() {
+        String selectSql = "SELECT TOP 1 * FROM [HoaDon] ORDER BY idHoaDon DESC";
+         ResultSet rs = DBConnection.executeQuery(selectSql);
 
         try {
             if (rs.next()) {
-                return rs.toString();
+                return rs.getInt("idHoaDon");
             }
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "";
-    }
+        return 0;
+     }
 }

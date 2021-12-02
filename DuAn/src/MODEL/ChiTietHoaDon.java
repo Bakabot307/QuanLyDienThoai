@@ -20,7 +20,7 @@ public class ChiTietHoaDon extends TableInterface {
     private Integer soLuong;
     private float gia;
     private float tongTien;
-    private String ghiChu;
+ 
 
     public ChiTietHoaDon() {
     }
@@ -33,7 +33,6 @@ public class ChiTietHoaDon extends TableInterface {
         this.soLuong = soLuong;
         this.gia = gia;
         this.tongTien = tongTien;
-        this.ghiChu = ghiChu;
     }
 
     public Integer getIdChiTietHoaDon() {
@@ -92,13 +91,7 @@ public class ChiTietHoaDon extends TableInterface {
         this.tongTien = tongTien;
     }
 
-    public String getGhiChu() {
-        return ghiChu;
-    }
-
-    public void setGhiChu(String ghiChu) {
-        this.ghiChu = ghiChu;
-    }
+  
 
     @Override
     public int getId() {

@@ -9,6 +9,7 @@ import DAO.AbsDAO;
 import DAO.HoaDonDAO;
 import MODEL.HoaDon;
 import VIEW.ViewInterface;
+import java.util.Date;
 import java.util.Dictionary;
 import java.util.List;
 
@@ -28,17 +29,24 @@ public class HoaDonController extends AbsController<HoaDon> {
 
     }
 
-    public String layT() {
-        return hoaDonDAO.layT();
-
-    }
+//    public String layT() {
+//        return hoaDonDAO.layT();
+//
+//    }
 
     private HoaDonDAO hoaDonDAO;
 
     public int showName(int id) {
         return hoaDonDAO.layId(id);
     }
+ public void ThemHD(int idSanPham, int idNhanVien,int idKhuyenMai, double tongTien, Date ngayLap, String hinhThucThanhToan, String TrangThai, String ghiChu){
+hoaDonDAO.them(idSanPham, idNhanVien, idKhuyenMai, tongTien, ngayLap, hinhThucThanhToan, TrangThai, ghiChu);
 
+ }
+ public Integer idHoaDon(){
+ return hoaDonDAO.idHoaDOn();
+ }
+ 
     @Override
     public AbsDAO<HoaDon> getDao() {
         return new HoaDonDAO();
