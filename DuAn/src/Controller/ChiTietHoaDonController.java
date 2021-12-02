@@ -20,7 +20,7 @@ public class ChiTietHoaDonController extends AbsController<ChiTietHoaDon> {
     public ChiTietHoaDonController(ViewInterface view) {
         super(view);
     }
-
+    
     @Override
     public AbsDAO<ChiTietHoaDon> getDao() {
         return new ChiTietHoaDonDAO();

@@ -2,6 +2,7 @@ package com.raven.form;
 
 import Controller.AbsController;
 import Controller.BanHangController;
+import Controller.ChiTietHoaDonController;
 import Controller.HoaDonController;
 import DAO.HoaDonDAO;
 import MODEL.KhuyenMai;
@@ -442,6 +443,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
     private void txtThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtThanhToanActionPerformed
       
        HoaDonController hoaDonController = new HoaDonController(this);
+       ChiTietHoaDonController chiTietHoaDonController = new ChiTietHoaDonController(this);
         KhuyenMai khuyenMai = (KhuyenMai)cbbKhuyenMai.getSelectedItem() ;
           
                 Integer idKM = khuyenMai.getId();
@@ -477,7 +479,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                 }
                 values[7] = Double.parseDouble(dataTable1.getValueAt(i, 2).toString())*Double.parseDouble(dataTable1.getValueAt(i, 3).toString());
                 
-                hoaDonController.insert(values);
+                chiTietHoaDonController.insert(values);
                 
             }
         }
