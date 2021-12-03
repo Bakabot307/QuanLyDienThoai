@@ -9,21 +9,37 @@ import Controller.AbsController;
 import Controller.ChiTietSanPhamController;
 import Controller.ChuyenDoi;
 import Controller.SanPhamController;
+import DAO.DBConnection;
+import DAO.SanPhamDAO;
 import MODEL.LoaiSanPham;
+import MODEL.SanPham;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
 import duan.dialog.HandleSanPhamDal;
+import java.awt.Component;
+import java.awt.Event;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import net.sf.oval.ConstraintViolation;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -39,11 +55,14 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
      * Creates new form KhachHangPanel
      */
     private HandleSanPhamDal sanPhamDal = null;
+    String filename = null;
+    byte[] SPimage = null;
 
     public SanPhamPanel() {
         initComponents();
         SanPhamController sanPhamController = new SanPhamController(this);
 
+        showSanPham();
         if (sanPhamDal == null) {
             sanPhamDal = new HandleSanPhamDal(null, true);
             sanPhamDal.addBT.addMouseListener(new MouseAdapter() {
@@ -154,14 +173,56 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                 sanPhamController.edit(values);
 
             }
+            
         });
-        DefaultComboBoxModel<LoaiSanPham> modle = (DefaultComboBoxModel<LoaiSanPham>) sanPhamDal.cbbLoaiSP.getModel();
-        modle.removeAllElements();
-        List<LoaiSanPham> sanPhams = sanPhamController.layCbbLoaiSP();
-        modle.addAll(sanPhams);
-        modle.setSelectedItem(sanPhams.get(0));
+         sanPhamDal.tbnHinhAnh.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent a)
+            {
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        filename = f.getAbsolutePath();
+        ImageIcon imageIcon = new ImageIcon (new ImageIcon(filename).getImage().getScaledInstance(sanPhamDal.jLabel1.getWidth(), sanPhamDal.jLabel1.getHeight(), Image.SCALE_SMOOTH));
+        sanPhamDal.jLabel1.setIcon(imageIcon);
+                try {
+                    File image = new File(filename);
+                    FileInputStream fis = new FileInputStream(image);
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    byte[] buf = new byte[1024];
+                    for  (int i;(i=fis.read(buf))!=1;){
+                        bos.write(buf,0,i);
+                    }
+                    SPimage = bos.toByteArray();
+                } catch (Exception e) {
+                }
+            }
+         });
+    }
+    
+public void showSanPham(){
+
+ArrayList<SanPham> list = sanPhamController.DSSanPham();
+    System.out.println(list);
+DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
+Object[] row = new Object[8];
+    for (int i = 0; i < list.size(); i++) {
+        row[0] = list.get(i).getId();
+        row[1] = list.get(i).getIdLoaiSanPham();
+        row[2] = list.get(i).getTenSanPham();
+        row[3] = list.get(i).getGiaNhap();
+        row[4] = list.get(i).getGiaBan();
+        row[5] = list.get(i).getSoLuong();
+        row[6] = list.get(i).getDVT();
+        row[7] = list.get(i).getHinhAnh();
+        model.addRow(row);
     }
 
+}
+
+
+ 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -277,7 +338,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchText1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -352,7 +413,18 @@ public Integer idSanPham;
         sanPhamDal.txtGiaBan.setText(tblSanPham.getValueAt(dong, 4).toString());
         sanPhamDal.spnSoLuong.setValue(Integer.parseInt(tblSanPham.getValueAt(dong, 5).toString()));
         sanPhamDal.txtDVT.setText(tblSanPham.getValueAt(dong, 6).toString());
-
+           int i = tblSanPham.getSelectedRow();
+        if(tblSanPham.getValueAt(i, 7) != null)
+        {
+        ImageIcon image1 = (ImageIcon)tblSanPham.getValueAt(i, 4);
+        Image image2 = image1.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight()
+                 , Image.SCALE_SMOOTH);
+        ImageIcon image3 = new ImageIcon(image2);
+        jLabel1.setIcon(image3);
+        }
+        else{
+            System.out.println("No Image");
+        }
         String tieuDe = (String) sanPhamController.getViewBag().get("tieu_de");
         sanPhamDal.title.setText("Cập nhập Sản Phẩm " + tieuDe);
         sanPhamDal.setVisible(true);

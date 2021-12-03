@@ -6,7 +6,13 @@
 package DAO;
 
 import MODEL.SanPham;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.spi.DirStateFactory;
 
 /**
  *
@@ -21,9 +27,32 @@ public class SanPhamDAO extends AbsDAO<SanPham> {
         return data;
     }
 
-    public List<Object[]> layListSanPham() {
-        String selectSql = "select idSanPham,TenLoaiSanPham,TenSanPham,GiaNhap,GiaBan,SoLuong,DVT from SanPham join LoaiSanPham on SanPham.idLoaiSanPham = LoaiSanPham.idLoaiSanPham";
-        List<Object[]> data = getRawValues(selectSql);
-        return data;
+    public ArrayList<SanPham> layListSanPham() {
+        ArrayList<SanPham> SanPham = new ArrayList<>();
+        try {
+            String selectSql = "select * from SanPham";
+             
+            ResultSet rs = DBConnection.executeQuery(selectSql);
+            SanPham sp;
+            while (rs.next()) {
+               sp = new SanPham(rs.getInt("idSanPham"),
+                       rs.getInt("idLoaiSanPham"),
+                       rs.getString("TenSanPham"),
+                       rs.getDouble("GiaNhap"), 
+                       rs.getDouble("GiaBan"), 
+                       rs.getInt("SoLuong"), 
+                       rs.getString("DVT"), 
+                       rs.getBytes("hinhAnh"));
+               
+               SanPham.add(sp);
+                System.out.println(sp);
+            }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
+         
+        }
+        return SanPham;
+       
     }
 }

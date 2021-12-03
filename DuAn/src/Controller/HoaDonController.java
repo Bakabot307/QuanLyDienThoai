@@ -24,8 +24,8 @@ public class HoaDonController extends AbsController<HoaDon> {
         hoaDonDAO = new HoaDonDAO();
     }
 
-    public List<Integer> loadMonth() {
-        return hoaDonDAO.loadThang();
+    public List<Object[]> loadMonth() {
+        return  hoaDonDAO.loadThang();
 
     }
 

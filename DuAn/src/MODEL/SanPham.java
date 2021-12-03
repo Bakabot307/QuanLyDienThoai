@@ -7,6 +7,7 @@ package MODEL;
 import Interface.TableInterface;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -26,6 +27,20 @@ public class SanPham extends TableInterface {
     private double GiaBan;
     private Integer SoLuong;
     private String DVT;
+    private byte[] hinhAnh;
+
+
+
+    public SanPham(Integer idSanPham, Integer idLoaiSanPham, String TenSanPham, double GiaNhap, double GiaBan, Integer SoLuong, String DVT, byte[] hinhAnh) {
+        this.idSanPham = idSanPham;
+        this.idLoaiSanPham = idLoaiSanPham;
+        this.TenSanPham = TenSanPham;
+        this.GiaNhap = GiaNhap;
+        this.GiaBan = GiaBan;
+        this.SoLuong = SoLuong;
+        this.DVT = DVT;
+        this.hinhAnh = hinhAnh;
+    }
 
     public Integer getIdSanPham() {
         return idSanPham;
@@ -83,6 +98,17 @@ public class SanPham extends TableInterface {
         this.DVT = DVT;
     }
 
+    public byte[] getHinhAnh() {
+        return hinhAnh;
+    }
+
+    public void setHinhAnh(byte[] hinhAnh) {
+        this.hinhAnh = hinhAnh;
+    }
+
+  
+
+   
     @Override
     public int getId() {
         return idSanPham;

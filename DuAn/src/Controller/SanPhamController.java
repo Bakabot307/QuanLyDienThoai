@@ -16,6 +16,8 @@ import VIEW.ViewInterface;
 import com.raven.component.Menu;
 import com.raven.form.BanHangPanel;
 import com.raven.form.SanPhamPanel;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.List;
 
@@ -31,6 +33,7 @@ public class SanPhamController extends AbsController<SanPham> {
         super(view);
         khuyenMaiDAO = new KhuyenMaiDAO();
         loaiSanPhamDAO = new LoaiSanPhamDAO();
+        sanPhamDAO = new SanPhamDAO();
     }
 
     private KhuyenMaiDAO khuyenMaiDAO;
@@ -49,14 +52,17 @@ public class SanPhamController extends AbsController<SanPham> {
      public List<SanPham> layCbbSanPham() {
         return sanPhamDAO.getAll();
     }
-
+     public ArrayList<SanPham> DSSanPham(){
+         
+        return sanPhamDAO.layListSanPham();
+        
+     }
     @Override
     public void loadList() {
-        sanPhamPanel = (SanPhamPanel) view;
-        sanPhamDAO = (SanPhamDAO) dao;
-        List<Object[]> data = sanPhamDAO.layListSanPham();
-        sanPhamPanel.setColumnNames(this.getTableColumnNames());
-        sanPhamPanel.viewList(data);
+  
+
+               
+        
     }
 
     @Override
@@ -66,7 +72,7 @@ public class SanPhamController extends AbsController<SanPham> {
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Sản Phẩm", "Tên Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "DVT"};
+        return new String[]{"ID Sản Phẩm", "Tên Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "DVT","Hình Ảnh"};
     }
 
     @Override

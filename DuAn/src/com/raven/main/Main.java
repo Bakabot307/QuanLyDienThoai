@@ -22,6 +22,9 @@ import java.awt.Component;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -39,7 +42,7 @@ public class Main extends javax.swing.JFrame {
     private Animator animator;
     private boolean menuShow;
 
-    public Main() {
+    public Main() throws ParseException {
         initComponents();
 //        if (Main.this.getExtendedState() == MAXIMIZED_BOTH) {
 //            Main.this.setExtendedState(JFrame.NORMAL);
@@ -51,7 +54,7 @@ public class Main extends javax.swing.JFrame {
     }
     int xx, xy;
 
-    private void init() {
+    private void init() throws ParseException {
         layout = new MigLayout("fill", "0[]10[]5", "0[fill]0");
         body.setLayout(layout);
         main.setOpaque(false);
@@ -82,7 +85,11 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-                    showForm(new ThongKe());
+                    try {
+                        showForm(new ThongKe());
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } else if (index == 1) {
                     showForm(new BanHangPanel());
                 } else if (index == 2) {
@@ -298,7 +305,11 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                try {
+                    new Main().setVisible(true);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

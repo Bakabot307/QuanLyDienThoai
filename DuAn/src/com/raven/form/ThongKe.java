@@ -1,26 +1,38 @@
 package com.raven.form;
 
 import Controller.AbsController;
+import Controller.ChuyenDoi;
 import Controller.HoaDonController;
 
 import VIEW.ViewInterface;
 import com.raven.chart.ModelChart;
 import java.awt.Color;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import net.sf.oval.ConstraintViolation;
 
 public class ThongKe extends javax.swing.JPanel implements ViewInterface {
 
-    public ThongKe() {
+    public ThongKe() throws ParseException {
         initComponents();
         setOpaque(false);
         init();
     }
 
-    private void init() {
+    private void init() throws ParseException {
         HoaDonController hoaDonController = new HoaDonController(this);
-        System.out.println(hoaDonController.loadMonth());
+        List<Object[]> data = hoaDonController.loadMonth();
+           for (int i = 0; i < data.size(); i++) {
+//            System.out.println(Double.parseDouble(String.valueOf(Arrays.toString(data.get(i)))));
+               System.out.println(Arrays.toString(data.get(i)).replaceAll("\\D+",""));
+          chart.addData(new ModelChart("June", new double[]{ChuyenDoi.SoDouble(Arrays.toString(data.get(i)).replaceAll("\\D+","")), 500000, 700000, 1000000}));
+                    chart.addData(new ModelChart("July", new double[]{ChuyenDoi.SoDouble(Arrays.toString(data.get(i)).replaceAll("\\D+","")), 500000, 700000, 1000000}));
+        }
+      
+        
 
 //        List<Integer> ok = hoaDonController.loadMonth();
 //        for (int i = 0; i < ok.size(); i++) {
@@ -30,12 +42,8 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
         chart.addLegend("Expense", new Color(135, 189, 245));
         chart.addLegend("Profit", new Color(189, 135, 245));
         chart.addLegend("Cost", new Color(139, 229, 222));
-        chart.addData(new ModelChart("January", new double[]{100, 150, 200, 900}));
-        chart.addData(new ModelChart("February", new double[]{600, 750, 300, 150}));
-        chart.addData(new ModelChart("March", new double[]{200, 350, 1000, 900}));
-        chart.addData(new ModelChart("April", new double[]{480, 150, 750, 700}));
-        chart.addData(new ModelChart("May", new double[]{350, 540, 300, 150}));
-        chart.addData(new ModelChart("June", new double[]{190, 500, 700, 1000}));
+  
+//        chart.addData(new ModelChart("June", new double[]{190, 500, 700, 1000}));
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
         model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});

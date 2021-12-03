@@ -5,6 +5,7 @@
  */
 package duan.dialog;
 
+import Controller.ChuyenDoi;
 import com.raven.swing.MImage;
 import java.awt.Color;
 import java.awt.Component;
@@ -184,7 +185,10 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
     }//GEN-LAST:event_txtSoLuongActionPerformed
 
     private void txtSoLuongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSoLuongKeyReleased
-        soLuong=Integer.parseInt(txtSoLuong.getText());
+         String dau = txtSoLuong.getText();
+        double chuyen = ChuyenDoi.SoDouble(dau);
+        txtSoLuong.setText(ChuyenDoi.SoString(chuyen));
+        soLuong=(int) ChuyenDoi.SoDouble(txtSoLuong.getText());
     }//GEN-LAST:event_txtSoLuongKeyReleased
 
     /**
@@ -236,6 +240,6 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JLabel title;
-    public static javax.swing.JTextField txtSoLuong;
+    public javax.swing.JTextField txtSoLuong;
     // End of variables declaration//GEN-END:variables
 }

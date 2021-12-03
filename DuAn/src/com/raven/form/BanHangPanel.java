@@ -3,6 +3,7 @@ package com.raven.form;
 import Controller.AbsController;
 import Controller.BanHangController;
 import Controller.ChiTietHoaDonController;
+import Controller.ChuyenDoi;
 import Controller.HoaDonController;
 import MODEL.KhuyenMai;
 import VIEW.ViewImp;
@@ -61,7 +62,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                             rows[0] = model2.getValueAt(indexs[i], 0);
                             rows[1] = model2.getValueAt(indexs[i], 1);
                             rows[2] = model2.getValueAt(indexs[i], 2);
-                            rows[3] = model2.getValueAt(indexs[i], 3);
+                            rows[3] = ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText());
                             rows[4] = model2.getValueAt(indexs[i], 4);
                             model1.addRow(rows);
 
