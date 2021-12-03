@@ -6,6 +6,7 @@
 package com.raven.form;
 
 import Controller.AbsController;
+import Controller.ChiTietSanPhamController;
 import Controller.ChuyenDoi;
 import Controller.SanPhamController;
 import MODEL.LoaiSanPham;
@@ -307,7 +308,18 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+public Integer idSanPham;
 
+    public Integer getIdSanPham() {
+        return idSanPham;
+    }
+
+    public void setIdSanPham(Integer idsanpham) {
+        this.idSanPham = idsanpham;
+
+        ChiTietSanPhamController chiTietSanPhamController = new ChiTietSanPhamController(this);
+
+    }
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
         // TODO add your handling code here:
 
@@ -361,9 +373,10 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
         System.out.println("click");
 
         ChiTietSanPhamDialog chiTietSanPhamDialog = new ChiTietSanPhamDialog(null, true);
-//        chiTietSanPhamDialog.errorLB.setText("");
+        //        chiTietSanPhamDialog.errorLB.setText("");
         chiTietSanPhamDialog.errorLB.setText("");
         id = tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0).toString();
+        System.out.println(id);
 
         chiTietSanPhamDialog.setIdSanPham((Integer) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0));
 

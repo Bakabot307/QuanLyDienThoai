@@ -9,7 +9,6 @@ import DAO.AbsDAO;
 import DAO.ChiTietSanPhamDAO;
 import MODEL.ChiTietSanPham;
 import VIEW.ViewInterface;
-import com.raven.form.ChiTietSanPhamDialog;
 import com.raven.form.ChiTietSanPhamDialogForBanHang;
 import java.util.Dictionary;
 import java.util.List;
@@ -18,14 +17,14 @@ import java.util.List;
  *
  * @author Admin
  */
-public class ChiTietSanPhamController extends AbsController<ChiTietSanPham> {
+public class ChiTietSanPhamControllerForBanHang extends AbsController<ChiTietSanPham> {
 
-    private ChiTietSanPhamDialog chiTietSanPhamDialog;
+    private ChiTietSanPhamDialogForBanHang chiTietSanPhamControllerForBanHang;
     private ChiTietSanPhamDAO chiTietSanPhamDAO;
 
-    public ChiTietSanPhamController(ViewInterface view) {
+    public ChiTietSanPhamControllerForBanHang(ViewInterface view) {
         super(view);
-        chiTietSanPhamDialog = new ChiTietSanPhamDialog(null, true);
+        chiTietSanPhamControllerForBanHang = new ChiTietSanPhamDialogForBanHang(null, true);
         chiTietSanPhamDAO = new ChiTietSanPhamDAO();
     }
 
@@ -36,11 +35,11 @@ public class ChiTietSanPhamController extends AbsController<ChiTietSanPham> {
 
     @Override
     public void loadList() {
-        chiTietSanPhamDialog = (ChiTietSanPhamDialog) view;
+        chiTietSanPhamControllerForBanHang = (ChiTietSanPhamDialogForBanHang) view;
         chiTietSanPhamDAO = (ChiTietSanPhamDAO) dao;
-        List<Object[]> data = chiTietSanPhamDAO.loadLaiDS(chiTietSanPhamDialog.getIdSanPham());
-        chiTietSanPhamDialog.setColumnNames(this.getTableColumnNames());
-        chiTietSanPhamDialog.viewList(data);
+        List<Object[]> data = chiTietSanPhamDAO.loadLaiDS(chiTietSanPhamControllerForBanHang.getIdSanPham());
+        chiTietSanPhamControllerForBanHang.setColumnNames(this.getTableColumnNames());
+        chiTietSanPhamControllerForBanHang.viewList(data);
     }
 
     @Override

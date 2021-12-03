@@ -1,4 +1,4 @@
-package DAO;
+ package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +14,7 @@ public class DBConnection {
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static String dburl = "jdbc:sqlserver://localhost;database=quanly_dienthoai";
     private static String username = "sa";
-    private static String password = "123456";
+    private static String password = "2433";
 
     /*
      * Nạp driver

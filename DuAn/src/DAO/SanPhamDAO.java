@@ -16,7 +16,7 @@ public class SanPhamDAO extends AbsDAO<SanPham> {
 
     public List<Object[]> layTenLoaiSanPham() {
         String selectSql = "select SanPham.idSanPham, CONCAT(TenSanPham,' Màu ',MauSac,' ',DungLuong)as TenSanPham,GiaBan,SoLuong,DVT from SanPham\n"
-                + "inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham";
+                + "inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham ";
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
