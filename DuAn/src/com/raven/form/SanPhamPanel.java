@@ -22,17 +22,26 @@ import java.awt.Frame;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -61,7 +70,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
     public SanPhamPanel() {
         initComponents();
         SanPhamController sanPhamController = new SanPhamController(this);
-
+        
         showSanPham();
         if (sanPhamDal == null) {
             sanPhamDal = new HandleSanPhamDal(null, true);
@@ -105,17 +114,13 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                     LoaiSanPham loaiSp = (LoaiSanPham) sanPhamDal.cbbLoaiSP.getSelectedItem();
                     Integer idLoaiSP = loaiSp.getId();
                     System.out.println(idLoaiSP);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
-                    Object[] values = new Object[7];
-                    values[0] = 0;
-                    values[1] = idLoaiSP;
-                    values[2] = sanPhamDal.txtTen.getText();
-                    values[3] = giaNhap;
-                    values[4] = giaBan;
-                    values[5] = Integer.valueOf(sanPhamDal.spnSoLuong.getValue().toString());
-
-                    values[6] = sanPhamDal.txtDVT.getText();
-                    sanPhamController.insert(values);
+                 sanPhamController.them(idLoaiSP, sanPhamDal.txtTen.getText(), giaNhap, giaBan,  Integer.valueOf(sanPhamDal.spnSoLuong.getValue().toString()),
+                          sanPhamDal.txtDVT.getText(), SPimage = bos.toByteArray());
+                    
+      
+              
                 }
             });
         }
@@ -170,6 +175,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                 values[5] = Integer.valueOf(sanPhamDal.spnSoLuong.getValue().toString());
 
                 values[6] = sanPhamDal.txtDVT.getText();
+                
                 sanPhamController.edit(values);
 
             }
@@ -198,6 +204,11 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                 }
             }
          });
+         DefaultComboBoxModel<LoaiSanPham> modle = (DefaultComboBoxModel<LoaiSanPham>) sanPhamDal.cbbLoaiSP.getModel();
+        modle.removeAllElements();
+        List<LoaiSanPham> sanPhams = sanPhamController.layCbbLoaiSP();
+        modle.addAll(sanPhams);
+        modle.setSelectedItem(sanPhams.get(0));
     }
     
 public void showSanPham(){
@@ -214,11 +225,35 @@ Object[] row = new Object[8];
         row[4] = list.get(i).getGiaBan();
         row[5] = list.get(i).getSoLuong();
         row[6] = list.get(i).getDVT();
-        row[7] = list.get(i).getHinhAnh();
-        model.addRow(row);
+//        try {
+//            BufferedImage img = ImageIO.read(new ByteArrayInputStream(list.get(i).getHinhAnh()));
+//        row[7]= img;
+//        } catch (IOException ex) {
+//            Logger.getLogger(SanPhamPanel.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//ByteArrayInputStream input_stream= new ByteArrayInputStream(list.get(i).getHinhAnh());
+//    try {
+//        BufferedImage final_buffered_image = ImageIO.read(input_stream);
+//        row[7]= final_buffered_image;
+//    } catch (IOException ex) {
+//        Logger.getLogger(SanPhamPanel.class.getName()).log(Level.SEVERE, null, ex);
+//    }
+//ByteArrayInputStream bais = new ByteArrayInputStream(list.get(i).getHinhAnh());
+//BufferedImage image = ImageIO.read(bais);
+        if(list.get(i).getHinhAnh()!= null){
+                
+             ImageIcon image = new ImageIcon(new ImageIcon(list.get(i).getHinhAnh()).getImage()
+             .getScaledInstance(150, 120, Image.SCALE_SMOOTH) );   
+                
+            row[7] = image;
+            }
+model.addRow(row);
+   
+    }
     }
 
-}
+
+
 
 
  
@@ -416,14 +451,14 @@ public Integer idSanPham;
            int i = tblSanPham.getSelectedRow();
         if(tblSanPham.getValueAt(i, 7) != null)
         {
-        ImageIcon image1 = (ImageIcon)tblSanPham.getValueAt(i, 4);
-        Image image2 = image1.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight()
+            ImageIcon image1 = (ImageIcon)tblSanPham.getValueAt(i, 7);
+        Image image2 = image1.getImage().getScaledInstance(sanPhamDal.jLabel1.getWidth(), sanPhamDal.jLabel1.getHeight()
                  , Image.SCALE_SMOOTH);
         ImageIcon image3 = new ImageIcon(image2);
-        jLabel1.setIcon(image3);
-        }
-        else{
-            System.out.println("No Image");
+        sanPhamDal.jLabel1.setIcon(image3);
+         
+           
+            
         }
         String tieuDe = (String) sanPhamController.getViewBag().get("tieu_de");
         sanPhamDal.title.setText("Cập nhập Sản Phẩm " + tieuDe);

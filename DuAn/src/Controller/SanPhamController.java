@@ -8,6 +8,7 @@ package Controller;
 import DAO.AbsDAO;
 import DAO.KhuyenMaiDAO;
 import DAO.LoaiSanPhamDAO;
+import DAO.PhieuNhapDAO;
 import DAO.SanPhamDAO;
 import MODEL.KhuyenMai;
 import MODEL.LoaiSanPham;
@@ -15,6 +16,7 @@ import MODEL.SanPham;
 import VIEW.ViewInterface;
 import com.raven.component.Menu;
 import com.raven.form.BanHangPanel;
+import com.raven.form.PhieuNhapPnl;
 import com.raven.form.SanPhamPanel;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,9 +59,18 @@ public class SanPhamController extends AbsController<SanPham> {
         return sanPhamDAO.layListSanPham();
         
      }
+      public void them(int idloaisanpham, String tensanpham, double gianhap, double giaban, int soluong, String dvt, byte[] hinhanh) {
+        sanPhamDAO.them(idloaisanpham, tensanpham, gianhap, giaban, soluong, dvt, hinhanh);
+        loadList();
+
+    }
     @Override
     public void loadList() {
-  
+//  sanPhamPanel = (SanPhamPanel) view;
+//        sanPhamDAO = (SanPhamDAO) dao;
+//        List<Object[]> data = sanPhamDAO.DanhSachSanPham();
+//        sanPhamPanel.setColumnNames(this.getTableColumnNames());
+//        sanPhamPanel.viewList(data);
 
                
         
