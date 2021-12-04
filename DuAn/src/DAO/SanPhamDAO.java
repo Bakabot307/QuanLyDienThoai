@@ -26,41 +26,42 @@ public class SanPhamDAO extends AbsDAO<SanPham> {
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
-      public List<Object[]> DanhSachSanPham() {
+
+    public List<Object[]> DanhSachSanPham() {
         String selectSql = "select * from SanPham";
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
 
-
     public ArrayList<SanPham> layListSanPham() {
         ArrayList<SanPham> SanPham = new ArrayList<>();
         try {
             String selectSql = "select * from SanPham";
-             
+
             ResultSet rs = DBConnection.executeQuery(selectSql);
             SanPham sp;
             while (rs.next()) {
-               sp = new SanPham(rs.getInt("idSanPham"),
-                       rs.getInt("idLoaiSanPham"),
-                       rs.getString("TenSanPham"),
-                       rs.getDouble("GiaNhap"), 
-                       rs.getDouble("GiaBan"), 
-                       rs.getInt("SoLuong"), 
-                       rs.getString("DVT"), 
-                       rs.getBytes("hinhAnh"));
-               
-               SanPham.add(sp);
+                sp = new SanPham(rs.getInt("idSanPham"),
+                        rs.getInt("idLoaiSanPham"),
+                        rs.getString("TenSanPham"),
+                        rs.getDouble("GiaNhap"),
+                        rs.getDouble("GiaBan"),
+                        rs.getInt("SoLuong"),
+                        rs.getString("DVT"),
+                        rs.getBytes("hinhAnh"));
+
+                SanPham.add(sp);
                 System.out.println(sp);
             }
-        
+
         } catch (SQLException ex) {
             Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
-         
+
         }
         return SanPham;
-       
+
     }
+
     public void them(int idloaisanpham, String tensanpham, double gianhap, double giaban, int soluong, String dvt, byte[] hinhanh) {
         String cauLenhThemNguoiDung = "insert into SanPham  values ( ?, ?, ?, ?,?,?,?)";
         DBConnection.executeUpdate(cauLenhThemNguoiDung, idloaisanpham, tensanpham, gianhap, giaban, soluong, dvt, hinhanh);

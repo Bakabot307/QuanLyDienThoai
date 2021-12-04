@@ -56,8 +56,8 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
         btnTang1.setFont(new java.awt.Font("UTM Avo", 0, 14)); // NOI18N
         btnTang1.setForeground(new java.awt.Color(255, 255, 255));
         btnTang1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnTang1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/save-as-16.png"))); // NOI18N
-        btnTang1.setText("Tăng");
+        btnTang1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/arrow-up.png"))); // NOI18N
+        btnTang1.setText("   Tăng");
         btnTang1.setOpaque(true);
         btnTang1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -87,8 +87,8 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
         btnOk.setFont(new java.awt.Font("UTM Avo", 0, 14)); // NOI18N
         btnOk.setForeground(new java.awt.Color(255, 255, 255));
         btnOk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/ban-16.png"))); // NOI18N
-        btnOk.setText("OK");
+        btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/save-as-16.png"))); // NOI18N
+        btnOk.setText("  OK");
         btnOk.setOpaque(true);
         btnOk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -100,8 +100,8 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
         btnGiam.setFont(new java.awt.Font("UTM Avo", 0, 14)); // NOI18N
         btnGiam.setForeground(new java.awt.Color(255, 255, 255));
         btnGiam.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnGiam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/available-updates-16.png"))); // NOI18N
-        btnGiam.setText("Giảm");
+        btnGiam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/arrow-down.png"))); // NOI18N
+        btnGiam.setText("   Giảm");
         btnGiam.setOpaque(true);
         btnGiam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

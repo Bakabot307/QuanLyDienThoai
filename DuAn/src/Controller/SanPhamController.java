@@ -50,30 +50,29 @@ public class SanPhamController extends AbsController<SanPham> {
     public List<LoaiSanPham> layCbbLoaiSP() {
         return loaiSanPhamDAO.getAll();
     }
-    
-     public List<SanPham> layCbbSanPham() {
+
+    public List<SanPham> layCbbSanPham() {
         return sanPhamDAO.getAll();
     }
-     public ArrayList<SanPham> DSSanPham(){
-         
+
+    public ArrayList<SanPham> DSSanPham() {
+
         return sanPhamDAO.layListSanPham();
-        
-     }
-      public void them(int idloaisanpham, String tensanpham, double gianhap, double giaban, int soluong, String dvt, byte[] hinhanh) {
-        sanPhamDAO.them(idloaisanpham, tensanpham, gianhap, giaban, soluong, dvt, hinhanh);
-        loadList();
 
     }
+
+    public void them(int idloaisanpham, String tensanpham, double gianhap, double giaban, int soluong, String dvt, byte[] hinhanh) {
+        sanPhamDAO.them(idloaisanpham, tensanpham, gianhap, giaban, soluong, dvt, hinhanh);
+
+    }
+
     @Override
     public void loadList() {
-//  sanPhamPanel = (SanPhamPanel) view;
+//        sanPhamPanel = (SanPhamPanel) view;
 //        sanPhamDAO = (SanPhamDAO) dao;
 //        List<Object[]> data = sanPhamDAO.DanhSachSanPham();
 //        sanPhamPanel.setColumnNames(this.getTableColumnNames());
 //        sanPhamPanel.viewList(data);
-
-               
-        
     }
 
     @Override
@@ -83,7 +82,7 @@ public class SanPhamController extends AbsController<SanPham> {
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Sản Phẩm", "Tên Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "DVT","Hình Ảnh"};
+        return new String[]{"ID Sản Phẩm", "Tên Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "DVT", "Hình Ảnh"};
     }
 
     @Override

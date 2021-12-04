@@ -112,9 +112,9 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/raven/icon/save-as-16.png"/>
+              <Image iconType="3" name="/com/raven/icon/arrow-up.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="T&#x103;ng"/>
+            <Property name="text" type="java.lang.String" value="   T&#x103;ng"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -169,9 +169,9 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/raven/icon/ban-16.png"/>
+              <Image iconType="3" name="/com/raven/icon/save-as-16.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="OK"/>
+            <Property name="text" type="java.lang.String" value="  OK"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -191,9 +191,9 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/raven/icon/available-updates-16.png"/>
+              <Image iconType="3" name="/com/raven/icon/arrow-down.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Gi&#x1ea3;m"/>
+            <Property name="text" type="java.lang.String" value="   Gi&#x1ea3;m"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>

@@ -11,6 +11,9 @@ import com.raven.main.Main;
 import com.raven.swing.MImage;
 import java.awt.Color;
 import java.awt.Frame;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,8 +41,8 @@ public class DangNhapPnl extends javax.swing.JFrame {
         txtTk.setText("admin");
         txtMk.setText("123");
         this.icon2.setVisible(false);
-         this.setIconImage(MImage.getAppIcon());
-       
+        this.setIconImage(MImage.getAppIcon());
+
     }
 
     public static String tenDangNhap = "";
@@ -217,11 +220,15 @@ public class DangNhapPnl extends javax.swing.JFrame {
         ID = loginController.showID(tk, mk);
 
         if (loginController.kiemTra(tk, mk)) {
-            Main main = new Main();
-            System.out.println(loginController.showName(tk, mk));
-            JOptionPane.showMessageDialog(new Frame(), "Đăng nhập thành công ! ", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-            main.setVisible(true);
-            this.dispose();
+            try {
+                Main main = new Main();
+                System.out.println(loginController.showName(tk, mk));
+                JOptionPane.showMessageDialog(new Frame(), "Đăng nhập thành công ! ", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                main.setVisible(true);
+                this.dispose();
+            } catch (ParseException ex) {
+                Logger.getLogger(DangNhapPnl.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             errorLb.setText("Sai tên đăng nhập hoặc mật khẩu ! ");
         }
