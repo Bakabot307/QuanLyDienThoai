@@ -41,7 +41,7 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
 //    }
     public List<Object[]> loadThang() {
         String selectSql = "SELECT SUM(TongTien) AS totalIncome FROM HoaDon WHERE NgayLap >=dateadd(month,datediff(month,0,getdate())-12,0) group by Month(NgayLap)";
-         List<Object[]> data = getRawValues(selectSql);
+        List<Object[]> data = getRawValues(selectSql);
         return data;
     }
 
@@ -57,17 +57,14 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
 //
 //        }
 //                 }
-
-    
-    
-    public void them(int idSanPham, int idNhanVien,int idKhuyenMai, double tongTien, Date ngayLap, String hinhThucThanhToan, String TrangThai, String ghiChu){
-    String cauLenhThem ="insert into HoaDon values (?,?,?,?,?,?,?,?)";
-    DBConnection.executeUpdate(cauLenhThem, idSanPham, idNhanVien, idKhuyenMai,  tongTien,  ngayLap,  hinhThucThanhToan,  TrangThai, ghiChu );
+    public void them(int idSanPham, int idNhanVien, int idKhuyenMai, double tongTien, Date ngayLap, String hinhThucThanhToan, String TrangThai, String ghiChu) {
+        String cauLenhThem = "insert into HoaDon values (?,?,?,?,?,?,?,?)";
+        DBConnection.executeUpdate(cauLenhThem, idSanPham, idNhanVien, idKhuyenMai, tongTien, ngayLap, hinhThucThanhToan, TrangThai, ghiChu);
     }
-    
-     public Integer idHoaDOn() {
+
+    public Integer idHoaDOn() {
         String selectSql = "SELECT TOP 1 * FROM [HoaDon] ORDER BY idHoaDon DESC";
-         ResultSet rs = DBConnection.executeQuery(selectSql);
+        ResultSet rs = DBConnection.executeQuery(selectSql);
 
         try {
             if (rs.next()) {
@@ -77,5 +74,21 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
-     }
+    }
+
+    public List<Object[]> search(String id) {
+        String selectSql = "select idHoaDon,TenNhanVien,TenNhanVien,TenKhuyenMai,TongTien,NgayLap,HinhThucThanhToan,HoaDon.TrangThai,HoaDon.GhiChu\n"
+                + "from HoaDon join KhachHang on HoaDon.idKhachHang = KhachHang.idKhachHang join \n"
+                + "NhanVien on HoaDon.idNhanVien = NhanVien.idNhanVien join KhuyenMai on HoaDon.idKhuyenMai = KhuyenMai.idKhuyenMai where idHoaDon = ? ";
+        List<Object[]> data = getRawValues(selectSql, id);
+        return data;
+    }
+
+    public List<Object[]> layDS() {
+        String selectSql = "select idHoaDon,TenNhanVien,TenNhanVien,TenKhuyenMai,TongTien,NgayLap,HinhThucThanhToan,HoaDon.TrangThai,HoaDon.GhiChu\n"
+                + "from HoaDon join KhachHang on HoaDon.idKhachHang = KhachHang.idKhachHang join \n"
+                + "NhanVien on HoaDon.idNhanVien = NhanVien.idNhanVien join KhuyenMai on HoaDon.idKhuyenMai = KhuyenMai.idKhuyenMai";
+        List<Object[]> data = getRawValues(selectSql);
+        return data;
+    }
 }

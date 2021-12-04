@@ -42,6 +42,10 @@ public class PhieuNhapController extends AbsController<PhieuNhap> {
         return nhaCungCapDAO.getAll();
     }
 
+    public void search(String id) {
+        phieuNhapPnl.viewList(phieuNhapDAO.search(id));
+    }
+
     @Override
     public void loadList() {
         phieuNhapPnl = (PhieuNhapPnl) view;

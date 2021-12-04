@@ -17,4 +17,12 @@ public class LoaiSanPhamDAO extends AbsDAO<LoaiSanPham>{
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
+     
+     public List<Object[]> search(String ten) {
+        String selectSql = "select * from LoaiSanPham where TenLoaiSanPham like ? ";
+        List<Object[]> data = getRawValues(selectSql, ten);
+        return data;
+    }
+     
+     
 }

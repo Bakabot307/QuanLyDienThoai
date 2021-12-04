@@ -86,4 +86,16 @@ public class NhanVienDAO extends AbsDAO<NhanVien> {
         }
         return 0;
     }
+
+    public List<Object[]> search(String ten) {
+        String selectSql = "select * from NhanVien where TenNhanVien like ? ";
+        List<Object[]> data = getRawValues(selectSql, ten);
+        return data;
+    }
+
+    public List<Object[]> layDS() {
+        String selectSql = "select * from NhanVien";
+        List<Object[]> data = getRawValues(selectSql);
+        return data;
+    }
 }

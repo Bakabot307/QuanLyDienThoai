@@ -9,6 +9,7 @@ import DAO.AbsDAO;
 import DAO.LoaiSanPhamDAO;
 import MODEL.LoaiSanPham;
 import VIEW.ViewInterface;
+import com.raven.form.LoaiSanPhamPnl;
 import java.util.Dictionary;
 import java.util.List;
 
@@ -18,14 +19,27 @@ import java.util.List;
  */
 public class LoaiSanPhamController extends AbsController<LoaiSanPham> {
 
-  
+    private LoaiSanPhamPnl loaiSanPhamPnl;
+    private LoaiSanPhamDAO loaiSanPhamDAO;
 
     public LoaiSanPhamController(ViewInterface view) {
         super(view);
-      
+        loaiSanPhamDAO = new LoaiSanPhamDAO();
+
     }
 
-   
+    public void search(String ten) {
+        loaiSanPhamPnl.viewList(loaiSanPhamDAO.search(ten));
+    }
+
+    @Override
+    public void loadList() {
+        loaiSanPhamPnl = (LoaiSanPhamPnl) view;
+        loaiSanPhamDAO = (LoaiSanPhamDAO) dao;
+        List<Object[]> data = loaiSanPhamDAO.layListLoaiSanPham();
+        loaiSanPhamPnl.setColumnNames(this.getTableColumnNames());
+        loaiSanPhamPnl.viewList(data);
+    }
 
     @Override
     public AbsDAO<LoaiSanPham> getDao() {

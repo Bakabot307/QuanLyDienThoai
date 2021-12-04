@@ -18,11 +18,11 @@ import java.util.List;
  *
  * @author Admin
  */
-public class HoaDonController extends AbsController<HoaDon> {
+public class ThongKeController extends AbsController<HoaDon> {
 
     private HoaDonPnl hoaDonPnl;
 
-    public HoaDonController(ViewInterface view) {
+    public ThongKeController(ViewInterface view) {
         super(view);
         hoaDonDAO = new HoaDonDAO();
     }
@@ -51,19 +51,8 @@ public class HoaDonController extends AbsController<HoaDon> {
         return hoaDonDAO.idHoaDOn();
     }
 
-    public void search(String id) {
-     
-        hoaDonPnl.viewList(hoaDonDAO.search(id));
-    }
 
-    @Override
-    public void loadList() {
-        hoaDonPnl = (HoaDonPnl) view;
-        hoaDonDAO = (HoaDonDAO) dao;
-        List<Object[]> data = hoaDonDAO.layDS();
-        hoaDonPnl.setColumnNames(this.getTableColumnNames());
-        hoaDonPnl.viewList(data);
-    }
+
     @Override
     public AbsDAO<HoaDon> getDao() {
         return new HoaDonDAO();
@@ -83,5 +72,4 @@ public class HoaDonController extends AbsController<HoaDon> {
     public String getName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

@@ -9,7 +9,9 @@ import DAO.AbsDAO;
 import DAO.NhaCungCapDAO;
 import MODEL.NhaCungCap;
 import VIEW.ViewInterface;
+import com.raven.form.NhaCungCapPnl;
 import java.util.Dictionary;
+import java.util.List;
 
 /**
  *
@@ -17,8 +19,24 @@ import java.util.Dictionary;
  */
 public class NhaCungCapController extends AbsController<NhaCungCap> {
 
+    private NhaCungCapPnl nhaCungCapPnl;
+    private NhaCungCapDAO nhaCungCapDAO;
+
     public NhaCungCapController(ViewInterface view) {
         super(view);
+    }
+
+    public void search(String ten) {
+        nhaCungCapPnl.viewList(nhaCungCapDAO.search(ten));
+    }
+
+    @Override
+    public void loadList() {
+        nhaCungCapPnl = (NhaCungCapPnl) view;
+        nhaCungCapDAO = (NhaCungCapDAO) dao;
+        List<Object[]> data = nhaCungCapDAO.layDS();
+        nhaCungCapPnl.setColumnNames(this.getTableColumnNames());
+        nhaCungCapPnl.viewList(data);
     }
 
     @Override

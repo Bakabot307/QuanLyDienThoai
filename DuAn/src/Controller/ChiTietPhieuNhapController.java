@@ -35,6 +35,9 @@ public class ChiTietPhieuNhapController extends AbsController<ChiTietPhieuNhap> 
         loadList();
     }
 
+//    public void search(String id, String idSearch) {
+//        chiTietPhieuNhapDialog.viewList(chiTietPhieuNhapDAO.search(id, idSearch));
+//    }
     @Override
     public void loadList() {
         chiTietPhieuNhapDialog = (ChiTietPhieuNhapDialog) view;

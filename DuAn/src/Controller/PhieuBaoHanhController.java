@@ -38,6 +38,10 @@ public class PhieuBaoHanhController extends AbsController<PhieuBaoHanh> {
         return hoaDonDAO.getAll();
     }
 
+    public void search(String id) {
+        phieuBaoHanhPnl.viewList(phieuBaoHanhDAO.search(id));
+    }
+
     @Override
     public void loadList() {
         phieuBaoHanhPnl = (PhieuBaoHanhPnl) view;

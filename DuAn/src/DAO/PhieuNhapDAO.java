@@ -18,4 +18,10 @@ public class PhieuNhapDAO extends AbsDAO<PhieuNhap> {
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
+
+    public List<Object[]> search(String id) {
+        String selectSql = "select idPhieuNhap,TenNhaCungCap,NgayNhap,TongTien,TrangThai,SoLuong from PhieuNhap join NhaCungCap on PhieuNhap.idNhaCungCap = NhaCungCap.idNhaCungCap where idPhieuNhap = ? ";
+        List<Object[]> data = getRawValues(selectSql, id);
+        return data;
+    }
 }

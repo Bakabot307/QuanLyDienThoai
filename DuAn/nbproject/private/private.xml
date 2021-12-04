@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/com/raven/form/KhachHangPanel.java</file>
-            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/DAO/KhachHangDAO.java</file>
-            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/Controller/KhachHangController.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/DAO/PhieuBaoHanhDAO.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/Controller/ChiTietPhieuNhapController.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/Controller/PhieuBaoHanhController.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/com/raven/form/ChiTietPhieuNhapDialog.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/com/raven/form/PhieuNhapPnl.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/DAO/ChiTietPhieuNhapDAO.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/Controller/PhieuNhapController.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/com/raven/form/PhieuBaoHanhPnl.java</file>
         </group>
     </open-files>
 </project-private>

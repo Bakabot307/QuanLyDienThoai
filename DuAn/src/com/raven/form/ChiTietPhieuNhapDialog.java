@@ -55,7 +55,7 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
     private void initComponents() {
 
         jPanel4 = new javax.swing.JPanel();
-        searchText3 = new com.raven.swing.SearchText();
+        searchText1 = new com.raven.swing.SearchText();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -76,6 +76,12 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
 
         jPanel4.setBorder(new javax.swing.border.MatteBorder(null));
 
+        searchText1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchText1KeyReleased(evt);
+            }
+        });
+
         jLabel3.setBackground(new java.awt.Color(0, 153, 153));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -95,7 +101,7 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(searchText3, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(searchText1, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
@@ -105,7 +111,7 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchText3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchText1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
@@ -314,6 +320,23 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
         double chuyen = ChuyenDoi.SoDouble(dau);
         txtTongTien.setText(ChuyenDoi.SoString(chuyen));
     }//GEN-LAST:event_txtTongTienKeyReleased
+
+    private void searchText1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchText1KeyReleased
+        // TODO add your handling code here:
+//        String id = searchText1.getText();
+//
+//        if (!id.matches(".*\\d.*")) {
+//            chiTietPhieuNhapController.loadList();
+//            System.out.println("Lỗi nhập string");
+//            return;
+//        } else if (id.equals("")) {
+//            chiTietPhieuNhapController.loadList();
+//            return;
+//        }
+//
+//        System.out.println(id);
+//        chiTietPhieuNhapController.search(String.valueOf(PhieuNhapPnl.id), id);
+    }//GEN-LAST:event_searchText1KeyReleased
     public Integer idPhieuNhap;
 
     public Integer getIdPhieuNhap() {
@@ -326,6 +349,7 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
         ChiTietPhieuNhapController chiTietPhieuNhapController = new ChiTietPhieuNhapController(this);
 
     }
+
     public void exportExcel(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         JFileChooser chooser = new JFileChooser();
@@ -430,7 +454,7 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private com.raven.swing.ScrollBar scrollBar1;
-    private com.raven.swing.SearchText searchText3;
+    private com.raven.swing.SearchText searchText1;
     public javax.swing.JSpinner spnSoLuong;
     private com.raven.swing.TableColumn tblChiTietPhieuNhap;
     public javax.swing.JTextField txtGiatien;

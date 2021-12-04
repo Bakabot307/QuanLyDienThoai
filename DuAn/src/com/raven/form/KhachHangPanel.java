@@ -343,7 +343,8 @@ public class KhachHangPanel extends javax.swing.JPanel implements ViewInterface 
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void searchText1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchText1KeyReleased
-        // TODO add your handling code here:
+
+        
         String ten = "%" + searchText1.getText() + "%";
         System.out.println(ten);
         khachHangController.search(ten);
