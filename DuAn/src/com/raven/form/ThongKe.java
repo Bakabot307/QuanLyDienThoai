@@ -26,11 +26,17 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
     private void init() throws ParseException {
         ThongKeController thongKeController = new ThongKeController(this);
         List<Object[]> data = thongKeController.loadMonth();
-        for (int i = 0; i < data.size(); i++) {
+        List<String> months = Arrays.asList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+        for (int i = 0; i < data.size(); i++) { 
+            
+                
+            
 //            System.out.println(Double.parseDouble(String.valueOf(Arrays.toString(data.get(i)))));
             System.out.println(Arrays.toString(data.get(i)).replaceAll("\\D+", ""));
-            chart.addData(new ModelChart("June", new double[]{ChuyenDoi.SoDouble(Arrays.toString(data.get(i)).replaceAll("\\D+", "")), 500000, 700000, 1000000}));
-            chart.addData(new ModelChart("July", new double[]{ChuyenDoi.SoDouble(Arrays.toString(data.get(i)).replaceAll("\\D+", "")), 500000, 700000, 1000000}));
+           
+            chart.addData(new ModelChart(months.get(i), new double[]{ChuyenDoi.SoDouble(Arrays.toString(data.get(i)).replaceAll("\\D+", "")), 500000, 700000, 1000000}));
+           
+        
         }
 
 //        List<Integer> ok = hoaDonController.loadMonth();

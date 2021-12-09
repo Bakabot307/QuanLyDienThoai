@@ -56,7 +56,7 @@ public class BanHangController extends AbsController<SanPham> {
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Sản Phẩm", "Tên Loại Sản Phẩm", "Tên Sản Phẩm", "Accept/Reject", "Giá Bán"};
+        return new String[]{"ID Sản Phẩm", "ID Chi Tiết", "Tên Sản Phẩm", "Dung Lượng","Màu Sắc", "Giá" ,"Số Lương", "Đơn Vị Tính"};
     }
 
     @Override

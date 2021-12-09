@@ -43,8 +43,7 @@ public class HoaDonController extends AbsController<HoaDon> {
     }
 
     public void ThemHD(int idSanPham, int idNhanVien, int idKhuyenMai, double tongTien, Date ngayLap, String hinhThucThanhToan, String TrangThai, String ghiChu) {
-        hoaDonDAO.them(idSanPham, idNhanVien, idKhuyenMai, tongTien, ngayLap, hinhThucThanhToan, TrangThai, ghiChu);
-
+        hoaDonDAO.themHD(idSanPham, idNhanVien, idKhuyenMai, tongTien, ngayLap, hinhThucThanhToan, TrangThai, ghiChu);
     }
 
     public Integer idHoaDon() {
@@ -60,10 +59,10 @@ public class HoaDonController extends AbsController<HoaDon> {
     public void loadList() {
         hoaDonPnl = (HoaDonPnl) view;
         hoaDonDAO = (HoaDonDAO) dao;
-        List<Object[]> data = hoaDonDAO.layDS();
+        List<Object[]> data = hoaDonDAO.LoadDSSanPham();
         hoaDonPnl.setColumnNames(this.getTableColumnNames());
         hoaDonPnl.viewList(data);
-    }
+        }
     @Override
     public AbsDAO<HoaDon> getDao() {
         return new HoaDonDAO();

@@ -83,6 +83,23 @@ public abstract class AbsController<T extends TableInterface> {
         }
 
     }
+        public void insertNoLoadList(Object[] values) {
+        // tạo dto
+        T dto = dao.createDto();
+        // set value vào dtoS
+        dto.setValue(values);
+        // kiểm tra lỗi
+        List<ConstraintViolation> errorList = validate(dto);
+        if (errorList.isEmpty()) {
+            // nếu không có lỗi
+            dao.insert(dto);
+            
+        } else {
+            // hiển thị lỗi
+            view.showErrors(errorList);
+        }
+
+    }
 
     /**
      * *

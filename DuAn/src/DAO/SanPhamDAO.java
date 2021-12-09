@@ -21,7 +21,7 @@ import javax.naming.spi.DirStateFactory;
 public class SanPhamDAO extends AbsDAO<SanPham> {
 
     public List<Object[]> layTenLoaiSanPham() {
-        String selectSql = "select SanPham.idSanPham, CONCAT(TenSanPham,' Màu ',MauSac,' ',DungLuong)as TenSanPham,GiaBan,SoLuong,DVT from SanPham\n"
+        String selectSql = "select SanPham.idsanPham, ChiTietSanPham.idChiTietSanPham, TenSanPham, DungLuong, Mausac,GiaBan,SoLuong,DVT from SanPham\n"
                 + "inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham ";
         List<Object[]> data = getRawValues(selectSql);
         return data;

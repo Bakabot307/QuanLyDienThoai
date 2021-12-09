@@ -9,6 +9,10 @@ import Controller.ChuyenDoi;
 import com.raven.swing.MImage;
 import java.awt.Color;
 import java.awt.Component;
+import java.beans.PropertyChangeListener;
+import java.text.NumberFormat;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.NumberFormatter;
 
 /**
  *
@@ -19,7 +23,9 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
     /**
      * Creates new form KhachHangDialog
      */
-    int soLuong= 0;
+    double soLuong= 0;
+    
+    
     public HandleTangSoLuongDal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -170,13 +176,28 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
     }//GEN-LAST:event_btnOkMouseClicked
 
     private void btnGiamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGiamMouseClicked
-         soLuong=soLuong-1;
-            txtSoLuong.setText(Integer.toString(soLuong));
+         soLuong=soLuong-1; 
+            txtSoLuong.setText(ChuyenDoi.SoString(soLuong));
+            
+//             NumberFormat format = NumberFormat.getInstance();
+//    NumberFormatter formatter = new NumberFormatter(format);
+//    formatter.setValueClass(Integer.class);
+//    formatter.setMinimum(0);
+//    formatter.setMaximum(Integer.MAX_VALUE);
+//    formatter.setAllowsInvalid(false);
+//    // If you want the value to be committed on each keystroke instead of focus lost
+//    formatter.setCommitsOnValidEdit(true);
+//    JFormattedTextField field = new JFormattedTextField(formatter);
+//
+//
+//
+//    // getValue() always returns something valid
+//    System.out.println(field.getValue(txtSoLuong.getText()));
     }//GEN-LAST:event_btnGiamMouseClicked
 
     private void btnTang1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTang1MouseClicked
-        soLuong=soLuong+1;
-           txtSoLuong.setText(Integer.toString(soLuong));
+         soLuong=soLuong+1;
+           txtSoLuong.setText(ChuyenDoi.SoString(soLuong));
        
     }//GEN-LAST:event_btnTang1MouseClicked
 
