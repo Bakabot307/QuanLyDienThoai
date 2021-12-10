@@ -36,14 +36,18 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  */
 public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewInterface {
 
-    int idSanPham = 0;
+    public ChiTietPhieuNhapDialog() {
+    }
+    
+    int idSanPham =  PhieuNhapPnl.idSanPham;
 
     public ChiTietPhieuNhapDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setIconImage(MImage.getAppIcon());
         this.setTitle("Detail");
-
+//     idSanPham =  PhieuNhapPnl.listID.get(0).intValue();
+   
     }
 
     /**
@@ -288,7 +292,7 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
 
     private void btnThem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThem2MouseClicked
         // TODO add your handling code here:
-
+        
         System.out.println("id chi tiet" + Integer.parseInt(PhieuNhapPnl.id));
         double giaTien = ChuyenDoi.SoDouble(txtGiatien.getText());
         double tongTien = ChuyenDoi.SoDouble(txtTongTien.getText());

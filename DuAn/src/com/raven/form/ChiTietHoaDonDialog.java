@@ -40,7 +40,7 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
         this.setIconImage(MImage.getAppIcon());
         this.setTitle("Detail");
     }
-    
+    int idSP =  HoaDonPnl.idSanPham;
     public Integer idHoaDon;
     
     public Integer getIdHoaDon() {
@@ -334,7 +334,13 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
     }//GEN-LAST:event_txtTenKeyReleased
 
     private void cbbSanPhamItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbSanPhamItemStateChanged
-
+ int indexCBB = cbbSanPham.getSelectedIndex();
+        for (int i = 0; i < HoaDonPnl.listID.size(); i++) {
+            if (indexCBB == i) {
+                idSP = PhieuNhapPnl.listID.get(i);
+                System.out.println(idSP);
+            }
+        }
     }//GEN-LAST:event_cbbSanPhamItemStateChanged
 
     private void txtGiatien1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiatien1ActionPerformed

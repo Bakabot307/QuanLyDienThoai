@@ -20,7 +20,7 @@ public class ChiTietHoaDonDAO extends AbsDAO<ChiTietHoaDon> {
     }
 
     public List<Object[]> loadLaiDS(int idSanPham) {
-        String selectSql = "select idChiTietHoaDon,idSanPham,HoaDon.idHoaDon,TenSanPham,SoLuong,Gia,ChiTietHoaDon.TongTien "
+        String selectSql = "select idChiTietHoaDon,idSanPham,HoaDon.idHoaDon,SoLuong,Gia,ChiTietHoaDon.TongTien "
                 + "from ChiTietHoaDon join HoaDon on ChiTietHoaDon.idHoaDon = HoaDon.idHoaDon where HoaDon.idHoaDon = ?";
         List<Object[]> data = getRawValues(selectSql, idSanPham);
         return data;

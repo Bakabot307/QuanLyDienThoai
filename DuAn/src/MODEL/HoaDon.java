@@ -8,6 +8,7 @@ package MODEL;
 
 import java.sql.Timestamp;
 import Interface.TableInterface;
+import java.sql.Date;
 
 /**
  *
@@ -26,6 +27,23 @@ public class HoaDon extends TableInterface {
     private String hinhThucThanhToan;
     private String trangThai;
     private String ghiChu;
+
+    public HoaDon() {
+    }
+
+    public HoaDon(Integer idHoaDon, Integer idKhachHang, Integer idNhanVien, Integer idKhuyenMai, double tongTien, Timestamp ngayLap, String hinhThucThanhToan, String trangThai, String ghiChu) {
+        this.idHoaDon = idHoaDon;
+        this.idKhachHang = idKhachHang;
+        this.idNhanVien = idNhanVien;
+        this.idKhuyenMai = idKhuyenMai;
+        this.tongTien = tongTien;
+        this.ngayLap = ngayLap;
+        this.hinhThucThanhToan = hinhThucThanhToan;
+        this.trangThai = trangThai;
+        this.ghiChu = ghiChu;
+    }
+
+ 
     
     public Timestamp getNgayLap() {
         return ngayLap;

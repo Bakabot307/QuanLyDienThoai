@@ -7,9 +7,12 @@ package Controller;
 
 import DAO.AbsDAO;
 import DAO.HoaDonDAO;
+import DAO.SanPhamDAO;
 import MODEL.HoaDon;
+import MODEL.SanPham;
 import VIEW.ViewInterface;
 import com.raven.form.HoaDonPnl;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Dictionary;
 import java.util.List;
@@ -21,14 +24,27 @@ import java.util.List;
 public class HoaDonController extends AbsController<HoaDon> {
 
     private HoaDonPnl hoaDonPnl;
+    private SanPhamDAO sanPhamDAO;
 
     public HoaDonController(ViewInterface view) {
         super(view);
         hoaDonDAO = new HoaDonDAO();
+        sanPhamDAO = new SanPhamDAO();
     }
 
     public List<Object[]> loadMonth() {
         return hoaDonDAO.loadThang();
+
+    }
+     public ArrayList<HoaDon> DSHoaDOn() {
+
+        return hoaDonDAO.layListHoaDon();
+
+    }
+     
+       public ArrayList<SanPham> DSSanPham() {
+
+        return sanPhamDAO.layListSanPham();
 
     }
 

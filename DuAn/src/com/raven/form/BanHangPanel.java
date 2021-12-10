@@ -51,6 +51,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 //        dataTable2.getColumn("button").setCellRenderer(new ButtonRenderer());
 //        dataTable2.getColumn("button").setCellEditor(
 //            new ButtonEditor(new JCheckBox()));
+
         dataTable2.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent me) {
                 if (me.getClickCount() == 2) {

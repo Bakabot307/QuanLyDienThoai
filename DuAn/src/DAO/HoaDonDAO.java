@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import DAO.DBConnection;
+import java.util.ArrayList;
 
 /**
  *
@@ -105,4 +106,33 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
         return data;
     }
 
+    public ArrayList<HoaDon> layListHoaDon() {
+        ArrayList<HoaDon> HoaDon = new ArrayList<>();
+        try {
+            String selectSql = "select * from HoaDon";
+
+            ResultSet rs = DBConnection.executeQuery(selectSql);
+            HoaDon hd;
+            while (rs.next()) {
+                hd = new HoaDon(rs.getInt("idHoaDOn"),
+                        rs.getInt("idKhachHang"),
+                        rs.getInt("idNhanVien"),
+                        rs.getInt("idKhuyenMai"),
+                        rs.getDouble("TongTien"),
+                        rs.getTimestamp("NgayLap"),
+                        rs.getString("HinhThucThanhToan"),
+                        rs.getString("TrangThai"),
+                        rs.getString("GhiChu"));
+
+                HoaDon.add(hd);
+                System.out.println(hd);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return HoaDon;
+
+    }
 }

@@ -44,6 +44,7 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
     /**
      * Creates new form NhaCungCapPnl
      */
+     static int idSanPham = 0;
     private HandlePhieuNhapDal phieuNhapDal = null;
     public static List<Integer> listID = new ArrayList<Integer>();;
     public PhieuNhapPnl() {
@@ -339,6 +340,12 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
 
     private void txtChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtChiTietMouseClicked
         // TODO add your handling code here:
+             for (int i = 0; i < PhieuNhapPnl.listID.size(); i++) {
+            idSanPham= PhieuNhapPnl.listID.get(0);
+            
+            
+        }
+        System.out.println("idsanpham:" +idSanPham);
         if (tblPhieuNhap.getSelectedRow() == -1) {
             System.out.println("Lỗi chưa chọn dòng");
             JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn phiếu cần xem ! ", "Thông báo", JOptionPane.ERROR_MESSAGE);

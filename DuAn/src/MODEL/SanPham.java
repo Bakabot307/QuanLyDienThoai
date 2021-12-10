@@ -29,6 +29,9 @@ public class SanPham extends TableInterface {
     private String DVT;
     private byte[] hinhAnh;
 
+    public SanPham() {
+    }
+
 
 
     public SanPham(Integer idSanPham, Integer idLoaiSanPham, String TenSanPham, double GiaNhap, double GiaBan, Integer SoLuong, String DVT, byte[] hinhAnh) {
