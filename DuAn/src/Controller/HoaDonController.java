@@ -51,7 +51,7 @@ public class HoaDonController extends AbsController<HoaDon> {
     }
 
     public void search(String id) {
-     
+
         hoaDonPnl.viewList(hoaDonDAO.search(id));
     }
 
@@ -59,10 +59,11 @@ public class HoaDonController extends AbsController<HoaDon> {
     public void loadList() {
         hoaDonPnl = (HoaDonPnl) view;
         hoaDonDAO = (HoaDonDAO) dao;
-        List<Object[]> data = hoaDonDAO.LoadDSSanPham();
+        List<Object[]> data = hoaDonDAO.Load();
         hoaDonPnl.setColumnNames(this.getTableColumnNames());
         hoaDonPnl.viewList(data);
-        }
+    }
+
     @Override
     public AbsDAO<HoaDon> getDao() {
         return new HoaDonDAO();

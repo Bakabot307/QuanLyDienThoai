@@ -33,9 +33,16 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
         }
         return 0;
     }
-public List<Object[]> LoadDSSanPham() {
+
+    public List<Object[]> LoadDSSanPham() {
         String selectSql = "select SanPham.idsanPham, ChiTietSanPham.idChiTietSanPham, TenSanPham, DungLuong, Mausac,GiaBan,SoLuong,DVT from SanPham\n"
                 + "inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham ";
+        List<Object[]> data = getRawValues(selectSql);
+        return data;
+    }
+
+    public List<Object[]> Load() {
+        String selectSql = "select * from HoaDon ";
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
@@ -44,6 +51,7 @@ public List<Object[]> LoadDSSanPham() {
 //        List<Object[]> data = getRawValues(selectSql);
 //        return data;
 //    }
+
     public List<Object[]> loadThang() {
         String selectSql = "SELECT SUM(TongTien) AS totalIncome FROM HoaDon WHERE NgayLap >=dateadd(month,datediff(month,0,getdate())-12,0) group by Month(NgayLap)";
         List<Object[]> data = getRawValues(selectSql);
@@ -66,7 +74,6 @@ public List<Object[]> LoadDSSanPham() {
         String cauLenhThem = "insert into HoaDon values (?,?,?,?,?,?,?,?)";
         DBConnection.executeUpdate(cauLenhThem, idSanPham, idNhanVien, idKhuyenMai, tongTien, ngayLap, hinhThucThanhToan, TrangThai, ghiChu);
     }
-    
 
     public Integer idHoaDOn() {
         String selectSql = "SELECT TOP 1 * FROM [HoaDon] ORDER BY idHoaDon DESC";
@@ -97,5 +104,5 @@ public List<Object[]> LoadDSSanPham() {
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
-    
+
 }

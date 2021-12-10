@@ -30,6 +30,8 @@ public class BanHangController extends AbsController<SanPham> {
         khuyenMaiDAO = new KhuyenMaiDAO();
 
     }
+    
+    
 
     private KhuyenMaiDAO khuyenMaiDAO;
     private SanPhamPanel sanPhamPanel;

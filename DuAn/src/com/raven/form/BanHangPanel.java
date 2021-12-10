@@ -492,36 +492,46 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         Integer idNV = DangNhapPnl.ID;
         java.sql.Timestamp now = new Timestamp((new java.util.Date()).getTime());
         double tongTien = Double.parseDouble(txtTongTien.getText());
-        HoaDonController hoaDonController = new HoaDonController(this);
+//        HoaDonController hoaDonController = new HoaDonController(this);
         hoaDonBanHangController.ThemHD(1, idNV, idKM, tongTien, now, "hinh thuc thanh toan", "trang thai", "ghichu");
 
-        System.out.println(hoaDonController.idHoaDon());
-        System.out.println(dataTable1.getRowCount());
-        System.out.println(dataTable1.getColumnCount());
-        int idSanPham = 0, SoLuong = 0, idHoaDon;
-        String tenSanPham = null;
-        double Gia = 0;
-
-        for (int i = 0; i < dataTable1.getRowCount(); i++) {
-            for (int j = 1; j < dataTable1.getColumnCount(); j++) {
-                idHoaDon = hoaDonController.idHoaDon();
-                if (j == 1) {
-                    idSanPham = Integer.parseInt(dataTable1.getModel().getValueAt(i, 0).toString());
-                } else if (j == 3) { //gia
-                    tenSanPham = dataTable1.getValueAt(i, 1).toString();
-                } else if (j == 4) {
-                    SoLuong = Integer.parseInt(dataTable1.getValueAt(i, 6).toString());
-                } else if (j == 5) {
-                    Gia = ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 5).toString());
-                } else {
-                    continue;
-                }
-                double TongTien = Double.parseDouble(dataTable1.getValueAt(i, 5).toString()) * Double.parseDouble(dataTable1.getValueAt(i, 6).toString());
-//idSanPham, idHoaDon, TenSanPham, SoLuong, Gia, TongTien
-                System.out.println(idSanPham + idHoaDon + tenSanPham + SoLuong + Gia + TongTien);
-                chiTietHoaDonController.ThemCTHD(idSanPham, idHoaDon, tenSanPham, SoLuong, Gia, TongTien);
-            }
-        }
+//        System.out.println(hoaDonController.idHoaDon());
+//        System.out.println(dataTable1.getRowCount());
+//        System.out.println(dataTable1.getColumnCount());
+//        int idSanPham = 0, SoLuong = 0, idHoaDon;
+//        String tenSanPham = null;
+//        double Gia = 0;
+//        for (int i = 0; i < dataTable1.getRowCount(); i++) {
+//            for (int j = 1; j < dataTable1.getColumnCount(); j++) {
+//                idHoaDon = hoaDonController.idHoaDon();
+//                if (j == 1) {
+//                    idSanPham = Integer.parseInt(dataTable1.getModel().getValueAt(i, 0).toString());
+//                } else if (j == 3) { //gia
+//                    tenSanPham = dataTable1.getValueAt(i, 1).toString();
+//                } else if (j == 4) {
+//                    SoLuong = Integer.parseInt(dataTable1.getValueAt(i, 6).toString());
+//                } else if (j == 5) {
+//                    Gia = ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 5).toString());
+//                } else {
+//                    continue;
+//                }
+//
+//                double TongTien = Double.parseDouble(dataTable1.getValueAt(i, 5).toString()) * Double.parseDouble(dataTable1.getValueAt(i, 6).toString());
+////idSanPham, idHoaDon, TenSanPham, SoLuong, Gia, TongTien
+//                System.out.println(idSanPham + idHoaDon + tenSanPham + SoLuong + Gia + TongTien);
+//
+//                Object[] data = new Object[6];
+//                data[0] = idSanPham;
+//                data[1] = idHoaDon;
+//                data[2] = tenSanPham;
+//                data[3] = SoLuong;
+//                data[4] = Gia;
+//                data[5] = tongTien;
+//
+////                chiTietHoaDonController.ThemCTHD(idSanPham, idHoaDon, tenSanPham, SoLuong, Gia, TongTien);
+//                chiTietHoaDonController.insert(data);
+//            }
+//        }
     }//GEN-LAST:event_txtThanhToanActionPerformed
 
     private void dataTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataTable1MouseClicked

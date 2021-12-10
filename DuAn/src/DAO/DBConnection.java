@@ -1,10 +1,11 @@
- package DAO;
+package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 /**
  *
  * @author Admin
@@ -14,7 +15,7 @@ public class DBConnection {
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static String dburl = "jdbc:sqlserver://localhost;database=quanly_dienthoai";
     private static String username = "sa";
-    private static String password = "123456";
+    private static String password = "2433";
 
     /*
      * Nạp driver
@@ -37,7 +38,6 @@ public class DBConnection {
      * @return PreparedStatement tạo được
      * @throws java.sql.SQLException lỗi sai cú pháp
      */
-    
     public static PreparedStatement prepareStatement(String sql, Object... args) throws SQLException {
         Connection connection = DriverManager.getConnection(dburl, username, password);
         PreparedStatement pstmt = null;
@@ -62,37 +62,36 @@ public class DBConnection {
      * @param args là danh sách các giá trị được cung cấp cho các tham số trong
      * câu lệnh sql *
      */
-    public static void executeUpdate(String sql, Object...args) {
+    public static void executeUpdate(String sql, Object... args) {
         try {
             PreparedStatement stmt = prepareStatement(sql, args);
             System.out.println(stmt.toString());
             try {
                 stmt.executeUpdate();
-            } 
-            finally{
+            } finally {
                 stmt.getConnection().close();
             }
-        } 
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    
-     /**
-     * Thực hiện câu lệnh SQL truy vấn dữ liệu (SELECT) hoặc thủ tục lưu truy vấn dữ liệu
-     * @param sql là câu lệnh SQL chứa có thể chứa tham số. Nó có thể là một lời gọi thủ tục lưu
-     * @param args là danh sách các giá trị được cung cấp cho các tham số trong câu lệnh sql
-     */   
-    
-     public static ResultSet executeQuery(String sql, Object...args) {
+
+    /**
+     * Thực hiện câu lệnh SQL truy vấn dữ liệu (SELECT) hoặc thủ tục lưu truy
+     * vấn dữ liệu
+     *
+     * @param sql là câu lệnh SQL chứa có thể chứa tham số. Nó có thể là một lời
+     * gọi thủ tục lưu
+     * @param args là danh sách các giá trị được cung cấp cho các tham số trong
+     * câu lệnh sql
+     */
+    public static ResultSet executeQuery(String sql, Object... args) {
         try {
             PreparedStatement stmt = prepareStatement(sql, args);
             return stmt.executeQuery();
-        } 
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    
-    
+
 }
