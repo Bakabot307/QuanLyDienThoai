@@ -16,20 +16,19 @@ public class ChiTietHoaDon extends TableInterface {
     private Integer idChiTietHoaDon;
     private Integer idSanPham;
     private Integer idHoaDon;
-    private String tenSanPham;
     private Integer soLuong;
-    private float gia;
-    private float tongTien;
+    private double gia;
+    private double tongTien;
  
 
     public ChiTietHoaDon() {
     }
 
-    public ChiTietHoaDon(Integer idChiTietHoaDon, Integer idSanPham, Integer idHoaDon, String tenSanPham, Integer soLuong, float gia, float tongTien, String ghiChu) {
+    public ChiTietHoaDon(Integer idChiTietHoaDon, Integer idSanPham, Integer idHoaDon, Integer soLuong, float gia, float tongTien, String ghiChu) {
         this.idChiTietHoaDon = idChiTietHoaDon;
         this.idSanPham = idSanPham;
         this.idHoaDon = idHoaDon;
-        this.tenSanPham = tenSanPham;
+
         this.soLuong = soLuong;
         this.gia = gia;
         this.tongTien = tongTien;
@@ -58,15 +57,6 @@ public class ChiTietHoaDon extends TableInterface {
     public void setIdHoaDon(Integer idHoaDon) {
         this.idHoaDon = idHoaDon;
     }
-
-    public String getTenSanPham() {
-        return tenSanPham;
-    }
-
-    public void setTenSanPham(String tenSanPham) {
-        this.tenSanPham = tenSanPham;
-    }
-
     public Integer getSoLuong() {
         return soLuong;
     }
@@ -75,19 +65,19 @@ public class ChiTietHoaDon extends TableInterface {
         this.soLuong = soLuong;
     }
 
-    public float getGia() {
+    public double getGia() {
         return gia;
     }
 
-    public void setGia(float gia) {
+    public void setGia(double gia) {
         this.gia = gia;
     }
 
-    public float getTongTien() {
+    public double getTongTien() {
         return tongTien;
     }
 
-    public void setTongTien(float tongTien) {
+    public void setTongTien(double tongTien) {
         this.tongTien = tongTien;
     }
 

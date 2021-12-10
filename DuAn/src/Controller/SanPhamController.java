@@ -68,11 +68,11 @@ public class SanPhamController extends AbsController<SanPham> {
 
     @Override
     public void loadList() {
-//        sanPhamPanel = (SanPhamPanel) view;
-//        sanPhamDAO = (SanPhamDAO) dao;
-//        List<Object[]> data = sanPhamDAO.DanhSachSanPham();
-//        sanPhamPanel.setColumnNames(this.getTableColumnNames());
-//        sanPhamPanel.viewList(data);
+        sanPhamPanel = (SanPhamPanel) view;
+        sanPhamDAO = (SanPhamDAO) dao;
+        List<Object[]> data = sanPhamDAO.DanhSachSanPham();
+        sanPhamPanel.setColumnNames(this.getTableColumnNames());
+        sanPhamPanel.viewList(data);
     }
 
     @Override

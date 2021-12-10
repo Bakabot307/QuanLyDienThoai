@@ -8,19 +8,24 @@ package com.raven.form;
 import Controller.AbsController;
 import Controller.ChuyenDoi;
 import Controller.PhieuNhapController;
+import MODEL.KhuyenMai;
 import MODEL.NhaCungCap;
 import MODEL.SanPham;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
 import duan.dialog.HandlePhieuNhapDal;
 import java.awt.Frame;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -40,7 +45,7 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
      * Creates new form NhaCungCapPnl
      */
     private HandlePhieuNhapDal phieuNhapDal = null;
-
+    public static List<Integer> listID = new ArrayList<Integer>();;
     public PhieuNhapPnl() {
         initComponents();
         PhieuNhapController phieuNhapController = new PhieuNhapController(this);
@@ -130,6 +135,8 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
         List<NhaCungCap> sanPhams = phieuNhapController.layCbbNhaCungCap();
         modle.addAll(sanPhams);
         modle.setSelectedItem(sanPhams.get(0));
+        
+        
 
     }
 
@@ -346,15 +353,30 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
 
         chiTietPhieuNhapDialog.setIdPhieuNhap((Integer) tblPhieuNhap.getValueAt(tblPhieuNhap.getSelectedRow(), 0));
 
-        DefaultComboBoxModel<SanPham> modle = (DefaultComboBoxModel<SanPham>) chiTietPhieuNhapDialog.cbbSanPham.getModel();
-        modle.removeAllElements();
-        List<SanPham> sanPhams = phieuNhapController.layCbbSanPham();
-        modle.addAll(sanPhams);
-        modle.setSelectedItem(sanPhams.get(0));
+ 
 
-        chiTietPhieuNhapDialog.setVisible(true);
+//        List<SanPham> sanPhams = phieuNhapController.layCbbSanPham();
+
+//        modle.setSelectedItem(sanPhams.get(0));
 
 
+
+        ArrayList<SanPham> list = phieuNhapController.DSSanPham();
+
+       DefaultComboBoxModel<SanPham> modle = (DefaultComboBoxModel<SanPham>) chiTietPhieuNhapDialog.cbbSanPham.getModel();
+       modle.removeAllElements();
+DefaultComboBoxModel dml= new DefaultComboBoxModel();
+for (int i = 0; i < list.size(); i++) {
+  dml.addElement(list.get(i).getTenSanPham());
+  listID.add(list.get(i).getIdSanPham());
+    System.out.println(listID);
+  
+}
+
+
+chiTietPhieuNhapDialog.cbbSanPham.setModel(dml);
+chiTietPhieuNhapDialog.setVisible(true);
+  
     }//GEN-LAST:event_txtChiTietMouseClicked
 
     private void searchText1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchText1KeyReleased

@@ -14,6 +14,7 @@ import MODEL.PhieuNhap;
 import MODEL.SanPham;
 import VIEW.ViewInterface;
 import com.raven.form.PhieuNhapPnl;
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.List;
 
@@ -26,16 +27,24 @@ public class PhieuNhapController extends AbsController<PhieuNhap> {
     private NhaCungCapDAO nhaCungCapDAO;
     private PhieuNhapPnl phieuNhapPnl;
     private PhieuNhapDAO phieuNhapDAO;
-
+ private SanPhamDAO sanPhamDAO;
     public PhieuNhapController(ViewInterface view) {
         super(view);
         nhaCungCapDAO = new NhaCungCapDAO();
         sanPhamDAO = new SanPhamDAO();
+        
+        
     }
-    private SanPhamDAO sanPhamDAO;
+   
 
-    public List<SanPham> layCbbSanPham() {
-        return sanPhamDAO.getAll();
+//    public List<SanPham> layCbbSanPham() {
+//        return sanPhamDAO.getAll();
+//    }
+    
+      public ArrayList<SanPham> DSSanPham() {
+
+        return sanPhamDAO.layListSanPham();
+
     }
 
     public List<NhaCungCap> layCbbNhaCungCap() {

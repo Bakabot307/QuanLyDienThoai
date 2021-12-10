@@ -47,7 +47,7 @@ public class HoaDonController extends AbsController<HoaDon> {
     }
 
     public Integer idHoaDon() {
-        return hoaDonDAO.idHoaDOn();
+        return hoaDonDAO.layHDVuaTao();
     }
 
     public void search(String id) {

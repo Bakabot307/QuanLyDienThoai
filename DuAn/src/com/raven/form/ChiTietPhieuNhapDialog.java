@@ -8,6 +8,7 @@ package com.raven.form;
 import Controller.AbsController;
 import Controller.ChiTietPhieuNhapController;
 import Controller.ChuyenDoi;
+import Controller.PhieuNhapController;
 import MODEL.LoaiSanPham;
 import MODEL.SanPham;
 import VIEW.ViewImp;
@@ -16,6 +17,7 @@ import com.raven.swing.MImage;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -33,10 +35,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  * @author Admin
  */
 public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewInterface {
-
-    /**
-     * Creates new form ChiTietPhieuNhapDialog
-     */
+    int idSanPham = 0;
     public ChiTietPhieuNhapDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -153,6 +152,12 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
         jLabel2.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
         jLabel2.setText("Sản phẩm");
 
+        cbbSanPham.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbSanPhamItemStateChanged(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
         jLabel4.setText("Số lượng");
 
@@ -267,9 +272,10 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
 
     private void btnThem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThem2MouseClicked
         // TODO add your handling code here:
-        SanPham sanPham = (SanPham) cbbSanPham.getSelectedItem();
-        Integer idSanPham = sanPham.getId();
-
+        
+      
+        
+        
         System.out.println("id chi tiet" + Integer.parseInt(PhieuNhapPnl.id));
         double giaTien = ChuyenDoi.SoDouble(txtGiatien.getText());
         double tongTien = ChuyenDoi.SoDouble(txtTongTien.getText());
@@ -337,6 +343,16 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
 //        System.out.println(id);
 //        chiTietPhieuNhapController.search(String.valueOf(PhieuNhapPnl.id), id);
     }//GEN-LAST:event_searchText1KeyReleased
+
+    private void cbbSanPhamItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbSanPhamItemStateChanged
+        int indexCBB = cbbSanPham.getSelectedIndex();
+        for (int i = 0; i < PhieuNhapPnl.listID.size(); i++) {
+            if(indexCBB==i){
+                idSanPham= PhieuNhapPnl.listID.get(i);
+                System.out.println(idSanPham);
+            }
+        }
+    }//GEN-LAST:event_cbbSanPhamItemStateChanged
     public Integer idPhieuNhap;
 
     public Integer getIdPhieuNhap() {

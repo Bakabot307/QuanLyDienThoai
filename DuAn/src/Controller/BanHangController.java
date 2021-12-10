@@ -6,6 +6,7 @@
 package Controller;
 
 import DAO.AbsDAO;
+import DAO.HoaDonDAO;
 import DAO.KhuyenMaiDAO;
 import DAO.SanPhamDAO;
 import MODEL.KhuyenMai;
@@ -24,25 +25,30 @@ import java.util.List;
 public class BanHangController extends AbsController<SanPham> {
 
     private Menu menu;
+      private KhuyenMaiDAO khuyenMaiDAO;
+    private SanPhamPanel sanPhamPanel;
+    private BanHangPanel banHangPanel;
+    private SanPhamDAO sanPhamDAO;
+    private HoaDonDAO hoaDonDAO;
 
     public BanHangController(ViewInterface view) {
         super(view);
         khuyenMaiDAO = new KhuyenMaiDAO();
+        hoaDonDAO = new HoaDonDAO();
 
     }
     
     
+public Integer idHoaDon() {
+        return hoaDonDAO.layHDVuaTao();
+    }
 
-    private KhuyenMaiDAO khuyenMaiDAO;
-    private SanPhamPanel sanPhamPanel;
-    private BanHangPanel banHangPanel;
-    private SanPhamDAO sanPhamDAO;
 
     @Override
     public void loadList() {
         banHangPanel = (BanHangPanel) view;
         sanPhamDAO = (SanPhamDAO) dao;
-        List<Object[]> data = sanPhamDAO.layTenLoaiSanPham();
+        List<Object[]> data = sanPhamDAO.layDSSanPham();
         banHangPanel.setColumnNames(this.getTableColumnNames());
         banHangPanel.viewList(data);
     }

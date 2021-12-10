@@ -48,7 +48,7 @@ public class ThongKeController extends AbsController<HoaDon> {
     }
 
     public Integer idHoaDon() {
-        return hoaDonDAO.idHoaDOn();
+        return hoaDonDAO.layHDVuaTao();
     }
 
 

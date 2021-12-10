@@ -75,7 +75,7 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
         DBConnection.executeUpdate(cauLenhThem, idSanPham, idNhanVien, idKhuyenMai, tongTien, ngayLap, hinhThucThanhToan, TrangThai, ghiChu);
     }
 
-    public Integer idHoaDOn() {
+    public Integer layHDVuaTao() {
         String selectSql = "SELECT TOP 1 * FROM [HoaDon] ORDER BY idHoaDon DESC";
         ResultSet rs = DBConnection.executeQuery(selectSql);
 

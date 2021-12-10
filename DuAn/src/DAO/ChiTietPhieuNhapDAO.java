@@ -14,7 +14,7 @@ import java.util.List;
 public class ChiTietPhieuNhapDAO extends AbsDAO<ChiTietPhieuNhap> {
 
     public List<Object[]> loadLaiDS(int idPhieuNhap) {
-        String selectSql = "select	idChiTietPhieuNhap,idPhieuNhap,TenSanPham,ChiTietPhieuNhap.SoLuong,GiaTien,TongTien from ChiTietPhieuNhap join SanPham on ChiTietPhieuNhap.idSanPham = SanPham.idSanPham where idPhieuNhap = ? ";
+        String selectSql = "select idChiTietPhieuNhap,idPhieuNhap,TenSanPham,ChiTietPhieuNhap.SoLuong,GiaTien,TongTien from ChiTietPhieuNhap join SanPham on ChiTietPhieuNhap.idSanPham = SanPham.idSanPham where idPhieuNhap = ? ";
         List<Object[]> data = getRawValues(selectSql, idPhieuNhap);
         return data;
     }
