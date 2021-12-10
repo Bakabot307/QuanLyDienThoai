@@ -35,7 +35,9 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  * @author Admin
  */
 public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewInterface {
+
     int idSanPham = 0;
+
     public ChiTietPhieuNhapDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -70,6 +72,7 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
         jLabel9 = new javax.swing.JLabel();
         txtTongTien = new javax.swing.JTextField();
         errorLB = new javax.swing.JLabel();
+        lbStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -193,6 +196,11 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
         errorLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         errorLB.setText("jLabel1");
 
+        lbStatus.setFont(new java.awt.Font("UTM Avo", 0, 14)); // NOI18N
+        lbStatus.setForeground(new java.awt.Color(0, 0, 204));
+        lbStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbStatus.setText("*Thêm thành công");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -205,26 +213,32 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(errorLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(txtTongTien)
+                                                    .addComponent(txtGiatien)
+                                                    .addComponent(spnSoLuong)
+                                                    .addComponent(cbbSanPham, 0, 184, Short.MAX_VALUE))))
+                                        .addContainerGap())
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(lbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap())))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnThem2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(95, 95, 95))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(errorLB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtTongTien)
-                                            .addComponent(txtGiatien)
-                                            .addComponent(spnSoLuong)
-                                            .addComponent(cbbSanPham, 0, 184, Short.MAX_VALUE))))
-                                .addContainerGap())))))
+                                .addGap(96, 96, 96))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,8 +270,10 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(errorLB)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnThem2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))))
+                        .addGap(29, 29, 29))))
         );
 
         pack();
@@ -272,10 +288,7 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
 
     private void btnThem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThem2MouseClicked
         // TODO add your handling code here:
-        
-      
-        
-        
+
         System.out.println("id chi tiet" + Integer.parseInt(PhieuNhapPnl.id));
         double giaTien = ChuyenDoi.SoDouble(txtGiatien.getText());
         double tongTien = ChuyenDoi.SoDouble(txtTongTien.getText());
@@ -306,6 +319,7 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
         }
 
         chiTietPhieuNhapController.them(Integer.parseInt(PhieuNhapPnl.id), idSanPham, soLuong, giaTien, tongTien);
+        lbStatus.setText("*Thêm thành công");
 
     }//GEN-LAST:event_btnThem2MouseClicked
 
@@ -347,8 +361,8 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
     private void cbbSanPhamItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbSanPhamItemStateChanged
         int indexCBB = cbbSanPham.getSelectedIndex();
         for (int i = 0; i < PhieuNhapPnl.listID.size(); i++) {
-            if(indexCBB==i){
-                idSanPham= PhieuNhapPnl.listID.get(i);
+            if (indexCBB == i) {
+                idSanPham = PhieuNhapPnl.listID.get(i);
                 System.out.println(idSanPham);
             }
         }
@@ -469,6 +483,7 @@ public class ChiTietPhieuNhapDialog extends javax.swing.JDialog implements ViewI
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JLabel lbStatus;
     private com.raven.swing.ScrollBar scrollBar1;
     private com.raven.swing.SearchText searchText1;
     public javax.swing.JSpinner spnSoLuong;

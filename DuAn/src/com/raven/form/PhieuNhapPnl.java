@@ -348,6 +348,7 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
 
         ChiTietPhieuNhapDialog chiTietPhieuNhapDialog = new ChiTietPhieuNhapDialog(null, true);
         chiTietPhieuNhapDialog.errorLB.setText("");
+        chiTietPhieuNhapDialog.lbStatus.setText("");
 
         id = tblPhieuNhap.getValueAt(tblPhieuNhap.getSelectedRow(), 0).toString();
 

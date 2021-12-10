@@ -467,6 +467,7 @@ public Integer idSanPham;
         ChiTietSanPhamDialog chiTietSanPhamDialog = new ChiTietSanPhamDialog(null, true);
         //        chiTietSanPhamDialog.errorLB.setText("");
         chiTietSanPhamDialog.errorLB.setText("");
+        chiTietSanPhamDialog.lbStatus.setText("");
         id = tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0).toString();
         System.out.println(id);
 

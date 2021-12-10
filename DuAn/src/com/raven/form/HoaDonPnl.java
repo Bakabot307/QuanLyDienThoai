@@ -9,6 +9,7 @@ import Controller.AbsController;
 import Controller.HoaDonController;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
+import java.awt.Frame;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
@@ -53,6 +54,7 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
         jPanel2 = new javax.swing.JPanel();
         searchText1 = new com.raven.swing.SearchText();
         jLabel1 = new javax.swing.JLabel();
+        btnChiTiet1 = new javax.swing.JLabel();
 
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -94,6 +96,19 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
             }
         });
 
+        btnChiTiet1.setBackground(new java.awt.Color(0, 153, 153));
+        btnChiTiet1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        btnChiTiet1.setForeground(new java.awt.Color(255, 255, 255));
+        btnChiTiet1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnChiTiet1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/key.png"))); // NOI18N
+        btnChiTiet1.setText("   Chi Tiết");
+        btnChiTiet1.setOpaque(true);
+        btnChiTiet1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnChiTiet1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -101,19 +116,27 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(searchText1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnChiTiet1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnChiTiet1, jLabel1});
+
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchText1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnChiTiet1))
                 .addGap(10, 10, 10))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnChiTiet1, jLabel1});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -122,7 +145,7 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 996, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1005, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -158,6 +181,29 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
         System.out.println(id);
         hoaDonController.search(id);
     }//GEN-LAST:event_searchText1KeyReleased
+
+    private void btnChiTiet1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChiTiet1MouseClicked
+        // TODO add your handling code here:
+
+        if (tblHoaDon.getSelectedRow() == -1) {
+            System.out.println("Lỗi chưa chọn dòng");
+            JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn phiếu cần xem ! ", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        System.out.println("click");
+
+        ChiTietHoaDonDialog chiTietHoaDonDialog = new ChiTietHoaDonDialog(null, true);
+
+        chiTietHoaDonDialog.errorLB.setText("");
+        chiTietHoaDonDialog.lbStatus.setText("");
+        id = tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0).toString();
+        System.out.println(id);
+
+        chiTietHoaDonDialog.setIdHoaDon((Integer) tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0));
+
+        chiTietHoaDonDialog.setVisible(true);
+
+    }//GEN-LAST:event_btnChiTiet1MouseClicked
     public void exportExcel(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         JFileChooser chooser = new JFileChooser();
@@ -207,8 +253,9 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
 
         }
     }
-
+    public static String id;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnChiTiet1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

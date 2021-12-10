@@ -3,15 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/AbsDAO.java</file>
-            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/com/raven/form/ChiTietPhieuNhapDialog.java</file>
-            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/com/raven/form/BanHangPanel.java</file>
-            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/Controller/SanPhamController.java</file>
-            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/com/raven/form/PhieuNhapPnl.java</file>
-            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/Controller/PhieuNhapController.java</file>
-            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/com/raven/form/PhieuBaoHanhPnl.java</file>
-            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/MODEL/SanPham.java</file>
-            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/SanPhamDAO.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/com/raven/form/BanHangPanel.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/Controller/ChiTietPhieuNhapController.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/com/raven/form/ChiTietPhieuNhapDialog.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/Controller/ChiTietHoaDonController.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/com/raven/form/ChiTietHoaDonDialog.java</file>
         </group>
     </open-files>
 </project-private>

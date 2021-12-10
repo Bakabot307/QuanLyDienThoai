@@ -63,6 +63,7 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         errorLB = new javax.swing.JLabel();
+        lbStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -145,6 +146,11 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
         errorLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         errorLB.setText("jLabel5");
 
+        lbStatus.setFont(new java.awt.Font("UTM Avo", 0, 14)); // NOI18N
+        lbStatus.setForeground(new java.awt.Color(0, 0, 204));
+        lbStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbStatus.setText("*Thêm thành công");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,9 +161,6 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnThem2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(6, 6, 6)
@@ -174,7 +177,13 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtMau, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                                     .addComponent(txtDungLuong)))
-                            .addGap(16, 16, 16)))))
+                            .addGap(16, 16, 16)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnThem2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(101, 101, 101))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -200,9 +209,11 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorLB)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(lbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(btnThem2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
+                .addGap(64, 64, 64))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(62, 62, 62)
@@ -214,16 +225,16 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
  public Integer idSanPham;
-
+    
     public Integer getIdSanPham() {
         return idSanPham;
     }
-
+    
     public void setIdSanPham(Integer idsanpham) {
         this.idSanPham = idsanpham;
-
+        
         ChiTietSanPhamController chiTietSanPhamController = new ChiTietSanPhamController(this);
-
+        
     }
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
@@ -236,7 +247,7 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
         String dungLuong = txtDungLuong.getText();
         String mau = txtMau.getText();
         String hsx = txtHsx.getText();
-
+        
         if (dungLuong.trim().equals("")) {
             errorLB.setText("Vui lòng nhập dung lượng ! ");
             return;
@@ -249,8 +260,9 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
             errorLB.setText("Vui lòng nhập hãng sản xuất ! ");
             return;
         }
-
+        
         chiTietSanPhamController.them(dungLuong, Integer.parseInt(SanPhamPanel.id), mau, hsx);
+        lbStatus.setText("*Thêm thành công");
 
     }//GEN-LAST:event_btnThem2MouseClicked
     public void exportExcel(JTable table) {
@@ -278,7 +290,7 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
             for (int j = 0; j < table.getColumnCount(); j++) {
                 rowhead.createCell(j).setCellValue(model.getColumnName(j));
             }
-
+            
             for (int j = 1; j < table.getRowCount(); j++) {
                 String a = String.valueOf(j);
                 HSSFRow row = sheet.createRow((short) j);
@@ -286,7 +298,7 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
                     row.createCell(k).setCellValue(model.getValueAt(j, k).toString());
                 }
             }
-
+            
             FileOutputStream fileOut = new FileOutputStream(filename);
             workbook.write(fileOut);
             //đóng stream
@@ -298,7 +310,7 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Lưu file thất bại !");
-
+            
         }
     }
 
@@ -354,6 +366,7 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JLabel lbStatus;
     private com.raven.swing.ScrollBar scrollBar1;
     private com.raven.swing.SearchText searchText3;
     private com.raven.swing.TableColumn tblChiTietSanPham;
@@ -366,18 +379,18 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
     public void viewList(List<Object[]> rows) {
         ViewImp.viewList(rows, tblChiTietSanPham);
     }
-
+    
     @Override
     public void setColumnNames(String[] columnNames) {
         ViewImp.setColumnNames(columnNames, tblChiTietSanPham);
     }
     private ChiTietSanPhamController chiTietSanPhamController;
-
+    
     @Override
     public void setController(AbsController controller) {
         chiTietSanPhamController = (ChiTietSanPhamController) controller;
     }
-
+    
     @Override
     public void showErrors(List<ConstraintViolation> errorList) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

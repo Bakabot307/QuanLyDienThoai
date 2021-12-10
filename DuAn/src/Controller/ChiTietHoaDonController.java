@@ -10,8 +10,10 @@ import DAO.ChiTietHoaDonDAO;
 import DAO.DBConnection;
 import MODEL.ChiTietHoaDon;
 import VIEW.ViewInterface;
+import com.raven.form.ChiTietHoaDonDialog;
 import java.util.Date;
 import java.util.Dictionary;
+import java.util.List;
 
 /**
  *
@@ -19,14 +21,30 @@ import java.util.Dictionary;
  */
 public class ChiTietHoaDonController extends AbsController<ChiTietHoaDon> {
 
+    private ChiTietHoaDonDialog chiTietHoaDonDialog;
+    private ChiTietHoaDonDAO chiTietHoaDonDAO;
+
     public ChiTietHoaDonController(ViewInterface view) {
         super(view);
+        chiTietHoaDonDAO = new ChiTietHoaDonDAO();
+        chiTietHoaDonDialog = new ChiTietHoaDonDialog(null, true);
     }
     private ChiTietHoaDonDAO chiTiethoaDonDAO;
+
     public void ThemCTHD(int idSanPham, int idHoaDon, String TenSanPham, int SoLuong, Double Gia, Double TongTien) {
         chiTiethoaDonDAO.themHD(idSanPham, idHoaDon, TenSanPham, SoLuong, Gia, TongTien);
 
-        
+    }
+    
+    
+
+    @Override
+    public void loadList() {
+        chiTietHoaDonDialog = (ChiTietHoaDonDialog) view;
+        chiTietHoaDonDAO = (ChiTietHoaDonDAO) dao;
+        List<Object[]> data = chiTietHoaDonDAO.loadLaiDS(chiTietHoaDonDialog.getIdHoaDon());
+        chiTietHoaDonDialog.setColumnNames(this.getTableColumnNames());
+        chiTietHoaDonDialog.viewList(data);
     }
 
     @Override

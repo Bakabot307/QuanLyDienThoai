@@ -7,8 +7,10 @@ package Controller;
 
 import DAO.AbsDAO;
 import DAO.HoaDonDAO;
+import DAO.KhachHangDAO;
 import DAO.KhuyenMaiDAO;
 import DAO.SanPhamDAO;
+import MODEL.KhachHang;
 import MODEL.KhuyenMai;
 import MODEL.SanPham;
 import VIEW.ViewInterface;
@@ -25,7 +27,8 @@ import java.util.List;
 public class BanHangController extends AbsController<SanPham> {
 
     private Menu menu;
-      private KhuyenMaiDAO khuyenMaiDAO;
+    private KhuyenMaiDAO khuyenMaiDAO;
+    private KhachHangDAO khachHangDAO;
     private SanPhamPanel sanPhamPanel;
     private BanHangPanel banHangPanel;
     private SanPhamDAO sanPhamDAO;
@@ -35,14 +38,12 @@ public class BanHangController extends AbsController<SanPham> {
         super(view);
         khuyenMaiDAO = new KhuyenMaiDAO();
         hoaDonDAO = new HoaDonDAO();
-
+        khachHangDAO = new KhachHangDAO();
     }
-    
-    
-public Integer idHoaDon() {
+
+    public Integer idHoaDon() {
         return hoaDonDAO.layHDVuaTao();
     }
-
 
     @Override
     public void loadList() {
@@ -57,6 +58,10 @@ public Integer idHoaDon() {
         return khuyenMaiDAO.getAll();
     }
 
+    public List<KhachHang> layCbbKhachHang() {
+        return khachHangDAO.getAll();
+    }
+
     @Override
     public AbsDAO<SanPham> getDao() {
         return new SanPhamDAO();
@@ -64,7 +69,7 @@ public Integer idHoaDon() {
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Sản Phẩm", "ID Chi Tiết", "Tên Sản Phẩm", "Dung Lượng","Màu Sắc", "Giá" ,"Số Lương", "Đơn Vị Tính"};
+        return new String[]{"ID Sản Phẩm", "ID Chi Tiết", "Tên Sản Phẩm", "Dung Lượng", "Màu Sắc", "Giá", "Số Lương", "Đơn Vị Tính"};
     }
 
     @Override
