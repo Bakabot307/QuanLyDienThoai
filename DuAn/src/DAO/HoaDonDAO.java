@@ -71,9 +71,9 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
 //
 //        }
 //                 }
-    public void themHD(int idSanPham, int idNhanVien, int idKhuyenMai, double tongTien, Date ngayLap, String hinhThucThanhToan, String TrangThai, String ghiChu) {
-        String cauLenhThem = "insert into HoaDon values (?,?,?,?,?,?,?,?)";
-        DBConnection.executeUpdate(cauLenhThem, idSanPham, idNhanVien, idKhuyenMai, tongTien, ngayLap, hinhThucThanhToan, TrangThai, ghiChu);
+    public void themHD(int idSanPham, int idNhanVien, int idKhuyenMai, double tongTien, Date ngayLap, String hinhThucThanhToan, String ghiChu) {
+        String cauLenhThem = "insert into HoaDon values (?,?,?,?,?,?,?)";
+        DBConnection.executeUpdate(cauLenhThem, idSanPham, idNhanVien, idKhuyenMai, tongTien, ngayLap, hinhThucThanhToan, ghiChu);
     }
 
     public Integer layHDVuaTao() {
@@ -121,7 +121,6 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
                         rs.getDouble("TongTien"),
                         rs.getTimestamp("NgayLap"),
                         rs.getString("HinhThucThanhToan"),
-                        rs.getString("TrangThai"),
                         rs.getString("GhiChu"));
 
                 HoaDon.add(hd);

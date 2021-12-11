@@ -42,8 +42,8 @@ public class HoaDonBanHangController extends AbsController<HoaDon> {
 //    }
     private HoaDonDAO hoaDonDAO;
 
-    public void ThemHD(int idSanPham, int idNhanVien, int idKhuyenMai, double tongTien, Date ngayLap, String hinhThucThanhToan, String TrangThai, String ghiChu) {
-        hoaDonDAO.themHD(idSanPham, idNhanVien, idKhuyenMai, tongTien, ngayLap, hinhThucThanhToan, TrangThai, ghiChu);
+    public void ThemHD(int idSanPham, int idNhanVien, int idKhuyenMai, double tongTien, Date ngayLap, String hinhThucThanhToan, String ghiChu) {
+        hoaDonDAO.themHD(idSanPham, idNhanVien, idKhuyenMai, tongTien, ngayLap, hinhThucThanhToan, ghiChu);
     }
    @Override
     public void loadList() {

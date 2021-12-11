@@ -1,29 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d11c2a52-0ded-4c10-b7c1-3b6fb18cfa84">
+	<property name="ireport.zoom" value="1.000000000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idHoaDon" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[4051]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select HoaDOn.idHoaDon as ma_hoadon,
+TenKhachHang as tenkhachhang,
+TenNhanVien as tennhanvien,
+TenSanPham as tensanpham,
+ChiTietHoaDon.SoLuong as SoLuong,
+HoaDon.TongTien as tongtien,
+NgayLap as ngaylap,
+HinhThucThanhToan as hinhthucthanhtoan
 
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+
+from HoaDon inner join ChiTietHoaDon on ChiTietHoaDon.idHoaDon=HoaDon.idHoaDon 
+inner join NhanVien on NhanVien.idNhanVien = HoaDon.idNhanVien
+inner join KhachHang on KhachHang.idKhachHang = HoaDon.idKhachHang
+inner join KhuyenMai on KhuyenMai.idKhuyenMai = HoaDon.idKhuyenMai
+inner join SanPham on SanPham.idSanPham = ChiTietHoaDon.idSanPham
+where hoadon.idHoaDon = $P{idHoaDon}]]>
+	</queryString>
+	<field name="ma_hoadon" class="java.lang.Integer"/>
+	<field name="tenkhachhang" class="java.lang.String"/>
+	<field name="tennhanvien" class="java.lang.String"/>
+	<field name="tensanpham" class="java.lang.String"/>
+	<field name="SoLuong" class="java.lang.Integer"/>
+	<field name="tongtien" class="java.lang.Double"/>
+	<field name="ngaylap" class="java.sql.Timestamp"/>
+	<field name="hinhthucthanhtoan" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="178" y="11" width="210" height="35" uuid="7ca21ceb-205a-40f3-a455-192323749fd6"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HÓA ĐƠN BÁN HÀNG]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="101" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="14" width="76" height="17" uuid="f781eae9-9171-4fbf-b891-320ee61fb4bb"/>
+				<text><![CDATA[Mã Hóa Đơn:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="42" width="76" height="17" uuid="60d4b081-3884-4e84-8d87-2e5516daa69b"/>
+				<text><![CDATA[Tên Nhân Viên]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="14" width="76" height="17" uuid="6db24b87-eb09-4d69-840d-7fa990733576"/>
+				<text><![CDATA[Tên Khách hàng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="43" width="76" height="17" uuid="539bdd31-608f-4784-b583-826a3efe75d7"/>
+				<text><![CDATA[Tổng Tiền: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="73" width="76" height="17" uuid="3dfb5a2a-2605-44d1-aea6-fbc664523421"/>
+				<text><![CDATA[Số Lượng:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="100" width="555" height="1" uuid="14b3ef32-b35f-4077-bc3e-e68fa9095d9a"/>
+			</line>
+			<textField>
+				<reportElement x="96" y="14" width="159" height="17" uuid="7b516175-adf4-49c7-b98f-b46db145a01e"/>
+				<textFieldExpression><![CDATA[$F{ma_hoadon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="42" width="159" height="17" uuid="59217d7f-7290-4fa9-aca9-68571fe66f93"/>
+				<textFieldExpression><![CDATA[$F{tensanpham}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="377" y="14" width="159" height="17" uuid="98775377-6d86-489e-91ed-0b4cb29b5d17"/>
+				<textFieldExpression><![CDATA[$F{tenkhachhang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="377" y="43" width="159" height="17" uuid="0d229564-6432-4d24-967d-c99c0fed245a"/>
+				<textFieldExpression><![CDATA[$F{tongtien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="377" y="73" width="159" height="17" uuid="5e88adf9-1984-417e-8a6b-dddf703c7ab8"/>
+				<textFieldExpression><![CDATA[$F{SoLuong}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="84" height="20" uuid="f933802e-d8ae-4308-819c-ee3017994658"/>
+				<text><![CDATA[Mã Sản Phẩm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="116" y="0" width="84" height="20" uuid="89ded03d-ab80-442b-9005-14bb28e99e94"/>
+				<text><![CDATA[Tên Sản Phẩm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="0" width="84" height="20" uuid="8ac5ac86-95e4-4c7a-b42e-5d83fd9e8182"/>
+				<text><![CDATA[Sô Lượng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="452" y="0" width="84" height="20" uuid="2e25eb1d-e98f-43bb-abdf-434f7c10a31b"/>
+				<text><![CDATA[Ghi Chú]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="0" width="84" height="20" uuid="dfc6e2a7-001a-43a1-9f02-233964438741"/>
+				<text><![CDATA[Số Tiền]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
 </jasperReport>

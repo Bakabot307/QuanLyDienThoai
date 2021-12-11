@@ -25,13 +25,12 @@ public class HoaDon extends TableInterface {
     private double tongTien;
     private java.sql.Timestamp ngayLap;
     private String hinhThucThanhToan;
-    private String trangThai;
     private String ghiChu;
 
     public HoaDon() {
     }
 
-    public HoaDon(Integer idHoaDon, Integer idKhachHang, Integer idNhanVien, Integer idKhuyenMai, double tongTien, Timestamp ngayLap, String hinhThucThanhToan, String trangThai, String ghiChu) {
+    public HoaDon(Integer idHoaDon, Integer idKhachHang, Integer idNhanVien, Integer idKhuyenMai, double tongTien, Timestamp ngayLap, String hinhThucThanhToan, String ghiChu) {
         this.idHoaDon = idHoaDon;
         this.idKhachHang = idKhachHang;
         this.idNhanVien = idNhanVien;
@@ -39,7 +38,6 @@ public class HoaDon extends TableInterface {
         this.tongTien = tongTien;
         this.ngayLap = ngayLap;
         this.hinhThucThanhToan = hinhThucThanhToan;
-        this.trangThai = trangThai;
         this.ghiChu = ghiChu;
     }
 
@@ -98,16 +96,8 @@ public class HoaDon extends TableInterface {
     }
     
     public void setHinhThucThanhToan(String hinhThucThanhToan) {
-        this.hinhThucThanhToan = hinhThucThanhToan;
-    }
+        this.hinhThucThanhToan = hinhThucThanhToan;    }
     
-    public String getTrangThai() {
-        return trangThai;
-    }
-    
-    public void setTrangThai(String trangThai) {
-        this.trangThai = trangThai;
-    }
     
     public String getGhiChu() {
         return ghiChu;

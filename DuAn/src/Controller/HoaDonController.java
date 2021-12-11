@@ -58,8 +58,8 @@ public class HoaDonController extends AbsController<HoaDon> {
         return hoaDonDAO.layId(id);
     }
 
-    public void ThemHD(int idSanPham, int idNhanVien, int idKhuyenMai, double tongTien, Date ngayLap, String hinhThucThanhToan, String TrangThai, String ghiChu) {
-        hoaDonDAO.themHD(idSanPham, idNhanVien, idKhuyenMai, tongTien, ngayLap, hinhThucThanhToan, TrangThai, ghiChu);
+    public void ThemHD(int idSanPham, int idNhanVien, int idKhuyenMai, double tongTien, Date ngayLap, String hinhThucThanhToan, String ghiChu) {
+        hoaDonDAO.themHD(idSanPham, idNhanVien, idKhuyenMai, tongTien, ngayLap, hinhThucThanhToan, ghiChu);
     }
 
     public Integer idHoaDon() {
@@ -87,7 +87,7 @@ public class HoaDonController extends AbsController<HoaDon> {
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Hóa đơn", "Khách hàng", "Nhân viên", "Khuyến mãi", "Tổng tiền", "Ngày lập", "Hình thức thanh toán", "Trạng Thái", "Ghi chú"};
+        return new String[]{"ID Hóa đơn", "Khách hàng", "Nhân viên", "Khuyến mãi", "Tổng tiền", "Ngày lập", "Hình thức thanh toán", "Ghi chú"};
     }
 
     @Override

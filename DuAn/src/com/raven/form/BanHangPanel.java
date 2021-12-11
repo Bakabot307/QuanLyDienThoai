@@ -1,10 +1,12 @@
 package com.raven.form;
 
 import Controller.AbsController;
+import Controller.BanHangChiTietHoaDonController;
 import Controller.BanHangController;
 import Controller.ChiTietHoaDonController;
 import Controller.ChuyenDoi;
 import Controller.HoaDonBanHangController;
+import Controller.HoaDonController;
 import MODEL.KhachHang;
 import MODEL.KhuyenMai;
 import VIEW.ViewImp;
@@ -26,7 +28,8 @@ import net.sf.oval.ConstraintViolation;
 public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
     private HandleTangSoLuongDal tangSoLuongDal = null;
-
+    private ChiTietHoaDonController chiTietHoaDonController;
+    private HoaDonController hoaDonController;
     public BanHangPanel() {
         initComponents();
         setOpaque(false);
@@ -133,36 +136,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
     private void init() {
 
     }
-    int idTonTai = 1;
 
-//    public boolean existsInTable(JTable table, Object[] entry) {
-//
-//        // Get row and column count
-//        int rowCount = table.getRowCount();
-//        int colCount = table.getColumnCount();
-//
-//        // Get Current Table Entry
-//        String curEntry = "";
-//        for (Object o : entry) {
-//            String e = o.toString();
-//            curEntry = curEntry + " " + e;
-//        }
-//
-//        // Check against all entries
-//        for (int i = 0; i < rowCount; i++) {
-//            String rowEntry = "";
-//            for (int j = 0; j < colCount; j++) {
-//                rowEntry = rowEntry + " " + table.getValueAt(i, j).toString();
-//            }
-//            if (rowEntry.equalsIgnoreCase(curEntry)) {
-//                idTonTai = j;
-//                System.out.println("id ton tai:" +idTonTai);
-//                return true;
-//            }
-//        }
-//        System.out.println("khong ton tai");
-//        return false;
-//    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -578,8 +552,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
     private void txtThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtThanhToanActionPerformed
         BanHangController banHangController = new BanHangController(this);
         HoaDonBanHangController hoaDonBanHangController = new HoaDonBanHangController(this);
-        ChiTietHoaDonController chiTietHoaDonController = new ChiTietHoaDonController(this);
-
+        BanHangChiTietHoaDonController banHangChiTietHoaDonController = new BanHangChiTietHoaDonController(this);
         KhuyenMai khuyenMai = (KhuyenMai) cbbKhuyenMai.getSelectedItem();
 
         Integer idKM = khuyenMai.getId();
@@ -587,11 +560,11 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         Integer idNV = DangNhapPnl.ID;
         java.sql.Timestamp now = new Timestamp((new java.util.Date()).getTime());
         double tongTien = Double.parseDouble(txtTongTien.getText());
-//        HoaDonController hoaDonController = new HoaDonController(this);
-        hoaDonBanHangController.ThemHD(1, idNV, idKM, tongTien, now, cbbHinhThucThanhToan.getSelectedItem().toString(), "trang thai", txtGhiChu.getText());
+        
+        hoaDonBanHangController.ThemHD(1, idNV, idKM, tongTien, now, cbbHinhThucThanhToan.getSelectedItem().toString(), txtGhiChu.getText());       
         hoaDonBanHangController.loadList();
-        dataTable2.removeColumn(dataTable2.getColumnModel().getColumn(0));
-
+        dataTable2.removeColumn(dataTable2.getColumnModel().getColumn(0));      
+    
         System.out.println(banHangController.idHoaDon());
         int row = dataTable2.getModel().getRowCount();
         int column = dataTable2.getModel().getColumnCount();
@@ -626,10 +599,11 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
             data[5] = tongTien;
 
 //                chiTietHoaDonController.ThemCTHD(idSanPham, idHoaDon, tenSanPham, SoLuong, Gia, TongTien);
-            chiTietHoaDonController.insertNoLoadList(data);
+            banHangChiTietHoaDonController.insertNoLoadList(data);
+      
 
+        
         }
-
 
     }//GEN-LAST:event_txtThanhToanActionPerformed
 
