@@ -40,18 +40,18 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
         this.setIconImage(MImage.getAppIcon());
         this.setTitle("Detail");
     }
-    int idSP =  HoaDonPnl.idSanPham;
+    int idSP = HoaDonPnl.idSanPham;
     public Integer idHoaDon;
-    
+
     public Integer getIdHoaDon() {
         return idHoaDon;
     }
-    
+
     public void setIdHoaDon(Integer idsanpham) {
         this.idHoaDon = idsanpham;
-        
+
         ChiTietHoaDonController chiTietHoaDonController = new ChiTietHoaDonController(this);
-        
+
     }
 
     /**
@@ -70,11 +70,9 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
         jScrollPane1 = new javax.swing.JScrollPane();
         tblChiTietHoaDon = new com.raven.swing.TableColumn();
         scrollBar1 = new com.raven.swing.ScrollBar();
-        txtTen = new javax.swing.JTextField();
         errorLB = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cbbSanPham = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         spnSoLuong = new javax.swing.JSpinner();
         jLabel7 = new javax.swing.JLabel();
@@ -147,19 +145,6 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
         jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
         jPanel1.add(scrollBar1, java.awt.BorderLayout.LINE_END);
 
-        txtTen.setBackground(new Color(0,0,0,0));
-        txtTen.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        txtTen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTenActionPerformed(evt);
-            }
-        });
-        txtTen.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtTenKeyReleased(evt);
-            }
-        });
-
         errorLB.setFont(new java.awt.Font("UTM Avo", 2, 12)); // NOI18N
         errorLB.setForeground(new java.awt.Color(255, 0, 0));
         errorLB.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -173,9 +158,6 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
                 cbbSanPhamItemStateChanged(evt);
             }
         });
-
-        jLabel6.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
-        jLabel6.setText("Tên sản phẩm");
 
         jLabel4.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
         jLabel4.setText("Số lượng");
@@ -248,11 +230,9 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtTen)
                                     .addComponent(cbbSanPham, 0, 184, Short.MAX_VALUE)
                                     .addComponent(spnSoLuong))
                                 .addGap(0, 1, Short.MAX_VALUE)))))
@@ -279,11 +259,7 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cbbSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(spnSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -295,7 +271,7 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(53, 53, 53)
                 .addComponent(errorLB)
                 .addGap(30, 30, 30)
                 .addComponent(lbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -324,17 +300,8 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
         exportExcel(tblChiTietHoaDon);
     }//GEN-LAST:event_jLabel3MouseClicked
 
-    private void txtTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenActionPerformed
-
-    private void txtTenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenKeyReleased
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_txtTenKeyReleased
-
     private void cbbSanPhamItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbSanPhamItemStateChanged
- int indexCBB = cbbSanPham.getSelectedIndex();
+        int indexCBB = cbbSanPham.getSelectedIndex();
         for (int i = 0; i < HoaDonPnl.listID.size(); i++) {
             if (indexCBB == i) {
                 idSP = PhieuNhapPnl.listID.get(i);
@@ -349,9 +316,9 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
 
     private void txtGiatien1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGiatien1KeyReleased
         // TODO add your handling code here:
-        String dau = txtTen.getText();
+        String dau = txtGiatien1.getText();
         double chuyen = ChuyenDoi.SoDouble(dau);
-        txtTen.setText(ChuyenDoi.SoString(chuyen));
+        txtGiatien1.setText(ChuyenDoi.SoString(chuyen));
     }//GEN-LAST:event_txtGiatien1KeyReleased
 
     private void txtTongTienKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTongTienKeyReleased
@@ -364,32 +331,31 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
     private void btnThem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThem2MouseClicked
         // TODO add your handling code here:
 
-        String tenSanPham = txtTen.getText();
-        
+    
+
         double giaTien = ChuyenDoi.SoDouble(txtGiatien1.getText());
         double tongTien = ChuyenDoi.SoDouble(txtTongTien.getText());
-        
+
+        SanPham sanpham = (SanPham) cbbSanPham.getSelectedItem();
+        Integer idSanPham = sanpham.getId();
+
         Integer soLuong = Integer.parseInt(spnSoLuong.getValue().toString());
-        
-        if (tenSanPham.trim().equals("")) {
-            errorLB.setText("Vui lòng nhập tên sản phẩm ! ");
-            return;
-        }
+
         if (soLuong < 1) {
             errorLB.setText("Số lượng phải lớn hơn 0 ! ");
             return;
         }
-        
+
         if (String.valueOf(giaTien).trim().equals("")) {
             errorLB.setText("Vui lòng nhập giá tiền ");
             return;
         }
-        
+
         if (giaTien < 10000) {
             errorLB.setText("Giá tiền phải lớn hơn 10000 ");
             return;
         }
-        
+
         if (String.valueOf(tongTien).trim().equals("")) {
             errorLB.setText("Vui lòng nhập tổng tiền ");
             return;
@@ -399,7 +365,8 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
             return;
         }
 
-//        chiTietHoaDonController.ThemCTHD(0, 0, tenSanPham, 0, giaTien, tongTien);
+        chiTietHoaDonController.ThemCTHD(idSanPham, Integer.parseInt(HoaDonPnl.id), soLuong, giaTien, tongTien);
+        chiTietHoaDonController.loadList();
         // để dưới cùng
         lbStatus.setText("*Thêm thành công");
     }//GEN-LAST:event_btnThem2MouseClicked
@@ -428,7 +395,7 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
             for (int j = 0; j < table.getColumnCount(); j++) {
                 rowhead.createCell(j).setCellValue(model.getColumnName(j));
             }
-            
+
             for (int j = 1; j < table.getRowCount(); j++) {
                 String a = String.valueOf(j);
                 HSSFRow row = sheet.createRow((short) j);
@@ -436,7 +403,7 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
                     row.createCell(k).setCellValue(model.getValueAt(j, k).toString());
                 }
             }
-            
+
             FileOutputStream fileOut = new FileOutputStream(filename);
             workbook.write(fileOut);
             //đóng stream
@@ -448,7 +415,7 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Lưu file thất bại !");
-            
+
         }
     }
 
@@ -501,7 +468,6 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -513,7 +479,6 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
     public javax.swing.JSpinner spnSoLuong;
     private com.raven.swing.TableColumn tblChiTietHoaDon;
     public javax.swing.JTextField txtGiatien1;
-    public javax.swing.JTextField txtTen;
     public javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
 
@@ -521,18 +486,18 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
     public void viewList(List<Object[]> data) {
         ViewImp.viewList(data, tblChiTietHoaDon);
     }
-    
+
     @Override
     public void setColumnNames(String[] columnNames) {
         ViewImp.setColumnNames(columnNames, tblChiTietHoaDon);
     }
     private ChiTietHoaDonController chiTietHoaDonController;
-    
+
     @Override
     public void setController(AbsController controller) {
         chiTietHoaDonController = (ChiTietHoaDonController) controller;
     }
-    
+
     @Override
     public void showErrors(List<ConstraintViolation> errorList) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

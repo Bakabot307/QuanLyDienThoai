@@ -32,17 +32,22 @@ public class HoaDonController extends AbsController<HoaDon> {
         sanPhamDAO = new SanPhamDAO();
     }
 
+    public List<SanPham> layCbbSanPham() {
+        return sanPhamDAO.getAll();
+    }
+
     public List<Object[]> loadMonth() {
         return hoaDonDAO.loadThang();
 
     }
-     public ArrayList<HoaDon> DSHoaDOn() {
+
+    public ArrayList<HoaDon> DSHoaDOn() {
 
         return hoaDonDAO.layListHoaDon();
 
     }
-     
-       public ArrayList<SanPham> DSSanPham() {
+
+    public ArrayList<SanPham> DSSanPham() {
 
         return sanPhamDAO.layListSanPham();
 

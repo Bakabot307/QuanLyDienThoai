@@ -14,9 +14,9 @@ import java.util.List;
  */
 public class ChiTietHoaDonDAO extends AbsDAO<ChiTietHoaDon> {
 
-    public void themHD(int idSanPham, int idHoaDon, String TenSanPham, int SoLuong, Double Gia, Double TongTien) {
-        String cauLenhThem = "insert into ChiTietHoaDon values (?,?,?,?,?,?,?,?)";
-        DBConnection.executeUpdate(cauLenhThem, idSanPham, idHoaDon, TenSanPham, SoLuong, Gia, TongTien);
+    public void themHD(int idSanPham, int idHoaDon, int SoLuong, Double Gia, Double TongTien) {
+        String cauLenhThem = "insert into ChiTietHoaDon values (?,?,?,?,?)";
+        DBConnection.executeUpdate(cauLenhThem, idSanPham, idHoaDon, SoLuong, Gia, TongTien);
     }
 
     public List<Object[]> loadLaiDS(int idSanPham) {
@@ -26,5 +26,4 @@ public class ChiTietHoaDonDAO extends AbsDAO<ChiTietHoaDon> {
         return data;
     }
 
-   
 }

@@ -35,7 +35,9 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
      * Creates new form HoaDonPnl
      */
     static int idSanPham = 0;
-    public static List<Integer> listID = new ArrayList<Integer>();;
+    public static List<Integer> listID = new ArrayList<Integer>();
+
+    ;
     public HoaDonPnl() {
         initComponents();
         HoaDonController hoaDonController = new HoaDonController(this);
@@ -189,10 +191,9 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
 
     private void btnChiTiet1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChiTiet1MouseClicked
         // TODO add your handling code here:
-    for (int i = 0; i < HoaDonPnl.listID.size(); i++) {
-            idSanPham= HoaDonPnl.listID.get(0);
-            
-            
+        for (int i = 0; i < HoaDonPnl.listID.size(); i++) {
+            idSanPham = HoaDonPnl.listID.get(0);
+
         }
         if (tblHoaDon.getSelectedRow() == -1) {
             System.out.println("Lỗi chưa chọn dòng");
@@ -208,18 +209,25 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
         id = tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0).toString();
         System.out.println(id);
         chiTietHoaDonDialog.setIdHoaDon((Integer) tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0));
-        chiTietHoaDonDialog.setVisible(true);
-              ArrayList<SanPham> list = hoaDonController.DSSanPham();
 
-       DefaultComboBoxModel<SanPham> modle = (DefaultComboBoxModel<SanPham>) chiTietHoaDonDialog.cbbSanPham.getModel();
-       modle.removeAllElements();
-DefaultComboBoxModel dml= new DefaultComboBoxModel();
-for (int i = 0; i < list.size(); i++) {
-  dml.addElement(list.get(i).getTenSanPham());
-  listID.add(list.get(i).getIdSanPham());
-    System.out.println(listID);
-  
-}
+        DefaultComboBoxModel<SanPham> modle1 = (DefaultComboBoxModel<SanPham>) chiTietHoaDonDialog.cbbSanPham.getModel();
+        modle1.removeAllElements();
+        List<SanPham> khachHangs = hoaDonController.layCbbSanPham();
+        modle1.addAll(khachHangs);
+        modle1.setSelectedItem(khachHangs.get(0));
+
+        chiTietHoaDonDialog.setVisible(true);
+
+//        ArrayList<SanPham> list = hoaDonController.DSSanPham();
+//        DefaultComboBoxModel<SanPham> modle = (DefaultComboBoxModel<SanPham>) chiTietHoaDonDialog.cbbSanPham.getModel();
+//        modle.removeAllElements();
+//        DefaultComboBoxModel dml = new DefaultComboBoxModel();
+//        for (int i = 0; i < list.size(); i++) {
+//            dml.addElement(list.get(i).getTenSanPham());
+//            listID.add(list.get(i).getIdSanPham());
+//            System.out.println(listID);
+//
+//        }
 
     }//GEN-LAST:event_btnChiTiet1MouseClicked
     public void exportExcel(JTable table) {

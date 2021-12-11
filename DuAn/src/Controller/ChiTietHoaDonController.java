@@ -29,10 +29,10 @@ public class ChiTietHoaDonController extends AbsController<ChiTietHoaDon> {
         chiTietHoaDonDAO = new ChiTietHoaDonDAO();
         chiTietHoaDonDialog = new ChiTietHoaDonDialog(null, true);
     }
-    private ChiTietHoaDonDAO chiTiethoaDonDAO;
+  
 
-    public void ThemCTHD(int idSanPham, int idHoaDon, String TenSanPham, int SoLuong, Double Gia, Double TongTien) {
-        chiTiethoaDonDAO.themHD(idSanPham, idHoaDon, TenSanPham, SoLuong, Gia, TongTien);
+    public void ThemCTHD(int idSanPham, int idHoaDon, int SoLuong, Double Gia, Double TongTien) {
+        chiTietHoaDonDAO.themHD(idSanPham, idHoaDon,  SoLuong, Gia, TongTien);
 
     }
     
