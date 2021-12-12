@@ -24,4 +24,5 @@ public class ChiTietSanPhamDAO extends AbsDAO<ChiTietSanPham> {
         DBConnection.executeUpdate(cauLenhThemNguoiDung, dungLuong, idSanPham, mauSac, hangSx);
 
     }
-}
+
+    }

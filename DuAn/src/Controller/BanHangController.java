@@ -45,6 +45,21 @@ public class BanHangController extends AbsController<SanPham> {
         return hoaDonDAO.layHDVuaTao();
     }
 
+    public void search(String ten) {
+
+        banHangPanel.viewList(sanPhamDAO.search(ten));
+    }
+
+    public void searchDungLuongTheoTen(String ten, String dungLuong) {
+
+        banHangPanel.viewList(sanPhamDAO.searchDungLuongTheoTen(ten, dungLuong));
+    }
+
+    public void searchDungLuong(String dl) {
+
+        banHangPanel.viewList(sanPhamDAO.searchDungLuong(dl));
+    }
+
     @Override
     public void loadList() {
         banHangPanel = (BanHangPanel) view;

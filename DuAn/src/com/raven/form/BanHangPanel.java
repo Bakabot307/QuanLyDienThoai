@@ -58,99 +58,89 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 //        dataTable2.getColumn("button").setCellRenderer(new ButtonRenderer());
 //        dataTable2.getColumn("button").setCellEditor(
 //            new ButtonEditor(new JCheckBox()));
-tangSoLuongDal = new HandleTangSoLuongDal(null, true);
+        tangSoLuongDal = new HandleTangSoLuongDal(null, true);
         dataTable2.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent me) {
                 if (me.getClickCount() == 2) {
-                    
+
                     tangSoLuongDal.setVisible(true);
                     if (tangSoLuongDal == null) {
                         tangSoLuongDal = new HandleTangSoLuongDal(null, true);
                         tangSoLuongDal.txtSoLuong.setText("");
                     }
                 };
-                }
-        });         
-                    tangSoLuongDal.btnOk.addMouseListener(new MouseAdapter() {
-                        public void mouseClicked(MouseEvent e) {
-                            System.out.println("Clicked!");
-                            if (dataTable1.getRowCount() == 0) {
+            }
+        });
+        tangSoLuongDal.btnOk.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("Clicked!");
+                if (dataTable1.getRowCount() == 0) {
+                    TableModel model2 = dataTable2.getModel();
+                    int[] indexs = dataTable2.getSelectedRows();
+                    Object[] rows = new Object[6];
+                    DefaultTableModel model1 = (DefaultTableModel) dataTable1.getModel();
+                    for (int i = 0; i < indexs.length; i++) {
+                        rows[0] = model2.getValueAt(indexs[i], 0);
+                        rows[1] = model2.getValueAt(indexs[i], 1);
+                        rows[2] = model2.getValueAt(indexs[i], 2);
+                        rows[3] = model2.getValueAt(indexs[i], 3);
+                        rows[4] = df.format(ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText()));
+                        rows[5] = model2.getValueAt(indexs[i], 5);
+//                            ID Sản Phẩm", "ID Chi Tiết", "Tên Sản Phẩm","Giá" ,"Số Lương", "Đơn Vị Tính"};
+                        model1.addRow(rows);
+                        System.out.println(rows[0]);
+
+                    }
+                } else {
+                    double soLuong;
+                    double t2RowID = Integer.parseInt(dataTable2.getModel().getValueAt(dataTable2.getSelectedRow(), 1).toString());
+                    Object[] columnData = new Object[dataTable1.getColumnCount()];
+                    Object[] rowData = new Object[dataTable1.getRowCount()];
+                    for (int i = 0; i < dataTable1.getRowCount(); i++) {
+                        if (t2RowID == Integer.parseInt(dataTable2.getModel().getValueAt(i, 1).toString())) {
+                            System.out.println(Integer.parseInt(dataTable2.getModel().getValueAt(i, 1).toString()));
+//                                soLuong = Integer.parseInt(dataTable2.getModel().getValueAt(dataTable2.getSelectedRow(), 6).toString());
+                            soLuong = ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 2).toString()) + ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText());
+                            dataTable1.getModel().setValueAt(df.format(soLuong), i, 4);
+                            System.out.println("đã thêm số lượng");
+                            return;
+                        } else {
+                            if (i != dataTable1.getRowCount() - 1) {
+                                continue;
+                            } else if (i == dataTable1.getRowCount() - 1) {
                                 TableModel model2 = dataTable2.getModel();
                                 int[] indexs = dataTable2.getSelectedRows();
                                 Object[] rows = new Object[6];
                                 DefaultTableModel model1 = (DefaultTableModel) dataTable1.getModel();
-                                for (int i = 0; i < indexs.length; i++) {
-                                    rows[0] = model2.getValueAt(indexs[i], 0);
-                                    rows[1] = model2.getValueAt(indexs[i], 1);
-                                    rows[2] = model2.getValueAt(indexs[i], 2);
-                                    rows[3] = model2.getValueAt(indexs[i], 3);
+                                for (int j = 0; j < indexs.length; j++) {
+                                    rows[0] = model2.getValueAt(indexs[j], 0);
+                                    rows[1] = model2.getValueAt(indexs[j], 1);
+                                    rows[2] = model2.getValueAt(indexs[j], 2);
+                                    rows[3] = model2.getValueAt(indexs[j], 3);
                                     rows[4] = df.format(ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText()));
-                                    rows[5] = model2.getValueAt(indexs[i], 5);
+                                    rows[5] = model2.getValueAt(indexs[j], 5);
 //                            ID Sản Phẩm", "ID Chi Tiết", "Tên Sản Phẩm","Giá" ,"Số Lương", "Đơn Vị Tính"};
                                     model1.addRow(rows);
                                     System.out.println(rows[0]);
-
-                                }
-                            } else {
-                                double soLuong;
-                                double t2RowID = Integer.parseInt(dataTable2.getModel().getValueAt(dataTable2.getSelectedRow(), 1).toString());
-                                Object[] columnData = new Object[dataTable1.getColumnCount()];
-                                Object[] rowData = new Object[dataTable1.getRowCount()];
-                                for (int i = 0; i < dataTable1.getRowCount(); i++) {
-                                    if (t2RowID == Integer.parseInt(dataTable2.getModel().getValueAt(i, 1).toString())) {
-                                        System.out.println(Integer.parseInt(dataTable2.getModel().getValueAt(i, 1).toString()));
-//                                soLuong = Integer.parseInt(dataTable2.getModel().getValueAt(dataTable2.getSelectedRow(), 6).toString());
-                                        soLuong = ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 2).toString()) + ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText());
-                                        dataTable1.getModel().setValueAt(df.format(soLuong), i, 4);
-                                        System.out.println("đã thêm số lượng");
-                                        return;
-                                    } else {
-                                        if (i != dataTable1.getRowCount() - 1) {
-                                            continue;
-                                        } else if (i == dataTable1.getRowCount() - 1) {
-                                            TableModel model2 = dataTable2.getModel();
-                                            int[] indexs = dataTable2.getSelectedRows();
-                                            Object[] rows = new Object[6];
-                                            DefaultTableModel model1 = (DefaultTableModel) dataTable1.getModel();
-                                            for (int j = 0; j < indexs.length; j++) {
-                                                rows[0] = model2.getValueAt(indexs[j], 0);
-                                                rows[1] = model2.getValueAt(indexs[j], 1);
-                                                rows[2] = model2.getValueAt(indexs[j], 2);
-                                                rows[3] = model2.getValueAt(indexs[j], 3);
-                                                rows[4] = df.format(ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText()));
-                                                rows[5] = model2.getValueAt(indexs[j], 5);
-//                            ID Sản Phẩm", "ID Chi Tiết", "Tên Sản Phẩm","Giá" ,"Số Lương", "Đơn Vị Tính"};
-                                                model1.addRow(rows);
-                                                System.out.println(rows[0]);
-                                                System.out.println("đã thêm cột mới");
-                                            }
-                                        }
-                                    }
+                                    System.out.println("đã thêm cột mới");
                                 }
                             }
                         }
                     }
-                    );
-                    
-                    
-                    
-                    
-                        
-                    
-                    
-                    dataTable1.getModel().addTableModelListener(
-                            new TableModelListener() {
-                        public void tableChanged(TableModelEvent evt) {
-                            System.out.print("aa");
-                            hoaDonTable();
-                        }
-                            });
-                            
-                            }
+                }
+            }
+        }
+        );
 
-   
+        dataTable1.getModel().addTableModelListener(
+                new TableModelListener() {
+            public void tableChanged(TableModelEvent evt) {
+                System.out.print("aa");
+                hoaDonTable();
+            }
+        });
 
-    
+    }
 
     private void init() {
 
@@ -162,11 +152,7 @@ tangSoLuongDal = new HandleTangSoLuongDal(null, true);
 
         jPanel1 = new javax.swing.JPanel();
         searchText1 = new com.raven.swing.SearchText();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        dataTable2 = new com.raven.swing.TableColumn();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        dataTable1 = new com.raven.swing.TableColumn();
+        cbbDungLuong = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -190,6 +176,14 @@ tangSoLuongDal = new HandleTangSoLuongDal(null, true);
         cbbKhachHang = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         txtGhiChu = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        dataTable2 = new com.raven.swing.TableColumn();
+        scrollBar2 = new com.raven.swing.ScrollBar();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        dataTable1 = new com.raven.swing.TableColumn();
+        scrollBar1 = new com.raven.swing.ScrollBar();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1043, 680));
@@ -197,6 +191,18 @@ tangSoLuongDal = new HandleTangSoLuongDal(null, true);
         searchText1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchText1ActionPerformed(evt);
+            }
+        });
+        searchText1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchText1KeyReleased(evt);
+            }
+        });
+
+        cbbDungLuong.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12GB", "60GB", "8GB" }));
+        cbbDungLuong.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbDungLuongItemStateChanged(evt);
             }
         });
 
@@ -207,68 +213,19 @@ tangSoLuongDal = new HandleTangSoLuongDal(null, true);
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(searchText1, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbbDungLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(148, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(searchText1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchText1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(cbbDungLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-
-        jPanel2.setLayout(new java.awt.BorderLayout());
-
-        jScrollPane2.setBorder(null);
-
-        dataTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "No", "Name", "Gender", "Age", "Email", "Phone Number", "button", "Title 8"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        dataTable2.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 200));
-        jScrollPane2.setViewportView(dataTable2);
-
-        jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
-
-        jScrollPane3.setBorder(null);
-
-        dataTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Id Sản Phẩm", "Id Chi Tiết", "Tên Sản Phẩm", "Giá", "Số Lượng", "ĐVT"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        dataTable1.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 250));
-        dataTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dataTable1MouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(dataTable1);
-
-        jPanel2.add(jScrollPane3, java.awt.BorderLayout.PAGE_END);
 
         jLabel5.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
         jLabel5.setText("Tổng tiền hàng");
@@ -530,6 +487,60 @@ tangSoLuongDal = new HandleTangSoLuongDal(null, true);
                 .addGap(19, 19, 19))
         );
 
+        jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.LINE_AXIS));
+
+        jScrollPane4.setBorder(null);
+        jScrollPane4.setVerticalScrollBar(scrollBar2);
+
+        dataTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id Sản Phẩm", "Id Chi Tiết", "Tên Sản Phẩm", "Giá", "Số Lượng", "ĐVT"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        dataTable2.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 250));
+        jScrollPane4.setViewportView(dataTable2);
+
+        jPanel6.add(jScrollPane4);
+        jPanel6.add(scrollBar2);
+
+        jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.LINE_AXIS));
+
+        jScrollPane3.setBorder(null);
+        jScrollPane3.setVerticalScrollBar(scrollBar1);
+
+        dataTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id Sản Phẩm", "Id Chi Tiết", "Tên Sản Phẩm", "Giá", "Số Lượng", "ĐVT"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        dataTable1.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 250));
+        jScrollPane3.setViewportView(dataTable1);
+
+        jPanel7.add(jScrollPane3);
+        jPanel7.add(scrollBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -538,9 +549,10 @@ tangSoLuongDal = new HandleTangSoLuongDal(null, true);
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -551,8 +563,11 @@ tangSoLuongDal = new HandleTangSoLuongDal(null, true);
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -612,11 +627,6 @@ tangSoLuongDal = new HandleTangSoLuongDal(null, true);
         }
 
     }//GEN-LAST:event_txtThanhToanActionPerformed
-
-    private void dataTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataTable1MouseClicked
-
-
-    }//GEN-LAST:event_dataTable1MouseClicked
 
     private void cbbKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbKhuyenMaiMouseClicked
         // TODO add your handling code here:
@@ -732,6 +742,38 @@ tangSoLuongDal = new HandleTangSoLuongDal(null, true);
     private void cbbKhachHangMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbKhachHangMouseReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbKhachHangMouseReleased
+
+    private void searchText1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchText1KeyReleased
+        // TODO add your handling code here:
+
+        BanHangController banHangController = new BanHangController(this);
+
+        String ten = "%" + searchText1.getText() + "%";
+        System.out.println(ten);
+        banHangController.search(ten);
+        dataTable2.removeColumn(dataTable2.getColumnModel().getColumn(0));
+
+    }//GEN-LAST:event_searchText1KeyReleased
+
+    private void cbbDungLuongItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbDungLuongItemStateChanged
+        // TODO add your handling code here:
+        BanHangController banHangController = new BanHangController(this);
+        String dungLuong = "%" + cbbDungLuong.getSelectedItem().toString() + "%";
+
+        String ten = "%" + searchText1.getText() + "%";
+        System.out.println(ten);
+
+        System.out.println(dungLuong);
+
+        if (searchText1.getText().trim().equals("")) {
+            banHangController.searchDungLuong(dungLuong);
+            dataTable2.removeColumn(dataTable2.getColumnModel().getColumn(0));
+        } else {
+            banHangController.searchDungLuongTheoTen(ten, dungLuong);
+            dataTable2.removeColumn(dataTable2.getColumnModel().getColumn(0));
+        }
+
+    }//GEN-LAST:event_cbbDungLuongItemStateChanged
 // public boolean isExist(String code) {
 //        boolean result;
 //            try {
@@ -778,6 +820,7 @@ tangSoLuongDal = new HandleTangSoLuongDal(null, true);
     private javax.swing.JLabel btnGioHang;
     private javax.swing.JLabel btnGioHang1;
     private javax.swing.JButton btnHienThi;
+    private javax.swing.JComboBox<String> cbbDungLuong;
     private javax.swing.JComboBox<String> cbbHinhThucThanhToan;
     private javax.swing.JComboBox<KhachHang> cbbKhachHang;
     private javax.swing.JComboBox<KhuyenMai> cbbKhuyenMai;
@@ -792,11 +835,14 @@ tangSoLuongDal = new HandleTangSoLuongDal(null, true);
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
+    private com.raven.swing.ScrollBar scrollBar1;
+    private com.raven.swing.ScrollBar scrollBar2;
     private com.raven.swing.SearchText searchText1;
     private javax.swing.JButton txtCanTra;
     private javax.swing.JTextField txtGhiChu;

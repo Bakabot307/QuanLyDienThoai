@@ -43,7 +43,7 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
     }
 
     public List<Object[]> Load() {
-        String selectSql = "select * from HoaDon ";
+        String selectSql = "select * from HoaDon  ";
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
@@ -58,11 +58,12 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
-     public List<Object[]> loadNgay() {
-        String selectSql = "SELECT concat('Ngày ',day(NgayLap)) as ngaylap,SUM(TongTien) AS totalIncome \n" +
-"FROM HoaDon \n" +
-"WHERE NgayLap >=dateadd(day,datediff(day,0,getdate())-30,0) \n" +
-"group by day(NgayLap)";
+
+    public List<Object[]> loadNgay() {
+        String selectSql = "SELECT concat('Ngày ',day(NgayLap)) as ngaylap,SUM(TongTien) AS totalIncome \n"
+                + "FROM HoaDon \n"
+                + "WHERE NgayLap >=dateadd(day,datediff(day,0,getdate())-30,0) \n"
+                + "group by day(NgayLap)";
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
@@ -79,9 +80,9 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
 //
 //        }
 //                 }
-    public void themHD(int idSanPham, int idNhanVien, int idKhuyenMai,int soLuong, double tongTien, Date ngayLap, String hinhThucThanhToan, String ghiChu) {
+    public void themHD(int idSanPham, int idNhanVien, int idKhuyenMai, int soLuong, double tongTien, Date ngayLap, String hinhThucThanhToan, String ghiChu) {
         String cauLenhThem = "insert into HoaDon values (?,?,?,?,?,?,?,?)";
-        DBConnection.executeUpdate(cauLenhThem, idSanPham, idNhanVien, idKhuyenMai,soLuong, tongTien, ngayLap, hinhThucThanhToan, ghiChu);
+        DBConnection.executeUpdate(cauLenhThem, idSanPham, idNhanVien, idKhuyenMai, soLuong, tongTien, ngayLap, hinhThucThanhToan, ghiChu);
     }
 
     public Integer layHDVuaTao() {
@@ -99,7 +100,7 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
     }
 
     public List<Object[]> search(String id) {
-        String selectSql = "select idHoaDon,TenNhanVien,TenNhanVien,TenKhuyenMai,TongTien,NgayLap,HinhThucThanhToan,HoaDon.GhiChu\n"
+        String selectSql = "select idHoaDon,TenNhanVien,TenKhachHang,TenKhuyenMai,TongTien,NgayLap,HinhThucThanhToan,HoaDon.GhiChu\n"
                 + "from HoaDon join KhachHang on HoaDon.idKhachHang = KhachHang.idKhachHang join \n"
                 + "NhanVien on HoaDon.idNhanVien = NhanVien.idNhanVien join KhuyenMai on HoaDon.idKhuyenMai = KhuyenMai.idKhuyenMai where idHoaDon = ? ";
         List<Object[]> data = getRawValues(selectSql, id);
@@ -107,7 +108,7 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
     }
 
     public List<Object[]> layDS() {
-        String selectSql = "select idHoaDon,TenNhanVien,TenNhanVien,TenKhuyenMai,TongTien,NgayLap,HinhThucThanhToan,HoaDon.TrangThai,HoaDon.GhiChu\n"
+        String selectSql = "select idHoaDon,TenNhanVien,TenKhachHang,TenKhuyenMai,TongTien,NgayLap,HinhThucThanhToan,HoaDon.GhiChu\n"
                 + "from HoaDon join KhachHang on HoaDon.idKhachHang = KhachHang.idKhachHang join \n"
                 + "NhanVien on HoaDon.idNhanVien = NhanVien.idNhanVien join KhuyenMai on HoaDon.idKhuyenMai = KhuyenMai.idKhuyenMai";
         List<Object[]> data = getRawValues(selectSql);

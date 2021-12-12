@@ -66,6 +66,13 @@ public class SanPhamController extends AbsController<SanPham> {
 
     }
 
+    
+    
+    public void SearchTen(String ten) {
+        sanPhamPanel.viewList(sanPhamDAO.searchTenSanPham(ten));
+
+    }
+
     @Override
     public void loadList() {
         sanPhamPanel = (SanPhamPanel) view;

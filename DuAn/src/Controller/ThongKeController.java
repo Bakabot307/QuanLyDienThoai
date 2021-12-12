@@ -10,6 +10,7 @@ import DAO.HoaDonDAO;
 import MODEL.HoaDon;
 import VIEW.ViewInterface;
 import com.raven.form.HoaDonPnl;
+import com.raven.form.ThongKe;
 import java.util.Date;
 import java.util.Dictionary;
 import java.util.List;
@@ -21,17 +22,19 @@ import java.util.List;
 public class ThongKeController extends AbsController<HoaDon> {
 
     private HoaDonPnl hoaDonPnl;
+    private ThongKe thongKe;
 
     public ThongKeController(ViewInterface view) {
         super(view);
         hoaDonDAO = new HoaDonDAO();
+      
     }
 
     public List<Object[]> loadMonth() {
         return hoaDonDAO.loadThang();
 
     }
-    
+
     public List<Object[]> loadNgay() {
         return hoaDonDAO.loadNgay();
 
@@ -47,15 +50,14 @@ public class ThongKeController extends AbsController<HoaDon> {
         return hoaDonDAO.layId(id);
     }
 
-    public void ThemHD(int idSanPham, int idNhanVien, int idKhuyenMai,int soLuong, double tongTien, Date ngayLap, String hinhThucThanhToan, String ghiChu) {
-        hoaDonDAO.themHD(idSanPham, idNhanVien, idKhuyenMai,soLuong, tongTien, ngayLap, hinhThucThanhToan, ghiChu);
+    public void ThemHD(int idSanPham, int idNhanVien, int idKhuyenMai, int soLuong, double tongTien, Date ngayLap, String hinhThucThanhToan, String ghiChu) {
+        hoaDonDAO.themHD(idSanPham, idNhanVien, idKhuyenMai, soLuong, tongTien, ngayLap, hinhThucThanhToan, ghiChu);
 
     }
 
     public Integer idHoaDon() {
         return hoaDonDAO.layHDVuaTao();
     }
-
 
 
     @Override

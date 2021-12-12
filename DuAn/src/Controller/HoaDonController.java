@@ -80,7 +80,7 @@ public class HoaDonController extends AbsController<HoaDon> {
     public void loadList() {
         hoaDonPnl = (HoaDonPnl) view;
         hoaDonDAO = (HoaDonDAO) dao;
-        List<Object[]> data = hoaDonDAO.Load();
+        List<Object[]> data = hoaDonDAO.layDS();
         hoaDonPnl.setColumnNames(this.getTableColumnNames());
         hoaDonPnl.viewList(data);
     }

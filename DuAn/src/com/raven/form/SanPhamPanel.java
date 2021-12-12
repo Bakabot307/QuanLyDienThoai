@@ -71,7 +71,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
         initComponents();
         SanPhamController sanPhamController = new SanPhamController(this);
 
-        showSanPham();
+//        showSanPham();
         if (sanPhamDal == null) {
             sanPhamDal = new HandleSanPhamDal(null, true);
             sanPhamDal.addBT.addMouseListener(new MouseAdapter() {
@@ -289,6 +289,12 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
 
         jPanel2.setBorder(new javax.swing.border.MatteBorder(null));
 
+        searchText1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchText1KeyReleased(evt);
+            }
+        });
+
         jLabel1.setBackground(new java.awt.Color(0, 153, 153));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -476,6 +482,15 @@ public Integer idSanPham;
         chiTietSanPhamDialog.setVisible(true);
 
     }//GEN-LAST:event_btnChiTietMouseClicked
+
+    private void searchText1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchText1KeyReleased
+        // TODO add your handling code here:
+
+        String ten = "%" + searchText1.getText() + "%";
+        System.out.println(ten);
+        sanPhamController.SearchTen(ten);
+
+    }//GEN-LAST:event_searchText1KeyReleased
     public void exportExcel(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         JFileChooser chooser = new JFileChooser();

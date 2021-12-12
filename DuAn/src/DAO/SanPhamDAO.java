@@ -27,8 +27,39 @@ public class SanPhamDAO extends AbsDAO<SanPham> {
         return data;
     }
 
+    public List<Object[]> search(String ten) {
+        String selectSql = "select SanPham.idsanPham, ChiTietSanPham.idChiTietSanPham, ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac) ,GiaBan,SoLuong,DVT from SanPham\n"
+                + "                inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham where ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac)  like ? ";
+        List<Object[]> data = getRawValues(selectSql, ten);
+        return data;
+    }
+
+    public List<Object[]> searchTenSanPham(String ten) {
+        String selectSql = "select idSanPham,TenLoaiSanPham,TenSanPham,GiaNhap,GiaBan,SoLuong,DVT,hinhAnh from SanPham join LoaiSanPham on SanPham.idLoaiSanPham = LoaiSanPham.idLoaiSanPham\n"
+                + "	 where TenSanPham like ? ";
+        List<Object[]> data = getRawValues(selectSql, ten);
+        return data;
+    }
+
+    public List<Object[]> searchDungLuong(String dl) {
+        String selectSql = "select SanPham.idsanPham, ChiTietSanPham.idChiTietSanPham, ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac) ,GiaBan,SoLuong,DVT from SanPham\n"
+                + "                inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham where "
+                + "ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac) like ? ";
+        List<Object[]> data = getRawValues(selectSql, dl);
+        return data;
+    }
+
+    public List<Object[]> searchDungLuongTheoTen(String ten, String dungLuong) {
+        String selectSql = "select SanPham.idsanPham, ChiTietSanPham.idChiTietSanPham, ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac) ,GiaBan,SoLuong,DVT from SanPham\n"
+                + "                inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham where "
+                + "ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac)  like ? and ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac) like ? ";
+        List<Object[]> data = getRawValues(selectSql, ten, dungLuong);
+        return data;
+    }
+
     public List<Object[]> DanhSachSanPham() {
-        String selectSql = "select * from SanPham";
+        String selectSql = "select idSanPham,TenLoaiSanPham,TenSanPham,GiaNhap,GiaBan,SoLuong,DVT,hinhAnh from SanPham join LoaiSanPham on SanPham.idLoaiSanPham = LoaiSanPham.idLoaiSanPham\n"
+                + "	";
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }

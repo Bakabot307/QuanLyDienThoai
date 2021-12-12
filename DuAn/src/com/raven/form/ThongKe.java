@@ -4,6 +4,7 @@ import Controller.AbsController;
 import Controller.ChuyenDoi;
 import Controller.HoaDonController;
 import Controller.ThongKeController;
+import VIEW.ViewImp;
 
 import VIEW.ViewInterface;
 import com.raven.chart.ModelChart;
@@ -20,8 +21,10 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
     ThongKeController thongKeController = new ThongKeController(this);
     List<Object[]> dataThang = thongKeController.loadMonth();
     List<Object[]> dataNgay = thongKeController.loadNgay();
+    
 
     public ThongKe() throws ParseException {
+       
         initComponents();
         setOpaque(false);
         init();
@@ -31,9 +34,10 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
     private void init() throws ParseException {
 
         for (Object[] obj : dataNgay) {
-                String ngay = String.valueOf(obj[0]);
-                double tongTien = Double.parseDouble(obj[1].toString());
-                chart.addData(new ModelChart(ngay, new double[]{tongTien, 500000, 700000, 1000000}));}
+            String ngay = String.valueOf(obj[0]);
+            double tongTien = Double.parseDouble(obj[1].toString());
+            chart.addData(new ModelChart(ngay, new double[]{tongTien, 500000, 700000, 1000000}));
+        }
         chart.start();
 //        List<Integer> ok = hoaDonController.loadMonth();
 //        for (int i = 0; i < ok.size(); i++) {
@@ -45,16 +49,16 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
         chart.addLegend("Cost", new Color(139, 229, 222));
 
 //        chart.addData(new ModelChart("June", new double[]{190, 500, 700, 1000}));
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-
-        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
-        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
-        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
-        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
-        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
-        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
-        model.addRow(new Object[]{2, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
-        model.addRow(new Object[]{3, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+//        DefaultTableModel model = (DefaultTableModel) table.getModel();
+//
+//        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+//        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+//        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+//        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+//        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+//        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+//        model.addRow(new Object[]{2, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
+//        model.addRow(new Object[]{3, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
 
     }
 
@@ -210,17 +214,18 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
 
     @Override
     public void viewList(List<Object[]> rows) {
-
+        ViewImp.viewList(rows, table);
     }
 
     @Override
     public void setColumnNames(String[] columnNames) {
-
+        ViewImp.setColumnNames(columnNames, table);
     }
+    private ThongKeController hoaDonController;
 
     @Override
     public void setController(AbsController controller) {
-
+        hoaDonController = (ThongKeController) controller;
     }
 
     @Override
