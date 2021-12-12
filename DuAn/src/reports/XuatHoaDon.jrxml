@@ -15,8 +15,6 @@ ChiTietHoaDon.SoLuong as SoLuong,
 HoaDon.TongTien as tongtien,
 NgayLap as ngaylap,
 HinhThucThanhToan as hinhthucthanhtoan
-
-
 from HoaDon inner join ChiTietHoaDon on ChiTietHoaDon.idHoaDon=HoaDon.idHoaDon 
 inner join NhanVien on NhanVien.idNhanVien = HoaDon.idNhanVien
 inner join KhachHang on KhachHang.idKhachHang = HoaDon.idKhachHang

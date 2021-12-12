@@ -13,6 +13,8 @@ import VIEW.ViewImp;
 import VIEW.ViewInterface;
 import duan.dialog.HandleGioHangDal;
 import duan.dialog.HandleTangSoLuongDal;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Timestamp;
@@ -27,6 +29,7 @@ import net.sf.oval.ConstraintViolation;
 
 public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
+    private int tongSoLuong = 0;
     private HandleTangSoLuongDal tangSoLuongDal = null;
     private ChiTietHoaDonController chiTietHoaDonController;
     private HoaDonController hoaDonController;
@@ -55,84 +58,99 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 //        dataTable2.getColumn("button").setCellRenderer(new ButtonRenderer());
 //        dataTable2.getColumn("button").setCellEditor(
 //            new ButtonEditor(new JCheckBox()));
-
+tangSoLuongDal = new HandleTangSoLuongDal(null, true);
         dataTable2.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent me) {
                 if (me.getClickCount() == 2) {
-                    tangSoLuongDal = new HandleTangSoLuongDal(null, true);
+                    
                     tangSoLuongDal.setVisible(true);
                     if (tangSoLuongDal == null) {
                         tangSoLuongDal = new HandleTangSoLuongDal(null, true);
+                        tangSoLuongDal.txtSoLuong.setText("");
                     }
-                    if (dataTable1.getRowCount() == 0) {
-                        TableModel model2 = dataTable2.getModel();
-                        int[] indexs = dataTable2.getSelectedRows();
-                        Object[] rows = new Object[8];
-                        DefaultTableModel model1 = (DefaultTableModel) dataTable1.getModel();
-                        for (int i = 0; i < indexs.length; i++) {
-                            rows[0] = model2.getValueAt(indexs[i], 0);
-                            rows[1] = model2.getValueAt(indexs[i], 1);
-                            rows[2] = model2.getValueAt(indexs[i], 2);
-                            rows[3] = model2.getValueAt(indexs[i], 3);
-                            rows[4] = model2.getValueAt(indexs[i], 4);
-                            rows[5] = model2.getValueAt(indexs[i], 5);
-                            rows[6] = df.format(ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText()));
-                            rows[7] = model2.getValueAt(indexs[i], 7);
-//                            ID Sản Phẩm", "ID Chi Tiết", "Tên Sản Phẩm", "Dung Lượng","Màu Sắc", "Giá" ,"Số Lương", "Đơn Vị Tính"};
-                            model1.addRow(rows);
-                            System.out.println(rows[0]);
-
-                        }
-                    } else {
-                        double soLuong;
-                        double t2RowID = Integer.parseInt(dataTable2.getModel().getValueAt(dataTable2.getSelectedRow(), 1).toString());
-                        Object[] columnData = new Object[dataTable1.getColumnCount()];
-                        Object[] rowData = new Object[dataTable1.getRowCount()];
-                        for (int i = 0; i < dataTable1.getRowCount(); i++) {
-                            if (t2RowID == Integer.parseInt(dataTable2.getModel().getValueAt(i, 1).toString())) {
-                                System.out.println(Integer.parseInt(dataTable2.getModel().getValueAt(i, 1).toString()));
-//                                soLuong = Integer.parseInt(dataTable2.getModel().getValueAt(dataTable2.getSelectedRow(), 6).toString());
-                                soLuong = ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 5).toString()) + ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText());
-                                dataTable1.getModel().setValueAt(df.format(soLuong), i, 6);
-                                System.out.println("đã thêm số lượng");
-                                return;
-                            } else {
-                                if (i != dataTable1.getRowCount() - 1) {
-                                    continue;
-                                } else if (i == dataTable1.getRowCount() - 1) {
-                                    TableModel model2 = dataTable2.getModel();
-                                    int indexs = dataTable2.getSelectedRow();
-                                    Object[] rows = new Object[8];
-                                    DefaultTableModel model1 = (DefaultTableModel) dataTable1.getModel();
-                                    rows[0] = model2.getValueAt(indexs, 0);
-                                    rows[1] = model2.getValueAt(indexs, 1);
-                                    rows[2] = model2.getValueAt(indexs, 2);
-                                    rows[3] = model2.getValueAt(indexs, 3);
-                                    rows[4] = model2.getValueAt(indexs, 4);
-                                    rows[5] = model2.getValueAt(indexs, 5);
-                                    rows[6] = df.format(ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText()));
-                                    System.out.println(rows[6]);
-                                    rows[7] = model2.getValueAt(indexs, 7);
-//                            ID Sản Phẩm", "ID Chi Tiết", "Tên Sản Phẩm", "Dung Lượng","Màu Sắc", "Giá" ,"Số Lương", "Đơn Vị Tính"};
+                };
+                }
+        });         
+                    tangSoLuongDal.btnOk.addMouseListener(new MouseAdapter() {
+                        public void mouseClicked(MouseEvent e) {
+                            System.out.println("Clicked!");
+                            if (dataTable1.getRowCount() == 0) {
+                                TableModel model2 = dataTable2.getModel();
+                                int[] indexs = dataTable2.getSelectedRows();
+                                Object[] rows = new Object[6];
+                                DefaultTableModel model1 = (DefaultTableModel) dataTable1.getModel();
+                                for (int i = 0; i < indexs.length; i++) {
+                                    rows[0] = model2.getValueAt(indexs[i], 0);
+                                    rows[1] = model2.getValueAt(indexs[i], 1);
+                                    rows[2] = model2.getValueAt(indexs[i], 2);
+                                    rows[3] = model2.getValueAt(indexs[i], 3);
+                                    rows[4] = df.format(ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText()));
+                                    rows[5] = model2.getValueAt(indexs[i], 5);
+//                            ID Sản Phẩm", "ID Chi Tiết", "Tên Sản Phẩm","Giá" ,"Số Lương", "Đơn Vị Tính"};
                                     model1.addRow(rows);
-                                    System.out.println("đã thêm cột mới");
+                                    System.out.println(rows[0]);
 
+                                }
+                            } else {
+                                double soLuong;
+                                double t2RowID = Integer.parseInt(dataTable2.getModel().getValueAt(dataTable2.getSelectedRow(), 1).toString());
+                                Object[] columnData = new Object[dataTable1.getColumnCount()];
+                                Object[] rowData = new Object[dataTable1.getRowCount()];
+                                for (int i = 0; i < dataTable1.getRowCount(); i++) {
+                                    if (t2RowID == Integer.parseInt(dataTable2.getModel().getValueAt(i, 1).toString())) {
+                                        System.out.println(Integer.parseInt(dataTable2.getModel().getValueAt(i, 1).toString()));
+//                                soLuong = Integer.parseInt(dataTable2.getModel().getValueAt(dataTable2.getSelectedRow(), 6).toString());
+                                        soLuong = ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 2).toString()) + ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText());
+                                        dataTable1.getModel().setValueAt(df.format(soLuong), i, 4);
+                                        System.out.println("đã thêm số lượng");
+                                        return;
+                                    } else {
+                                        if (i != dataTable1.getRowCount() - 1) {
+                                            continue;
+                                        } else if (i == dataTable1.getRowCount() - 1) {
+                                            TableModel model2 = dataTable2.getModel();
+                                            int[] indexs = dataTable2.getSelectedRows();
+                                            Object[] rows = new Object[6];
+                                            DefaultTableModel model1 = (DefaultTableModel) dataTable1.getModel();
+                                            for (int j = 0; j < indexs.length; j++) {
+                                                rows[0] = model2.getValueAt(indexs[j], 0);
+                                                rows[1] = model2.getValueAt(indexs[j], 1);
+                                                rows[2] = model2.getValueAt(indexs[j], 2);
+                                                rows[3] = model2.getValueAt(indexs[j], 3);
+                                                rows[4] = df.format(ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText()));
+                                                rows[5] = model2.getValueAt(indexs[j], 5);
+//                            ID Sản Phẩm", "ID Chi Tiết", "Tên Sản Phẩm","Giá" ,"Số Lương", "Đơn Vị Tính"};
+                                                model1.addRow(rows);
+                                                System.out.println(rows[0]);
+                                                System.out.println("đã thêm cột mới");
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
-                }
-            }
-        });
-        dataTable1.getModel().addTableModelListener(
-                new TableModelListener() {
-            public void tableChanged(TableModelEvent evt) {
-                System.out.print("aa");
-                hoaDonTable();
-            }
+                    );
+                    
+                    
+                    
+                    
+                        
+                    
+                    
+                    dataTable1.getModel().addTableModelListener(
+                            new TableModelListener() {
+                        public void tableChanged(TableModelEvent evt) {
+                            System.out.print("aa");
+                            hoaDonTable();
+                        }
+                            });
+                            
+                            }
 
-        });
-    }
+   
+
+    
 
     private void init() {
 
@@ -231,11 +249,11 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
             },
             new String [] {
-                "Id Sản Phẩm", "Id Chi Tiết", "Tên Sản Phẩm", "Dung Lượng", "Màu Sắc", "Giá", "Số Lượng", "ĐVT"
+                "Id Sản Phẩm", "Id Chi Tiết", "Tên Sản Phẩm", "Giá", "Số Lượng", "ĐVT"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true, true, true
+                false, false, false, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -440,9 +458,8 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel5)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8))
@@ -552,7 +569,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         java.sql.Timestamp now = new Timestamp((new java.util.Date()).getTime());
         double tongTien = Double.parseDouble(txtTongTien.getText());
 
-        hoaDonBanHangController.ThemHD(1, idNV, idKM, tongTien, now, cbbHinhThucThanhToan.getSelectedItem().toString(), txtGhiChu.getText());
+        hoaDonBanHangController.ThemHD(1, idNV, idKM, tongSoLuong, tongTien, now, cbbHinhThucThanhToan.getSelectedItem().toString(), txtGhiChu.getText());
         hoaDonBanHangController.loadList();
         dataTable2.removeColumn(dataTable2.getColumnModel().getColumn(0));
 
@@ -741,9 +758,9 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         double total = 0;
         double tienTungMon = 0;
         for (int i = 0; i < dataTable1.getRowCount(); i++) {
-            total = total + (Double.parseDouble(dataTable1.getValueAt(i, 5).toString()) * Double.parseDouble(dataTable1.getValueAt(i, 4).toString()));
+            total = total + (Double.parseDouble(dataTable1.getValueAt(i, 2).toString()) * Double.parseDouble(dataTable1.getValueAt(i, 3).toString()));
             txtTongTien.setText(Double.toString(total));
-
+            tongSoLuong = Integer.parseInt(dataTable1.getValueAt(i, 3).toString());
         }
         // lấy phần trăm khuyến mãi theo đúng tên khuyến mãi
         KhuyenMai khuyenMai = (KhuyenMai) cbbKhuyenMai.getSelectedItem();

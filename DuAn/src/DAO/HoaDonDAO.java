@@ -36,7 +36,7 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
     }
 
     public List<Object[]> LoadDSSanPham() {
-        String selectSql = "select SanPham.idsanPham, ChiTietSanPham.idChiTietSanPham, TenSanPham, DungLuong, Mausac,GiaBan,SoLuong,DVT from SanPham\n"
+        String selectSql = "select SanPham.idsanPham, ChiTietSanPham.idChiTietSanPham, ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac),GiaBan,SoLuong,DVT from SanPham\n"
                 + "inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham ";
         List<Object[]> data = getRawValues(selectSql);
         return data;
@@ -79,9 +79,9 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
 //
 //        }
 //                 }
-    public void themHD(int idSanPham, int idNhanVien, int idKhuyenMai, double tongTien, Date ngayLap, String hinhThucThanhToan, String ghiChu) {
-        String cauLenhThem = "insert into HoaDon values (?,?,?,?,?,?,?)";
-        DBConnection.executeUpdate(cauLenhThem, idSanPham, idNhanVien, idKhuyenMai, tongTien, ngayLap, hinhThucThanhToan, ghiChu);
+    public void themHD(int idSanPham, int idNhanVien, int idKhuyenMai,int soLuong, double tongTien, Date ngayLap, String hinhThucThanhToan, String ghiChu) {
+        String cauLenhThem = "insert into HoaDon values (?,?,?,?,?,?,?,?)";
+        DBConnection.executeUpdate(cauLenhThem, idSanPham, idNhanVien, idKhuyenMai,soLuong, tongTien, ngayLap, hinhThucThanhToan, ghiChu);
     }
 
     public Integer layHDVuaTao() {
@@ -99,7 +99,7 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
     }
 
     public List<Object[]> search(String id) {
-        String selectSql = "select idHoaDon,TenNhanVien,TenNhanVien,TenKhuyenMai,TongTien,NgayLap,HinhThucThanhToan,HoaDon.TrangThai,HoaDon.GhiChu\n"
+        String selectSql = "select idHoaDon,TenNhanVien,TenNhanVien,TenKhuyenMai,TongTien,NgayLap,HinhThucThanhToan,HoaDon.GhiChu\n"
                 + "from HoaDon join KhachHang on HoaDon.idKhachHang = KhachHang.idKhachHang join \n"
                 + "NhanVien on HoaDon.idNhanVien = NhanVien.idNhanVien join KhuyenMai on HoaDon.idKhuyenMai = KhuyenMai.idKhuyenMai where idHoaDon = ? ";
         List<Object[]> data = getRawValues(selectSql, id);
@@ -126,6 +126,7 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
                         rs.getInt("idKhachHang"),
                         rs.getInt("idNhanVien"),
                         rs.getInt("idKhuyenMai"),
+                        rs.getInt("soluong"),
                         rs.getDouble("TongTien"),
                         rs.getTimestamp("NgayLap"),
                         rs.getString("HinhThucThanhToan"),

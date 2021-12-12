@@ -42,8 +42,8 @@ public class HoaDonBanHangController extends AbsController<HoaDon> {
 //    }
     private HoaDonDAO hoaDonDAO;
 
-    public void ThemHD(int idSanPham, int idNhanVien, int idKhuyenMai, double tongTien, Date ngayLap, String hinhThucThanhToan, String ghiChu) {
-        hoaDonDAO.themHD(idSanPham, idNhanVien, idKhuyenMai, tongTien, ngayLap, hinhThucThanhToan, ghiChu);
+    public void ThemHD(int idSanPham, int idNhanVien, int idKhuyenMai,int soLuong, double tongTien, Date ngayLap, String hinhThucThanhToan, String ghiChu) {
+        hoaDonDAO.themHD(idSanPham, idNhanVien, idKhuyenMai,soLuong, tongTien, ngayLap, hinhThucThanhToan, ghiChu);
     }
    @Override
     public void loadList() {
@@ -60,7 +60,7 @@ public class HoaDonBanHangController extends AbsController<HoaDon> {
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Sản Phẩm", "ID Chi Tiết", "Tên Sản Phẩm", "Dung Lượng","Màu Sắc", "Giá" ,"Số Lương", "Đơn Vị Tính"};
+        return new String[]{"ID Sản Phẩm", "ID Chi Tiết", "Tên Sản Phẩm", "Giá" ,"Số Lương", "Đơn Vị Tính"};
     }
 
     @Override

@@ -256,7 +256,7 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel btnGiam;
-    private javax.swing.JLabel btnOk;
+    public javax.swing.JLabel btnOk;
     public javax.swing.JLabel btnTang1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel jPanel1;
