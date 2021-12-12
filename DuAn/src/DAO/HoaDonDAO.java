@@ -54,7 +54,15 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
 //    }
 
     public List<Object[]> loadThang() {
-        String selectSql = "SELECT SUM(TongTien) AS totalIncome FROM HoaDon WHERE NgayLap >=dateadd(month,datediff(month,0,getdate())-12,0) group by Month(NgayLap)";
+        String selectSql = "SELECT concat('Tháng ',MONTH(NgayLap)) as ngaylap,SUM(TongTien) AS totalIncome FROM HoaDon WHERE NgayLap >=dateadd(month,datediff(month,0,getdate())-12,0) group by Month(NgayLap)";
+        List<Object[]> data = getRawValues(selectSql);
+        return data;
+    }
+     public List<Object[]> loadNgay() {
+        String selectSql = "SELECT concat('Ngày ',day(NgayLap)) as ngaylap,SUM(TongTien) AS totalIncome \n" +
+"FROM HoaDon \n" +
+"WHERE NgayLap >=dateadd(day,datediff(day,0,getdate())-30,0) \n" +
+"group by day(NgayLap)";
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }

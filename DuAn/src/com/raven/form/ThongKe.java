@@ -17,33 +17,29 @@ import net.sf.oval.ConstraintViolation;
 
 public class ThongKe extends javax.swing.JPanel implements ViewInterface {
 
+    ThongKeController thongKeController = new ThongKeController(this);
+    List<Object[]> dataThang = thongKeController.loadMonth();
+    List<Object[]> dataNgay = thongKeController.loadNgay();
+
     public ThongKe() throws ParseException {
         initComponents();
         setOpaque(false);
         init();
+
     }
 
     private void init() throws ParseException {
-        ThongKeController thongKeController = new ThongKeController(this);
-        List<Object[]> data = thongKeController.loadMonth();
-        List<String> months = Arrays.asList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-        for (int i = 0; i < data.size(); i++) { 
-            
-                
-            
-//            System.out.println(Double.parseDouble(String.valueOf(Arrays.toString(data.get(i)))));
-            System.out.println(Arrays.toString(data.get(i)).replaceAll("\\D+", ""));
-           
-            chart.addData(new ModelChart(months.get(i), new double[]{ChuyenDoi.SoDouble(Arrays.toString(data.get(i)).replaceAll("\\D+", "")), 500000, 700000, 1000000}));
-           
-        
-        }
 
+        for (Object[] obj : dataNgay) {
+                String ngay = String.valueOf(obj[0]);
+                double tongTien = Double.parseDouble(obj[1].toString());
+                chart.addData(new ModelChart(ngay, new double[]{tongTien, 500000, 700000, 1000000}));}
+        chart.start();
 //        List<Integer> ok = hoaDonController.loadMonth();
 //        for (int i = 0; i < ok.size(); i++) {
 //            System.out.println(ok.get(i));
 //        }
-        chart.addLegend("Income", new Color(245, 189, 135));
+        chart.addLegend("Tổng Doanh Thu", new Color(245, 189, 135));
         chart.addLegend("Expense", new Color(135, 189, 245));
         chart.addLegend("Profit", new Color(189, 135, 245));
         chart.addLegend("Cost", new Color(139, 229, 222));
@@ -73,6 +69,7 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
         table = new com.raven.swing.TableColumn();
         jLabel2 = new javax.swing.JLabel();
         scrollBar1 = new com.raven.swing.ScrollBar();
+        cbbThongKe = new javax.swing.JComboBox<>();
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(79, 79, 79));
@@ -87,7 +84,7 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 1003, Short.MAX_VALUE)
+                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelRound1Layout.setVerticalGroup(
@@ -129,6 +126,13 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
 
         scrollBar1.setBackground(new java.awt.Color(245, 245, 245));
 
+        cbbThongKe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thống Tháng Hiện tại", "Thống Kê Năm" }));
+        cbbThongKe.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbThongKeItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -138,21 +142,25 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelRound1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                        .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(scrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(cbbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -168,7 +176,29 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cbbThongKeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbThongKeItemStateChanged
+        if (cbbThongKe.getSelectedIndex() == 0) {
+            chart.clear();
+            for (Object[] obj : dataNgay) {
+                String ngay = String.valueOf(obj[0]);
+                double tongTien = Double.parseDouble(obj[1].toString());
+                chart.addData(new ModelChart(ngay, new double[]{tongTien, 500000, 700000, 1000000}));
+            }
+            chart.start();
+
+        } else if ((cbbThongKe.getSelectedIndex() == 1)) {
+            chart.clear();
+            for (Object[] obj : dataThang) {
+                String thang = String.valueOf(obj[0]);
+                double tongTien = Double.parseDouble(obj[1].toString());
+                chart.addData(new ModelChart(thang, new double[]{tongTien, 500000, 700000, 1000000}));
+            }
+            chart.start();
+        }
+    }//GEN-LAST:event_cbbThongKeItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbbThongKe;
     private com.raven.chart.Chart chart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

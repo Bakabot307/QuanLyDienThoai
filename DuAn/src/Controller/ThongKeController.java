@@ -31,6 +31,11 @@ public class ThongKeController extends AbsController<HoaDon> {
         return hoaDonDAO.loadThang();
 
     }
+    
+    public List<Object[]> loadNgay() {
+        return hoaDonDAO.loadNgay();
+
+    }
 
 //    public String layT() {
 //        return hoaDonDAO.layT();
