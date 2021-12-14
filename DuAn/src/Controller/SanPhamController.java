@@ -54,6 +54,7 @@ public class SanPhamController extends AbsController<SanPham> {
     public List<SanPham> layCbbSanPham() {
         return sanPhamDAO.getAll();
     }
+    
 
     public ArrayList<SanPham> DSSanPham() {
 
@@ -61,10 +62,12 @@ public class SanPhamController extends AbsController<SanPham> {
 
     }
 
-    public void them(int idloaisanpham, String tensanpham, double gianhap, double giaban, int soluong, String dvt, byte[] hinhanh) {
-        sanPhamDAO.them(idloaisanpham, tensanpham, gianhap, giaban, soluong, dvt, hinhanh);
+    public void them(int idloaisanpham, String tensanpham, double gianhap, double giaban, int soluong, String dvt) {
+        sanPhamDAO.them(idloaisanpham, tensanpham, gianhap, giaban, soluong, dvt);
 
     }
+    
+ 
 
     
     
@@ -89,7 +92,7 @@ public class SanPhamController extends AbsController<SanPham> {
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Sản Phẩm", "Tên Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "DVT", "Hình Ảnh"};
+        return new String[]{"ID Sản Phẩm", "Tên Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "DVT"};
     }
 
     @Override

@@ -36,12 +36,17 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
     }
 
     public List<Object[]> LoadDSSanPham() {
-        String selectSql = "select SanPham.idsanPham, ChiTietSanPham.idChiTietSanPham, ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac),GiaBan,SoLuong,DVT from SanPham\n"
-                + "inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham ";
+        String selectSql = "select SanPham.idsanPham, ChiTietSanPham.idChiTietSanPham, ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac),GiaBan,ChiTietSanPham.SoLuong,DVT from SanPham\n"
+                + "inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham where chitietsanpham.soluong>0";
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
-
+ public List<Object[]> layDSSanPham() {
+        String selectSql = "select SanPham.idsanPham, ChiTietSanPham.idChiTietSanPham, ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac),GiaBan,ChiTietSanPham.SoLuong,DVT from SanPham\n"
+                + "inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham where chitietsanpham.soluong>0";
+        List<Object[]> data = getRawValues(selectSql);
+        return data;
+    }
     public List<Object[]> Load() {
         String selectSql = "select * from HoaDon  ";
         List<Object[]> data = getRawValues(selectSql);

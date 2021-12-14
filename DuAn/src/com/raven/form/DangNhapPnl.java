@@ -223,7 +223,6 @@ public class DangNhapPnl extends javax.swing.JFrame {
             try {
                 Main main = new Main();
                 System.out.println(loginController.showName(tk, mk));
-                JOptionPane.showMessageDialog(new Frame(), "Đăng nhập thành công ! ", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 main.setVisible(true);
                 this.dispose();
             } catch (ParseException ex) {

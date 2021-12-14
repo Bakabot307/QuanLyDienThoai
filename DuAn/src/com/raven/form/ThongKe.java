@@ -18,20 +18,18 @@ import net.sf.oval.ConstraintViolation;
 
 public class ThongKe extends javax.swing.JPanel implements ViewInterface {
 
-    ThongKeController thongKeController = new ThongKeController(this);
-    List<Object[]> dataThang = thongKeController.loadMonth();
-    List<Object[]> dataNgay = thongKeController.loadNgay();
-    
-
-    public ThongKe() throws ParseException {
-       
+    public ThongKe() {
         initComponents();
         setOpaque(false);
         init();
+        
 
     }
+    ThongKeController thongKeController = new ThongKeController(this);
+    List<Object[]> dataThang = thongKeController.loadMonth();
+    List<Object[]> dataNgay = thongKeController.loadNgay();
 
-    private void init() throws ParseException {
+    private void init() {
 
         for (Object[] obj : dataNgay) {
             String ngay = String.valueOf(obj[0]);
@@ -59,7 +57,6 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
 //        model.addRow(new Object[]{1, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
 //        model.addRow(new Object[]{2, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
 //        model.addRow(new Object[]{3, "Thang", "Nam", "30", "Thang1@gmail.com", "+0374984567"});
-
     }
 
     @SuppressWarnings("unchecked")
@@ -70,7 +67,7 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
         panelRound1 = new com.raven.swing.PanelRound();
         chart = new com.raven.chart.Chart();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table = new com.raven.swing.TableColumn();
+        tableData = new com.raven.swing.TableColumn();
         jLabel2 = new javax.swing.JLabel();
         scrollBar1 = new com.raven.swing.ScrollBar();
         cbbThongKe = new javax.swing.JComboBox<>();
@@ -102,9 +99,10 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
         jScrollPane1.setBorder(null);
         jScrollPane1.setVerticalScrollBar(scrollBar1);
 
-        table.setModel(new javax.swing.table.DefaultTableModel(
+        tableData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
                 "No", "Name", "Gender", "Age", "Email", "Phone Number"
@@ -118,9 +116,9 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(table);
-        if (table.getColumnModel().getColumnCount() > 0) {
-            table.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jScrollPane1.setViewportView(tableData);
+        if (tableData.getColumnModel().getColumnCount() > 0) {
+            tableData.getColumnModel().getColumn(0).setPreferredWidth(50);
         }
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
@@ -209,17 +207,17 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
     private javax.swing.JScrollPane jScrollPane1;
     private com.raven.swing.PanelRound panelRound1;
     private com.raven.swing.ScrollBar scrollBar1;
-    private com.raven.swing.TableColumn table;
+    private com.raven.swing.TableColumn tableData;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void viewList(List<Object[]> rows) {
-        ViewImp.viewList(rows, table);
+
     }
 
     @Override
     public void setColumnNames(String[] columnNames) {
-        ViewImp.setColumnNames(columnNames, table);
+
     }
     private ThongKeController hoaDonController;
 

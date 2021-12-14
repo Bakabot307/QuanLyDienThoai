@@ -100,7 +100,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                         if (t2RowID == Integer.parseInt(dataTable2.getModel().getValueAt(i, 1).toString())) {
                             System.out.println(Integer.parseInt(dataTable2.getModel().getValueAt(i, 1).toString()));
 //                                soLuong = Integer.parseInt(dataTable2.getModel().getValueAt(dataTable2.getSelectedRow(), 6).toString());
-                            soLuong = ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 2).toString()) + ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText());
+                            soLuong = ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 3).toString()) + ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText());
                             dataTable1.getModel().setValueAt(df.format(soLuong), i, 4);
                             System.out.println("đã thêm số lượng");
                             return;
@@ -672,7 +672,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         tienCanTra = ChuyenDoi.SoDouble(txtCanTra.getText());
         tienKhachDua = ChuyenDoi.SoDouble(txtKhachDua.getText());
         tienThua = tienKhachDua - tienCanTra;
-        txtTienThua1.setText(String.valueOf(tienThua));
+        txtTienThua1.setText(ChuyenDoi.SoString(tienThua));
     }//GEN-LAST:event_txtKhachDuaKeyReleased
 
     private void btnGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGioHangMouseClicked
@@ -800,18 +800,18 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         double total = 0;
         double tienTungMon = 0;
         for (int i = 0; i < dataTable1.getRowCount(); i++) {
-            total = total + (Double.parseDouble(dataTable1.getValueAt(i, 2).toString()) * Double.parseDouble(dataTable1.getValueAt(i, 3).toString()));
-            txtTongTien.setText(Double.toString(total));
+            total = total + (ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 2).toString()) * ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 3).toString()));
+            txtTongTien.setText(ChuyenDoi.SoString(total));
             tongSoLuong = Integer.parseInt(dataTable1.getValueAt(i, 3).toString());
         }
         // lấy phần trăm khuyến mãi theo đúng tên khuyến mãi
         KhuyenMai khuyenMai = (KhuyenMai) cbbKhuyenMai.getSelectedItem();
         Integer phanTramKM = khuyenMai.getPhanTramKhuyenMai();
 
-        giamGia = Double.parseDouble(phanTramKM.toString());
+        giamGia = ChuyenDoi.SoDouble(phanTramKM.toString());
         khachCanTra = total - total * giamGia / 100;
 
-        txtCanTra.setText(Double.toString(khachCanTra));
+        txtCanTra.setText(ChuyenDoi.SoString(khachCanTra));
 
     }
 

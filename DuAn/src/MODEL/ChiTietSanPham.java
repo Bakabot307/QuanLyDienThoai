@@ -17,6 +17,7 @@ public class ChiTietSanPham extends TableInterface {
     private Integer idSanPham;
     private String MauSac;
     private String HangSanXuat;
+    private int soLuong;
 
     public Integer getIdChiTietSanPham() {
         return idChiTietSanPham;
@@ -56,6 +57,14 @@ public class ChiTietSanPham extends TableInterface {
 
     public void setHangSanXuat(String HangSanXuat) {
         this.HangSanXuat = HangSanXuat;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 
     @Override

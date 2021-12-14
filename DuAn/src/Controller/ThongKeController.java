@@ -7,9 +7,11 @@ package Controller;
 
 import DAO.AbsDAO;
 import DAO.HoaDonDAO;
+import DAO.SanPhamDAO;
 import MODEL.HoaDon;
 import VIEW.ViewInterface;
 import com.raven.form.HoaDonPnl;
+import com.raven.form.SanPhamPanel;
 import com.raven.form.ThongKe;
 import java.util.Date;
 import java.util.Dictionary;
@@ -23,11 +25,10 @@ public class ThongKeController extends AbsController<HoaDon> {
 
     private HoaDonPnl hoaDonPnl;
     private ThongKe thongKe;
-
+      private HoaDonDAO hoaDonDAO;
     public ThongKeController(ViewInterface view) {
         super(view);
-        hoaDonDAO = new HoaDonDAO();
-      
+        hoaDonDAO = new HoaDonDAO();      
     }
 
     public List<Object[]> loadMonth() {
@@ -44,7 +45,7 @@ public class ThongKeController extends AbsController<HoaDon> {
 //        return hoaDonDAO.layT();
 //
 //    }
-    private HoaDonDAO hoaDonDAO;
+  
 
     public int showName(int id) {
         return hoaDonDAO.layId(id);
@@ -58,7 +59,14 @@ public class ThongKeController extends AbsController<HoaDon> {
     public Integer idHoaDon() {
         return hoaDonDAO.layHDVuaTao();
     }
-
+ @Override
+    public void loadList() {
+        thongKe = (ThongKe) view;
+        hoaDonDAO = (HoaDonDAO) dao;
+        List<Object[]> data = hoaDonDAO.layDSSanPham();
+        thongKe.setColumnNames(this.getTableColumnNames());
+        thongKe.viewList(data);
+    }
 
     @Override
     public AbsDAO<HoaDon> getDao() {

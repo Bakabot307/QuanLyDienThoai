@@ -85,11 +85,7 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-                    try {
-                        showForm(new ThongKe());
-                    } catch (ParseException ex) {
-                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    showForm(new ThongKe());
                 } else if (index == 1) {
                     showForm(new BanHangPanel());
                 } else if (index == 2) {

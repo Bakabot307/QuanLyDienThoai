@@ -28,8 +28,8 @@ public class ChiTietSanPhamControllerForBanHang extends AbsController<ChiTietSan
         chiTietSanPhamDAO = new ChiTietSanPhamDAO();
     }
 
-    public void them(String dungLuong, int idSanPham, String mauSac, String hangSx) {
-        chiTietSanPhamDAO.them(dungLuong, idSanPham, mauSac, hangSx);
+    public void them(String dungLuong, int idSanPham, String mauSac, String hangSx, int soLuong) {
+        chiTietSanPhamDAO.them(dungLuong, idSanPham, mauSac, hangSx, soLuong);
         loadList();
     }
 

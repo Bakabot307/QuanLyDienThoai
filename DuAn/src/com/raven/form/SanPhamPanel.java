@@ -22,6 +22,8 @@ import java.awt.Frame;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -63,11 +65,12 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
     /**
      * Creates new form KhachHangPanel
      */
+    ChiTietSanPhamDialog chiTietSanPhamDialog = new ChiTietSanPhamDialog(null, true);
     private HandleSanPhamDal sanPhamDal = null;
     String filename = null;
     byte[] SPimage = null;
 
-    public SanPhamPanel() {
+    public  SanPhamPanel() {
         initComponents();
         SanPhamController sanPhamController = new SanPhamController(this);
 
@@ -114,11 +117,9 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                     LoaiSanPham loaiSp = (LoaiSanPham) sanPhamDal.cbbLoaiSP.getSelectedItem();
                     Integer idLoaiSP = loaiSp.getId();
                     System.out.println(idLoaiSP);
-                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
-                    sanPhamController.them(idLoaiSP, sanPhamDal.txtTen.getText(), giaNhap, giaBan, Integer.valueOf(sanPhamDal.spnSoLuong.getValue().toString()),
-                            sanPhamDal.txtDVT.getText(), SPimage = bos.toByteArray());
-
+                    sanPhamController.them(idLoaiSP, sanPhamDal.txtTen.getText(), giaNhap, giaBan, Integer.valueOf(sanPhamDal.spnSoLuong.getValue().toString()),sanPhamDal.txtDVT.getText());
+                    sanPhamController.loadList();
                 }
             });
         }
@@ -179,28 +180,16 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
             }
 
         });
-        sanPhamDal.tbnHinhAnh.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent a) {
-                JFileChooser chooser = new JFileChooser();
-                chooser.showOpenDialog(null);
-                File f = chooser.getSelectedFile();
-                filename = f.getAbsolutePath();
-                ImageIcon imageIcon = new ImageIcon(new ImageIcon(filename).getImage().getScaledInstance(sanPhamDal.jLabel1.getWidth(), sanPhamDal.jLabel1.getHeight(), Image.SCALE_SMOOTH));
-                sanPhamDal.jLabel1.setIcon(imageIcon);
-                try {
-                    File image = new File(filename);
-                    FileInputStream fis = new FileInputStream(image);
-                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                    byte[] buf = new byte[1024];
-                    for (int i; (i = fis.read(buf)) != 1;) {
-                        bos.write(buf, 0, i);
-                    }
-                    SPimage = bos.toByteArray();
-                } catch (Exception e) {
-                }
-            }
-        });
+        
+        chiTietSanPhamDialog.addWindowListener(new WindowAdapter() 
+{
+  public void windowClosed(WindowEvent e)
+  {
+    sanPhamController.loadList();
+  }
+  });
+  
+  
         DefaultComboBoxModel<LoaiSanPham> modle = (DefaultComboBoxModel<LoaiSanPham>) sanPhamDal.cbbLoaiSP.getModel();
         modle.removeAllElements();
         List<LoaiSanPham> sanPhams = sanPhamController.layCbbLoaiSP();
@@ -237,13 +226,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
 //    }
 //ByteArrayInputStream bais = new ByteArrayInputStream(list.get(i).getHinhAnh());
 //BufferedImage image = ImageIO.read(bais);
-            if (list.get(i).getHinhAnh() != null) {
-
-                ImageIcon image = new ImageIcon(new ImageIcon(list.get(i).getHinhAnh()).getImage()
-                        .getScaledInstance(150, 120, Image.SCALE_SMOOTH));
-
-                row[7] = image;
-            }
+            
             model.addRow(row);
 
         }
@@ -442,24 +425,18 @@ public Integer idSanPham;
         sanPhamDal.txtGiaBan.setText(tblSanPham.getValueAt(dong, 4).toString());
         sanPhamDal.spnSoLuong.setValue(Integer.parseInt(tblSanPham.getValueAt(dong, 5).toString()));
         sanPhamDal.txtDVT.setText(tblSanPham.getValueAt(dong, 6).toString());
-        int i = tblSanPham.getSelectedRow();
-        if (tblSanPham.getValueAt(i, 7) != null) {
-            ImageIcon image1 = (ImageIcon) tblSanPham.getValueAt(i, 7);
-            Image image2 = image1.getImage().getScaledInstance(sanPhamDal.jLabel1.getWidth(), sanPhamDal.jLabel1.getHeight(),
-                    Image.SCALE_SMOOTH);
-            ImageIcon image3 = new ImageIcon(image2);
-            sanPhamDal.jLabel1.setIcon(image3);
-
-        }
+ 
         String tieuDe = (String) sanPhamController.getViewBag().get("tieu_de");
         sanPhamDal.title.setText("Cập nhập Sản Phẩm " + tieuDe);
         sanPhamDal.setVisible(true);
+        
     }//GEN-LAST:event_btnCapNhapMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         exportExcel(tblSanPham);
     }//GEN-LAST:event_jLabel1MouseClicked
+
 
     private void btnChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChiTietMouseClicked
         // TODO add your handling code here:
@@ -470,13 +447,13 @@ public Integer idSanPham;
         }
         System.out.println("click");
 
-        ChiTietSanPhamDialog chiTietSanPhamDialog = new ChiTietSanPhamDialog(null, true);
+        
         //        chiTietSanPhamDialog.errorLB.setText("");
         chiTietSanPhamDialog.errorLB.setText("");
         chiTietSanPhamDialog.lbStatus.setText("");
         id = tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0).toString();
         System.out.println(id);
-
+        
         chiTietSanPhamDialog.setIdSanPham((Integer) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0));
 
         chiTietSanPhamDialog.setVisible(true);

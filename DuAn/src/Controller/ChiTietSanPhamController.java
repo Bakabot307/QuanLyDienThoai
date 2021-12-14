@@ -29,9 +29,13 @@ public class ChiTietSanPhamController extends AbsController<ChiTietSanPham> {
         chiTietSanPhamDAO = new ChiTietSanPhamDAO();
     }
 
-    public void them(String dungLuong, int idSanPham, String mauSac, String hangSx) {
-        chiTietSanPhamDAO.them(dungLuong, idSanPham, mauSac, hangSx);
+    public void them(String dungLuong, int idSanPham, String mauSac, String hangSx,int soLuong) {
+        chiTietSanPhamDAO.them(dungLuong, idSanPham, mauSac, hangSx, soLuong);
         loadList();
+    }
+        public void editSoLuong(int SoLuong,int idSanPham) {
+        chiTietSanPhamDAO.editSoLuong(SoLuong, idSanPham);
+
     }
 
     @Override
@@ -50,7 +54,7 @@ public class ChiTietSanPhamController extends AbsController<ChiTietSanPham> {
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Chi Tiết", "ID Sản Phẩm", "Dung Lượng", "Màu săc", "Hãng sản xuất"};
+        return new String[]{"ID Chi Tiết", "ID Sản Phẩm", "Dung Lượng", "Màu săc", "Hãng sản xuất","Số Lượng"};
     }
 
     @Override

@@ -27,14 +27,14 @@ public class SanPham extends TableInterface {
     private double GiaBan;
     private Integer SoLuong;
     private String DVT;
-    private byte[] hinhAnh;
+
 
     public SanPham() {
     }
 
 
 
-    public SanPham(Integer idSanPham, Integer idLoaiSanPham, String TenSanPham, double GiaNhap, double GiaBan, Integer SoLuong, String DVT, byte[] hinhAnh) {
+    public SanPham(Integer idSanPham, Integer idLoaiSanPham, String TenSanPham, double GiaNhap, double GiaBan, Integer SoLuong, String DVT) {
         this.idSanPham = idSanPham;
         this.idLoaiSanPham = idLoaiSanPham;
         this.TenSanPham = TenSanPham;
@@ -42,7 +42,7 @@ public class SanPham extends TableInterface {
         this.GiaBan = GiaBan;
         this.SoLuong = SoLuong;
         this.DVT = DVT;
-        this.hinhAnh = hinhAnh;
+
     }
 
     public Integer getIdSanPham() {
@@ -100,14 +100,6 @@ public class SanPham extends TableInterface {
     public void setDVT(String DVT) {
         this.DVT = DVT;
     }
-
-    public byte[] getHinhAnh() {
-        return hinhAnh;
-    }
-
-    public void setHinhAnh(byte[] hinhAnh) {
-        this.hinhAnh = hinhAnh;
-    } 
 
    
     @Override

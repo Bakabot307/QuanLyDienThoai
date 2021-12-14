@@ -251,7 +251,7 @@ public class ChiTietSanPhamDialogForBanHang extends javax.swing.JDialog implemen
             return;
         }
 
-        chiTietSanPhamControllerForBanHang.them(dungLuong, Integer.parseInt(BanHangPanel.id), mau, hsx);
+        chiTietSanPhamControllerForBanHang.them(dungLuong, Integer.parseInt(BanHangPanel.id), mau, hsx,2);
 
     }//GEN-LAST:event_btnThem2MouseClicked
     public void exportExcel(JTable table) {
