@@ -22,21 +22,21 @@ public class SanPhamDAO extends AbsDAO<SanPham> {
 
     public List<Object[]> layDSSanPham() {
         String selectSql = "select SanPham.idsanPham, ChiTietSanPham.idChiTietSanPham, ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac),GiaBan,ChiTietSanPham.SoLuong,DVT from SanPham\n"
-                + "inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham and chitietsanpham.soluong>0 " ;
+                + "inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham and chitietsanpham.soluong>0 order by chitietsanpham.soluong desc" ;
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
 
     public List<Object[]> search(String ten) {
         String selectSql = "select SanPham.idsanPham, ChiTietSanPham.idChiTietSanPham, ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac) ,GiaBan,ChiTietSanPham.SoLuong,DVT from SanPham\n"
-                + "                inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham where ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac)  like ? and chitietsanpham.soluong>0 " ;
+                + "                inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham where ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac)  like ? and chitietsanpham.soluong>0 order by chitietsanpham.soluong desc" ;
         List<Object[]> data = getRawValues(selectSql, ten);
         return data;
     }
 
     public List<Object[]> searchTenSanPham(String ten) {
         String selectSql = "select idSanPham,TenLoaiSanPham,TenSanPham,GiaNhap,GiaBan,ChiTietSanPham.SoLuong,DVT from SanPham join LoaiSanPham on SanPham.idLoaiSanPham = LoaiSanPham.idLoaiSanPham\n"
-                + "	 where TenSanPham like ? where  chitietsanpham.soluong>0";
+                + "	 where TenSanPham like ? where  chitietsanpham.soluong>0 order by chitietsanpham.soluong desc";
         List<Object[]> data = getRawValues(selectSql, ten);
         return data;
     }
@@ -44,7 +44,7 @@ public class SanPhamDAO extends AbsDAO<SanPham> {
     public List<Object[]> searchDungLuong(String dl) {
         String selectSql = "select SanPham.idsanPham, ChiTietSanPham.idChiTietSanPham, ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac) ,GiaBan,ChiTietSanPham.SoLuong,DVT from SanPham\n"
                 + "                inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham where "
-                + "ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac) like ? and chitietsanpham.soluong>0";
+                + "ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac) like ? and chitietsanpham.soluong>0 order by chitietsanpham.soluong desc";
         List<Object[]> data = getRawValues(selectSql, dl);
         return data;
     }
@@ -52,7 +52,7 @@ public class SanPhamDAO extends AbsDAO<SanPham> {
     public List<Object[]> searchDungLuongTheoTen(String ten, String dungLuong) {
         String selectSql = "select SanPham.idsanPham, ChiTietSanPham.idChiTietSanPham, ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac) ,GiaBan,ChiTietSanPham.SoLuong,DVT from SanPham\n"
                 + "                inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham where  "
-                + "ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac)  like ? and ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac) like ? and chitietsanpham.soluong>0 " ;
+                + "ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac)  like ? and ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac) like ? and chitietsanpham.soluong>0 order by chitietsanpham.soluong desc" ;
         List<Object[]> data = getRawValues(selectSql, ten, dungLuong);
         return data;
     }

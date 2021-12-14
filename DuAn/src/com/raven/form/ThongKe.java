@@ -212,12 +212,12 @@ public class ThongKe extends javax.swing.JPanel implements ViewInterface {
 
     @Override
     public void viewList(List<Object[]> rows) {
-
+//        ViewImp.viewList(rows,tableData);
     }
 
     @Override
     public void setColumnNames(String[] columnNames) {
-
+//ViewImp.setColumnNames(columnNames, tableData);
     }
     private ThongKeController hoaDonController;
 
