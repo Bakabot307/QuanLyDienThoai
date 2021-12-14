@@ -7,14 +7,15 @@ import Controller.ChiTietHoaDonController;
 import Controller.ChuyenDoi;
 import Controller.HoaDonBanHangController;
 import Controller.HoaDonController;
+import Controller.KhachHangController;
+import Controller.KhachHangControllerForBanHang;
 import MODEL.KhachHang;
 import MODEL.KhuyenMai;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
 import duan.dialog.HandleGioHangDal;
+import duan.dialog.HandleKhachHangDal;
 import duan.dialog.HandleTangSoLuongDal;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Timestamp;
@@ -29,15 +30,78 @@ import net.sf.oval.ConstraintViolation;
 
 public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
+    private HandleKhachHangDal khachHangDialog = null;
     private int tongSoLuong = 0;
     private HandleTangSoLuongDal tangSoLuongDal = null;
     private ChiTietHoaDonController chiTietHoaDonController;
     private HoaDonController hoaDonController;
 
     public BanHangPanel() {
+
         initComponents();
         setOpaque(false);
         BanHangController banHangController = new BanHangController(this);
+        if (khachHangDialog == null) {
+            khachHangDialog = new HandleKhachHangDal(null, true);
+            khachHangDialog.addBT.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    //validate
+
+                    if (khachHangDialog.txtTen.getText().trim().equals("")) {
+                        khachHangDialog.errorlb.setText("Vui lòng điền tên khách hàng ! ");
+                        return;
+                    }
+                    if (khachHangDialog.txtSdt.getText().trim().equals("")) {
+                        khachHangDialog.errorlb.setText("Vui lòng điền số điện thoại ! ");
+                        return;
+                    }
+                    if (!khachHangDialog.txtSdt.getText().matches("^\\d{10}$")) {
+                        khachHangDialog.errorlb.setText("Số điện thoại không hợp lệ ! ");
+                        return;
+                    }
+
+                    if (khachHangDialog.txtDiaChi.getText().trim().equals("")) {
+                        khachHangDialog.errorlb.setText("Vui lòng điền địa chỉ ! ");
+                        return;
+                    }
+                    if (khachHangDialog.txtCMND.getText().trim().equals("")) {
+                        khachHangDialog.errorlb.setText("Vui lòng điền số CMND ! ");
+                        return;
+                    }
+                    if (khachHangDialog.txtEmail.getText().trim().equals("")) {
+                        khachHangDialog.errorlb.setText("Vui lòng điền email ! ");
+                        return;
+                    }
+                    if (!khachHangDialog.txtEmail.getText().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+                        khachHangDialog.errorlb.setText("Email không hợp lệ ! ");
+                        return;
+                    }
+
+                    String gioiTinh;
+//                    Object[] values = new Object[8];
+//                    values[0] = 0;
+//                    values[1] = khachHangDialog.txtTen.getText();
+//                    values[2] = khachHangDialog.txtSdt.getText();
+//                    values[3] = khachHangDialog.txtDiaChi.getText();
+//                    values[4] = khachHangDialog.txtCMND.getText();
+//                    values[5] = khachHangDialog.txtGhiChu.getText();
+                    if (khachHangDialog.cbNam.isSelected()) {
+                        gioiTinh = "Nam";
+                    } else if (!khachHangDialog.cbNu.isSelected() && !khachHangDialog.cbNam.isSelected()) {
+                        khachHangDialog.errorlb.setText("Vui lòng chọn giới tính ! ");
+                        return;
+                    } else {
+                        gioiTinh = "Nữ";
+                    }
+//                    values[7] = khachHangDialog.txtEmail.getText();
+//                    banHangController.insert(values);
+
+                    banHangController.themKH(khachHangDialog.txtTen.getText(), khachHangDialog.txtSdt.getText(), khachHangDialog.txtDiaChi.getText(),
+                            khachHangDialog.txtCMND.getText(), khachHangDialog.txtGhiChu.getText(), "nam", khachHangDialog.txtEmail.getText());
+                }
+            });
+        }
         init();
         dataTable2.removeColumn(dataTable2.getColumnModel().getColumn(0));
         dataTable1.removeColumn(dataTable1.getColumnModel().getColumn(0));
@@ -142,6 +206,71 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
     }
 
+    private void themKhachHang() {
+
+        if (khachHangDialog == null) {
+            khachHangDialog = new HandleKhachHangDal(null, true);
+            khachHangDialog.addBT.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    //validate
+
+                    if (khachHangDialog.txtTen.getText().trim().equals("")) {
+                        khachHangDialog.errorlb.setText("Vui lòng điền tên khách hàng ! ");
+                        return;
+                    }
+                    if (khachHangDialog.txtSdt.getText().trim().equals("")) {
+                        khachHangDialog.errorlb.setText("Vui lòng điền số điện thoại ! ");
+                        return;
+                    }
+                    if (!khachHangDialog.txtSdt.getText().matches("^\\d{10}$")) {
+                        khachHangDialog.errorlb.setText("Số điện thoại không hợp lệ ! ");
+                        return;
+                    }
+
+                    if (khachHangDialog.txtDiaChi.getText().trim().equals("")) {
+                        khachHangDialog.errorlb.setText("Vui lòng điền địa chỉ ! ");
+                        return;
+                    }
+                    if (khachHangDialog.txtCMND.getText().trim().equals("")) {
+                        khachHangDialog.errorlb.setText("Vui lòng điền số CMND ! ");
+                        return;
+                    }
+                    if (khachHangDialog.txtEmail.getText().trim().equals("")) {
+                        khachHangDialog.errorlb.setText("Vui lòng điền email ! ");
+                        return;
+                    }
+                    if (!khachHangDialog.txtEmail.getText().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+                        khachHangDialog.errorlb.setText("Email không hợp lệ ! ");
+                        return;
+                    }
+
+                    String gioiTinh;
+//                    Object[] values = new Object[8];
+//                    values[0] = 0;
+//                    values[1] = khachHangDialog.txtTen.getText();
+//                    values[2] = khachHangDialog.txtSdt.getText();
+//                    values[3] = khachHangDialog.txtDiaChi.getText();
+//                    values[4] = khachHangDialog.txtCMND.getText();
+//                    values[5] = khachHangDialog.txtGhiChu.getText();
+                    if (khachHangDialog.cbNam.isSelected()) {
+                        gioiTinh = "Nam";
+                    } else if (!khachHangDialog.cbNu.isSelected() && !khachHangDialog.cbNam.isSelected()) {
+                        khachHangDialog.errorlb.setText("Vui lòng chọn giới tính ! ");
+                        return;
+                    } else {
+                        gioiTinh = "Nữ";
+                    }
+//                    values[7] = khachHangDialog.txtEmail.getText();
+//                    banHangController.insert(values);
+
+                    banHangController.themKH(khachHangDialog.txtTen.getText(), khachHangDialog.txtSdt.getText(), khachHangDialog.txtDiaChi.getText(),
+                            khachHangDialog.txtCMND.getText(), khachHangDialog.txtGhiChu.getText(), gioiTinh, khachHangDialog.txtEmail.getText());
+                }
+            });
+        }
+    }
+
     private void init() {
 
     }
@@ -176,6 +305,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         cbbKhachHang = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         txtGhiChu = new javax.swing.JTextField();
+        btnThemKh = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         dataTable2 = new com.raven.swing.TableColumn();
@@ -393,6 +523,18 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         jLabel8.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
         jLabel8.setText("Ghi Chú");
 
+        btnThemKh.setBackground(new java.awt.Color(0, 153, 153));
+        btnThemKh.setFont(new java.awt.Font("UTM Avo", 0, 13)); // NOI18N
+        btnThemKh.setForeground(new java.awt.Color(255, 255, 255));
+        btnThemKh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnThemKh.setText("Thêm khách hàng");
+        btnThemKh.setOpaque(true);
+        btnThemKh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnThemKhMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -436,8 +578,13 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(txtThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnThemKh, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -471,11 +618,13 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(cbbKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnThemKh, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(txtGhiChu, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                    .addComponent(txtGhiChu, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -774,6 +923,21 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         }
 
     }//GEN-LAST:event_cbbDungLuongItemStateChanged
+
+    private void btnThemKhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemKhMouseClicked
+        // TODO add your handling code here:
+        khachHangDialog.errorlb.setText("");
+        khachHangDialog.txtTen.setText("");
+        khachHangDialog.txtSdt.setText("");
+        khachHangDialog.txtDiaChi.setText("");
+        khachHangDialog.txtCMND.setText("");
+        khachHangDialog.txtGhiChu.setText("");
+        khachHangDialog.txtEmail.setText("");
+        khachHangDialog.cbNam.setSelected(false);
+        khachHangDialog.cbNu.setSelected(false);
+        khachHangDialog.title.setText("Thêm Khách Hàng ");
+        khachHangDialog.setVisible(true);
+    }//GEN-LAST:event_btnThemKhMouseClicked
 // public boolean isExist(String code) {
 //        boolean result;
 //            try {
@@ -820,6 +984,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
     private javax.swing.JLabel btnGioHang;
     private javax.swing.JLabel btnGioHang1;
     private javax.swing.JButton btnHienThi;
+    private javax.swing.JLabel btnThemKh;
     private javax.swing.JComboBox<String> cbbDungLuong;
     private javax.swing.JComboBox<String> cbbHinhThucThanhToan;
     private javax.swing.JComboBox<KhachHang> cbbKhachHang;
@@ -855,11 +1020,14 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
     @Override
     public void viewList(List<Object[]> rows) {
         ViewImp.viewList(rows, dataTable2);
+        if (khachHangDialog != null) {
+            khachHangDialog.setVisible(false);
+        }
     }
 
     @Override
     public void setColumnNames(String[] columnNames) {
-        ViewImp.setColumnNames(columnNames, dataTable2);
+
     }
 
     private BanHangController banHangController;

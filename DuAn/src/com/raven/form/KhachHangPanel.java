@@ -38,8 +38,9 @@ public class KhachHangPanel extends javax.swing.JPanel implements ViewInterface 
 
     public KhachHangPanel() {
         initComponents();
-        KhachHangController khachHangController = new KhachHangController(this);
+
         if (khachHangDialog == null) {
+            KhachHangController khachHangController = new KhachHangController(this);
             khachHangDialog = new HandleKhachHangDal(null, true);
             khachHangDialog.addBT.addMouseListener(new MouseAdapter() {
                 @Override
@@ -344,7 +345,6 @@ public class KhachHangPanel extends javax.swing.JPanel implements ViewInterface 
 
     private void searchText1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchText1KeyReleased
 
-        
         String ten = "%" + searchText1.getText() + "%";
         System.out.println(ten);
         khachHangController.search(ten);
