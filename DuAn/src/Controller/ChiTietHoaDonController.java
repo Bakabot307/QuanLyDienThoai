@@ -8,6 +8,7 @@ package Controller;
 import DAO.AbsDAO;
 import DAO.ChiTietHoaDonDAO;
 import DAO.DBConnection;
+import DAO.HoaDonDAO;
 import MODEL.ChiTietHoaDon;
 import VIEW.ViewInterface;
 import com.raven.form.ChiTietHoaDonDialog;
@@ -23,10 +24,12 @@ public class ChiTietHoaDonController extends AbsController<ChiTietHoaDon> {
 
     private ChiTietHoaDonDialog chiTietHoaDonDialog;
     private ChiTietHoaDonDAO chiTietHoaDonDAO;
+     private HoaDonDAO hoaDonDAO;
 
     public ChiTietHoaDonController(ViewInterface view) {
         super(view);
         chiTietHoaDonDAO = new ChiTietHoaDonDAO();
+        hoaDonDAO = new HoaDonDAO();
         chiTietHoaDonDialog = new ChiTietHoaDonDialog(null, true);
     }
   
@@ -35,7 +38,11 @@ public class ChiTietHoaDonController extends AbsController<ChiTietHoaDon> {
         chiTietHoaDonDAO.themHD(idSanPham, idHoaDon,  SoLuong, Gia, TongTien);
 
     }
-    
+    public List<Object[]> layIdCTSP(int id) {
+
+        
+        return hoaDonDAO.layIdChiTietSanPham( id);
+    }
     
 
     @Override

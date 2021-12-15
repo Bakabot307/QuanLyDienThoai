@@ -11,6 +11,7 @@ import MODEL.ChiTietSanPham;
 import MODEL.SanPham;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
+import com.raven.chart.ModelChart;
 import java.awt.Frame;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -210,12 +211,28 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
         id = tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0).toString();
         System.out.println(id);
         chiTietHoaDonDialog.setIdHoaDon((Integer) tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0));
-
-        DefaultComboBoxModel<ChiTietSanPham> modle1 = (DefaultComboBoxModel<ChiTietSanPham>) chiTietHoaDonDialog.cbbSanPham.getModel();
+        
+        DefaultComboBoxModel<SanPham> modle2 = (DefaultComboBoxModel<SanPham>) chiTietHoaDonDialog.cbbSanPham.getModel();
+        modle2.removeAllElements();
+        List<SanPham> sanpham = hoaDonController.layCbbSanPham();
+        modle2.addAll(sanpham);
+        modle2.setSelectedItem(sanpham.get(0));        
+         SanPham sp = (SanPham) chiTietHoaDonDialog.cbbSanPham.getSelectedItem();
+        Integer idSP = sp.getId();
+        
+        
+        DefaultComboBoxModel<ChiTietSanPham> modle1 = (DefaultComboBoxModel<ChiTietSanPham>) chiTietHoaDonDialog.cbbCTSP.getModel();
         modle1.removeAllElements();
-        List<ChiTietSanPham> CTSP = hoaDonController.layCbbSanPham();
-        modle1.addAll(CTSP);
-        modle1.setSelectedItem(CTSP.get(0));
+        List<Object[]> CTSP = hoaDonController.layIdCTSP(idSP);
+        for (Object[] obj : CTSP) {
+    
+            chiTietHoaDonDialog.cbbCTSP.addItem(Integer.parseInt(obj[0].toString()));
+            
+            
+           
+        }
+        
+       
 
         chiTietHoaDonDialog.setVisible(true);
 

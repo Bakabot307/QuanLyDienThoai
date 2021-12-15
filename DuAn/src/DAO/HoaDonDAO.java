@@ -166,4 +166,9 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
         return HoaDon;
 
     }
+    public List<Object[]> layIdChiTietSanPham(int idSanPham) {
+        String selectSql = "select ChiTietSanPham.idChiTietSanPham from SanPham inner join ChiTietSanPham on ChiTietSanPham.idSanPham = SanPham.idSanPham where chitietsanpham.idSanPham = ?";
+        List<Object[]> data = getRawValues(selectSql,idSanPham);
+        return data;
+    }
 }

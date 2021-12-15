@@ -15,6 +15,7 @@ import Interface.TableInterface;
 public class ChiTietHoaDon extends TableInterface {
     private Integer idChiTietHoaDon;
     private Integer idChiTietSanPham;
+     private Integer idSanPham;
     private Integer idHoaDon;
     private Integer soLuong;
     private double gia;
@@ -24,15 +25,25 @@ public class ChiTietHoaDon extends TableInterface {
     public ChiTietHoaDon() {
     }
 
-    public ChiTietHoaDon(Integer idChiTietHoaDon, Integer idChiTietSanPham, Integer idHoaDon, Integer soLuong, float gia, float tongTien, String ghiChu) {
+    public ChiTietHoaDon(Integer idChiTietHoaDon, Integer idChiTietSanPham, Integer idSanPham, Integer idHoaDon, Integer soLuong, double gia, double tongTien) {
         this.idChiTietHoaDon = idChiTietHoaDon;
         this.idChiTietSanPham = idChiTietSanPham;
+        this.idSanPham = idSanPham;
         this.idHoaDon = idHoaDon;
-
         this.soLuong = soLuong;
         this.gia = gia;
         this.tongTien = tongTien;
     }
+
+    public Integer getIdSanPham() {
+        return idSanPham;
+    }
+
+    public void setIdSanPham(Integer idSanPham) {
+        this.idSanPham = idSanPham;
+    }
+
+   
 
     public Integer getIdChiTietHoaDon() {
         return idChiTietHoaDon;
@@ -79,9 +90,7 @@ public class ChiTietHoaDon extends TableInterface {
 
     public void setTongTien(double tongTien) {
         this.tongTien = tongTien;
-    }
-
-  
+    } 
 
     @Override
     public int getId() {

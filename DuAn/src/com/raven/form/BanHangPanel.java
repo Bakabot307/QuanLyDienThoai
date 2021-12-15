@@ -7,15 +7,15 @@ import Controller.ChiTietHoaDonController;
 import Controller.ChuyenDoi;
 import Controller.HoaDonBanHangController;
 import Controller.HoaDonController;
+import DAO.DBConnection;
 import MODEL.ChiTietSanPham;
-import MODEL.HoaDon;
 import MODEL.KhachHang;
 import MODEL.KhuyenMai;
 import MODEL.SanPham;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
-import static com.raven.form.ThongKe.tableData;
-import duan.dialog.HandleGioHangDal;
+import com.sun.jdi.connect.spi.Connection;
+import dao.DBConnection2;
 import duan.dialog.HandleKhachHangDal;
 import duan.dialog.HandleTangSoLuongDal;
 import java.awt.event.KeyEvent;
@@ -25,12 +25,29 @@ import java.awt.event.MouseEvent;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import net.sf.oval.ConstraintViolation;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
@@ -115,7 +132,6 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                     System.out.println(cbbKhachHang.getItemCount());
                     cbbKhachHang.setSelectedIndex(cbbKhachHang.getItemCount() - 1);
                     AutoCompleteDecorator.decorate(cbbKhachHang);
-                
 
                 }
             });
@@ -149,9 +165,9 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                     tangSoLuongDal.errorlb2.setText("");
                     tangSoLuongDal.setVisible(true);
                     if (tangSoLuongDal == null) {
-                        
+
                         tangSoLuongDal = new HandleTangSoLuongDal(null, true);
-                        
+
                     }
                 };
             }
@@ -222,12 +238,13 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                 hoaDonTable();
             }
         });
-    AutoCompleteDecorator.decorate(cbbHinhThucThanhToan);
-                     AutoCompleteDecorator.decorate(cbbKhuyenMai);
-                     
-    tangSoLuongDal.txtSoLuong.addKeyListener(new KeyListener() {
-      /** Handle the key released event from the text field. */
-    
+        AutoCompleteDecorator.decorate(cbbHinhThucThanhToan);
+        AutoCompleteDecorator.decorate(cbbKhuyenMai);
+
+        tangSoLuongDal.txtSoLuong.addKeyListener(new KeyListener() {
+            /**
+             * Handle the key released event from the text field.
+             */
 
             @Override
             public void keyTyped(KeyEvent e) {
@@ -243,34 +260,36 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
             public void keyReleased(KeyEvent e) {
                 int soLuongMuonThem = Integer.parseInt(tangSoLuongDal.txtSoLuong.getText());
                 int soLuongData = Integer.parseInt(dataTable2.getValueAt(dataTable2.getSelectedRow(), 3).toString());
-                if (soLuongMuonThem>soLuongData){
-                    tangSoLuongDal.errorlb2.setText("Số lượng hàng lại là : " +dataTable2.getValueAt(dataTable2.getSelectedRow(), 3).toString() );
+                if (soLuongMuonThem > soLuongData) {
+                    tangSoLuongDal.errorlb2.setText("Số lượng hàng lại là : " + dataTable2.getValueAt(dataTable2.getSelectedRow(), 3).toString());
                     tangSoLuongDal.txtSoLuong.setText(ChuyenDoi.SoString(soLuongData));
                 }
             }
-    });
-    tangSoLuongDal.btnTang1.addMouseListener(new MouseAdapter() {
+        });
+        tangSoLuongDal.btnTang1.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-             int soLuongMuonThem = Integer.parseInt(tangSoLuongDal.txtSoLuong.getText());
+                int soLuongMuonThem = Integer.parseInt(tangSoLuongDal.txtSoLuong.getText());
                 int soLuongData = Integer.parseInt(dataTable2.getValueAt(dataTable2.getSelectedRow(), 3).toString());
-                if (soLuongMuonThem>soLuongData){
-                    tangSoLuongDal.errorlb2.setText("Số lượng hàng lại là : " +dataTable2.getValueAt(dataTable2.getSelectedRow(), 3).toString() );
-                    tangSoLuongDal.txtSoLuong.setText(ChuyenDoi.SoString(soLuongData));   
+                if (soLuongMuonThem > soLuongData) {
+                    tangSoLuongDal.errorlb2.setText("Số lượng hàng lại là : " + dataTable2.getValueAt(dataTable2.getSelectedRow(), 3).toString());
+                    tangSoLuongDal.txtSoLuong.setText(ChuyenDoi.SoString(soLuongData));
+                }
             }
-    }});
+        });
         tangSoLuongDal.btnGiam.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-             int soLuongMuonThem = Integer.parseInt(tangSoLuongDal.txtSoLuong.getText());
+                int soLuongMuonThem = Integer.parseInt(tangSoLuongDal.txtSoLuong.getText());
                 int soLuongData = Integer.parseInt(dataTable2.getValueAt(dataTable2.getSelectedRow(), 3).toString());
-                if (soLuongMuonThem>soLuongData){
-                    tangSoLuongDal.errorlb2.setText("Số lượng hàng lại là : " +dataTable2.getValueAt(dataTable2.getSelectedRow(), 3).toString() );
-                    tangSoLuongDal.txtSoLuong.setText(ChuyenDoi.SoString(soLuongData));   
-            }
-                if (soLuongMuonThem<0){
-                tangSoLuongDal.txtSoLuong.setText(ChuyenDoi.SoString(0)); 
+                if (soLuongMuonThem > soLuongData) {
+                    tangSoLuongDal.errorlb2.setText("Số lượng hàng lại là : " + dataTable2.getValueAt(dataTable2.getSelectedRow(), 3).toString());
+                    tangSoLuongDal.txtSoLuong.setText(ChuyenDoi.SoString(soLuongData));
                 }
-    }});
+                if (soLuongMuonThem < 0) {
+                    tangSoLuongDal.txtSoLuong.setText(ChuyenDoi.SoString(0));
+                }
             }
+        });
+    }
 
     private void init() {
 
@@ -703,7 +722,8 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         double Gia = 0;
         for (int i = 0; i < dataTable1.getRowCount(); i++) {
             idHoaDon = banHangController.idHoaDon();
-            idSanPham = Integer.valueOf(dataTable1.getModel().getValueAt(i, 1).toString());
+            idSanPham = Integer.valueOf(dataTable1.getModel().getValueAt(i, 0).toString());
+            int idCTSP = Integer.valueOf(dataTable1.getModel().getValueAt(i, 1).toString());
 
             tenSanPham = dataTable1.getValueAt(i, 1).toString();
             Gia = ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 2).toString());
@@ -719,19 +739,21 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
             System.out.println(Gia);
             System.out.println(tongTien);
             DecimalFormat df = new DecimalFormat("###.#");
-            Object[] data = new Object[6];
+            Object[] data = new Object[7];
             data[0] = 0;
             data[1] = idSanPham;
-            data[2] = idHoaDon;
-            data[3] = SoLuong;
-            data[4] = Gia;
-            data[5] = tongTien;
+            data[2] = idCTSP;
+            System.out.println(idCTSP + "ctsp");
+            data[3] = idHoaDon;
+            data[4] = SoLuong;
+            data[5] = Gia;
+            data[6] = tongTien;
 
             banHangChiTietHoaDonController.insertNoLoadList(data);
 
         }
         //update soLuong data for SanPham 
-        
+
         ArrayList<SanPham> list = banHangChiTietHoaDonController.DSSanPham();
         for (int i = 0; i < list.size(); i++) {
             for (int j = 0; j < dataTable1.getRowCount(); j++) {
@@ -746,7 +768,6 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
             }
         }
 
-        
         ArrayList<ChiTietSanPham> listCTSP = banHangChiTietHoaDonController.DSCTSP();
         for (int i = 0; i < listCTSP.size(); i++) {
             for (int j = 0; j < dataTable1.getRowCount(); j++) {
@@ -760,8 +781,25 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                 }
             }
         }
-hoaDonBanHangController.loadList();
+        idHoaDon = banHangController.idHoaDon();
+        XuatHoaDon(1048);
+        hoaDonBanHangController.loadList();
     }//GEN-LAST:event_txtThanhToanActionPerformed
+    public void XuatHoaDon(int idhd) {
+try {
+            
+            Hashtable map = new Hashtable();
+            JasperReport report = JasperCompileManager.compileReport("C:\\Users\\gnaht\\Desktop\\QuanLyDienThoai\\DuAn\\src\\reports\\newReport2.jrxml");
+            
+            map.put("IDHD", idhd);
+                  
+            JasperPrint p = JasperFillManager.fillReport(report,  map, DBConnection2.conn );
+            JasperViewer.viewReport(p, false);
+            JasperExportManager.exportReportToPdfFile(p, "test.pdf");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     private void cbbKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbKhuyenMaiMouseClicked
         // TODO add your handling code here:
@@ -791,7 +829,7 @@ hoaDonBanHangController.loadList();
         Integer phanTramKM = khuyenMai.getPhanTramKhuyenMai();
         btnHienThi.setText(String.valueOf(khuyenMai.getPhanTramKhuyenMai() + " %"));
         hoaDonTable();
-        
+
 
     }//GEN-LAST:event_cbbKhuyenMaiItemStateChanged
 

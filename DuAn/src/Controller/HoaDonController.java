@@ -36,10 +36,12 @@ public class HoaDonController extends AbsController<HoaDon> {
         chiTietSanPhamDAO = new ChiTietSanPhamDAO();
     }
 
-    public List<ChiTietSanPham> layCbbSanPham() {
+    public List<ChiTietSanPham> layCbbCTSP() {
         return chiTietSanPhamDAO.getAll();
     }
-
+    public List<SanPham> layCbbSanPham() {
+        return sanPhamDAO.getAll();
+    }
     public List<Object[]> loadMonth() {
         return hoaDonDAO.loadThang();
 
@@ -78,6 +80,12 @@ public class HoaDonController extends AbsController<HoaDon> {
     public void search(String id) {
 
         hoaDonPnl.viewList(hoaDonDAO.search(id));
+    }
+    
+    public List<Object[]> layIdCTSP(int id) {
+
+        
+        return hoaDonDAO.layIdChiTietSanPham( id);
     }
 
     @Override

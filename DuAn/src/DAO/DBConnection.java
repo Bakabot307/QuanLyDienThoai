@@ -16,6 +16,7 @@ public class DBConnection {
     private static String dburl = "jdbc:sqlserver://localhost;database=quanly_dienthoai";
     private static String username = "sa";
     private static String password = "123456";
+    public static Connection conn;
 
     /*
      * Nạp driver
