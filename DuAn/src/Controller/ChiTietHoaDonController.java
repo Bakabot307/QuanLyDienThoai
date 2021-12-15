@@ -54,7 +54,7 @@ public class ChiTietHoaDonController extends AbsController<ChiTietHoaDon> {
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Sản Phẩm", "ID Loại Sản Phẩm", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "Đơn Vị Tính"};
+        return new String[]{"ID Chi Tiết", "ID Sản Phẩm", "ID Hóa Đơn", "Số Lượng", "Giá Bán", "Tổng Tiền"};
     }
 
     @Override

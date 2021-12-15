@@ -72,6 +72,13 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
+    
+    public List<Object[]> loadKhachHang() {
+        String selectSql = "select top 10 TenKhachHang,sum(TongTien)as tongtien from KhachHang,HoaDon\n" +
+"group by TenKhachHang order by TongTien desc";
+        List<Object[]> data = getRawValues(selectSql);
+        return data;
+    }
 
 //    public List<Integer> layT() throws SQLException {
 //

@@ -9,10 +9,12 @@ import DAO.AbsDAO;
 import DAO.HoaDonDAO;
 import DAO.SanPhamDAO;
 import MODEL.HoaDon;
+import MODEL.SanPham;
 import VIEW.ViewInterface;
 import com.raven.form.HoaDonPnl;
 import com.raven.form.SanPhamPanel;
 import com.raven.form.ThongKe;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Dictionary;
 import java.util.List;
@@ -25,10 +27,13 @@ public class ThongKeController extends AbsController<HoaDon> {
 
     private HoaDonPnl hoaDonPnl;
     private ThongKe thongKe;
-      private HoaDonDAO hoaDonDAO;
+    private HoaDonDAO hoaDonDAO;
+    private SanPhamDAO sanPhamDAO;
+
     public ThongKeController(ViewInterface view) {
         super(view);
-        hoaDonDAO = new HoaDonDAO();      
+        hoaDonDAO = new HoaDonDAO();
+        sanPhamDAO = new SanPhamDAO();
     }
 
     public List<Object[]> loadMonth() {
@@ -40,12 +45,21 @@ public class ThongKeController extends AbsController<HoaDon> {
         return hoaDonDAO.loadNgay();
 
     }
+    
+    public List<Object[]> loadKhachHang() {
+        return hoaDonDAO.loadKhachHang();
 
-//    public String layT() {
-//        return hoaDonDAO.layT();
-//
-//    }
-  
+    }
+
+    public ArrayList<SanPham> DSSanPham() {
+        return sanPhamDAO.layListSanPham();
+
+    }
+    public ArrayList<HoaDon> DSHoaDOn() {
+        return hoaDonDAO.layListHoaDon();
+
+    }
+    
 
     public int showName(int id) {
         return hoaDonDAO.layId(id);
@@ -59,7 +73,8 @@ public class ThongKeController extends AbsController<HoaDon> {
     public Integer idHoaDon() {
         return hoaDonDAO.layHDVuaTao();
     }
- @Override
+
+    @Override
     public void loadList() {
         thongKe = (ThongKe) view;
         hoaDonDAO = (HoaDonDAO) dao;

@@ -67,8 +67,6 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
      */
     ChiTietSanPhamDialog chiTietSanPhamDialog = new ChiTietSanPhamDialog(null, true);
     private HandleSanPhamDal sanPhamDal = null;
-    String filename = null;
-    byte[] SPimage = null;
 
     public  SanPhamPanel() {
         initComponents();

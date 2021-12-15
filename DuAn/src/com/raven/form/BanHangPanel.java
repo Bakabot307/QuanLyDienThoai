@@ -39,7 +39,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
         initComponents();
         setOpaque(false);
-        
+
         BanHangController banHangController = new BanHangController(this);
         if (khachHangDialog == null) {
             khachHangDialog = new HandleKhachHangDal(null, true);
@@ -99,15 +99,14 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
 
                     banHangController.themKH(khachHangDialog.txtTen.getText(), khachHangDialog.txtSdt.getText(), khachHangDialog.txtDiaChi.getText(),
                             khachHangDialog.txtCMND.getText(), khachHangDialog.txtGhiChu.getText(), "nam", khachHangDialog.txtEmail.getText());
-                 DefaultComboBoxModel<KhachHang> modle2 = (DefaultComboBoxModel<KhachHang>) cbbKhachHang.getModel();
-        modle2.removeAllElements();
-        List<KhachHang> khachHangs = banHangController.layCbbKhachHang();
-        modle2.addAll(khachHangs);
-        modle2.setSelectedItem(khachHangs.get(0));
-              System.out.println(cbbKhachHang.getItemCount());      
-             cbbKhachHang.setSelectedIndex(cbbKhachHang.getItemCount()-1);  
-             AutoCompleteDecorator.decorate(cbbKhuyenMai);
-             
+                    DefaultComboBoxModel<KhachHang> modle2 = (DefaultComboBoxModel<KhachHang>) cbbKhachHang.getModel();
+                    modle2.removeAllElements();
+                    List<KhachHang> khachHangs = banHangController.layCbbKhachHang();
+                    modle2.addAll(khachHangs);
+                    modle2.setSelectedItem(khachHangs.get(0));
+                    System.out.println(cbbKhachHang.getItemCount());
+                    cbbKhachHang.setSelectedIndex(cbbKhachHang.getItemCount() - 1);
+                    AutoCompleteDecorator.decorate(cbbKhachHang);
 
                 }
             });
@@ -127,7 +126,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         List<KhachHang> khachHangs = banHangController.layCbbKhachHang();
         modle2.addAll(khachHangs);
         modle2.setSelectedItem(khachHangs.get(0));
-AutoCompleteDecorator.decorate(cbbKhuyenMai);
+        AutoCompleteDecorator.decorate(cbbKhachHang);
         DecimalFormat df = new DecimalFormat("###.#");
 //        dataTable2.getColumn("button").setCellRenderer(new ButtonRenderer());
 //        dataTable2.getColumn("button").setCellEditor(
@@ -135,20 +134,20 @@ AutoCompleteDecorator.decorate(cbbKhuyenMai);
         tangSoLuongDal = new HandleTangSoLuongDal(null, true);
         dataTable2.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent me) {
+                //set dialog visible
                 if (me.getClickCount() == 2) {
-
                     tangSoLuongDal.setVisible(true);
                     if (tangSoLuongDal == null) {
                         tangSoLuongDal = new HandleTangSoLuongDal(null, true);
-                        tangSoLuongDal.txtSoLuong.setText("");
+                        tangSoLuongDal.txtSoLuong.setText(ChuyenDoi.SoString(1));
                     }
                 };
             }
         });
+                //double click event
         tangSoLuongDal.btnOk.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                System.out.println("Clicked!");
-                
+                //if table 1 is null, add new row
                 if (dataTable1.getRowCount() == 0) {
                     TableModel model2 = dataTable2.getModel();
                     int[] indexs = dataTable2.getSelectedRows();
@@ -163,26 +162,23 @@ AutoCompleteDecorator.decorate(cbbKhuyenMai);
                         rows[5] = model2.getValueAt(indexs[i], 5);
 //                            ID Sản Phẩm", "ID Chi Tiết", "Tên Sản Phẩm","Giá" ,"Số Lương", "Đơn Vị Tính"};
                         model1.addRow(rows);
-                        System.out.println(rows[0]);
-
+                        System.out.println("added new row if null, quanity: " + df.format(ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText())));
                     }
+                
                 } else {
                     double soLuong;
-                    double t2RowID = Integer.parseInt(dataTable2.getModel().getValueAt(dataTable2.getSelectedRow(), 1).toString());
-                    Object[] columnData = new Object[dataTable1.getColumnCount()];
-                    Object[] rowData = new Object[dataTable1.getRowCount()];
+                    double t2RowID = ChuyenDoi.SoDouble(dataTable2.getModel().getValueAt(dataTable2.getSelectedRow(), 1).toString());
                     for (int i = 0; i < dataTable1.getRowCount(); i++) {
-                        if (t2RowID == Integer.parseInt(dataTable2.getModel().getValueAt(i, 1).toString())) {
+                         //else check if the id  exists. true: add quantity   
+                        if (t2RowID == Integer.parseInt(dataTable1.getModel().getValueAt(i, 1).toString())) {
                             System.out.println(Integer.parseInt(dataTable2.getModel().getValueAt(i, 1).toString()));
-//                                soLuong = Integer.parseInt(dataTable2.getModel().getValueAt(dataTable2.getSelectedRow(), 6).toString());
                             soLuong = ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 3).toString()) + ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText());
                             dataTable1.getModel().setValueAt(df.format(soLuong), i, 4);
-                            System.out.println("đã thêm số lượng");
+                            System.out.println("increased quantity");
                             return;
+                        //false: add new row    
                         } else {
-                            if (i != dataTable1.getRowCount() - 1) {
-                                continue;
-                            } else if (i == dataTable1.getRowCount() - 1) {
+                            if (i == dataTable1.getRowCount() - 1) {
                                 TableModel model2 = dataTable2.getModel();
                                 int[] indexs = dataTable2.getSelectedRows();
                                 Object[] rows = new Object[6];
@@ -193,11 +189,11 @@ AutoCompleteDecorator.decorate(cbbKhuyenMai);
                                     rows[2] = model2.getValueAt(indexs[j], 2);
                                     rows[3] = model2.getValueAt(indexs[j], 3);
                                     rows[4] = df.format(ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText()));
+                                    System.out.println("added new row if exist, quanlity: " + df.format(ChuyenDoi.SoDouble(tangSoLuongDal.txtSoLuong.getText())));
                                     rows[5] = model2.getValueAt(indexs[j], 5);
 //                            ID Sản Phẩm", "ID Chi Tiết", "Tên Sản Phẩm","Giá" ,"Số Lương", "Đơn Vị Tính"};
                                     model1.addRow(rows);
-                                    System.out.println(rows[0]);
-                                    System.out.println("đã thêm cột mới");
+                                    return ;
                                 }
                             }
                         }
@@ -277,8 +273,7 @@ AutoCompleteDecorator.decorate(cbbKhuyenMai);
 
                     banHangController.themKH(khachHangDialog.txtTen.getText(), khachHangDialog.txtSdt.getText(), khachHangDialog.txtDiaChi.getText(),
                             khachHangDialog.txtCMND.getText(), khachHangDialog.txtGhiChu.getText(), gioiTinh, khachHangDialog.txtEmail.getText());
-        
-       
+
                 }
             });
         }
@@ -744,11 +739,10 @@ AutoCompleteDecorator.decorate(cbbKhuyenMai);
         System.out.println(idKM);
         Integer idNV = DangNhapPnl.ID;
         java.sql.Timestamp now = new Timestamp((new java.util.Date()).getTime());
-        double tongTien = Double.parseDouble(txtTongTien.getText());
+        double tongTien = ChuyenDoi.SoDouble(txtTongTien.getText());
 
         hoaDonBanHangController.ThemHD(1, idNV, idKM, tongSoLuong, tongTien, now, cbbHinhThucThanhToan.getSelectedItem().toString(), txtGhiChu.getText());
         hoaDonBanHangController.loadList();
-        dataTable2.removeColumn(dataTable2.getColumnModel().getColumn(0));
 
         System.out.println(banHangController.idHoaDon());
         int row = dataTable2.getModel().getRowCount();
@@ -763,11 +757,12 @@ AutoCompleteDecorator.decorate(cbbKhuyenMai);
             idHoaDon = banHangController.idHoaDon();
             idSanPham = Integer.valueOf(dataTable1.getModel().getValueAt(i, 0).toString());
             tenSanPham = dataTable1.getValueAt(i, 1).toString();
-            SoLuong = Integer.valueOf(dataTable1.getValueAt(i, 5).toString());
-            Gia = ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 4).toString());
-//idSanPham, idHoaDon, TenSanPham, SoLuong, Gia, TongTien
+            Gia = ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 2).toString());
+            SoLuong = Integer.valueOf(dataTable1.getValueAt(i, 3).toString());
 
-            double TongTien = ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 4).toString()) * ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 5).toString());
+//idSanPham, idHoaDon, TenSanPham, SoLuong, Gia, TongTien
+            double TongTien = ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 2).toString()) * ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 3).toString());
+            System.out.println("cthd");
             System.out.println(idSanPham);
             System.out.println(idHoaDon);
             System.out.println(tenSanPham);
