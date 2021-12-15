@@ -27,12 +27,16 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
     List<Object[]> dataKhachHang = thongKeController.loadKhachHang();
 
     public ThongKe() {
+        System.out.println("ok");
         initComponents();
         setOpaque(false);
         init();
-         showHoaDon();
-        showSanPham();
-       
+        showSanPhamGanHet();
+
+    }
+
+    public void showSanPhamGanHet() {
+        thongKeController.DSSanPhamGanHet(tableData);
     }
 
     private void init() {
@@ -60,14 +64,14 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
         tableData = new com.raven.swing.TableColumn();
         jLabel2 = new javax.swing.JLabel();
         scrollBar1 = new com.raven.swing.ScrollBar();
+        cbbThongKeDoanhThu = new javax.swing.JComboBox<>();
         cbbThongKe = new javax.swing.JComboBox<>();
-        cbbTable = new javax.swing.JComboBox<>();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(79, 79, 79));
-        jLabel1.setText("Dashboard");
+        jLabel1.setText("Biểu đồ doanh thu");
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 1, 1));
 
         panelRound1.setBackground(new java.awt.Color(255, 255, 255));
@@ -78,7 +82,7 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 963, Short.MAX_VALUE)
+                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 957, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelRound1Layout.setVerticalGroup(
@@ -97,11 +101,11 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
 
             },
             new String [] {
-                "No", "Name", "Gender", "Age", "Email", "Phone Number"
+                "ID Sản Phẩm", "Tên loại", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "Đơn Vị Tính"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -115,22 +119,22 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(79, 79, 79));
-        jLabel2.setText("Table Data");
+        jLabel2.setText("Thống kê sản phẩm");
         jLabel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 1, 1));
 
         scrollBar1.setBackground(new java.awt.Color(245, 245, 245));
 
-        cbbThongKe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thống Tháng Hiện tại", "Thống Kê Năm", "Khách Hàng Tiêu Biểu" }));
-        cbbThongKe.addItemListener(new java.awt.event.ItemListener() {
+        cbbThongKeDoanhThu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thống Tháng Hiện tại", "Thống Kê Năm", "Khách Hàng Tiêu Biểu" }));
+        cbbThongKeDoanhThu.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbbThongKeItemStateChanged(evt);
+                cbbThongKeDoanhThuItemStateChanged(evt);
             }
         });
 
-        cbbTable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thống Tháng Hiện tại", "Thống Kê Năm" }));
-        cbbTable.addItemListener(new java.awt.event.ItemListener() {
+        cbbThongKe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sản phẩm bán chạy", "Sản phẩm gần hết" }));
+        cbbThongKe.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbbTableItemStateChanged(evt);
+                cbbThongKeItemStateChanged(evt);
             }
         });
 
@@ -145,7 +149,7 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbbTable, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -157,7 +161,7 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbbThongKeDoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -167,7 +171,7 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
-                        .addComponent(cbbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbbThongKeDoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -176,7 +180,7 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(cbbTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -228,8 +232,8 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
 
         }
     }
-    private void cbbThongKeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbThongKeItemStateChanged
-        if (cbbThongKe.getSelectedIndex() == 0) {
+    private void cbbThongKeDoanhThuItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbThongKeDoanhThuItemStateChanged
+        if (cbbThongKeDoanhThu.getSelectedIndex() == 0) {
             chart.clear();
             for (Object[] obj : dataNgay) {
                 String ngay = String.valueOf(obj[0]);
@@ -238,7 +242,7 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
             }
             chart.start();
 
-        } else if ((cbbThongKe.getSelectedIndex() == 1)) {
+        } else if ((cbbThongKeDoanhThu.getSelectedIndex() == 1)) {
             chart.clear();
             for (Object[] obj : dataThang) {
                 String thang = String.valueOf(obj[0]);
@@ -246,7 +250,7 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
                 chart.addData(new ModelChart(thang, new double[]{0, tongTien, 0, 0}));
             }
             chart.start();
-        } else if ((cbbThongKe.getSelectedIndex() == 2)) {
+        } else if ((cbbThongKeDoanhThu.getSelectedIndex() == 2)) {
             chart.clear();
             for (Object[] obj : dataKhachHang) {
                 String KH = String.valueOf(obj[0]);
@@ -255,21 +259,22 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
             }
             chart.start();
         }
-    }//GEN-LAST:event_cbbThongKeItemStateChanged
+    }//GEN-LAST:event_cbbThongKeDoanhThuItemStateChanged
 
-    private void cbbTableItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbTableItemStateChanged
+    private void cbbThongKeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbThongKeItemStateChanged
         // TODO add your handling code here:
         if (cbbThongKe.getSelectedIndex() == 0) {
+            System.out.println("vao roi 00000000000000000000000000000000000000000000000000000000000000000000000000000");
             showSanPham();
+        } else if (cbbThongKe.getSelectedIndex() == 1) {
+            System.out.println("vao roi 11111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+            showSanPhamGanHet();
         }
-        if (cbbThongKe.getSelectedIndex() == 1) {
-            showHoaDon();
-        }
-    }//GEN-LAST:event_cbbTableItemStateChanged
+    }//GEN-LAST:event_cbbThongKeItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbbTable;
     private javax.swing.JComboBox<String> cbbThongKe;
+    private javax.swing.JComboBox<String> cbbThongKeDoanhThu;
     private com.raven.chart.Chart chart;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateChooser3;
