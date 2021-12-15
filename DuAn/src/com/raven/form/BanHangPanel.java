@@ -18,6 +18,8 @@ import static com.raven.form.ThongKe.tableData;
 import duan.dialog.HandleGioHangDal;
 import duan.dialog.HandleKhachHangDal;
 import duan.dialog.HandleTangSoLuongDal;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Timestamp;
@@ -144,6 +146,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                 //set dialog visible
                 if (me.getClickCount() == 2) {
                     tangSoLuongDal.txtSoLuong.setText(ChuyenDoi.SoString(0));
+                    tangSoLuongDal.errorlb2.setText("");
                     tangSoLuongDal.setVisible(true);
                     if (tangSoLuongDal == null) {
                         
@@ -221,7 +224,53 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         });
     AutoCompleteDecorator.decorate(cbbHinhThucThanhToan);
                      AutoCompleteDecorator.decorate(cbbKhuyenMai);
-    }
+                     
+    tangSoLuongDal.txtSoLuong.addKeyListener(new KeyListener() {
+      /** Handle the key released event from the text field. */
+    
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                int soLuongMuonThem = Integer.parseInt(tangSoLuongDal.txtSoLuong.getText());
+                int soLuongData = Integer.parseInt(dataTable2.getValueAt(dataTable2.getSelectedRow(), 3).toString());
+                if (soLuongMuonThem>soLuongData){
+                    tangSoLuongDal.errorlb2.setText("Số lượng hàng lại là : " +dataTable2.getValueAt(dataTable2.getSelectedRow(), 3).toString() );
+                    tangSoLuongDal.txtSoLuong.setText(ChuyenDoi.SoString(soLuongData));
+                }
+            }
+    });
+    tangSoLuongDal.btnTang1.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+             int soLuongMuonThem = Integer.parseInt(tangSoLuongDal.txtSoLuong.getText());
+                int soLuongData = Integer.parseInt(dataTable2.getValueAt(dataTable2.getSelectedRow(), 3).toString());
+                if (soLuongMuonThem>soLuongData){
+                    tangSoLuongDal.errorlb2.setText("Số lượng hàng lại là : " +dataTable2.getValueAt(dataTable2.getSelectedRow(), 3).toString() );
+                    tangSoLuongDal.txtSoLuong.setText(ChuyenDoi.SoString(soLuongData));   
+            }
+    }});
+        tangSoLuongDal.btnGiam.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+             int soLuongMuonThem = Integer.parseInt(tangSoLuongDal.txtSoLuong.getText());
+                int soLuongData = Integer.parseInt(dataTable2.getValueAt(dataTable2.getSelectedRow(), 3).toString());
+                if (soLuongMuonThem>soLuongData){
+                    tangSoLuongDal.errorlb2.setText("Số lượng hàng lại là : " +dataTable2.getValueAt(dataTable2.getSelectedRow(), 3).toString() );
+                    tangSoLuongDal.txtSoLuong.setText(ChuyenDoi.SoString(soLuongData));   
+            }
+                if (soLuongMuonThem<0){
+                tangSoLuongDal.txtSoLuong.setText(ChuyenDoi.SoString(0)); 
+                }
+    }});
+            }
 
     private void init() {
 
