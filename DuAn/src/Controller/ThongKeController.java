@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Dictionary;
 import java.util.List;
+import javax.swing.JTable;
 
 /**
  *
@@ -41,13 +42,22 @@ public class ThongKeController extends AbsController<HoaDon> {
 
     }
 
+    public void SearchDate(String first, String last) {
+        hoaDonDAO.searchDate(first, last);
+    }
+
     public List<Object[]> loadNgay() {
         return hoaDonDAO.loadNgay();
 
     }
-    
+
     public List<Object[]> loadKhachHang() {
         return hoaDonDAO.loadKhachHang();
+
+    }
+
+    public Object DSSanPhamGanHet(JTable tbl) {
+        return sanPhamDAO.layListSanPhamGanHet(tbl);
 
     }
 
@@ -55,11 +65,11 @@ public class ThongKeController extends AbsController<HoaDon> {
         return sanPhamDAO.layListSanPham();
 
     }
+
     public ArrayList<HoaDon> DSHoaDOn() {
         return hoaDonDAO.layListHoaDon();
 
     }
-    
 
     public int showName(int id) {
         return hoaDonDAO.layId(id);

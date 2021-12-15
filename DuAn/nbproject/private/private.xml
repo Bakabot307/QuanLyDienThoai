@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/duan/dialog/JCheckBoxCustom.java</file>
             <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/com/raven/form/BanHangPanel.java</file>
             <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/Controller/SanPhamController.java</file>
@@ -14,6 +15,12 @@
             <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/ChiTietSanPhamDAO.java</file>
             <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/SanPhamDAO.java</file>
             <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/duan/dialog/HandleTangSoLuongDal.java</file>
+=======
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/Controller/ThongKeController.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/com/raven/form/themxoasua.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/com/raven/form/ThongKe.java</file>
+            <file>file:/D:/NetBeanSaves/DuAn/QuanLyDienThoai/DuAn/src/DAO/SanPhamDAO.java</file>
+>>>>>>> 77a78a990a44f56794648945abbfdbb92aafa370
         </group>
     </open-files>
 </project-private>

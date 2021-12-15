@@ -41,12 +41,14 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
- public List<Object[]> layDSSanPham() {
+
+    public List<Object[]> layDSSanPham() {
         String selectSql = "select SanPham.idsanPham, ChiTietSanPham.idChiTietSanPham, ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac),GiaBan,ChiTietSanPham.SoLuong,DVT from SanPham\n"
                 + "inner join ChiTietSanPham on SanPham.idSanPham = ChiTietSanPham.idSanPham where chitietsanpham.soluong>0 order by chitietsanpham.soluong desc";
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
+
     public List<Object[]> Load() {
         String selectSql = "select * from HoaDon  ";
         List<Object[]> data = getRawValues(selectSql);
@@ -64,6 +66,13 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
         return data;
     }
 
+    public List<Object[]> searchDate(String first, String last) {
+        String selectSql = "SELECT concat('ThÃ¡ng ',MONTH(NgayLap)) as ngaylap,SUM(TongTien) AS totalIncome FROM HoaDon "
+                + "WHERE NgayLap >= ? and NgayLap <= ?  group by Month(NgayLap)";
+        List<Object[]> data = getRawValues(selectSql, first, last);
+        return data;
+    }
+
     public List<Object[]> loadNgay() {
         String selectSql = "SELECT concat('Ngày ',day(NgayLap)) as ngaylap,SUM(TongTien) AS totalIncome \n"
                 + "FROM HoaDon \n"
@@ -72,10 +81,10 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
-    
+
     public List<Object[]> loadKhachHang() {
-        String selectSql = "select top 10 TenKhachHang,sum(TongTien)as tongtien from KhachHang,HoaDon\n" +
-"group by TenKhachHang order by TongTien desc";
+        String selectSql = "select top 10 TenKhachHang,sum(TongTien)as tongtien from KhachHang,HoaDon\n"
+                + "group by TenKhachHang order by TongTien desc";
         List<Object[]> data = getRawValues(selectSql);
         return data;
     }
