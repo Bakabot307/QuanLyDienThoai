@@ -33,8 +33,12 @@ public class ChiTietSanPhamController extends AbsController<ChiTietSanPham> {
         chiTietSanPhamDAO.them(dungLuong, idSanPham, mauSac, hangSx, soLuong);
         loadList();
     }
-        public void editSoLuong(int SoLuong,int idSanPham) {
-        chiTietSanPhamDAO.editSoLuong(SoLuong, idSanPham);
+        public void editSoLuongChiTiet(int SoLuong,int idChiTietSanPham) {
+        chiTietSanPhamDAO.editSoLuongChiTietSanPham(SoLuong, idChiTietSanPham);
+
+    }
+        public void editSoLuongSanPham(int SoLuong,int idSanPham) {
+        chiTietSanPhamDAO.editSoLuongSanPham(SoLuong, idSanPham);
 
     }
 

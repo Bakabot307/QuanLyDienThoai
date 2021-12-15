@@ -130,7 +130,7 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
     public ArrayList<HoaDon> layListHoaDon() {
         ArrayList<HoaDon> HoaDon = new ArrayList<>();
         try {
-            String selectSql = "select * from HoaDon";
+            String selectSql = "select * from HoaDon, sanpham";
 
             ResultSet rs = DBConnection.executeQuery(selectSql);
             HoaDon hd;
@@ -143,7 +143,8 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
                         rs.getDouble("TongTien"),
                         rs.getTimestamp("NgayLap"),
                         rs.getString("HinhThucThanhToan"),
-                        rs.getString("GhiChu"));
+                        rs.getString("GhiChu")
+                );
 
                 HoaDon.add(hd);
                 System.out.println(hd);

@@ -58,10 +58,37 @@ public class SanPhamDAO extends AbsDAO<SanPham> {
     }
 
     public List<Object[]> DanhSachSanPham() {
-        String selectSql = "select idSanPham,TenLoaiSanPham,TenSanPham,GiaNhap,GiaBan,SoLuong,DVT from SanPham join LoaiSanPham on SanPham.idLoaiSanPham = LoaiSanPham.idLoaiSanPham\n"
-                + "	";
+        String selectSql = "select idSanPham,TenLoaiSanPham,TenSanPham,GiaNhap,GiaBan,SoLuong,DVT from SanPham join LoaiSanPham on SanPham.idLoaiSanPham = LoaiSanPham.idLoaiSanPham\n";
         List<Object[]> data = getRawValues(selectSql);
         return data;
+    }
+       public int soLuongSPTheoId(int Id) {
+
+        String cauLenh = "select * from  SanPham where idSanPham = ?";
+        ResultSet rs = DBConnection.executeQuery(cauLenh, Id);
+
+        try {
+            if (rs.next()) {
+                return rs.getInt("soLuong");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    public int soLuongCTSPTheoId(int Id) {
+
+        String cauLenh = "select * from  ChiTietSanPham where idChiTietSanPham = ?";
+        ResultSet rs = DBConnection.executeQuery(cauLenh, Id);
+
+        try {
+            if (rs.next()) {
+                return rs.getInt("soLuong");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ChiTietSanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
 
     public ArrayList<SanPham> layListSanPham() {

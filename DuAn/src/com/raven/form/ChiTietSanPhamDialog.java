@@ -47,7 +47,7 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
                 for (int i = 0; i < tblChiTietSanPham.getRowCount(); i++) {
                     soLuong = soLuong + (Integer.parseInt(tblChiTietSanPham.getValueAt(i, 5).toString()));
                 }
-                chiTietSanPhamController.editSoLuong(soLuong, idSanPham);
+                chiTietSanPhamController.editSoLuongSanPham(soLuong, idSanPham);
 
             }
         });
@@ -330,7 +330,7 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
             soLuong = soLuong + (Integer.parseInt(tblChiTietSanPham.getValueAt(i, 5).toString()));
         }
         System.out.println(soLuong);
-        chiTietSanPhamController.editSoLuong(soLuong, idSanPham);
+        chiTietSanPhamController.editSoLuongSanPham(soLuong, idSanPham);
 
 
     }//GEN-LAST:event_btnThem2MouseClicked

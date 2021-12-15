@@ -19,6 +19,20 @@ public class ChiTietSanPham extends TableInterface {
     private String HangSanXuat;
     private int soLuong;
 
+    public ChiTietSanPham() {
+    }
+
+    public ChiTietSanPham(Integer idChiTietSanPham, String DungLuong, Integer idSanPham, String MauSac, String HangSanXuat, int soLuong) {
+        this.idChiTietSanPham = idChiTietSanPham;
+        this.DungLuong = DungLuong;
+        this.idSanPham = idSanPham;
+        this.MauSac = MauSac;
+        this.HangSanXuat = HangSanXuat;
+        this.soLuong = soLuong;
+    }
+
+   
+
     public Integer getIdChiTietSanPham() {
         return idChiTietSanPham;
     }

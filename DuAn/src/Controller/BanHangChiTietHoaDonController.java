@@ -7,10 +7,15 @@ package Controller;
 
 import DAO.AbsDAO;
 import DAO.ChiTietHoaDonDAO;
+import DAO.ChiTietSanPhamDAO;
 import DAO.DBConnection;
+import DAO.SanPhamDAO;
 import MODEL.ChiTietHoaDon;
+import MODEL.ChiTietSanPham;
+import MODEL.SanPham;
 import VIEW.ViewInterface;
 import com.raven.form.ChiTietHoaDonDialog;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Dictionary;
 import java.util.List;
@@ -23,10 +28,14 @@ public class BanHangChiTietHoaDonController extends AbsController<ChiTietHoaDon>
 
     private ChiTietHoaDonDialog chiTietHoaDonDialog;
     private ChiTietHoaDonDAO chiTietHoaDonDAO;
+    private ChiTietSanPhamDAO chiTietSanPhamDAO;
+    private SanPhamDAO sanPhamDAO;
 
     public BanHangChiTietHoaDonController(ViewInterface view) {
         super(view);
         chiTietHoaDonDAO = new ChiTietHoaDonDAO();
+        sanPhamDAO = new SanPhamDAO();
+        chiTietSanPhamDAO = new ChiTietSanPhamDAO();
         chiTietHoaDonDialog = new ChiTietHoaDonDialog(null, true);
     }
     private ChiTietHoaDonDAO chiTiethoaDonDAO;
@@ -36,7 +45,32 @@ public class BanHangChiTietHoaDonController extends AbsController<ChiTietHoaDon>
 
     }
     
+    public void editSoLuongChiTiet(int SoLuong,int idChiTietSanPham) {
+        chiTietSanPhamDAO.editSoLuongChiTietSanPham(SoLuong, idChiTietSanPham);
 
+    }
+        public void editSoLuongSanPham(int SoLuong,int idSanPham) {
+        chiTietSanPhamDAO.editSoLuongSanPham(SoLuong, idSanPham);
+
+    }
+        
+        public Integer laySoLuongTheoIdSP(int idSanPham) {
+        return sanPhamDAO.soLuongSPTheoId(idSanPham);
+    }
+            public Integer laySoLuongTheoIdCTSP(int idCTSP) {
+        return sanPhamDAO.soLuongSPTheoId(idCTSP);
+    }
+     public ArrayList<SanPham> DSSanPham() {
+
+        return sanPhamDAO.layListSanPham();
+
+    }
+     
+      public ArrayList<ChiTietSanPham> DSCTSP() {
+
+        return chiTietSanPhamDAO.layListCTSP();
+
+    }
     @Override
     public AbsDAO<ChiTietHoaDon> getDao() {
         return new ChiTietHoaDonDAO();

@@ -3,14 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/com/raven/form/SanPhamPanel.java</file>
-            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/com/raven/main/Main.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/duan/dialog/JCheckBoxCustom.java</file>
             <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/com/raven/form/BanHangPanel.java</file>
-            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/com/raven/form/ThongKe.java</file>
             <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/Controller/SanPhamController.java</file>
-            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/com/raven/form/ChiTietSanPhamDialog.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/Controller/BanHangChiTietHoaDonController.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/MODEL/ChiTietSanPham.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/MODEL/SanPham.java</file>
             <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/ChiTietSanPhamDAO.java</file>
             <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/DAO/SanPhamDAO.java</file>
+            <file>file:/C:/Users/gnaht/Desktop/QuanLyDienThoai/DuAn/src/duan/dialog/HandleTangSoLuongDal.java</file>
         </group>
     </open-files>
 </project-private>

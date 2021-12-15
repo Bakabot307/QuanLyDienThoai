@@ -172,7 +172,7 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
 
     private void btnOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseClicked
         // TODO add your handling code here:
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnOkMouseClicked
 
     private void btnGiamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGiamMouseClicked

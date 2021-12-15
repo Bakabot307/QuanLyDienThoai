@@ -26,4 +26,12 @@ public class ChiTietHoaDonDAO extends AbsDAO<ChiTietHoaDon> {
         return data;
     }
 
+    public void editChiTietSoLuong(int soLuong, int idChiTietSanPham) {
+        String cauLenhEdit = "UPDATE ChiTietSanPham\n"
+                + "   SET \n"
+                + "SoLuong = ?\n"
+                + "      \n"
+                + " WHERE idSanPham = ?";
+        DBConnection.executeUpdate(cauLenhEdit, soLuong, idChiTietSanPham);
+    }
 }

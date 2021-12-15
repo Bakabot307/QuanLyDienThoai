@@ -7,9 +7,12 @@ package Controller;
 
 import DAO.AbsDAO;
 import DAO.ChiTietSanPhamDAO;
+import DAO.SanPhamDAO;
 import MODEL.ChiTietSanPham;
+import MODEL.SanPham;
 import VIEW.ViewInterface;
 import com.raven.form.ChiTietSanPhamDialogForBanHang;
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.List;
 
@@ -21,17 +24,29 @@ public class ChiTietSanPhamControllerForBanHang extends AbsController<ChiTietSan
 
     private ChiTietSanPhamDialogForBanHang chiTietSanPhamControllerForBanHang;
     private ChiTietSanPhamDAO chiTietSanPhamDAO;
+    private SanPhamDAO sanPhamDAO;
 
     public ChiTietSanPhamControllerForBanHang(ViewInterface view) {
         super(view);
         chiTietSanPhamControllerForBanHang = new ChiTietSanPhamDialogForBanHang(null, true);
         chiTietSanPhamDAO = new ChiTietSanPhamDAO();
+        sanPhamDAO = new SanPhamDAO();
     }
 
     public void them(String dungLuong, int idSanPham, String mauSac, String hangSx, int soLuong) {
         chiTietSanPhamDAO.them(dungLuong, idSanPham, mauSac, hangSx, soLuong);
         loadList();
     }
+    
+       public void editSoLuongChiTiet(int SoLuong,int idChiTietSanPham) {
+        chiTietSanPhamDAO.editSoLuongChiTietSanPham(SoLuong, idChiTietSanPham);
+
+    }
+        public void editSoLuongSanPham(int SoLuong,int idSanPham) {
+        chiTietSanPhamDAO.editSoLuongSanPham(SoLuong, idSanPham);
+
+    }
+    
 
     @Override
     public void loadList() {
