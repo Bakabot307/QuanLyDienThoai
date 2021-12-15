@@ -86,4 +86,9 @@ public class ChiTietSanPham extends TableInterface {
         return idChiTietSanPham;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(idChiTietSanPham); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

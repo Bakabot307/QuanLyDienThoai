@@ -8,6 +8,7 @@ package com.raven.form;
 import Controller.AbsController;
 import Controller.ChiTietHoaDonController;
 import Controller.ChuyenDoi;
+import MODEL.ChiTietSanPham;
 import MODEL.SanPham;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
@@ -336,8 +337,8 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
         double giaTien = ChuyenDoi.SoDouble(txtGiatien1.getText());
         double tongTien = ChuyenDoi.SoDouble(txtTongTien.getText());
 
-        SanPham sanpham = (SanPham) cbbSanPham.getSelectedItem();
-        Integer idSanPham = sanpham.getId();
+        ChiTietSanPham CTSP = (ChiTietSanPham) cbbSanPham.getSelectedItem();
+        Integer idCTSP = CTSP.getId();
 
         Integer soLuong = Integer.parseInt(spnSoLuong.getValue().toString());
 
@@ -365,7 +366,7 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
             return;
         }
 
-        chiTietHoaDonController.ThemCTHD(idSanPham, Integer.parseInt(HoaDonPnl.id), soLuong, giaTien, tongTien);
+        chiTietHoaDonController.ThemCTHD(idCTSP, Integer.parseInt(HoaDonPnl.id), soLuong, giaTien, tongTien);
         chiTietHoaDonController.loadList();
         // để dưới cùng
         lbStatus.setText("*Thêm thành công");
@@ -463,7 +464,7 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnThem2;
-    public javax.swing.JComboBox<SanPham> cbbSanPham;
+    public javax.swing.JComboBox<ChiTietSanPham> cbbSanPham;
     public javax.swing.JLabel errorLB;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

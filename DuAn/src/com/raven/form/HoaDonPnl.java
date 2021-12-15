@@ -7,6 +7,7 @@ package com.raven.form;
 
 import Controller.AbsController;
 import Controller.HoaDonController;
+import MODEL.ChiTietSanPham;
 import MODEL.SanPham;
 import VIEW.ViewImp;
 import VIEW.ViewInterface;
@@ -64,7 +65,7 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
         btnChiTiet1 = new javax.swing.JLabel();
 
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
         tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,8 +80,8 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
         ));
         jScrollPane1.setViewportView(tblHoaDon);
 
-        jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
-        jPanel1.add(scrollBar1, java.awt.BorderLayout.LINE_END);
+        jPanel1.add(jScrollPane1);
+        jPanel1.add(scrollBar1);
 
         jPanel2.setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -210,11 +211,11 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
         System.out.println(id);
         chiTietHoaDonDialog.setIdHoaDon((Integer) tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0));
 
-        DefaultComboBoxModel<SanPham> modle1 = (DefaultComboBoxModel<SanPham>) chiTietHoaDonDialog.cbbSanPham.getModel();
+        DefaultComboBoxModel<ChiTietSanPham> modle1 = (DefaultComboBoxModel<ChiTietSanPham>) chiTietHoaDonDialog.cbbSanPham.getModel();
         modle1.removeAllElements();
-        List<SanPham> khachHangs = hoaDonController.layCbbSanPham();
-        modle1.addAll(khachHangs);
-        modle1.setSelectedItem(khachHangs.get(0));
+        List<ChiTietSanPham> CTSP = hoaDonController.layCbbSanPham();
+        modle1.addAll(CTSP);
+        modle1.setSelectedItem(CTSP.get(0));
 
         chiTietHoaDonDialog.setVisible(true);
 

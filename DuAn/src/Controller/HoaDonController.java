@@ -6,8 +6,10 @@
 package Controller;
 
 import DAO.AbsDAO;
+import DAO.ChiTietSanPhamDAO;
 import DAO.HoaDonDAO;
 import DAO.SanPhamDAO;
+import MODEL.ChiTietSanPham;
 import MODEL.HoaDon;
 import MODEL.SanPham;
 import VIEW.ViewInterface;
@@ -25,15 +27,17 @@ public class HoaDonController extends AbsController<HoaDon> {
 
     private HoaDonPnl hoaDonPnl;
     private SanPhamDAO sanPhamDAO;
+    private ChiTietSanPhamDAO chiTietSanPhamDAO;
 
     public HoaDonController(ViewInterface view) {
         super(view);
         hoaDonDAO = new HoaDonDAO();
         sanPhamDAO = new SanPhamDAO();
+        chiTietSanPhamDAO = new ChiTietSanPhamDAO();
     }
 
-    public List<SanPham> layCbbSanPham() {
-        return sanPhamDAO.getAll();
+    public List<ChiTietSanPham> layCbbSanPham() {
+        return chiTietSanPhamDAO.getAll();
     }
 
     public List<Object[]> loadMonth() {

@@ -703,7 +703,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         double Gia = 0;
         for (int i = 0; i < dataTable1.getRowCount(); i++) {
             idHoaDon = banHangController.idHoaDon();
-            idSanPham = Integer.valueOf(dataTable1.getModel().getValueAt(i, 0).toString());
+            idSanPham = Integer.valueOf(dataTable1.getModel().getValueAt(i, 1).toString());
 
             tenSanPham = dataTable1.getValueAt(i, 1).toString();
             Gia = ChuyenDoi.SoDouble(dataTable1.getValueAt(i, 2).toString());
