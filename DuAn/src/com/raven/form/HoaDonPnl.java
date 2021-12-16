@@ -206,26 +206,26 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
 
         ChiTietHoaDonDialog chiTietHoaDonDialog = new ChiTietHoaDonDialog(null, true);
 
-        chiTietHoaDonDialog.errorLB.setText("");
-        chiTietHoaDonDialog.lbStatus.setText("");
+//        chiTietHoaDonDialog.errorLB.setText("");
+//        chiTietHoaDonDialog.lbStatus.setText("");
         id = tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0).toString();
         System.out.println(id);
         chiTietHoaDonDialog.setIdHoaDon(Integer.parseInt(tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0).toString()));
 
-        DefaultComboBoxModel<SanPham> modle2 = (DefaultComboBoxModel<SanPham>) chiTietHoaDonDialog.cbbSanPham.getModel();
-        modle2.removeAllElements();
+//        DefaultComboBoxModel<SanPham> modle2 = (DefaultComboBoxModel<SanPham>) chiTietHoaDonDialog.cbbSanPham.getModel();
+//        modle2.removeAllElements();
         List<SanPham> sanpham = hoaDonController.layCbbSanPham();
-        modle2.addAll(sanpham);
-        modle2.setSelectedItem(sanpham.get(0));
-        SanPham sp = (SanPham) chiTietHoaDonDialog.cbbSanPham.getSelectedItem();
-        Integer idSP = sp.getId();
+//        modle2.addAll(sanpham);
+//        modle2.setSelectedItem(sanpham.get(0));
+//        SanPham sp = (SanPham) chiTietHoaDonDialog.cbbSanPham.getSelectedItem();
+//        Integer idSP = sp.getId();
 
-        DefaultComboBoxModel<ChiTietSanPham> modle1 = (DefaultComboBoxModel<ChiTietSanPham>) chiTietHoaDonDialog.cbbCTSP.getModel();
-        modle1.removeAllElements();
-        List<Object[]> CTSP = hoaDonController.layIdCTSP(idSP);
-        for (Object[] obj : CTSP) {
-            chiTietHoaDonDialog.cbbCTSP.addItem(Integer.parseInt(obj[0].toString()));
-        }
+//        DefaultComboBoxModel<ChiTietSanPham> modle1 = (DefaultComboBoxModel<ChiTietSanPham>) chiTietHoaDonDialog.cbbCTSP.getModel();
+//        modle1.removeAllElements();
+//        List<Object[]> CTSP = hoaDonController.layIdCTSP(idSP);
+//        for (Object[] obj : CTSP) {
+//            chiTietHoaDonDialog.cbbCTSP.addItem(Integer.parseInt(obj[0].toString()));
+//        }
         chiTietHoaDonDialog.setVisible(true);
 
 //        ArrayList<SanPham> list = hoaDonController.DSSanPham();

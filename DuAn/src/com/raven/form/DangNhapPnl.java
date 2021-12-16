@@ -39,7 +39,7 @@ public class DangNhapPnl extends javax.swing.JFrame {
         errorLb.setText("");
 
         txtTk.setText("admin");
-        txtMk.setText("123");
+        txtMk.setText("admin");
         this.icon2.setVisible(false);
         this.setIconImage(MImage.getAppIcon());
 

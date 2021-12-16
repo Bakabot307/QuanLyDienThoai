@@ -280,10 +280,8 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
     private void cbbThongKeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbThongKeItemStateChanged
         // TODO add your handling code here:
         if (cbbThongKe.getSelectedIndex() == 0) {
-            System.out.println("vao roi 00000000000000000000000000000000000000000000000000000000000000000000000000000");
             showSanPhamBanChay();
         } else if (cbbThongKe.getSelectedIndex() == 1) {
-            System.out.println("vao roi 11111111111111111111111111111111111111111111111111111111111111111111111111111111111");
             showSanPhamTonKho();
         }
     }//GEN-LAST:event_cbbThongKeItemStateChanged

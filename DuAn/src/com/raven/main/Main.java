@@ -81,45 +81,86 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         });
-        menu.setEvent(new EventMenuSelected() {
-            @Override
-            public void selected(int index) {
-                if (index == 0) {
-                    showForm(new ThongKe());
-                } else if (index == 1) {
-                    showForm(new BanHangPanel());
-                } else if (index == 2) {
-                    showForm(new LoaiSanPhamPnl());
-                } else if (index == 3) {
-                    showForm(new SanPhamPanel());
-                } else if (index == 4) {
-                    showForm(new KhuyenMaiPnl());
-                } else if (index == 5) {
-                    showForm(new KhachHangPanel());
-                } else if (index == 6) {
-                    showForm(new NhanVienPnl());
-                } else if (index == 7) {
-                    showForm(new HoaDonPnl());
-                } else if (index == 8) {
-                    showForm(new PhieuBaoHanhPnl());
-                } else if (index == 9) {
-                    showForm(new NhaCungCapPnl());
-                } else if (index == 10) {
-                    showForm(new PhieuNhapPnl());
+        if (DangNhapPnl.level == 1) {
+            menu.setEvent(new EventMenuSelected() {
+                @Override
+                public void selected(int index) {
+                    if (index == 0) {
+                        showForm(new ThongKe());
+                    } else if (index == 1) {
+                        showForm(new BanHangPanel());
+                    } else if (index == 2) {
+                        showForm(new LoaiSanPhamPnl());
+                    } else if (index == 3) {
+                        showForm(new SanPhamPanel());
+                    } else if (index == 4) {
+                        showForm(new KhuyenMaiPnl());
+                    } else if (index == 5) {
+                        showForm(new KhachHangPanel());
+                    } else if (index == 6) {
+                        showForm(new NhanVienPnl());
+                    } else if (index == 7) {
+                        showForm(new HoaDonPnl());
+                    } else if (index == 8) {
+                        showForm(new PhieuBaoHanhPnl());
+                    } else if (index == 9) {
+                        showForm(new NhaCungCapPnl());
+                    } else if (index == 10) {
+                        showForm(new PhieuNhapPnl());
+                    }
                 }
-            }
-        });
-        menu.addMenu(new ModelMenu("Trang Chủ", new ImageIcon(getClass().getResource("/com/raven/icon/homePagee.png"))));
-        menu.addMenu(new ModelMenu("Bán Bàng", new ImageIcon(getClass().getResource("/com/raven/icon/sell.png"))));
-        menu.addMenu(new ModelMenu("Loại Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/category.png"))));
-        menu.addMenu(new ModelMenu("Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/report.png"))));
-        menu.addMenu(new ModelMenu("Khuyến mãi", new ImageIcon(getClass().getResource("/com/raven/icon/KhuyenMai.png"))));
-        menu.addMenu(new ModelMenu("Khách hàng", new ImageIcon(getClass().getResource("/com/raven/icon/Custom.png"))));
-        menu.addMenu(new ModelMenu("Nhân Viên", new ImageIcon(getClass().getResource("/com/raven/icon/Staff.png"))));
-        menu.addMenu(new ModelMenu("Hóa Đơn", new ImageIcon(getClass().getResource("/com/raven/icon/hoaDon.png"))));
-        menu.addMenu(new ModelMenu("Phiếu Bảo Hành", new ImageIcon(getClass().getResource("/com/raven/icon/phieuBaoHanh.png"))));
-        menu.addMenu(new ModelMenu("Nhà Cung Cấp", new ImageIcon(getClass().getResource("/com/raven/icon/nhaCungCapp.png"))));
-        menu.addMenu(new ModelMenu("Phiếu Nhập", new ImageIcon(getClass().getResource("/com/raven/icon/phieuNhap.png"))));
+            });
+            menu.addMenu(new ModelMenu("Trang Chủ", new ImageIcon(getClass().getResource("/com/raven/icon/homePagee.png"))));
+            menu.addMenu(new ModelMenu("Bán Bàng", new ImageIcon(getClass().getResource("/com/raven/icon/sell.png"))));
+            menu.addMenu(new ModelMenu("Loại Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/category.png"))));
+            menu.addMenu(new ModelMenu("Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/report.png"))));
+            menu.addMenu(new ModelMenu("Khuyến mãi", new ImageIcon(getClass().getResource("/com/raven/icon/KhuyenMai.png"))));
+            menu.addMenu(new ModelMenu("Khách hàng", new ImageIcon(getClass().getResource("/com/raven/icon/Custom.png"))));
+            menu.addMenu(new ModelMenu("Nhân Viên", new ImageIcon(getClass().getResource("/com/raven/icon/Staff.png"))));
+            menu.addMenu(new ModelMenu("Hóa Đơn", new ImageIcon(getClass().getResource("/com/raven/icon/hoaDon.png"))));
+            menu.addMenu(new ModelMenu("Phiếu Bảo Hành", new ImageIcon(getClass().getResource("/com/raven/icon/phieuBaoHanh.png"))));
+            menu.addMenu(new ModelMenu("Nhà Cung Cấp", new ImageIcon(getClass().getResource("/com/raven/icon/nhaCungCapp.png"))));
+            menu.addMenu(new ModelMenu("Phiếu Nhập", new ImageIcon(getClass().getResource("/com/raven/icon/phieuNhap.png"))));
+        } else {
+            menu.setEvent(new EventMenuSelected() {
+                @Override
+                public void selected(int index) {
+                    if (index == 0) {
+                        showForm(new BanHangPanel());
+                    } else if (index == 1) {
+                        showForm(new LoaiSanPhamPnl());
+                    } else if (index == 2) {
+                        showForm(new SanPhamPanel());
+                    } else if (index == 3) {
+                        showForm(new KhuyenMaiPnl());
+                    } else if (index == 4) {
+                        showForm(new HoaDonPnl());
+                    } else if (index == 5) {
+                        showForm(new PhieuBaoHanhPnl());
+                    }
+
+                }
+            });
+
+            menu.addMenu(new ModelMenu("Bán Bàng", new ImageIcon(getClass().getResource("/com/raven/icon/sell.png"))));
+            menu.addMenu(new ModelMenu("Loại Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/category.png"))));
+            menu.addMenu(new ModelMenu("Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/report.png"))));
+            menu.addMenu(new ModelMenu("Khuyến mãi", new ImageIcon(getClass().getResource("/com/raven/icon/KhuyenMai.png"))));
+            menu.addMenu(new ModelMenu("Hóa Đơn", new ImageIcon(getClass().getResource("/com/raven/icon/hoaDon.png"))));
+            menu.addMenu(new ModelMenu("Phiếu Bảo Hành", new ImageIcon(getClass().getResource("/com/raven/icon/phieuBaoHanh.png"))));
+
+        }
+//        menu.addMenu(new ModelMenu("Trang Chủ", new ImageIcon(getClass().getResource("/com/raven/icon/homePagee.png"))));
+//        menu.addMenu(new ModelMenu("Bán Bàng", new ImageIcon(getClass().getResource("/com/raven/icon/sell.png"))));
+//        menu.addMenu(new ModelMenu("Loại Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/category.png"))));
+//        menu.addMenu(new ModelMenu("Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/report.png"))));
+//        menu.addMenu(new ModelMenu("Khuyến mãi", new ImageIcon(getClass().getResource("/com/raven/icon/KhuyenMai.png"))));
+//        menu.addMenu(new ModelMenu("Khách hàng", new ImageIcon(getClass().getResource("/com/raven/icon/Custom.png"))));
+//        menu.addMenu(new ModelMenu("Nhân Viên", new ImageIcon(getClass().getResource("/com/raven/icon/Staff.png"))));
+//        menu.addMenu(new ModelMenu("Hóa Đơn", new ImageIcon(getClass().getResource("/com/raven/icon/hoaDon.png"))));
+//        menu.addMenu(new ModelMenu("Phiếu Bảo Hành", new ImageIcon(getClass().getResource("/com/raven/icon/phieuBaoHanh.png"))));
+//        menu.addMenu(new ModelMenu("Nhà Cung Cấp", new ImageIcon(getClass().getResource("/com/raven/icon/nhaCungCapp.png"))));
+//        menu.addMenu(new ModelMenu("Phiếu Nhập", new ImageIcon(getClass().getResource("/com/raven/icon/phieuNhap.png"))));
 
         body.add(menu, "w 50!");
         body.add(main, "w 100%");
@@ -147,8 +188,12 @@ public class Main extends javax.swing.JFrame {
         animator.setResolution(0);
         animator.setAcceleration(0.5f);
         animator.setDeceleration(0.5f);
+        if (DangNhapPnl.level==0){
         showForm(new ThongKe());
-    }
+    } else {
+         showForm(new BanHangPanel());   
+            
+        }}
 
     private void showForm(Component com) {
         main.removeAll();

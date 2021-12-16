@@ -37,8 +37,8 @@ public class SanPhamDAO extends AbsDAO<SanPham> {
     }
 
     public List<Object[]> searchTenSanPham(String ten) {
-        String selectSql = "select idSanPham,TenLoaiSanPham,TenSanPham,GiaNhap,GiaBan,ChiTietSanPham.SoLuong,DVT from SanPham join LoaiSanPham on SanPham.idLoaiSanPham = LoaiSanPham.idLoaiSanPham\n"
-                + "	 where TenSanPham like ? where  chitietsanpham.soluong>0 order by chitietsanpham.soluong desc";
+        String selectSql = "select idSanPham,TenLoaiSanPham,TenSanPham,GiaNhap,GiaBan,SoLuong,DVT from SanPham join LoaiSanPham on SanPham.idLoaiSanPham = LoaiSanPham.idLoaiSanPham\n"
+                + "	 where TenSanPham like ? and  soluong>0 order by soluong desc";
         List<Object[]> data = getRawValues(selectSql, ten);
         return data;
     }

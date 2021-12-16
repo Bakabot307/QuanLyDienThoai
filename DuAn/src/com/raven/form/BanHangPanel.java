@@ -758,17 +758,22 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         khachHangDialog.title.setText("Thêm Khách Hàng ");
         khachHangDialog.setVisible(true);
     }//GEN-LAST:event_btnThemkhActionPerformed
-    public void XuatHoaDon(int idhd) {
+    public void XuatHoaDon(int idhd,double tienKhachDua, double tienThua) {
         try {
 
-            Hashtable map = new Hashtable();
+            Hashtable<String, Object> map = new Hashtable<String, Object>();
             JasperReport report = JasperCompileManager.compileReport("src/reports/newReport2.jrxml");
 
             map.put("IDHD", idhd);
+            map.put("tienThua", tienThua);
+            map.put("tienKhachDua", tienKhachDua);
+            
+            //DBConnection2.conn cái này của em ko khởi tạo nó băng null nên ko lấy đc 
 
+            DBConnection2 a = new DBConnection2(); //Khởi tạo nè
             JasperPrint p = JasperFillManager.fillReport(report, map, DBConnection2.conn);
             JasperViewer.viewReport(p, false);
-            JasperExportManager.exportReportToPdfFile(p, "test.pdf");
+            JasperExportManager.exportReportToPdfFile(p, "d:/test.pdf");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -1001,8 +1006,10 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
                 }
             }
         }
+        double tienThua = ChuyenDoi.SoDouble(txtTienThua1.getText());
+        double tienKhachDua = ChuyenDoi.SoDouble(txtKhachDua.getText());
         idHoaDon = banHangController.idHoaDon();
-        XuatHoaDon(1048);
+        XuatHoaDon(idHoaDon,tienKhachDua,tienThua); //Mở database thầy xem
         hoaDonBanHangController.loadList();
         DefaultTableModel dm = (DefaultTableModel) dataTable1.getModel();
         int rowCount = dm.getRowCount();
