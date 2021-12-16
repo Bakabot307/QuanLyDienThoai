@@ -124,23 +124,64 @@ public class SanPhamDAO extends AbsDAO<SanPham> {
 
     }
 
-    public Object layListSanPhamGanHet(JTable tbl) {
+    public Object layListSanPhamBanChay(JTable tbl) {
         DefaultTableModel tableModel = (DefaultTableModel) tbl.getModel();
         Object values[] = new Object[7];
         tableModel.setRowCount(0);
         try {
-            String selectSql = "Select  * from SanPham join LoaiSanPham on SanPham.idLoaiSanPham = LoaiSanPham.idLoaiSanPham where SoLuong <=3 order by SoLuong asc";
+            String selectSql = "select ChiTietHoaDon.idChiTietSanPham as idChiTiet,TenLoaiSanPham ,\n" +
+"ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac) as tenSanPham, \n" +
+"SUM(ChiTietHoaDon.SoLuong) as soLuong,GiaBan,DVT,ChiTietSanPham.SoLuong as CTSPSoLuong\n" +
+"from ChiTietHoaDon inner join ChiTietSanPham on ChiTietSanPham.idChiTietSanPham = ChiTietHoaDon.idChiTietSanPham\n" +
+"inner join HoaDon on HoaDon.idHoaDon = ChiTietHoaDon.idHoaDon\n" +
+"inner join SanPham on ChiTietHoaDon.idSanPham = SanPham.idSanPham\n" +
+"inner join LoaiSanPham on LoaiSanPham.idLoaiSanPham = SanPham.idLoaiSanPham\n" +
+"group by ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac),TenLoaiSanPham,GiaBan,DVT,ChiTietHoaDon.idChiTietSanPham,ChiTietSanPham.SoLuong\n" +
+"order by soLuong desc ";
 
             ResultSet rs = DBConnection.executeQuery(selectSql);
-            SanPham sp;
             while (rs.next()) {
-                values[0] = rs.getInt("idSanPham");
+                values[0] = rs.getInt("idChiTiet");
                 values[1] = rs.getString("TenLoaiSanPham");
-                values[2] = rs.getString("TenSanPham");
-                values[3] = rs.getDouble("GiaNhap");
+                values[2] = rs.getString("tenSanPham");
+                values[3] = rs.getInt("soLuong");
                 values[4] = rs.getDouble("GiaBan");
-                values[5] = rs.getInt("SoLuong");
-                values[6] = rs.getString("DVT");
+                values[5] = rs.getString("DVT");
+                 values[6] = rs.getInt("CTSPSoLuong");
+
+                tableModel.addRow(values);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return values;
+    }
+    public Object LayListSanPhamTonKho(JTable tbl) {
+        DefaultTableModel tableModel = (DefaultTableModel) tbl.getModel();
+        Object values[] = new Object[7];
+        tableModel.setRowCount(0);
+        try {
+            String selectSql = "select ChiTietHoaDon.idChiTietSanPham as idChiTiet,TenLoaiSanPham ,\n" +
+"ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac) as tenSanPham, \n" +
+"SUM(ChiTietHoaDon.SoLuong) as soLuong,GiaBan,DVT,ChiTietSanPham.SoLuong as CTSPSoLuong\n" +
+"from ChiTietHoaDon inner join ChiTietSanPham on ChiTietSanPham.idChiTietSanPham = ChiTietHoaDon.idChiTietSanPham\n" +
+"inner join HoaDon on HoaDon.idHoaDon = ChiTietHoaDon.idHoaDon\n" +
+"inner join SanPham on ChiTietHoaDon.idSanPham = SanPham.idSanPham\n" +
+"inner join LoaiSanPham on LoaiSanPham.idLoaiSanPham = SanPham.idLoaiSanPham\n" +
+"group by ConCat(TenSanPham,' ', DungLuong,' ' ,Mausac),TenLoaiSanPham,GiaBan,DVT,ChiTietHoaDon.idChiTietSanPham,ChiTietSanPham.SoLuong\n" +
+"order by soLuong asc ";
+
+            ResultSet rs = DBConnection.executeQuery(selectSql);
+            while (rs.next()) {
+                values[0] = rs.getInt("idChiTiet");
+                values[1] = rs.getString("TenLoaiSanPham");
+                values[2] = rs.getString("tenSanPham");
+                values[3] = rs.getInt("soLuong");
+                values[4] = rs.getDouble("GiaBan");
+                values[5] = rs.getString("DVT");
+                 values[6] = rs.getInt("CTSPSoLuong");
 
                 tableModel.addRow(values);
             }

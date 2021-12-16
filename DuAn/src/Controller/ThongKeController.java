@@ -42,8 +42,8 @@ public class ThongKeController extends AbsController<HoaDon> {
 
     }
 
-    public void SearchDate(String first, String last) {
-        hoaDonDAO.searchDate(first, last);
+    public List<Object[]> SearchDate(Date first, Date last) {
+        return hoaDonDAO.searchDate(first, last);
     }
 
     public List<Object[]> loadNgay() {
@@ -56,8 +56,13 @@ public class ThongKeController extends AbsController<HoaDon> {
 
     }
 
-    public Object DSSanPhamGanHet(JTable tbl) {
-        return sanPhamDAO.layListSanPhamGanHet(tbl);
+    public Object DSSanPhamBanChay(JTable tbl) {
+        return sanPhamDAO.layListSanPhamBanChay(tbl);
+
+    }
+    
+             public Object DSSanPhamTonKho(JTable tbl) {
+        return sanPhamDAO.LayListSanPhamTonKho(tbl);
 
     }
 

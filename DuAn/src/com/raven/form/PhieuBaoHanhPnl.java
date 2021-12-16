@@ -383,9 +383,9 @@ public void exportExcel(JTable table) {
         handlePhieuBaoHanhDal.errorlb.setText("");
         handlePhieuBaoHanhDal.txtLyDo.setText(tblPhieuBaoHanh.getValueAt(dong, 5).toString());
         handlePhieuBaoHanhDal.txtTime.setText(tblPhieuBaoHanh.getValueAt(dong, 6).toString());
-        handlePhieuBaoHanhDal.txtTrangThai.setText(tblPhieuBaoHanh.getValueAt(dong, 7).toString());
-        handlePhieuBaoHanhDal.txtChiPhi.setText(tblPhieuBaoHanh.getValueAt(dong, 8).toString());
-        handlePhieuBaoHanhDal.txtGhiChu.setText(tblPhieuBaoHanh.getValueAt(dong, 9).toString());
+        handlePhieuBaoHanhDal.txtTrangThai.setText(tblPhieuBaoHanh.getValueAt(dong, 9).toString());
+        handlePhieuBaoHanhDal.txtChiPhi.setText(tblPhieuBaoHanh.getValueAt(dong, 7).toString());
+        handlePhieuBaoHanhDal.txtGhiChu.setText(tblPhieuBaoHanh.getValueAt(dong, 8).toString());
 
         handlePhieuBaoHanhDal.setVisible(true);
     }//GEN-LAST:event_btnCapNhapMouseClicked

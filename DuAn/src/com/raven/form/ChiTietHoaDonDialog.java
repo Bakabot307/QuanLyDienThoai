@@ -350,8 +350,6 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
     private void btnThem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThem2MouseClicked
         // TODO add your handling code here:
 
-    
-
         double giaTien = ChuyenDoi.SoDouble(txtGiatien1.getText());
         double tongTien = ChuyenDoi.SoDouble(txtTongTien.getText());
 
@@ -391,23 +389,23 @@ public class ChiTietHoaDonDialog extends javax.swing.JDialog implements ViewInte
     }//GEN-LAST:event_btnThem2MouseClicked
 
     private void cbbSanPhamItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbSanPhamItemStateChanged
-       ChiTietHoaDonDialog chiTietHoaDonDialog = new ChiTietHoaDonDialog(null, true);
- DefaultComboBoxModel<ChiTietSanPham> modle1 = (DefaultComboBoxModel<ChiTietSanPham>) chiTietHoaDonDialog.cbbCTSP.getModel();
+        ChiTietHoaDonDialog chiTietHoaDonDialog = new ChiTietHoaDonDialog(null, true);
+        DefaultComboBoxModel<ChiTietSanPham> modle1 = (DefaultComboBoxModel<ChiTietSanPham>) chiTietHoaDonDialog.cbbCTSP.getModel();
         SanPham sp = (SanPham) chiTietHoaDonDialog.cbbSanPham.getSelectedItem();
-        if (sp ==null){
+        if (sp == null) {
+            modle1.removeAllElements();
+            return;
+        } else {
+            Integer idSP = sp.getId();
+        
+            if (cbbSanPham.getSelectedItem()==idSP){
             
             modle1.removeAllElements();
-        return;
-        } else {
-        Integer idSP = sp.getId();
-        
-        
-       
-        modle1.removeAllElements();
-        List<Object[]> CTSP = chiTietHoaDonController.layIdCTSP(idSP);
-        for (Object[] obj : CTSP) {
-    
-            chiTietHoaDonDialog.cbbCTSP.addItem(Integer.parseInt(obj[0].toString()));
+            List<Object[]> CTSP = chiTietHoaDonController.layIdCTSP(idSP);
+            for (Object[] obj : CTSP) {
+
+                chiTietHoaDonDialog.cbbCTSP.addItem(Integer.parseInt(obj[0].toString()));
+            }
         }
         }
     }//GEN-LAST:event_cbbSanPhamItemStateChanged

@@ -62,7 +62,7 @@ public class PhieuBaoHanhController extends AbsController<PhieuBaoHanh> {
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Phiếu", "ID Hoá Đơn", "Khách Hàng", "Nhân Viên", "Ngày Lập", "Lý Do", "Thời gian bảo trì", "Trạng Thái", "Chi Phí", "Ghi chú"};
+        return new String[]{"ID Phiếu", "ID Hoá Đơn", "Khách Hàng", "Nhân Viên", "Ngày Lập", "Lý Do", "Thời gian bảo trì", "Chi Phí","Ghi Chú" , "Trạng Thái"};
     }
 
     @Override

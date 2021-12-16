@@ -31,12 +31,16 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
         initComponents();
         setOpaque(false);
         init();
-        showSanPhamGanHet();
+        showSanPhamBanChay();
+        
 
     }
 
-    public void showSanPhamGanHet() {
-        thongKeController.DSSanPhamGanHet(tableData);
+    public void showSanPhamBanChay() {
+        thongKeController.DSSanPhamBanChay(tableData);
+    }
+    public void showSanPhamTonKho() {
+        thongKeController.DSSanPhamTonKho(tableData);
     }
 
     private void init() {
@@ -66,8 +70,9 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
         scrollBar1 = new com.raven.swing.ScrollBar();
         cbbThongKeDoanhThu = new javax.swing.JComboBox<>();
         cbbThongKe = new javax.swing.JComboBox<>();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        dc1st = new com.toedter.calendar.JDateChooser();
+        dc2nd = new com.toedter.calendar.JDateChooser();
+        btnTimKiem = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(79, 79, 79));
@@ -82,7 +87,7 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 957, Short.MAX_VALUE)
+                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 937, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelRound1Layout.setVerticalGroup(
@@ -101,7 +106,7 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
 
             },
             new String [] {
-                "ID Sản Phẩm", "Tên loại", "Tên Sản Phẩm", "Giá Nhập", "Giá Bán", "Số Lượng", "Đơn Vị Tính"
+                "ID Sản Phẩm", "Tên Loại Phẩm", "Tên Sản Phẩm", "Số Lượng Đã Bán", "Giá Bán", "Đơn Vị Tính", "Số Lượng Trong Kho"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -131,10 +136,17 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
             }
         });
 
-        cbbThongKe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sản phẩm bán chạy", "Sản phẩm gần hết" }));
+        cbbThongKe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sản phẩm bán chạy", "Sản phẩm ít được quan tâm" }));
         cbbThongKe.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbbThongKeItemStateChanged(evt);
+            }
+        });
+
+        btnTimKiem.setText("jButton1");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
             }
         });
 
@@ -149,7 +161,7 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -157,11 +169,13 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dc1st, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dc2nd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbbThongKeDoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbbThongKeDoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -169,11 +183,13 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(cbbThongKeDoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbbThongKeDoanhThu)
+                            .addComponent(btnTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                        .addComponent(dc2nd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dc1st, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +201,7 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(81, 81, 81)
-                        .addComponent(scrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(scrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -265,19 +281,32 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
         // TODO add your handling code here:
         if (cbbThongKe.getSelectedIndex() == 0) {
             System.out.println("vao roi 00000000000000000000000000000000000000000000000000000000000000000000000000000");
-            showSanPham();
+            showSanPhamBanChay();
         } else if (cbbThongKe.getSelectedIndex() == 1) {
             System.out.println("vao roi 11111111111111111111111111111111111111111111111111111111111111111111111111111111111");
-            showSanPhamGanHet();
+            showSanPhamTonKho();
         }
     }//GEN-LAST:event_cbbThongKeItemStateChanged
 
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        
+        chart.clear();
+        List<Object[]> dataTimKiem = thongKeController.SearchDate(dc1st.getDate(), dc2nd.getDate());
+        for (Object[] obj : dataTimKiem) {
+            String thang = String.valueOf(obj[0]);
+            Double doanhThu = ChuyenDoi.SoDouble(obj[1].toString());
+            chart.addData(new ModelChart(thang, new double[]{0, doanhThu, 0, 0}));
+        }
+        chart.start();
+    }//GEN-LAST:event_btnTimKiemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTimKiem;
     private javax.swing.JComboBox<String> cbbThongKe;
     private javax.swing.JComboBox<String> cbbThongKeDoanhThu;
     private com.raven.chart.Chart chart;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
-    private com.toedter.calendar.JDateChooser jDateChooser3;
+    private com.toedter.calendar.JDateChooser dc1st;
+    private com.toedter.calendar.JDateChooser dc2nd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

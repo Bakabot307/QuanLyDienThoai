@@ -66,8 +66,8 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
         return data;
     }
 
-    public List<Object[]> searchDate(String first, String last) {
-        String selectSql = "SELECT concat('ThÃ¡ng ',MONTH(NgayLap)) as ngaylap,SUM(TongTien) AS totalIncome FROM HoaDon "
+    public List<Object[]> searchDate(Date first, Date last) {
+        String selectSql = "SELECT concat('Tháng ',MONTH(NgayLap)) as ngaylap,SUM(TongTien) AS totalIncome FROM HoaDon "
                 + "WHERE NgayLap >= ? and NgayLap <= ?  group by Month(NgayLap)";
         List<Object[]> data = getRawValues(selectSql, first, last);
         return data;
@@ -129,7 +129,7 @@ public class HoaDonDAO extends AbsDAO<HoaDon> {
     }
 
     public List<Object[]> layDS() {
-        String selectSql = "select idHoaDon,TenNhanVien,TenKhachHang,TenKhuyenMai,TongTien,NgayLap,HinhThucThanhToan,HoaDon.GhiChu\n"
+        String selectSql = "select idHoaDon,TenNhanVien,TenKhachHang,TenKhuyenMai,HoaDon.SoLuong,TongTien,NgayLap,HinhThucThanhToan,HoaDon.GhiChu\n"
                 + "from HoaDon join KhachHang on HoaDon.idKhachHang = KhachHang.idKhachHang join \n"
                 + "NhanVien on HoaDon.idNhanVien = NhanVien.idNhanVien join KhuyenMai on HoaDon.idKhuyenMai = KhuyenMai.idKhuyenMai";
         List<Object[]> data = getRawValues(selectSql);

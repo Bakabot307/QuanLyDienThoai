@@ -212,7 +212,8 @@ public class LoaiSanPhamPnl extends javax.swing.JPanel implements ViewInterface 
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
         // TODO add your handling code here:
-
+        loaiSanPhamDal.editBT.setEnabled(false);
+        loaiSanPhamDal.addBT.setEnabled(true);
         String tieuDe = (String) loaiSanPhamController.getViewBag().get("tieu_de");
         loaiSanPhamDal.title.setText("Thêm Loại Sản Phẩm ");
         loaiSanPhamDal.errorlb.setText("");
@@ -223,7 +224,8 @@ public class LoaiSanPhamPnl extends javax.swing.JPanel implements ViewInterface 
     private Integer editId;
     private void btnCapNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapNhapMouseClicked
         // TODO add your handling code here:
-
+loaiSanPhamDal.addBT.setEnabled(false);
+loaiSanPhamDal.editBT.setEnabled(true);
         if (tblKhachHang.getSelectedRow() == -1) {
             System.out.println("Lỗi chưa chọn dòng");
             JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn dòng cần sửa ! ", "Thông báo", JOptionPane.ERROR_MESSAGE);

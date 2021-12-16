@@ -23,18 +23,15 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
     /**
      * Creates new form KhachHangDialog
      */
-    double soLuong= 0;
-    
-    
+    double soLuong = 0;
+
     public HandleTangSoLuongDal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
         this.setIconImage(MImage.getAppIcon());
-        
-        
-    }
 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -197,17 +194,24 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
 
     private void btnOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseClicked
         // TODO add your handling code here:
-        soLuong=0;
-        this.dispose();
+        soLuong = ChuyenDoi.SoDouble(txtSoLuong.getText());
+        if (ChuyenDoi.SoDouble(txtSoLuong.getText()) == 0) {
+            errorlb2.setText("Số lượng cần lớn hơn 0");
+            return;
+        } else {
+            soLuong = 0;
+            this.dispose();
+        }
     }//GEN-LAST:event_btnOkMouseClicked
 
     private void btnGiamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGiamMouseClicked
-         soLuong=soLuong-1; 
-            txtSoLuong.setText(ChuyenDoi.SoString(soLuong));
-            if (ChuyenDoi.SoDouble(txtSoLuong.getText())<0){
-            soLuong=0;
-            }
-            
+        soLuong = ChuyenDoi.SoDouble(txtSoLuong.getText());
+        soLuong = soLuong - 1;
+        txtSoLuong.setText(ChuyenDoi.SoString(soLuong));
+        if (ChuyenDoi.SoDouble(txtSoLuong.getText()) < 0) {
+            soLuong = 0;
+        }
+
 //             NumberFormat format = NumberFormat.getInstance();
 //    NumberFormatter formatter = new NumberFormatter(format);
 //    formatter.setValueClass(Integer.class);
@@ -225,9 +229,9 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
     }//GEN-LAST:event_btnGiamMouseClicked
 
     private void btnTang1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTang1MouseClicked
-         soLuong=soLuong+1;
-           txtSoLuong.setText(ChuyenDoi.SoString(soLuong));
-       
+        soLuong = soLuong + 1;
+        txtSoLuong.setText(ChuyenDoi.SoString(soLuong));
+
     }//GEN-LAST:event_btnTang1MouseClicked
 
     private void txtSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoLuongActionPerformed
@@ -235,22 +239,22 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
     }//GEN-LAST:event_txtSoLuongActionPerformed
 
     private void txtSoLuongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSoLuongKeyReleased
-         String dau = txtSoLuong.getText();
+        String dau = txtSoLuong.getText();
         double chuyen = ChuyenDoi.SoDouble(dau);
         txtSoLuong.setText(ChuyenDoi.SoString(chuyen));
-        soLuong=(int) ChuyenDoi.SoDouble(txtSoLuong.getText());
+        soLuong = (int) ChuyenDoi.SoDouble(txtSoLuong.getText());
     }//GEN-LAST:event_txtSoLuongKeyReleased
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-             soLuong=0;
+        soLuong = 0;
         this.dispose();
     }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
      */
-   public static void main(String args[]) {
-       /* Set the Nimbus look and feel */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 //        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
 //         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -273,8 +277,8 @@ public class HandleTangSoLuongDal extends javax.swing.JDialog {
 //        }
 //        //</editor-fold>
 
-       /* Create and display the dialog */
-       java.awt.EventQueue.invokeLater(new Runnable() {
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 HandleTangSoLuongDal dialog = new HandleTangSoLuongDal(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {

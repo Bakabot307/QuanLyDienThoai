@@ -81,6 +81,10 @@ public class BanHangController extends AbsController<SanPham> {
         return khachHangDAO.getAll();
     }
     
+    public List<SanPham> layCbbDungLuong() {
+        return sanPhamDAO.getAll();
+    }
+    
     @Override
     public AbsDAO<SanPham> getDao() {
         return new SanPhamDAO();

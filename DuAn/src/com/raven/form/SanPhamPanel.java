@@ -452,7 +452,7 @@ public Integer idSanPham;
         id = tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0).toString();
         System.out.println(id);
         
-        chiTietSanPhamDialog.setIdSanPham((Integer) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0));
+        chiTietSanPhamDialog.setIdSanPham((Integer.parseInt(tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0).toString())));
 
         chiTietSanPhamDialog.setVisible(true);
 

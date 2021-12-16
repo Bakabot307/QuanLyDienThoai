@@ -16,8 +16,7 @@ import java.sql.Statement;
  * @author CuongNP
  */
 public class DBConnection2 {
-    private static String DB_URL = "jdbc:sqlserver://localhost;"
-            + "databaseName=quanly_dienthoai;";
+    private static String DB_URL ="jdbc:sqlserver://localhost;database=quanly_dienthoai";
     private static String USER_NAME = "sa";
     private static String PASSWORD = "123456"; 
     public static Connection conn;

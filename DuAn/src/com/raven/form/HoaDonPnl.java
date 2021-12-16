@@ -66,7 +66,7 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
         btnChiTiet1 = new javax.swing.JLabel();
 
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
         tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,8 +81,8 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
         ));
         jScrollPane1.setViewportView(tblHoaDon);
 
-        jPanel1.add(jScrollPane1);
-        jPanel1.add(scrollBar1);
+        jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        jPanel1.add(scrollBar1, java.awt.BorderLayout.LINE_END);
 
         jPanel2.setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -154,7 +154,7 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1005, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -164,7 +164,7 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -210,30 +210,22 @@ public class HoaDonPnl extends javax.swing.JPanel implements ViewInterface {
         chiTietHoaDonDialog.lbStatus.setText("");
         id = tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0).toString();
         System.out.println(id);
-        chiTietHoaDonDialog.setIdHoaDon((Integer) tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0));
-        
+        chiTietHoaDonDialog.setIdHoaDon(Integer.parseInt(tblHoaDon.getValueAt(tblHoaDon.getSelectedRow(), 0).toString()));
+
         DefaultComboBoxModel<SanPham> modle2 = (DefaultComboBoxModel<SanPham>) chiTietHoaDonDialog.cbbSanPham.getModel();
         modle2.removeAllElements();
         List<SanPham> sanpham = hoaDonController.layCbbSanPham();
         modle2.addAll(sanpham);
-        modle2.setSelectedItem(sanpham.get(0));        
-         SanPham sp = (SanPham) chiTietHoaDonDialog.cbbSanPham.getSelectedItem();
+        modle2.setSelectedItem(sanpham.get(0));
+        SanPham sp = (SanPham) chiTietHoaDonDialog.cbbSanPham.getSelectedItem();
         Integer idSP = sp.getId();
-        
-        
+
         DefaultComboBoxModel<ChiTietSanPham> modle1 = (DefaultComboBoxModel<ChiTietSanPham>) chiTietHoaDonDialog.cbbCTSP.getModel();
         modle1.removeAllElements();
         List<Object[]> CTSP = hoaDonController.layIdCTSP(idSP);
         for (Object[] obj : CTSP) {
-    
             chiTietHoaDonDialog.cbbCTSP.addItem(Integer.parseInt(obj[0].toString()));
-            
-            
-           
         }
-        
-       
-
         chiTietHoaDonDialog.setVisible(true);
 
 //        ArrayList<SanPham> list = hoaDonController.DSSanPham();
