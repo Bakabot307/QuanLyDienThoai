@@ -11,16 +11,18 @@ import VIEW.ViewImp;
 import VIEW.ViewInterface;
 import com.raven.chart.ModelChart;
 import java.awt.Color;
+import java.awt.Component;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
+import javax.swing.JPanel;
 import net.sf.oval.ConstraintViolation;
 
 public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
-
+    
     ThongKeController thongKeController = new ThongKeController(this);
     List<Object[]> dataThang = thongKeController.loadMonth();
     List<Object[]> dataNgay = thongKeController.loadNgay();
@@ -44,17 +46,16 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
     }
 
     private void init() {
-
+        
         for (Object[] obj : dataNgay) {
             String ngay = String.valueOf(obj[0]);
             double tongTien = Double.parseDouble(obj[1].toString());
-            chart.addData(new ModelChart(ngay, new double[]{tongTien, 500000, 700000, 1000000}));
+            chart.addData(new ModelChart(ngay, new double[]{0, tongTien, 0, 0}));
         }
         chart.start();
-        chart.addLegend("Tổng Doanh Thu", new Color(245, 189, 135));
-        chart.addLegend("Expense", new Color(135, 189, 245));
-        chart.addLegend("Profit", new Color(189, 135, 245));
-        chart.addLegend("Cost", new Color(139, 229, 222));
+        chart.addLegend("", new Color(255,255,255));
+        chart.addLegend("Tổng Doanh Thu", new Color(135, 189, 245));
+
     }
 
     @SuppressWarnings("unchecked")
@@ -250,7 +251,10 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
     }
     private void cbbThongKeDoanhThuItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbThongKeDoanhThuItemStateChanged
         if (cbbThongKeDoanhThu.getSelectedIndex() == 0) {
+            
             chart.clear();
+            revalidate();
+            repaint();
             for (Object[] obj : dataNgay) {
                 String ngay = String.valueOf(obj[0]);
                 double tongTien = Double.parseDouble(obj[1].toString());
@@ -260,6 +264,7 @@ public final class ThongKe extends javax.swing.JPanel implements ViewInterface {
 
         } else if ((cbbThongKeDoanhThu.getSelectedIndex() == 1)) {
             chart.clear();
+            
             for (Object[] obj : dataThang) {
                 String thang = String.valueOf(obj[0]);
                 double tongTien = Double.parseDouble(obj[1].toString());

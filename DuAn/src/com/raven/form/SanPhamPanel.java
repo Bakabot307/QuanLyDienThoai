@@ -37,6 +37,8 @@ import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLOutput;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -46,8 +48,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -71,7 +75,8 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
     public  SanPhamPanel() {
         initComponents();
         SanPhamController sanPhamController = new SanPhamController(this);
-
+        
+        
 //        showSanPham();
         if (sanPhamDal == null) {
             sanPhamDal = new HandleSanPhamDal(null, true);
@@ -167,8 +172,8 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
                 values[0] = editId;
                 values[1] = idLoaiSP;
                 values[2] = sanPhamDal.txtTen.getText();
-                values[3] = Double.valueOf(sanPhamDal.txtGiaNhap.getText());
-                values[4] = Double.valueOf(sanPhamDal.txtGiaBan.getText());
+                values[3] = ChuyenDoi.SoDouble(sanPhamDal.txtGiaNhap.getText());
+                values[4] = ChuyenDoi.SoDouble(sanPhamDal.txtGiaBan.getText());
                 values[5] = Integer.valueOf(sanPhamDal.spnSoLuong.getValue().toString());
 
                 values[6] = sanPhamDal.txtDVT.getText();
@@ -194,41 +199,26 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
         modle.addAll(sanPhams);
         modle.setSelectedItem(sanPhams.get(0));
     }
+public class CurrencyTableCellRenderer extends DefaultTableCellRenderer {
 
-    public void showSanPham() {
+    private final NumberFormat FORMAT = NumberFormat.getCurrencyInstance();
 
-        ArrayList<SanPham> list = sanPhamController.DSSanPham();
-        System.out.println(list);
-        DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
-        Object[] row = new Object[8];
-        for (int i = 0; i < list.size(); i++) {
-            row[0] = list.get(i).getId();
-            row[1] = list.get(i).getIdLoaiSanPham();
-            row[2] = list.get(i).getTenSanPham();
-            row[3] = list.get(i).getGiaNhap();
-            row[4] = list.get(i).getGiaBan();
-            row[5] = list.get(i).getSoLuong();
-            row[6] = list.get(i).getDVT();
-//        try {
-//            BufferedImage img = ImageIO.read(new ByteArrayInputStream(list.get(i).getHinhAnh()));
-//        row[7]= img;
-//        } catch (IOException ex) {
-//            Logger.getLogger(SanPhamPanel.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//ByteArrayInputStream input_stream= new ByteArrayInputStream(list.get(i).getHinhAnh());
-//    try {
-//        BufferedImage final_buffered_image = ImageIO.read(input_stream);
-//        row[7]= final_buffered_image;
-//    } catch (IOException ex) {
-//        Logger.getLogger(SanPhamPanel.class.getName()).log(Level.SEVERE, null, ex);
-//    }
-//ByteArrayInputStream bais = new ByteArrayInputStream(list.get(i).getHinhAnh());
-//BufferedImage image = ImageIO.read(bais);
-            
-            model.addRow(row);
-
+    @Override
+    public final Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+        final Component result = super.getTableCellRendererComponent(table, value,
+                isSelected, hasFocus, row, column);
+        if (value instanceof Number) {
+            setHorizontalAlignment(JLabel.RIGHT);
+            setText(FORMAT.format(value));
+        } else {
+            setText("");
         }
+        return result;
     }
+}
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -262,7 +252,15 @@ public class SanPhamPanel extends javax.swing.JPanel implements ViewInterface {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblSanPham);
 
         jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -393,7 +391,8 @@ public Integer idSanPham;
     }
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
         // TODO add your handling code here:
-
+        sanPhamDal.addBT.setVisible(true);
+        sanPhamDal.editBT.setVisible(false);
         sanPhamDal.errorLB.setText("");
         sanPhamDal.txtTen.setText("");
         sanPhamDal.txtGiaNhap.setText("");
@@ -408,7 +407,8 @@ public Integer idSanPham;
     private Integer editId;
     private void btnCapNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapNhapMouseClicked
         // TODO add your handling code here:
-
+             sanPhamDal.addBT.setVisible(false);
+        sanPhamDal.editBT.setVisible(true);
         if (tblSanPham.getSelectedRow() == -1) {
             System.out.println("Lỗi chưa chọn dòng");
             JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn dòng cần sửa ! ", "Thông báo", JOptionPane.ERROR_MESSAGE);
@@ -534,6 +534,7 @@ public Integer idSanPham;
         ViewImp.viewList(rows, tblSanPham);
         if (sanPhamDal != null) {
             sanPhamDal.setVisible(false);
+            
         }
     }
 

@@ -302,7 +302,8 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
         // TODO add your handling code here:
-
+        phieuNhapDal.addBT.setVisible(true);
+        phieuNhapDal.editBT.setVisible(false);
         String tieuDe = (String) phieuNhapController.getViewBag().get("tieu_de");
         phieuNhapDal.title.setText("Thêm Phiếu Nhập ");
 
@@ -317,7 +318,9 @@ public class PhieuNhapPnl extends javax.swing.JPanel implements ViewInterface {
 
     private Integer editID;
     private void btnCapNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapNhapMouseClicked
-        // TODO add your handling code here:
+
+phieuNhapDal.addBT.setVisible(false);
+        phieuNhapDal.editBT.setVisible(true);        // TODO add your handling code here:
         if (tblPhieuNhap.getSelectedRow() == -1) {
             System.out.println("Lỗi chưa chọn dòng");
             JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn dòng cần sửa ! ", "Thông báo", JOptionPane.ERROR_MESSAGE);

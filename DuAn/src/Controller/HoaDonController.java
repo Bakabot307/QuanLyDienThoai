@@ -104,7 +104,7 @@ public class HoaDonController extends AbsController<HoaDon> {
 
     @Override
     public String[] getTableColumnNames() {
-        return new String[]{"ID Hóa đơn", "Khách hàng", "Nhân viên", "Khuyến mãi","Số Lượng", "Tổng tiền", "Ngày lập", "Hình thức thanh toán", "Ghi chú"};
+        return new String[]{"ID Hóa đơn",  "Nhân viên", "Khách hàng","Khuyến mãi","Số Lượng", "Tổng tiền", "Ngày lập", "Hình thức thanh toán", "Ghi chú"};
     }
 
     @Override

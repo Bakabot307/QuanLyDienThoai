@@ -111,7 +111,7 @@ public class Main extends javax.swing.JFrame {
                 }
             });
             menu.addMenu(new ModelMenu("Trang Chủ", new ImageIcon(getClass().getResource("/com/raven/icon/homePagee.png"))));
-            menu.addMenu(new ModelMenu("Bán Bàng", new ImageIcon(getClass().getResource("/com/raven/icon/sell.png"))));
+            menu.addMenu(new ModelMenu("Bán Hàng", new ImageIcon(getClass().getResource("/com/raven/icon/sell.png"))));
             menu.addMenu(new ModelMenu("Loại Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/category.png"))));
             menu.addMenu(new ModelMenu("Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/report.png"))));
             menu.addMenu(new ModelMenu("Khuyến mãi", new ImageIcon(getClass().getResource("/com/raven/icon/KhuyenMai.png"))));
@@ -121,7 +121,7 @@ public class Main extends javax.swing.JFrame {
             menu.addMenu(new ModelMenu("Phiếu Bảo Hành", new ImageIcon(getClass().getResource("/com/raven/icon/phieuBaoHanh.png"))));
             menu.addMenu(new ModelMenu("Nhà Cung Cấp", new ImageIcon(getClass().getResource("/com/raven/icon/nhaCungCapp.png"))));
             menu.addMenu(new ModelMenu("Phiếu Nhập", new ImageIcon(getClass().getResource("/com/raven/icon/phieuNhap.png"))));
-        } else {
+        } else if(DangNhapPnl.level == 2){
             menu.setEvent(new EventMenuSelected() {
                 @Override
                 public void selected(int index) {
@@ -142,14 +142,25 @@ public class Main extends javax.swing.JFrame {
                 }
             });
 
-            menu.addMenu(new ModelMenu("Bán Bàng", new ImageIcon(getClass().getResource("/com/raven/icon/sell.png"))));
+            menu.addMenu(new ModelMenu("Bán Hàng", new ImageIcon(getClass().getResource("/com/raven/icon/sell.png"))));
             menu.addMenu(new ModelMenu("Loại Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/category.png"))));
             menu.addMenu(new ModelMenu("Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/report.png"))));
             menu.addMenu(new ModelMenu("Khuyến mãi", new ImageIcon(getClass().getResource("/com/raven/icon/KhuyenMai.png"))));
             menu.addMenu(new ModelMenu("Hóa Đơn", new ImageIcon(getClass().getResource("/com/raven/icon/hoaDon.png"))));
             menu.addMenu(new ModelMenu("Phiếu Bảo Hành", new ImageIcon(getClass().getResource("/com/raven/icon/phieuBaoHanh.png"))));
 
+        } else {
+        menu.setEvent(new EventMenuSelected() {
+                @Override
+                public void selected(int index) {                  
+
+                }
+            });
+
+           
+
         }
+       
 //        menu.addMenu(new ModelMenu("Trang Chủ", new ImageIcon(getClass().getResource("/com/raven/icon/homePagee.png"))));
 //        menu.addMenu(new ModelMenu("Bán Bàng", new ImageIcon(getClass().getResource("/com/raven/icon/sell.png"))));
 //        menu.addMenu(new ModelMenu("Loại Sản Phẩm", new ImageIcon(getClass().getResource("/com/raven/icon/category.png"))));
@@ -188,12 +199,12 @@ public class Main extends javax.swing.JFrame {
         animator.setResolution(0);
         animator.setAcceleration(0.5f);
         animator.setDeceleration(0.5f);
-        if (DangNhapPnl.level==0){
+        if (DangNhapPnl.level==1){
         showForm(new ThongKe());
-    } else {
+    } else  if (DangNhapPnl.level==2) {
          showForm(new BanHangPanel());   
             
-        }}
+        } else {}}
 
     private void showForm(Component com) {
         main.removeAll();
@@ -279,7 +290,7 @@ public class Main extends javax.swing.JFrame {
         lblTitle.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/no-connection-16.png"))); // NOI18N
-        lblTitle.setText(" Ver 1.0 ");
+        lblTitle.setText("Cửa hàng điện thoại Dũng phát");
         pnlTitle.add(lblTitle);
 
         pnlTop.add(pnlTitle, java.awt.BorderLayout.LINE_START);

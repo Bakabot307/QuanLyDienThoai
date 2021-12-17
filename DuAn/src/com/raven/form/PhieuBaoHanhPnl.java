@@ -351,7 +351,8 @@ public void exportExcel(JTable table) {
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
         // TODO add your handling code here:
-
+        handlePhieuBaoHanhDal.addBT.setVisible(true);
+        handlePhieuBaoHanhDal.editBT.setVisible(false);
         String tieuDe = (String) phieuBaoHanhController.getViewBag().get("tieu_de");
         handlePhieuBaoHanhDal.title.setText("Thêm Phiếu Bảo Hành ");
 
@@ -367,7 +368,8 @@ public void exportExcel(JTable table) {
 
     private void btnCapNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapNhapMouseClicked
         // TODO add your handling code here:
-
+handlePhieuBaoHanhDal.addBT.setVisible(false);
+        handlePhieuBaoHanhDal.editBT.setVisible(true);
         if (tblPhieuBaoHanh.getSelectedRow() == -1) {
             System.out.println("Lỗi chưa chọn dòng");
             JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn dòng cần sửa ! ", "Thông báo", JOptionPane.ERROR_MESSAGE);

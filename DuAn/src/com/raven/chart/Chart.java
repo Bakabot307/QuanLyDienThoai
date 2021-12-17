@@ -66,14 +66,18 @@ public class Chart extends javax.swing.JPanel {
         model.add(data);
         blankPlotChart.setLabelCount(model.size());
         double max = data.getMaxValues();
-        if (max > blankPlotChart.getMaxValues()) {
+        
             blankPlotChart.setMaxValues(max);
-        }
+        
     }
 
     public void clear() {
         animate = 0;
         blankPlotChart.setLabelCount(0);
+        double max = 1000000;
+        if (max > blankPlotChart.getMaxValues()) {
+            blankPlotChart.setMaxValues(max);
+        }
         model.clear();
         repaint();
     }

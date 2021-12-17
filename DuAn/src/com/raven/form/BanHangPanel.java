@@ -32,6 +32,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -746,6 +747,8 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemkhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemkhActionPerformed
+        khachHangDialog.addBT.setVisible(true);
+        khachHangDialog.editBT.setVisible(false);
         khachHangDialog.errorlb.setText("");
         khachHangDialog.txtTen.setText("");
         khachHangDialog.txtSdt.setText("");
@@ -820,7 +823,7 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
     }//GEN-LAST:event_searchText1ActionPerformed
 
     private void cbbHinhThucThanhToanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbHinhThucThanhToanItemStateChanged
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cbbHinhThucThanhToanItemStateChanged
 
     private void cbbHinhThucThanhToanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbHinhThucThanhToanMouseClicked
@@ -905,6 +908,8 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
     }//GEN-LAST:event_txtKhachDuaKeyReleased
 
     private void txtThanhToan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtThanhToan1ActionPerformed
+       
+        
         if (dataTable1.getRowCount() == 0) {
             errorlb2.setText("Giỏ hàng trống");
             return;
@@ -919,7 +924,15 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
             errorlb2.setText("Số tiền khách đưa phải lớn hơn tiền hàng");
             return;
         }
-
+        
+         final JDialog dialog = new JDialog();
+        dialog.setAlwaysOnTop(true);
+        int dialogResult = JOptionPane.showConfirmDialog(dialog,
+                "Bạn có muốn lập hóa đơn không?", "Confirm",
+                JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            
+        
         BanHangController banHangController = new BanHangController(this);
         HoaDonBanHangController hoaDonBanHangController = new HoaDonBanHangController(this);
         BanHangChiTietHoaDonController banHangChiTietHoaDonController = new BanHangChiTietHoaDonController(this);
@@ -932,8 +945,9 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         Integer idNV = DangNhapPnl.ID;
         java.sql.Timestamp now = new Timestamp((new java.util.Date()).getTime());
         double tongTien = ChuyenDoi.SoDouble(txtCanTra.getText());
-
-        hoaDonBanHangController.ThemHD(1, idNV, idKM, tongSoLuong, tongTien, now, cbbHinhThucThanhToan.getSelectedItem().toString(), txtGhiChu.getText());
+        KhachHang khachHang = (KhachHang) cbbKhachHang.getSelectedItem();
+        Integer idKH = khachHang.getId();
+        hoaDonBanHangController.ThemHD(idKH, idNV, idKM, tongSoLuong, tongTien, now, cbbHinhThucThanhToan.getSelectedItem().toString(), txtGhiChu.getText());
         hoaDonBanHangController.loadList();
 
         System.out.println(banHangController.idHoaDon());
@@ -1019,7 +1033,9 @@ public class BanHangPanel extends javax.swing.JPanel implements ViewInterface {
         txtTongTien.setText("");
         txtTienThua1.setText("");
         txtKhachDua.setText("");
-        
+        } else {
+        return;
+        }    
     }//GEN-LAST:event_txtThanhToan1ActionPerformed
 
     public static String id;

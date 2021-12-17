@@ -310,10 +310,7 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
         String mau = txtMau.getText();
         String hsx = txtHsx.getText();
 
-        if (dungLuong.trim().equals("")) {
-            errorLB.setText("Vui lòng nhập dung lượng ! ");
-            return;
-        }
+        
         if (mau.trim().equals("")) {
             errorLB.setText("Vui lòng nhập màu sắc ! ");
             return;
@@ -342,10 +339,7 @@ public class ChiTietSanPhamDialog extends javax.swing.JDialog implements ViewInt
         String mau = txtMau.getText();
         String hsx = txtHsx.getText();
 
-        if (dungLuong.trim().equals("")) {
-            errorLB.setText("Vui lòng nhập dung lượng ! ");
-            return;
-        }
+        
         if (mau.trim().equals("")) {
             errorLB.setText("Vui lòng nhập màu sắc ! ");
             return;

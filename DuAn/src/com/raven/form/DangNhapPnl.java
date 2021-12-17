@@ -163,7 +163,7 @@ public class DangNhapPnl extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("UTM Avo", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/shop-16.png"))); // NOI18N
-        jLabel1.setText("Phone Shop");
+        jLabel1.setText("Dũng Phát");
         kGradientPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 9, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/shop-32.png"))); // NOI18N

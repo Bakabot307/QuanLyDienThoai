@@ -287,7 +287,9 @@ private Integer editId;
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
-        // TODO add your handling code here:
+
+handleNhaCungCapDal.addBT.setVisible(true);
+        handleNhaCungCapDal.editBT.setVisible(false);        // TODO add your handling code here:
         String tieuDe = (String) nhaCungCapController.getViewBag().get("tieu_de");
         handleNhaCungCapDal.title.setText("Thêm nhà cung cấp ");
         handleNhaCungCapDal.errorlb.setText("");
@@ -303,7 +305,9 @@ private Integer editId;
     }//GEN-LAST:event_btnThemMouseClicked
 
     private void btnCapNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapNhapMouseClicked
-        // TODO add your handling code here:
+
+handleNhaCungCapDal.addBT.setVisible(false);
+        handleNhaCungCapDal.editBT.setVisible(true);          // TODO add your handling code here:
         if (tblNhaCungCap.getSelectedRow() == -1) {
             System.out.println("Lỗi chưa chọn dòng");
             JOptionPane.showMessageDialog(new Frame(), "Vui lòng chọn dòng cần sửa ! ", "Thông báo", JOptionPane.ERROR_MESSAGE);
